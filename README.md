@@ -1,19 +1,20 @@
-<!DOCTYPE html>
+
 <html lang="sr">
 <head>
   <meta charset="UTF-8">
-  <title>GIGAFX – GOLD Trading</title>
+  <title>JokerFX – GOLD Trading</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
       margin: 0;
       padding: 0;
+      color: #facc15;
+      background: url('joker.png') no-repeat center center fixed;
+      background-size: cover;
     }
     header {
-      background: #020617;
+      background: rgba(0, 0, 0, 0.6);
       padding: 40px 20px;
       text-align: center;
     }
@@ -26,17 +27,21 @@
       color: #facc15;
     }
     .box {
-      background: #020617;
+      background: rgba(0, 0, 0, 0.6);
       padding: 20px;
       border-radius: 10px;
       margin-bottom: 20px;
+    }
+    a {
+      color: #facc15;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>GIGAFX</h1>
+  <h1>JokerFX</h1>
   <p>Forex Trading • GOLD (XAUUSD)</p>
 </header>
 
@@ -44,7 +49,7 @@
   <div class="box">
     <h2>O meni</h2>
     <p>
-      GIGAFX je lični trading projekat fokusiran na trgovanje
+      JokerFX je lični trading projekat fokusiran na trgovanje
       zlatom (XAUUSD) uz disciplinovan i konzervativan pristup.
     </p>
   </div>
