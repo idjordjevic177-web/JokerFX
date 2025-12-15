@@ -38,7 +38,49 @@
     }
   </style>
 </head>
+  <style>
+  h1, h2 {
+    color: #facc15;
+  }
+  .box {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  a {
+    color: #facc15;
+    text-decoration: none;
+  }
+
+  /* Novi CSS za O meni sa slikama */
+  .about-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .about-text {
+    flex: 1 1 300px;
+  }
+
+  .about-images {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .about-images img {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+</style>
+
 <body>
+
 
 <header>
   <h1>JokerFX</h1>
