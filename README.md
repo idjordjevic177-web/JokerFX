@@ -88,12 +88,21 @@
 </header>
 
 <section>
-  <div class="box">
-    <h2>O meni</h2>
-    <p>
-      JokerFX je lični trading projekat fokusiran na trgovanje
-      zlatom (XAUUSD) uz disciplinovan i konzervativan pristup.
-    </p>
+<div class="box">
+  <h2>O meni</h2>
+  <div class="about-container">
+    <div class="about-text">
+      <p>
+        JokerFX je lični trading projekat fokusiran na trgovanje zlatom (XAUUSD) uz disciplinovan i konzervativan pristup.  
+        Trejdujem zlato već oko 4 godine, uspešno sa profitabilnošću preko 75%.  
+        Fokusiram se na swing trade i dnevne trejdove, a takođe držim online časove i webinare za edukaciju drugih trejdera.
+      </p>
+    </div>
+    <div class="about-images">
+      <img src="images/slika1.jpg" alt="Trading grafikon" />
+      <img src="images/slika2.jpg" alt="JokerFX edukacija" />
+      <img src="images/slika3.jpg" alt="Zlato" />
+    </div>
   </div>
 
   <div class="box">
