@@ -1,91 +1,50 @@
-
+<!DOCTYPE html>
 <html lang="sr">
 <head>
   <meta charset="UTF-8">
   <title>JokerFX – GOLD Trading</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #facc15;
+      background: url('joker.png') no-repeat center center fixed;
+      background-size: cover;
+    }
+    header {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 40px 20px;
+      text-align: center;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #facc15;
+    }
+    .box {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    a {
+      color: #facc15;
+      text-decoration: none;
+    }
+  </style>
 </head>
-  <style>
-  h1, h2 {
-    color: #facc15;
-  }
-  .box {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-  }
-  a {
-    color: #facc15;
-    text-decoration: none;
-  }
-
-  /* Novi CSS za O meni sa slikama */
-  .about-container {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-
-  .about-text {
-    flex: 1 1 300px;
-  }
-
-  .about-images {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .about-images img {
-    width: 150px;
-    height: auto;
-    border-radius: 10px;
-    object-fit: cover;
-  }
-</style>
-
 <body>
-
 
 <header>
   <h1>JokerFX</h1>
   <p>Forex Trading • GOLD (XAUUSD)</p>
 </header>
 
-<section>
-  <section>
-
-  <!-- postojeći sadržaj koji si imao ranije -->
-  
-  <div class="box">
-    <h2>Market Analysis</h2>
-    <p>
-      Detaljnije analize i ažuriranja dostupni su na posebnoj stranici.
-    </p>
-
-    <a href="analysis.html" style="
-      display:inline-block;
-      margin-top:15px;
-      padding:15px 35px;
-      background:#facc15;
-      color:#020617;
-      font-weight:bold;
-      border-radius:8px;
-      text-decoration:none;
-      font-size:16px;
-    ">
-      View Weekly Analysis
-    </a>
-  </div>
-
-  <!-- Risk Management ili ostali box-ovi ispod -->
-
-</section>
-
-  </div>
 </section>
 
   <h2>O meni</h2>
