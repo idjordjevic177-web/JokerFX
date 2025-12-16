@@ -147,6 +147,37 @@
       <img src="images/slika 3.jpg" alt="Zlato" />
     </div>
   </div>
+  <div class="box">
+  <h2>Trading Philosophy</h2>
+  <p>
+    Moj pristup trejdingu zasniva se na procesu, a ne na pojedinačnim
+    rezultatima. Verujem da je dugoročna profitabilnost posledica
+    discipline, ponovljivosti i pravilnog upravljanja rizikom, a ne
+    agresivnog ili impulzivnog trgovanja.
+  </p>
+
+  <p>
+    Tržište posmatram kao dinamičan sistem u kome cena reaguje na
+    likvidnost, strukturu i kontekst viših vremenskih okvira. Ne jurim
+    svaki pokret, već čekam jasno definisane situacije koje se uklapaju u
+    moj plan i statističku prednost.
+  </p>
+
+  <p>
+    Fokusiran sam na kvalitet, ne na kvantitet. Mali broj dobro
+    isplaniranih trejdova ima veću vrednost od konstantnog izlaganja
+    tržištu bez jasne ideje. Strpljenje smatram jednim od najvažnijih
+    alata u trejdingu.
+  </p>
+
+  <p>
+    Psihološka stabilnost i doslednost u izvršavanju plana su ključni
+    elementi mog rada. Gubitak je deo procesa i prihvatam ga kao normalan
+    trošak poslovanja, dok se uspeh meri kroz dugoročnu stabilnost
+    rezultata.
+  </p>
+</div>
+
 
   <div class="box">
     <h2>Strategija</h2>
