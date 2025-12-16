@@ -2,99 +2,72 @@
 <html lang="sr">
 <head>
   <meta charset="UTF-8">
+  <title>JokerFX – Market Analysis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Market Analysis</title>
   <style>
-    /* FONT I BOJA TEKSTA (ista kao na glavnoj stranici) */
     body {
-      font-family: Arial, sans-serif; /* zameni ako koristiš drugi font na glavnoj strani */
-      color: #020617;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
+      color: #e5e7eb;
+      background: #020617;
     }
-
-    /* PARALAKS POZADINA */
-    .hero {
-      background-image: shutterstock_1927709654.jpg; /* ovde ide tvoja slika */
-      height: 400px; /* visina hero sekcije */
-      background-attachment: fixed; /* ključni paralaks efekat */
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    header {
+      padding: 40px 20px;
       text-align: center;
+      background: #020617;
     }
-
-    .hero h1 {
-      color: #facc15; /* boja naslova sa glavne strane */
-      font-size: 48px;
-      margin: 0;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.5); /* tekst je čitljiviji na slici */
+    section {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
     }
-
-    /* BOX SEKCIJE */
     .box {
-      max-width: 800px;
-      margin: 40px auto;
+      background: #0f172a;
       padding: 20px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 8px;
+      border-radius: 10px;
+      margin-bottom: 20px;
     }
-
-    /* DUGME */
-    a.button {
-      display: inline-block;
-      padding: 15px 30px;
-      background: #facc15;
-      color: #020617;
-      font-weight: bold;
-      border-radius: 8px;
+    h1, h2 {
+      color: #facc15;
+    }
+    a {
+      color: #facc15;
       text-decoration: none;
-      margin-top: 10px;
-    }
-
-    /* MALO RESPONZIVNOSTI */
-    @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 32px;
-      }
     }
   </style>
 </head>
 <body>
 
-  <!-- HERO SEKCija sa paralaks efektom -->
-  <div class="hero">
-    <h1>Market Analysis</h1>
-  </div>
+<header>
+  <h1>JokerFX</h1>
+  <p>Market Analysis • GOLD (XAUUSD)</p>
+</header>
 
-  <!-- BOX SA LINKOM NA DETALJNE ANALIZE -->
-  <div class="box">
-    <p>
-      Detaljnije analize i ažuriranja dostupni su na posebnoj stranici.
-    </p>
-    <a href="analysis.html" class="button">
-      View Weekly Analysis
-    </a>
-  </div>
+<section>
 
-  <!-- BOX SA RISK MANAGEMENT -->
   <div class="box">
-    <h2>Risk Management</h2>
+    <h2>Weekly GOLD Analysis</h2>
     <p>
-      Upravljanje rizikom predstavlja najvažniji deo mog trading procesa...
+      Ova stranica sadrži detaljnije analize zlata (XAUUSD), bazirane na
+      višim vremenskim okvirima i širem tržišnom kontekstu.
     </p>
   </div>
 
-  <!-- BOX SA NAPOMENOM -->
   <div class="box">
-    <h2>Napomena</h2>
+    <h2>Latest Update</h2>
     <p>
-      Sadržaj na ovom sajtu je edukativnog karaktera i ne predstavlja finansijski savet.
+      Trenutno tržište pokazuje konsolidaciju unutar šire strukture.
+      Fokus ostaje na reakciji cene oko ključnih nivoa sa viših
+      timeframe-ova.
     </p>
   </div>
+
+  <div class="box">
+    <a href="index.html">← Back to main page</a>
+  </div>
+
+</section>
 
 </body>
 </html>
