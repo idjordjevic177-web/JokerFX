@@ -355,14 +355,42 @@
 </div>
 
 
-  <div class="box">
-    <h2>Risk Management</h2>
-    <ul>
-      <li>Rizik po poziciji: 1%</li>
-      <li>Jasan stop loss</li>
-      <li>Bez overtradinga</li>
-    </ul>
-  </div>
+<div class="box">
+  <h2>Risk Management</h2>
+
+  <p>
+    Upravljanje rizikom predstavlja najvažniji deo mog trading procesa.
+    Bez obzira na kvalitet analize ili potencijalnu priliku, zaštita
+    kapitala ima apsolutni prioritet.
+  </p>
+
+  <p>
+    Rizik po pojedinačnom trejdu je striktno ograničen i unapred definisan.
+    Ne povećavam rizik kako bih „nadoknadio“ gubitke i ne prilagođavam
+    veličinu pozicije na osnovu emocija ili prethodnih rezultata.
+  </p>
+
+  <p>
+    Svaka pozicija ima jasan stop loss postavljen na tehnički smislenom
+    nivou, gde je ideja trejda invalidirana. Ukoliko tržište dođe do tog
+    nivoa, trejd se smatra neuspešnim bez dodatnog razmišljanja ili
+    intervencije.
+  </p>
+
+  <p>
+    Fokus je na dugoročnoj stabilnosti i konzistentnosti, a ne na
+    kratkoročnim dobitcima. Serija gubitaka se tretira kao normalan deo
+    statističkog procesa, dok se uspeh meri disciplinom i doslednim
+    sprovođenjem plana.
+  </p>
+
+  <p>
+    Ne koristim martingale, grid sisteme niti agresivne tehnike povećanja
+    izloženosti. Jednostavna pravila i kontrolisan rizik su temelj mog
+    pristupa.
+  </p>
+</div>
+
 
   <div class="box">
     <h2>Napomena</h2>
