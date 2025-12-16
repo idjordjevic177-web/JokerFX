@@ -99,7 +99,7 @@
       </p>
     </div>
     <div class="about-images">
-      <img src="images/xauusd.jpg" alt="Trading grafikon" />
+      <img src="images/xausud.jpg" alt="Trading grafikon" />
       <img src="images/slika 2.jpg" alt="JokerFX edukacija" />
       <img src="images/slika 3.jpg" alt="Zlato" />
     </div>
