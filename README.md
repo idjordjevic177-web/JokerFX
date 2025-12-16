@@ -4,67 +4,7 @@
   <meta charset="UTF-8">
   <title>JokerFX – GOLD Trading</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>/* layout: main + desni sidebar */
-.layout {
-  display: flex;
-  gap: 24px;
-  align-items: flex-start;
-}
-
-.main-col {
-  flex: 1;
-  min-width: 0;
-}
-
-.side-col {
-  width: 320px;
-  position: sticky;
-  top: 20px;
-}
-
-/* malo manji box u sidebaru da izgleda uredno */
-.side-col .box {
-  padding: 18px;
-}
-
-/* responsive: na telefonu ide jedno ispod drugog */
-@media (max-width: 980px) {
-  .layout { flex-direction: column; }
-  .side-col { width: 100%; position: static; }
-}
-
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #facc15;
-      background: url('joker.png') no-repeat center center fixed;
-      background-size: cover;
-    }
-    header {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 40px 20px;
-      text-align: center;
-    }
-    section {
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-    h1, h2 {
-      color: #facc15;
-    }
-    .box {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-    a {
-      color: #facc15;
-      text-decoration: none;
-    }
-  </style>
+  <style>
 </head>
   <style>
   h1, h2 {
@@ -116,93 +56,34 @@
 </header>
 
 <section>
-  <div class="layout">
+  <section>
 
-    <!-- LEVA (glavna) kolona: ostaje sav tvoj postojeći sadržaj -->
-    <div class="main-col">
+  <!-- postojeći sadržaj koji si imao ranije -->
+  
+  <div class="box">
+    <h2>Market Analysis</h2>
+    <p>
+      Detaljnije analize i ažuriranja dostupni su na posebnoj stranici.
+    </p>
 
-      <!-- OVDE OSTAVI sve tvoje postojeće box-ove:
-           O meni, Trading Philosophy, Strategija, Entry Conditions,
-           Trade Management, What I Don’t Trade, Weekly Bias, Risk Management, itd. -->
+    <a href="analysis.html" style="
+      display:inline-block;
+      margin-top:15px;
+      padding:15px 35px;
+      background:#facc15;
+      color:#020617;
+      font-weight:bold;
+      border-radius:8px;
+      text-decoration:none;
+      font-size:16px;
+    ">
+      View Weekly Analysis
+    </a>
+  </div>
 
-      <!-- PRIMER: -->
-      <!-- <div class="box"> ... </div> -->
-      <!-- <div class="box"> ... </div> -->
+  <!-- Risk Management ili ostali box-ovi ispod -->
 
-    </div>
-
-    <!-- DESNA kolona: Market Analysis navigacija -->
-    <aside class="side-col">
-
-      <div class="box" style="text-align:center;">
-        <h2>Market Analysis</h2>
-        <p>Detaljnije analize i ažuriranja su na posebnoj stranici.</p>
-
-        <a href="analysis.html" style="
-          display:inline-block;
-          margin-top:12px;
-          padding:12px 18px;
-          background:#facc15;
-          color:#020617;
-          font-weight:bold;
-          border-radius:8px;
-          text-decoration:none;
-          font-size:14px;
-        ">All Analysis</a>
-      </div>
-
-      <div class="box" style="text-align:center;">
-        <h2>Daily Analysis</h2>
-        <p>D1/H4 kontekst, ključni nivoi i scenario.</p>
-
-        <a href="analysis.html#daily" style="
-          display:inline-block;
-          margin-top:12px;
-          padding:12px 18px;
-          background:#facc15;
-          color:#020617;
-          font-weight:bold;
-          border-radius:8px;
-          text-decoration:none;
-          font-size:14px;
-        ">Open Daily</a>
-      </div>
-
-      <div class="box" style="text-align:center;">
-        <h2>1H Plan</h2>
-        <p>H1 potvrda strukture i execution ideja (bez signala).</p>
-
-        <a href="analysis.html#h1" style="
-          display:inline-block;
-          margin-top:12px;
-          padding:12px 18px;
-          background:#facc15;
-          color:#020617;
-          font-weight:bold;
-          border-radius:8px;
-          text-decoration:none;
-          font-size:14px;
-        ">Open 1H</a>
-      </div>
-
-      <div class="box" style="text-align:center;">
-        <h2>My Trades</h2>
-        <p>Moj trade plan / moj trade koji sam postavio (nije signal).</p>
-
-        <a href="analysis.html#mytrades" style="
-          display:inline-block;
-          margin-top:12px;
-          padding:12px 18px;
-          background:#facc15;
-          color:#020617;
-          font-weight:bold;
-          border-radius:8px;
-          text-decoration:none;
-          font-size:14px;
-        ">Open My Trades</a>
-      </div>
-
-    </aside>
+</section>
 
   </div>
 </section>
