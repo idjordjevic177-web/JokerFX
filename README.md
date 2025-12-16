@@ -421,7 +421,4 @@
       finansijski savet.
     </p>
   </div>
-</section>
 
-</body>
-</html>
