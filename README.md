@@ -4,7 +4,35 @@
   <meta charset="UTF-8">
   <title>JokerFX – GOLD Trading</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
+  <style>/* layout: main + desni sidebar */
+.layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.main-col {
+  flex: 1;
+  min-width: 0;
+}
+
+.side-col {
+  width: 320px;
+  position: sticky;
+  top: 20px;
+}
+
+/* malo manji box u sidebaru da izgleda uredno */
+.side-col .box {
+  padding: 18px;
+}
+
+/* responsive: na telefonu ide jedno ispod drugog */
+@media (max-width: 980px) {
+  .layout { flex-direction: column; }
+  .side-col { width: 100%; position: static; }
+}
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
