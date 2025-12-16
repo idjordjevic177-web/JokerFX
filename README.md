@@ -47,7 +47,7 @@
 </header>
 
 </section>
-
+<div class="box">
   <h2>O meni</h2>
   <p>
     JokerFX je lični trading projekat nastao kao rezultat višegodišnjeg
