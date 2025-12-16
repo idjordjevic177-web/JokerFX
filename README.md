@@ -180,14 +180,50 @@
 
 
   <div class="box">
-    <h2>Strategija</h2>
-    <ul>
-      <li>Swing & intraday trading</li>
-      <li>Timeframe: D1, H4, H1</li>
-      <li>Market structure & key levels</li>
-      <li>Bez trgovanja tokom važnih vesti</li>
-    </ul>
-  </div>
+  <h2>Strategija</h2>
+
+  <p>
+    Moja strategija trgovanja zasniva se na kombinaciji analize viših
+    vremenskih okvira, razumevanja strukture tržišta i strpljivog čekanja
+    jasnih prilika. Fokus je isključivo na zlatnom paru (XAUUSD), koji
+    pruža dovoljno volatilnosti i čiste tehničke strukture za planski
+    trading.
+  </p>
+
+  <p>
+    Analizu uvek započinjem na višim timeframe-ovima (D1 i H4), gde
+    identifikujem glavni trend, ključne zone ponude i potražnje, kao i
+    važne nivoe likvidnosti. Ovi nivoi predstavljaju osnovu mog bias-a i
+    određuju u kom pravcu tražim prilike.
+  </p>
+
+  <p>
+    Niži timeframe (H1) koristim isključivo za preciznije planiranje
+    ulaska, potvrdu strukture i kontrolu rizika. Ne ulazim u pozicije bez
+    jasnog konteksta sa viših vremenskih okvira, čime izbegavam impulsivne
+    i niskokvalitetne trejdove.
+  </p>
+
+  <p>
+    Strategija je prilagođena swing i intraday pristupu, sa jasno
+    definisanim ciljevima i realnim očekivanjima. Ne jurim vrhove i dna,
+    već se fokusiram na sredinu pokreta i nastavak već formirane
+    strukture.
+  </p>
+
+  <p>
+    Trgovanje tokom visokouticajnih ekonomskih vesti je svesno izostavljeno
+    iz mog plana, jer smatram da takvi uslovi povećavaju nepredvidivost i
+    narušavaju kvalitet statističke prednosti.
+  </p>
+
+  <p>
+    Cilj strategije nije maksimalan profit u kratkom roku, već dugoročna
+    stabilnost, ponovljivost i konzistentni rezultati kroz disciplinovano
+    sprovođenje plana.
+  </p>
+</div>
+
 
   <div class="box">
     <h2>Risk Management</h2>
