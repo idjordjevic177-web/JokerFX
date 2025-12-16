@@ -296,6 +296,63 @@
     stabilnost u pristupu tržištu.
   </p>
 </div>
+<div class="box">
+  <h2>Weekly GOLD Bias (XAUUSD)</h2>
+
+  <p>
+    Ova sekcija predstavlja moj nedeljni market bias za zlato (XAUUSD),
+    zasnovan na analizi viših vremenskih okvira (D1 i H4). Cilj nije davanje
+    konkretnih signala, već sagledavanje tržišnog konteksta, potencijalnih
+    scenarija i ključnih nivoa.
+  </p>
+
+  <p>
+    Bias se ažurira jednom nedeljno i služi kao okvir za razmišljanje,
+    a ne kao poziv na akciju.
+  </p>
+
+  <hr>
+
+  <h3>Market Context</h3>
+  <p>
+    Cena zlata se trenutno nalazi u okviru šire strukture višeg
+    vremenskog okvira. Glavni fokus je na reakciji cene oko ključnih
+    zona ponude i potražnje, kao i ponašanju oko prethodnih high/low
+    nivoa.
+  </p>
+
+  <h3>Directional Bias</h3>
+  <p>
+    Primarni bias ostaje neutralan do blago bullish / bearish, u
+    zavisnosti od reakcije cene na definisanim nivoima. Fokus je na
+    strpljivom čekanju potvrde, a ne na predviđanju.
+  </p>
+
+  <h3>Key Levels</h3>
+  <ul>
+    <li>Major resistance:  XXXX – XXXX</li>
+    <li>Major support:     XXXX – XXXX</li>
+    <li>Mid-range level:   XXXX</li>
+  </ul>
+
+  <h3>Execution Plan</h3>
+  <p>
+    Na nižim timeframe-ovima (H1) tražim potvrdu strukture u pravcu
+    definisanog bias-a. Bez potvrde sa viših vremenskih okvira,
+    pozicije se ne razmatraju.
+  </p>
+
+  <h3>Risk Note</h3>
+  <p>
+    Tokom sedmice sa važnim makroekonomskim objavama, volumen i
+    izloženost su svesno smanjeni ili se trgovanje izostavlja.
+  </p>
+
+  <p><em>
+    Ovaj bias je informativnog i edukativnog karaktera i ne predstavlja
+    finansijski savet.
+  </em></p>
+</div>
 
 
   <div class="box">
