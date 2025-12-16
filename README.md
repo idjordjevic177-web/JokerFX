@@ -357,20 +357,20 @@
   <h2>Market Analysis</h2>
 
   <p>
-    Detaljnije nedeljne analize zlata (XAUUSD) dostupne su na posebnoj
-    stranici.
+<div class="box" style="text-align:center;">
+  <h2>Market Analysis</h2>
+  <p>
+    Detaljnije analize i ažuriranja dostupni su na posebnoj stranici.
   </p>
 
   <a href="analysis.html" style="
     display:inline-block;
-    margin-top:15px;
-    padding:15px 35px;
+    padding:15px 30px;
     background:#facc15;
     color:#020617;
     font-weight:bold;
     border-radius:8px;
     text-decoration:none;
-    font-size:16px;
   ">
     View Weekly Analysis
   </a>
