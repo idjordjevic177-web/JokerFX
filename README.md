@@ -116,12 +116,97 @@
 </header>
 
 <section>
-<div class="box">
-  <h2>O meni</h2>
-  <div class="about-container">
-    <div class="about-text">
-      <p>
-       <div class="box">
+  <div class="layout">
+
+    <!-- LEVA (glavna) kolona: ostaje sav tvoj postojeći sadržaj -->
+    <div class="main-col">
+
+      <!-- OVDE OSTAVI sve tvoje postojeće box-ove:
+           O meni, Trading Philosophy, Strategija, Entry Conditions,
+           Trade Management, What I Don’t Trade, Weekly Bias, Risk Management, itd. -->
+
+      <!-- PRIMER: -->
+      <!-- <div class="box"> ... </div> -->
+      <!-- <div class="box"> ... </div> -->
+
+    </div>
+
+    <!-- DESNA kolona: Market Analysis navigacija -->
+    <aside class="side-col">
+
+      <div class="box" style="text-align:center;">
+        <h2>Market Analysis</h2>
+        <p>Detaljnije analize i ažuriranja su na posebnoj stranici.</p>
+
+        <a href="analysis.html" style="
+          display:inline-block;
+          margin-top:12px;
+          padding:12px 18px;
+          background:#facc15;
+          color:#020617;
+          font-weight:bold;
+          border-radius:8px;
+          text-decoration:none;
+          font-size:14px;
+        ">All Analysis</a>
+      </div>
+
+      <div class="box" style="text-align:center;">
+        <h2>Daily Analysis</h2>
+        <p>D1/H4 kontekst, ključni nivoi i scenario.</p>
+
+        <a href="analysis.html#daily" style="
+          display:inline-block;
+          margin-top:12px;
+          padding:12px 18px;
+          background:#facc15;
+          color:#020617;
+          font-weight:bold;
+          border-radius:8px;
+          text-decoration:none;
+          font-size:14px;
+        ">Open Daily</a>
+      </div>
+
+      <div class="box" style="text-align:center;">
+        <h2>1H Plan</h2>
+        <p>H1 potvrda strukture i execution ideja (bez signala).</p>
+
+        <a href="analysis.html#h1" style="
+          display:inline-block;
+          margin-top:12px;
+          padding:12px 18px;
+          background:#facc15;
+          color:#020617;
+          font-weight:bold;
+          border-radius:8px;
+          text-decoration:none;
+          font-size:14px;
+        ">Open 1H</a>
+      </div>
+
+      <div class="box" style="text-align:center;">
+        <h2>My Trades</h2>
+        <p>Moj trade plan / moj trade koji sam postavio (nije signal).</p>
+
+        <a href="analysis.html#mytrades" style="
+          display:inline-block;
+          margin-top:12px;
+          padding:12px 18px;
+          background:#facc15;
+          color:#020617;
+          font-weight:bold;
+          border-radius:8px;
+          text-decoration:none;
+          font-size:14px;
+        ">Open My Trades</a>
+      </div>
+
+    </aside>
+
+  </div>
+</section>
+
   <h2>O meni</h2>
   <p>
     JokerFX je lični trading projekat nastao kao rezultat višegodišnjeg
