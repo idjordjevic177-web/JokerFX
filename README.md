@@ -93,9 +93,52 @@
   <div class="about-container">
     <div class="about-text">
       <p>
-        JokerFX je lični trading projekat fokusiran na trgovanje zlatom (XAUUSD) uz disciplinovan i konzervativan pristup.  
-        Trejdujem zlato već oko 4 godine, uspešno sa profitabilnošću preko 75%.  
-        Fokusiram se na swing trade i dnevne trejdove, a takođe držim online časove i webinare za edukaciju drugih trejdera.
+       <div class="box">
+  <h2>O meni</h2>
+  <p>
+    JokerFX je lični trading projekat nastao kao rezultat višegodišnjeg
+    praktičnog iskustva na finansijskim tržištima, sa posebnim fokusom
+    na Forex tržište i trgovanje zlatom (XAUUSD).
+  </p>
+
+  <p>
+    Dolazim iz Srbije, Beograd, i aktivno se bavim trejdingom sa jasnim
+    ciljem dugoročne konzistentnosti, kontrole rizika i profesionalnog
+    pristupa tržištu. Moj stil trgovanja ne zasniva se na brzini ili
+    prevelikom broju pozicija, već na strpljenju, analizi strukture
+    tržišta i jasno definisanim pravilima.
+  </p>
+
+  <p>
+    Fokus mog rada je na razumevanju market structure, ključnih nivoa
+    ponude i potražnje, likvidnosti i ponašanja cene oko važnih zona.
+    Najčešće analiziram tržište kroz više vremenskih okvira, sa glavnim
+    naglaskom na D1, H4 i H1, što mi omogućava preciznije planiranje
+    pozicija i realna očekivanja.
+  </p>
+
+  <p>
+    Posebnu pažnju posvećujem upravljanju rizikom. Svaka pozicija ima
+    unapred definisan stop loss, jasan plan izlaska i strogo ograničen
+    rizik po trejdu. Smatram da je zaštita kapitala važnija od bilo koje
+    pojedinačne prilike na tržištu.
+  </p>
+
+  <p>
+    Ne trgujem tokom visokorizičnih makroekonomskih objava i izbegavam
+    nepredvidive tržišne uslove. Disciplina, doslednost i psihološka
+    stabilnost su temelji mog pristupa, jer verujem da uspeh u trejdingu
+    dolazi kao rezultat procesa, a ne kratkoročnih dobitaka.
+  </p>
+
+  <p>
+    Ovaj sajt predstavlja moj lični prostor za deljenje analize,
+    razmišljanja i edukativnog sadržaja vezanog za Forex i GOLD trading.
+    Sadržaj je informativnog i edukativnog karaktera i ne predstavlja
+    finansijski savet.
+  </p>
+</div>
+
       </p>
     </div>
     <div class="about-images">
