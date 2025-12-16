@@ -223,6 +223,79 @@
     sprovođenje plana.
   </p>
 </div>
+<div class="box">
+  <h2>Entry Conditions</h2>
+
+  <p>
+    Ulazak u poziciju razmatram isključivo kada su ispunjeni jasno
+    definisani uslovi sa viših vremenskih okvira. Ne trgujem nasumične
+    pokrete cene niti ulazim bez prethodno formiranog bias-a.
+  </p>
+
+  <p>
+    Prvi uslov je jasan kontekst sa D1 i H4 vremenskog okvira, uključujući
+    trend, strukturu i reakciju cene na ključne zone. Bez tog konteksta,
+    ne tražim prilike na nižim timeframe-ovima.
+  </p>
+
+  <p>
+    Ulazak planiram tek nakon što cena dođe u unapred definisanu zonu
+    interesa i pokaže znakove poštovanja strukture. H1 timeframe koristim
+    za potvrdu, a ne za generisanje ideja.
+  </p>
+
+  <p>
+    Ne koristim indikatore kao primarni signal. Fokus je na čistoj ceni,
+    strukturi tržišta i ponašanju likvidnosti oko važnih nivoa.
+  </p>
+</div>
+<div class="box">
+  <h2>Trade Management</h2>
+
+  <p>
+    Svaki trejd ima unapred definisan plan upravljanja, uključujući stop
+    loss, cilj i očekivani odnos rizika i dobiti. Ne pomeram stop loss iz
+    emotivnih razloga i ne improvizujem tokom trajanja pozicije.
+  </p>
+
+  <p>
+    Stop loss postavljam na logičnom tehničkom nivou, tamo gde je ideja
+    trejda invalidirana. Ciljevi su zasnovani na strukturi tržišta i
+    potencijalnim zonama likvidnosti, a ne na proizvoljnim pipovima.
+  </p>
+
+  <p>
+    Kada tržište potvrdi kretanje u željenom pravcu, fokusiram se na
+    očuvanje kapitala i smanjenje rizika, umesto agresivnog povećavanja
+    izloženosti.
+  </p>
+
+  <p>
+    Cilj nije maksimalno “iscijeđen” trejd, već disciplinovano sproveden
+    plan sa realnim očekivanjima.
+  </p>
+</div>
+<div class="box">
+  <h2>What I Don’t Trade</h2>
+
+  <p>
+    Jednako je važno znati kada ne trgovati kao i kada ući u poziciju.
+    Veliki deo mog edge-a dolazi upravo iz izbegavanja loših uslova.
+  </p>
+
+  <ul>
+    <li>Ne trgujem tokom visokouticajnih ekonomskih vesti.</li>
+    <li>Ne ulazim u pozicije bez jasnog konteksta sa viših timeframe-ova.</li>
+    <li>Ne trgujem tržište koje je u haotičnoj ili nečitljivoj strukturi.</li>
+    <li>Ne forsiram trejdove zbog dosade ili želje za akcijom.</li>
+    <li>Ne povećavam rizik nakon gubitničkih pozicija.</li>
+  </ul>
+
+  <p>
+    Ovi filteri mi omogućavaju da zadržim fokus, disciplinu i dugoročnu
+    stabilnost u pristupu tržištu.
+  </p>
+</div>
 
 
   <div class="box">
