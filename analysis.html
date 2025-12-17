@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <title>JokerFX – Market Analysis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <style>
+
+  <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -13,38 +14,78 @@
       background: url('joker1.jpg') no-repeat center center fixed;
       background-size: cover;
     }
-    }
+
     header {
       padding: 40px 20px;
       text-align: center;
-      background: #020617;
+      background: rgba(2, 6, 23, 0.85);
     }
+
     section {
       max-width: 900px;
       margin: auto;
       padding: 40px 20px;
     }
+
     .box {
-      background: #0f172a;
+      background: rgba(15, 23, 42, 0.85);
       padding: 20px;
       border-radius: 10px;
       margin-bottom: 20px;
     }
-    h1, h2 {
+
+    h1, h2, h3 {
       color: #facc15;
     }
+
     a {
       color: #facc15;
       text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* LIVE SESSION CLOCK */
+    #session-clock {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.75);
+      color: #facc15;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      z-index: 9999;
+      box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    }
+
+    .clock-title {
+      font-weight: bold;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+
+    .clock-date {
+      text-align: center;
+      font-size: 12px;
+      margin-bottom: 8px;
+      opacity: 0.9;
+    }
+
+    .clock-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-family: monospace;
     }
   </style>
 </head>
+
 <body>
 
 <header>
+  <h1>JokerFX</h1>
+  <p>Daily & Intraday Market Analysis • XAUUSD</p>
 </header>
-
-<section>
 
 <section>
 
@@ -136,12 +177,36 @@
 
 </section>
 
+<!-- LIVE MARKET SESSION CLOCK + DATE -->
+<div id="session-clock">
+  <div class="clock-title">Market Sessions</div>
+  <div class="clock-date" id="current-date"></div>
+  <div class="clock-row">New York <span id="ny-time"></span></div>
+  <div class="clock-row">London <span id="ldn-time"></span></div>
+  <div class="clock-row">Tokyo <span id="tokyo-time"></span></div>
+</div>
 
-  <div class="box">
-    <a href="index.html">← Back to main page</a>
-  </div>
+<script>
+function updateClocks() {
+  const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+  const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
-</section>
+  document.getElementById('ny-time').textContent =
+    new Date().toLocaleTimeString('en-US', { ...timeOptions, timeZone: 'America/New_York' });
+
+  document.getElementById('ldn-time').textContent =
+    new Date().toLocaleTimeString('en-GB', { ...timeOptions, timeZone: 'Europe/London' });
+
+  document.getElementById('tokyo-time').textContent =
+    new Date().toLocaleTimeString('ja-JP', { ...timeOptions, timeZone: 'Asia/Tokyo' });
+
+  document.getElementById('current-date').textContent =
+    new Date().toLocaleDateString('en-GB', dateOptions);
+}
+
+setInterval(updateClocks, 1000);
+updateClocks();
+</script>
 
 </body>
 </html>
