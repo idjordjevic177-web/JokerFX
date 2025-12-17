@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="sr">
 <head>
   <meta charset="UTF-8">
@@ -37,15 +37,6 @@
       text-decoration: none;
     }
   </style>
-.box img {
-  max-width: 70%;
-  height: auto;
-  display: block;
-  margin: 20px auto;
-  border-radius: 10px;
-}
-
-}
 
 </head>
   <meta charset="UTF-8">
@@ -56,7 +47,6 @@
   <p>Forex Trading • GOLD (XAUUSD)</p>
 </header>
 
-</section>
 <div class="box">
   <h2>O meni</h2>
   <p>
@@ -100,8 +90,6 @@
     razmišljanja i edukativnog sadržaja vezanog za Forex i GOLD trading.
     Sadržaj je informativnog i edukativnog karaktera i ne predstavlja
     finansijski savet.
-  </p>
-</div>
 
       </p>
     </div>
@@ -110,7 +98,6 @@
       <img src="images/slika 2.jpg" alt="JokerFX edukacija" />
       <img src="images/slika 3.jpg" alt="Zlato" />
     </div>
-  </div>
   <div class="box">
   <h2>Trading Philosophy</h2>
   <p>
