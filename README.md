@@ -12,7 +12,6 @@
   <div class="clock-row">London: <span id="ldn-time"></span></div>
   <div class="clock-row">Tokyo: <span id="tokyo-time"></span></div>
 </div>
-
     body {
       font-family: Arial, sans-serif;
       margin: 0;
