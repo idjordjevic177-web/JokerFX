@@ -1,71 +1,91 @@
-
+<!DOCTYPE html>
 <html lang="sr">
 <head>
   <meta charset="UTF-8">
   <title>JokerFX – GOLD Trading</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      color: #facc15;
+      color: #e5e7eb;
       background: url('joker.png') no-repeat center center fixed;
       background-size: cover;
     }
+
     header {
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.65);
       padding: 40px 20px;
       text-align: center;
     }
+
     section {
-      padding: 40px 20px;
       max-width: 900px;
       margin: auto;
+      padding: 40px 20px;
     }
-    h1, h2 {
+
+    .box {
+      background: rgba(0, 0, 0, 0.65);
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+    }
+
+    h1, h2, h3 {
       color: #facc15;
     }
-    .box {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
+
+    ul {
+      padding-left: 20px;
     }
+
     a {
       color: #facc15;
       text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* IMAGE SIZE CONTROL */
+    .box img {
+      max-width: 70%;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+      border-radius: 10px;
+    }
+
+    /* LIVE SESSION CLOCK */
+    #session-clock {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.75);
+      color: #facc15;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      z-index: 9999;
+      box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    }
+
+    .clock-title {
+      font-weight: bold;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+
+    .clock-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-family: monospace;
     }
   </style>
-
 </head>
-#session-clock {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: rgba(0, 0, 0, 0.75);
-  color: #facc15;
-  padding: 12px 16px;
-  border-radius: 10px;
-  font-size: 14px;
-  z-index: 9999;
-  box-shadow: 0 0 10px rgba(0,0,0,0.6);
-}
 
-.clock-title {
-  font-weight: bold;
-  margin-bottom: 6px;
-  text-align: center;
-}
-
-.clock-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  font-family: monospace;
-}
-
-  <meta charset="UTF-8">
 <body>
 
 <header>
@@ -73,322 +93,154 @@
   <p>Forex Trading • GOLD (XAUUSD)</p>
 </header>
 
-<div class="box">
-  <h2>O meni</h2>
-  <p>
-    JokerFX je lični trading projekat nastao kao rezultat višegodišnjeg
-    praktičnog iskustva na finansijskim tržištima, sa posebnim fokusom
-    na Forex tržište i trgovanje zlatom (XAUUSD).
-  </p>
+<section>
 
-  <p>
-    Dolazim iz Srbije, Beograd, i aktivno se bavim trejdingom sa jasnim
-    ciljem dugoročne konzistentnosti, kontrole rizika i profesionalnog
-    pristupa tržištu. Moj stil trgovanja ne zasniva se na brzini ili
-    prevelikom broju pozicija, već na strpljenju, analizi strukture
-    tržišta i jasno definisanim pravilima.
-  </p>
-
-  <p>
-    Fokus mog rada je na razumevanju market structure, ključnih nivoa
-    ponude i potražnje, likvidnosti i ponašanja cene oko važnih zona.
-    Najčešće analiziram tržište kroz više vremenskih okvira, sa glavnim
-    naglaskom na D1, H4 i H1, što mi omogućava preciznije planiranje
-    pozicija i realna očekivanja.
-  </p>
-
-  <p>
-    Posebnu pažnju posvećujem upravljanju rizikom. Svaka pozicija ima
-    unapred definisan stop loss, jasan plan izlaska i strogo ograničen
-    rizik po trejdu. Smatram da je zaštita kapitala važnija od bilo koje
-    pojedinačne prilike na tržištu.
-  </p>
-
-  <p>
-    Ne trgujem tokom visokorizičnih makroekonomskih objava i izbegavam
-    nepredvidive tržišne uslove. Disciplina, doslednost i psihološka
-    stabilnost su temelji mog pristupa, jer verujem da uspeh u trejdingu
-    dolazi kao rezultat procesa, a ne kratkoročnih dobitaka.
-  </p>
-
-  <p>
-    Ovaj sajt predstavlja moj lični prostor za deljenje analize,
-    razmišljanja i edukativnog sadržaja vezanog za Forex i GOLD trading.
-    Sadržaj je informativnog i edukativnog karaktera i ne predstavlja
-    finansijski savet.
-
-      </p>
-    </div>
-    <div class="about-images">
-      <img src="images/xausud.jpg" alt="Trading grafikon" />
-      <img src="images/slika 2.jpg" alt="JokerFX edukacija" />
-      <img src="images/slika 3.jpg" alt="Zlato" />
-    </div>
+  <!-- O MENI -->
   <div class="box">
-  <h2>Trading Philosophy</h2>
-  <p>
-    Moj pristup trejdingu zasniva se na procesu, a ne na pojedinačnim
-    rezultatima. Verujem da je dugoročna profitabilnost posledica
-    discipline, ponovljivosti i pravilnog upravljanja rizikom, a ne
-    agresivnog ili impulzivnog trgovanja.
-  </p>
+    <h2>O meni</h2>
+    <p>
+      JokerFX je lični trading projekat nastao kao rezultat višegodišnjeg
+      praktičnog iskustva na finansijskim tržištima, sa posebnim fokusom
+      na Forex tržište i trgovanje zlatom (XAUUSD).
+    </p>
+    <p>
+      Dolazim iz Srbije, Beograd, i aktivno se bavim trejdingom sa jasnim
+      ciljem dugoročne konzistentnosti, kontrole rizika i profesionalnog
+      pristupa tržištu. Moj stil trgovanja ne zasniva se na brzini ili
+      prevelikom broju pozicija, već na strpljenju, analizi strukture
+      tržišta i jasno definisanim pravilima.
+    </p>
+    <p>
+      Fokus mog rada je na razumevanju market structure, ključnih nivoa
+      ponude i potražnje, likvidnosti i ponašanja cene oko važnih zona.
+      Tržište analiziram kroz više vremenskih okvira, sa glavnim
+      naglaskom na D1, H4 i H1.
+    </p>
+  </div>
 
-  <p>
-    Tržište posmatram kao dinamičan sistem u kome cena reaguje na
-    likvidnost, strukturu i kontekst viših vremenskih okvira. Ne jurim
-    svaki pokret, već čekam jasno definisane situacije koje se uklapaju u
-    moj plan i statističku prednost.
-  </p>
-
-  <p>
-    Fokusiran sam na kvalitet, ne na kvantitet. Mali broj dobro
-    isplaniranih trejdova ima veću vrednost od konstantnog izlaganja
-    tržištu bez jasne ideje. Strpljenje smatram jednim od najvažnijih
-    alata u trejdingu.
-  </p>
-
-  <p>
-    Psihološka stabilnost i doslednost u izvršavanju plana su ključni
-    elementi mog rada. Gubitak je deo procesa i prihvatam ga kao normalan
-    trošak poslovanja, dok se uspeh meri kroz dugoročnu stabilnost
-    rezultata.
-  </p>
-</div>
-
-
+  <!-- TRADING PHILOSOPHY -->
   <div class="box">
-  <h2>Strategija</h2>
+    <h2>Trading Philosophy</h2>
+    <p>
+      Moj pristup trejdingu zasniva se na procesu, a ne na pojedinačnim
+      rezultatima. Dugoročna profitabilnost dolazi kao posledica
+      discipline, ponovljivosti i pravilnog upravljanja rizikom.
+    </p>
+    <p>
+      Fokusiran sam na kvalitet, a ne na kvantitet. Mali broj dobro
+      isplaniranih trejdova ima veću vrednost od konstantnog izlaganja
+      tržištu bez jasne ideje.
+    </p>
+    <p>
+      Gubitak je deo procesa i prihvatam ga kao normalan trošak
+      poslovanja, dok se uspeh meri dugoročnom stabilnošću rezultata.
+    </p>
+  </div>
 
-  <p>
-    Moja strategija trgovanja zasniva se na kombinaciji analize viših
-    vremenskih okvira, razumevanja strukture tržišta i strpljivog čekanja
-    jasnih prilika. Fokus je isključivo na zlatnom paru (XAUUSD), koji
-    pruža dovoljno volatilnosti i čiste tehničke strukture za planski
-    trading.
-  </p>
+  <!-- STRATEGIJA -->
+  <div class="box">
+    <h2>Strategija</h2>
+    <p>
+      Strategija je fokusirana isključivo na zlato (XAUUSD) i zasniva se
+      na analizi viših vremenskih okvira (D1 i H4), uz precizno planiranje
+      ulaza na H1 timeframe-u.
+    </p>
+    <p>
+      Ne jurim vrhove i dna, već se fokusiram na nastavak već formirane
+      strukture i jasno definisan tržišni kontekst.
+    </p>
+  </div>
 
-  <p>
-    Analizu uvek započinjem na višim timeframe-ovima (D1 i H4), gde
-    identifikujem glavni trend, ključne zone ponude i potražnje, kao i
-    važne nivoe likvidnosti. Ovi nivoi predstavljaju osnovu mog bias-a i
-    određuju u kom pravcu tražim prilike.
-  </p>
+  <!-- ENTRY CONDITIONS -->
+  <div class="box">
+    <h2>Entry Conditions</h2>
+    <p>
+      Ulazak u poziciju razmatram isključivo kada su ispunjeni uslovi sa
+      viših vremenskih okvira. Ne ulazim bez jasnog bias-a i konteksta.
+    </p>
+    <p>
+      H1 timeframe koristim isključivo za potvrdu i precizno izvršenje,
+      a ne za donošenje ideja.
+    </p>
+  </div>
 
-  <p>
-    Niži timeframe (H1) koristim isključivo za preciznije planiranje
-    ulaska, potvrdu strukture i kontrolu rizika. Ne ulazim u pozicije bez
-    jasnog konteksta sa viših vremenskih okvira, čime izbegavam impulsivne
-    i niskokvalitetne trejdove.
-  </p>
+  <!-- TRADE MANAGEMENT -->
+  <div class="box">
+    <h2>Trade Management</h2>
+    <p>
+      Svaki trejd ima unapred definisan plan upravljanja, uključujući stop
+      loss, cilj i odnos rizika i dobiti.
+    </p>
+    <p>
+      Fokus je na očuvanju kapitala i doslednom sprovođenju plana, a ne
+      na agresivnom povećavanju izloženosti.
+    </p>
+  </div>
 
-  <p>
-    Strategija je prilagođena swing i intraday pristupu, sa jasno
-    definisanim ciljevima i realnim očekivanjima. Ne jurim vrhove i dna,
-    već se fokusiram na sredinu pokreta i nastavak već formirane
-    strukture.
-  </p>
+  <!-- WHAT I DON'T TRADE -->
+  <div class="box">
+    <h2>What I Don’t Trade</h2>
+    <ul>
+      <li>Trgovanje tokom visokouticajnih ekonomskih vesti</li>
+      <li>Ulazak bez HTF konteksta</li>
+      <li>Haotična i nečitljiva tržišta</li>
+      <li>Overtrading i impulsivne odluke</li>
+    </ul>
+  </div>
 
-  <p>
-    Trgovanje tokom visokouticajnih ekonomskih vesti je svesno izostavljeno
-    iz mog plana, jer smatram da takvi uslovi povećavaju nepredvidivost i
-    narušavaju kvalitet statističke prednosti.
-  </p>
+  <!-- WEEKLY GOLD BIAS -->
+  <div class="box">
+    <h2>Weekly GOLD Bias (XAUUSD)</h2>
+    <p>
+      Nedeljni market bias zasnovan na D1 i H4 analizi, sa fokusom na
+      širi tržišni kontekst i potencijalne scenarije.
+    </p>
+    <p><em>
+      Ovaj bias je informativnog i edukativnog karaktera i ne predstavlja
+      finansijski savet.
+    </em></p>
+  </div>
 
-  <p>
-    Cilj strategije nije maksimalan profit u kratkom roku, već dugoročna
-    stabilnost, ponovljivost i konzistentni rezultati kroz disciplinovano
-    sprovođenje plana.
-  </p>
-</div>
-<div class="box">
-  <h2>Entry Conditions</h2>
+  <!-- RISK MANAGEMENT -->
+  <div class="box">
+    <h2>Risk Management</h2>
+    <p>
+      Upravljanje rizikom predstavlja najvažniji deo mog trading procesa.
+      Zaštita kapitala ima apsolutni prioritet.
+    </p>
+    <p>
+      Svaka pozicija ima jasno definisan stop loss, bez pomeranja iz
+      emotivnih razloga.
+    </p>
+    <p>
+      Ne koristim martingale, grid sisteme niti agresivne tehnike
+      povećanja izloženosti.
+    </p>
+  </div>
 
-  <p>
-    Ulazak u poziciju razmatram isključivo kada su ispunjeni jasno
-    definisani uslovi sa viših vremenskih okvira. Ne trgujem nasumične
-    pokrete cene niti ulazim bez prethodno formiranog bias-a.
-  </p>
+  <!-- MARKET ANALYSIS BUTTON -->
+  <div class="box" style="text-align:center;">
+    <h2>Market Analysis</h2>
+    <p>
+      Detaljnije nedeljne analize zlata (XAUUSD) dostupne su na posebnoj
+      stranici.
+    </p>
+    <a href="analysis.html" style="
+      display:inline-block;
+      margin-top:15px;
+      padding:15px 35px;
+      background:#facc15;
+      color:#020617;
+      font-weight:bold;
+      border-radius:8px;
+      text-decoration:none;
+      font-size:16px;
+    ">
+      View Weekly Analysis
+    </a>
+  </div>
 
-  <p>
-    Prvi uslov je jasan kontekst sa D1 i H4 vremenskog okvira, uključujući
-    trend, strukturu i reakciju cene na ključne zone. Bez tog konteksta,
-    ne tražim prilike na nižim timeframe-ovima.
-  </p>
-
-  <p>
-    Ulazak planiram tek nakon što cena dođe u unapred definisanu zonu
-    interesa i pokaže znakove poštovanja strukture. H1 timeframe koristim
-    za potvrdu, a ne za generisanje ideja.
-  </p>
-
-  <p>
-    Ne koristim indikatore kao primarni signal. Fokus je na čistoj ceni,
-    strukturi tržišta i ponašanju likvidnosti oko važnih nivoa.
-  </p>
-</div>
-<div class="box">
-  <h2>Trade Management</h2>
-
-  <p>
-    Svaki trejd ima unapred definisan plan upravljanja, uključujući stop
-    loss, cilj i očekivani odnos rizika i dobiti. Ne pomeram stop loss iz
-    emotivnih razloga i ne improvizujem tokom trajanja pozicije.
-  </p>
-
-  <p>
-    Stop loss postavljam na logičnom tehničkom nivou, tamo gde je ideja
-    trejda invalidirana. Ciljevi su zasnovani na strukturi tržišta i
-    potencijalnim zonama likvidnosti, a ne na proizvoljnim pipovima.
-  </p>
-
-  <p>
-    Kada tržište potvrdi kretanje u željenom pravcu, fokusiram se na
-    očuvanje kapitala i smanjenje rizika, umesto agresivnog povećavanja
-    izloženosti.
-  </p>
-
-  <p>
-    Cilj nije maksimalno “iscijeđen” trejd, već disciplinovano sproveden
-    plan sa realnim očekivanjima.
-  </p>
-</div>
-<div class="box">
-  <h2>What I Don’t Trade</h2>
-
-  <p>
-    Jednako je važno znati kada ne trgovati kao i kada ući u poziciju.
-    Veliki deo mog edge-a dolazi upravo iz izbegavanja loših uslova.
-  </p>
-
-  <ul>
-    <li>Ne trgujem tokom visokouticajnih ekonomskih vesti.</li>
-    <li>Ne ulazim u pozicije bez jasnog konteksta sa viših timeframe-ova.</li>
-    <li>Ne trgujem tržište koje je u haotičnoj ili nečitljivoj strukturi.</li>
-    <li>Ne forsiram trejdove zbog dosade ili želje za akcijom.</li>
-    <li>Ne povećavam rizik nakon gubitničkih pozicija.</li>
-  </ul>
-
-  <p>
-    Ovi filteri mi omogućavaju da zadržim fokus, disciplinu i dugoročnu
-    stabilnost u pristupu tržištu.
-  </p>
-</div>
-<div class="box">
-  <h2>Weekly GOLD Bias (XAUUSD)</h2>
-
-  <p>
-    Ova sekcija predstavlja moj nedeljni market bias za zlato (XAUUSD),
-    zasnovan na analizi viših vremenskih okvira (D1 i H4). Cilj nije davanje
-    konkretnih signala, već sagledavanje tržišnog konteksta, potencijalnih
-    scenarija i ključnih nivoa.
-  </p>
-
-  <p>
-    Bias se ažurira jednom nedeljno i služi kao okvir za razmišljanje,
-    a ne kao poziv na akciju.
-  </p>
-
-  <hr>
-
-  <h3>Market Context</h3>
-  <p>
-    Cena zlata se trenutno nalazi u okviru šire strukture višeg
-    vremenskog okvira. Glavni fokus je na reakciji cene oko ključnih
-    zona ponude i potražnje, kao i ponašanju oko prethodnih high/low
-    nivoa.
-  </p>
-
-  <h3>Directional Bias</h3>
-  <p>
-    Primarni bias ostaje neutralan do blago bullish / bearish, u
-    zavisnosti od reakcije cene na definisanim nivoima. Fokus je na
-    strpljivom čekanju potvrde, a ne na predviđanju.
-  </p>
-
-  <h3>Key Levels</h3>
-  <ul>
-    <li>Major resistance:  XXXX – XXXX</li>
-    <li>Major support:     XXXX – XXXX</li>
-    <li>Mid-range level:   XXXX</li>
-  </ul>
-
-  <h3>Execution Plan</h3>
-  <p>
-    Na nižim timeframe-ovima (H1) tražim potvrdu strukture u pravcu
-    definisanog bias-a. Bez potvrde sa viših vremenskih okvira,
-    pozicije se ne razmatraju.
-  </p>
-
-  <h3>Risk Note</h3>
-  <p>
-    Tokom sedmice sa važnim makroekonomskim objavama, volumen i
-    izloženost su svesno smanjeni ili se trgovanje izostavlja.
-  </p>
-
-  <p><em>
-    Ovaj bias je informativnog i edukativnog karaktera i ne predstavlja
-    finansijski savet.
-  </em></p>
-</div>
-<div class="box">
-  <h2>Risk Management</h2>
-
-  <p>
-    Upravljanje rizikom predstavlja najvažniji deo mog trading procesa.
-    Bez obzira na kvalitet analize ili potencijalnu priliku, zaštita
-    kapitala ima apsolutni prioritet.
-  </p>
-
-  <p>
-    Rizik po pojedinačnom trejdu je striktno ograničen i unapred definisan.
-    Ne povećavam rizik kako bih „nadoknadio“ gubitke i ne prilagođavam
-    veličinu pozicije na osnovu emocija ili prethodnih rezultata.
-  </p>
-
-  <p>
-    Svaka pozicija ima jasan stop loss postavljen na tehnički smislenom
-    nivou, gde je ideja trejda invalidirana. Ukoliko tržište dođe do tog
-    nivoa, trejd se smatra neuspešnim bez dodatnog razmišljanja ili
-    intervencije.
-  </p>
-
-  <p>
-    Fokus je na dugoročnoj stabilnosti i konzistentnosti, a ne na
-    kratkoročnim dobitcima. Serija gubitaka se tretira kao normalan deo
-    statističkog procesa, dok se uspeh meri disciplinom i doslednim
-    sprovođenjem plana.
-  </p>
-
-  <p>
-    Ne koristim martingale, grid sisteme niti agresivne tehnike povećanja
-    izloženosti. Jednostavna pravila i kontrolisan rizik su temelj mog
-    pristupa.
-  </p>
-</div>
-<div class="box" style="text-align:center;">
-  <h2>Market Analysis</h2>
-
-  <p>
-    Detaljnije nedeljne analize zlata (XAUUSD) dostupne su na posebnoj
-    stranici.
-  </p>
-
-  <a href="analysis.html" style="
-    display:inline-block;
-    margin-top:15px;
-    padding:15px 35px;
-    background:#facc15;
-    color:#020617;
-    font-weight:bold;
-    border-radius:8px;
-    text-decoration:none;
-    font-size:16px;
-  ">
-    View Weekly Analysis
-  </a>
-</div>
-
-
+  <!-- DISCLAIMER -->
   <div class="box">
     <h2>Napomena</h2>
     <p>
@@ -397,3 +249,33 @@
     </p>
   </div>
 
+</section>
+
+<!-- LIVE MARKET SESSION CLOCK -->
+<div id="session-clock">
+  <div class="clock-title">Market Sessions</div>
+  <div class="clock-row">New York <span id="ny-time"></span></div>
+  <div class="clock-row">London <span id="ldn-time"></span></div>
+  <div class="clock-row">Tokyo <span id="tokyo-time"></span></div>
+</div>
+
+<script>
+function updateClocks() {
+  const options = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+
+  document.getElementById('ny-time').textContent =
+    new Date().toLocaleTimeString('en-US', { ...options, timeZone: 'America/New_York' });
+
+  document.getElementById('ldn-time').textContent =
+    new Date().toLocaleTimeString('en-GB', { ...options, timeZone: 'Europe/London' });
+
+  document.getElementById('tokyo-time').textContent =
+    new Date().toLocaleTimeString('ja-JP', { ...options, timeZone: 'Asia/Tokyo' });
+}
+
+setInterval(updateClocks, 1000);
+updateClocks();
+</script>
+
+</body>
+</html>
