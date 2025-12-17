@@ -5,30 +5,6 @@
   <title>JokerFX – GOLD Trading</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    <!-- Live Session Clock -->
-<div id="session-clock">
-  <div class="clock-title">Market Sessions</div>
-  <div class="clock-row">New York: <span id="ny-time"></span></div>
-  <div class="clock-row">London: <span id="ldn-time"></span></div>
-  <div class="clock-row">Tokyo: <span id="tokyo-time"></span></div>
-</div>
-    <script>
-function updateClocks() {
-  const options = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
-
-  document.getElementById('ny-time').textContent =
-    new Date().toLocaleTimeString('en-US', { ...options, timeZone: 'America/New_York' });
-
-  document.getElementById('ldn-time').textContent =
-    new Date().toLocaleTimeString('en-GB', { ...options, timeZone: 'Europe/London' });
-
-  document.getElementById('tokyo-time').textContent =
-    new Date().toLocaleTimeString('ja-JP', { ...options, timeZone: 'Asia/Tokyo' });
-}
-
-setInterval(updateClocks, 1000);
-updateClocks();
-</script>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
