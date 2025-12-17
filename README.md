@@ -5,6 +5,14 @@
   <title>JokerFX – GOLD Trading</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    <!-- Live Session Clock -->
+<div id="session-clock">
+  <div class="clock-title">Market Sessions</div>
+  <div class="clock-row">New York: <span id="ny-time"></span></div>
+  <div class="clock-row">London: <span id="ldn-time"></span></div>
+  <div class="clock-row">Tokyo: <span id="tokyo-time"></span></div>
+</div>
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
