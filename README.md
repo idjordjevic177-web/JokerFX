@@ -12,6 +12,23 @@
   <div class="clock-row">London: <span id="ldn-time"></span></div>
   <div class="clock-row">Tokyo: <span id="tokyo-time"></span></div>
 </div>
+    <script>
+function updateClocks() {
+  const options = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+
+  document.getElementById('ny-time').textContent =
+    new Date().toLocaleTimeString('en-US', { ...options, timeZone: 'America/New_York' });
+
+  document.getElementById('ldn-time').textContent =
+    new Date().toLocaleTimeString('en-GB', { ...options, timeZone: 'Europe/London' });
+
+  document.getElementById('tokyo-time').textContent =
+    new Date().toLocaleTimeString('ja-JP', { ...options, timeZone: 'Asia/Tokyo' });
+}
+
+setInterval(updateClocks, 1000);
+updateClocks();
+</script>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -46,6 +63,32 @@
   </style>
 
 </head>
+#session-clock {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #facc15;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+.clock-title {
+  font-weight: bold;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.clock-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-family: monospace;
+}
+
   <meta charset="UTF-8">
 <body>
 
