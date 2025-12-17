@@ -37,13 +37,14 @@
       text-decoration: none;
     }
   </style>
-  /* Ograničenje veličine slika u box-ovima */
 .box img {
   max-width: 70%;
   height: auto;
   display: block;
   margin: 20px auto;
   border-radius: 10px;
+}
+
 }
 
 </head>
