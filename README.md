@@ -2,7 +2,7 @@
 <html lang="sr">
 <head>
   <meta charset="UTF-8">
-  <title>JokerFX – GOLD Trading</title>
+  <title>Turski jezik i gramatika</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
