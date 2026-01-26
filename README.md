@@ -11,7 +11,7 @@
       margin: 0;
       padding: 0;
       color: #e5e7eb;
-      background: url('joker.png') no-repeat center center fixed;
+      background: url('copycopy.webp') no-repeat center center fixed;
       background-size: cover;
     }
 
@@ -89,7 +89,7 @@
 <body>
 
 <header>
-  <h1>JokerFX</h1>
+  <h1>Turski jezik i gramatika</h1>
   <p>Forex Trading • GOLD (XAUUSD)</p>
 </header>
 
