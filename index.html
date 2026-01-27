@@ -122,7 +122,62 @@
       header{ padding:28px 16px; }
       .notebook{ flex:1 1 100%; }
     }
+
+.pencil{
+  position:absolute;
+  right:-42px;
+  top:40px;
+  width:10px;
+  height:160px;
+  animation: pencilFloat 3.5s ease-in-out infinite;
+}
+
+.pencil-body{
+  width:100%;
+  height:130px;
+  background: linear-gradient(to bottom, #facc15, #eab308);
+  border-radius:4px;
+}
+
+.pencil-tip{
+  width:0;
+  height:0;
+  border-left:5px solid transparent;
+  border-right:5px solid transparent;
+  border-top:18px solid #d97706;
+  margin:0 auto;
+}
+
+.pencil-lead{
+  width:0;
+  height:0;
+  border-left:3px solid transparent;
+  border-right:3px solid transparent;
+  border-top:10px solid #111827;
+  margin:-4px auto 0;
+}
+
+@keyframes pencilFloat{
+  0%{
+    transform: translateY(0) rotate(-1deg);
+  }
+  50%{
+    transform: translateY(12px) rotate(1.5deg);
+  }
+  100%{
+    transform: translateY(0) rotate(-1deg);
+  }
+}
+
+/* Na manjim ekranima sakrij olovke */
+@media (max-width: 900px){
+  .pencil{
+    display:none;
+  }
+}
+
   </style>
+  
 </head>
 
 <body>
@@ -137,6 +192,12 @@
 
       <!-- LEVO: TR -->
       <div class="notebook">
+        
+<div class="pencil">
+  <div class="pencil-body"></div>
+  <div class="pencil-tip"></div>
+  <div class="pencil-lead"></div>
+</div>
         <div class="badge">TR</div>
         <h2>Türk Dili ve Edebiyatı Çalışmaları</h2>
 
@@ -177,6 +238,11 @@
 
       <!-- DESNO: SR -->
       <div class="notebook">
+        <div class="pencil">
+  <div class="pencil-body"></div>
+  <div class="pencil-tip"></div>
+  <div class="pencil-lead"></div>
+</div>
         <div class="badge">SR</div>
         <h2>Studije turskog jezika i književnosti</h2>
 
