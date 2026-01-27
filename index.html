@@ -179,6 +179,32 @@
     display:none;
   }
 }
+.notebook{
+  overflow:hidden;
+}
+
+.notebook::after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.12) 0%,
+      rgba(255,255,255,0.04) 50%,
+      rgba(255,255,255,0) 100%
+    );
+  animation: writeLines 6s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes writeLines{
+  0%{ transform: translateY(-100%); }
+  100%{ transform: translateY(100%); }
+}
 
   </style>
   
