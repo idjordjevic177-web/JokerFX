@@ -1,236 +1,331 @@
-<!doctype html>
-<html lang="tr">
+<!DOCTYPE html>
+<html lang="sr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Türkçe Dili ve Grameri</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Büyük ünlü uyumu (Velika vokalna harmonija)</title>
 
   <style>
+    :root{
+      --bg:#f6f7fb;
+      --text:#111827;
+      --muted:#4b5563;
+      --blue:#2563eb;
+      --yellow:#fbbf24;
+      --yellowSoft:#fde68a;
+      --card:#ffffff;
+      --shadow: 0 18px 40px rgba(17,24,39,.10);
+      --radius:18px;
+    }
+
+    *{ box-sizing:border-box; }
     body{
-      font-family: Arial, sans-serif;
       margin:0;
-      background:#0b1220;
-      color:#e5e7eb;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
     }
 
-    header{
-      padding:40px 20px;
-      text-align:center;
-      background:rgba(0,0,0,.45);
-      border-bottom:1px solid rgba(255,255,255,.08);
+    .page{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 18px 48px;
+      position: relative;
     }
 
-    main{
-      max-width:1100px;
-      margin:0 auto;
-      padding:28px 18px 60px;
+    /* top-right flag */
+    .flag-wrap{
+      position:absolute;
+      top: 18px;
+      right: 18px;
+      width: 240px;
+      height: 150px;
+      pointer-events:none;
+      opacity:.95;
     }
 
-    .subtitle{
-      opacity:.9;
-      margin:10px auto 0;
-      max-width:760px;
-      line-height:1.6;
+    /* header */
+    .title{
+      margin-top: 26px;
+      line-height: 1.05;
+    }
+    .title h1{
+      font-size: 44px;
+      margin: 0;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .title p{
+      margin: 6px 0 0;
+      font-size: 30px;
+      font-weight: 500;
+      color: #1f2937;
     }
 
-    /* ===== Notebook 2-column layout ===== */
-    .notebook-wrap{
-      display:flex;
-      gap:22px;
-      align-items:stretch;
-      flex-wrap:wrap;
-      margin-top:22px;
+    /* intro text */
+    .intro{
+      margin-top: 20px;
+      max-width: 640px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+    .hl{
+      background: linear-gradient(transparent 55%, rgba(251,191,36,.85) 55%);
+      padding: 0 3px;
+      border-radius: 6px;
+      color:#111827;
+      font-weight: 650;
     }
 
-    .notebook{
-      flex:1 1 480px;
-      border-radius:16px;
-      padding:22px 22px 22px 34px;
-      position:relative;
-
-      background:
-        repeating-linear-gradient(
-          to bottom,
-          rgba(59,130,246,0.18) 0px,
-          rgba(59,130,246,0.18) 1px,
-          rgba(255,255,255,0) 1px,
-          rgba(255,255,255,0) 30px
-        ),
-        rgba(255,255,255,0.06);
-
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-      border:1px solid rgba(255,255,255,.10);
+    /* main grid */
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 22px;
+      margin-top: 22px;
+      align-items: start;
     }
 
-    /* crvena margina kao sveska */
-    .notebook::before{
+    /* yellow vowel block */
+    .vowel-card{
+      background: #ffd36b;
+      border-radius: 18px;
+      padding: 18px 18px 16px;
+      width: 100%;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow:hidden;
+    }
+    .vowel-card::after{
       content:"";
       position:absolute;
-      left:16px;
-      top:14px;
-      bottom:14px;
-      width:2px;
-      background: rgba(239,68,68,0.55);
-      border-radius:2px;
+      inset:-30px -40px auto auto;
+      width: 160px;
+      height: 160px;
+      background: rgba(255,255,255,.22);
+      transform: rotate(18deg);
+      border-radius: 30px;
+    }
+    .vowel-table{
+      display:grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 10px 12px;
+      align-items:center;
+      position: relative;
+      z-index:1;
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .vowel-left{ color:#1f2937; }
+    .vowel-right{
+      background: rgba(255,255,255,.45);
+      padding: 6px 10px;
+      border-radius: 12px;
+      min-width: 86px;
+      text-align:center;
+      font-weight: 800;
+      color:#111827;
+    }
+    .arrow{
+      width: 56px;
+      height: 10px;
+      position:relative;
+    }
+    .arrow:before{
+      content:"";
+      position:absolute; left:0; top:50%;
+      width: 100%;
+      height: 4px;
+      transform: translateY(-50%);
+      background: #3b82f6;
+      border-radius: 999px;
+    }
+    .arrow:after{
+      content:"";
+      position:absolute; right:-2px; top:50%;
+      transform: translateY(-50%);
+      border-left: 12px solid #3b82f6;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
     }
 
-    .badge{
-      display:inline-block;
-      font-size:12px;
-      letter-spacing:.6px;
-      padding:6px 10px;
-      border-radius:999px;
-      background:rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.12);
-      margin-bottom:10px;
+    /* right small board */
+    .board{
+      background: var(--card);
+      border-radius: 14px;
+      padding: 14px 14px 12px;
+      box-shadow: var(--shadow);
+      border: 2px dashed rgba(17,24,39,.12);
+    }
+    .board .t{
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0 0 8px;
+      font-weight: 650;
+    }
+    .board .v{
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: .5px;
+      margin: 0;
+      color:#111827;
     }
 
-    .notebook h2{
-      margin:6px 0 12px 0;
-      font-size:20px;
+    /* bubble note */
+    .bubble{
+      margin-top: 18px;
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 16px 18px;
+      box-shadow: var(--shadow);
+      position: relative;
+      border: 3px solid rgba(37,99,235,.25);
+      max-width: 520px;
+    }
+    .bubble:before{
+      content:"";
+      position:absolute;
+      left: 26%;
+      top: -18px;
+      width: 0; height: 0;
+      border-left: 16px solid transparent;
+      border-right: 16px solid transparent;
+      border-bottom: 18px solid rgba(37,99,235,.25);
+    }
+    .bubble:after{
+      content:"";
+      position:absolute;
+      left: calc(26% + 2px);
+      top: -14px;
+      width: 0; height: 0;
+      border-left: 14px solid transparent;
+      border-right: 14px solid transparent;
+      border-bottom: 16px solid #ffffff;
+    }
+    .bubble p{
+      margin:0;
+      font-size: 14px;
+      color:#111827;
+      font-weight: 650;
+      line-height: 1.45;
+      text-align:center;
     }
 
-    .notebook p{
-      margin:10px 0;
-      line-height:1.7;
+    /* examples */
+    .examples{
+      margin-top: 22px;
+      font-size: 15px;
+      line-height: 1.75;
+      color:#111827;
+    }
+    .examples .line{
+      margin: 6px 0;
+      color:#111827;
+    }
+    .examples .tr{
+      font-style: italic;
+    }
+    .examples .em-red{
+      color:#ef4444;
+      font-weight: 800;
+      text-decoration: underline;
+      text-underline-offset: 4px;
     }
 
-    .notebook ul{
-      margin:10px 0 10px 18px;
-      padding:0;
-      line-height:1.7;
+    /* responsive */
+    @media (max-width: 860px){
+      .flag-wrap{ width: 200px; height: 130px; }
+      .title h1{ font-size: 38px; }
+      .title p{ font-size: 26px; }
+      .grid{ grid-template-columns: 1fr; }
+      .bubble{ max-width: 100%; }
     }
-
-    .notebook li{ margin:8px 0; }
-
-    .muted{ opacity:.9; }
-
-    /* Kontakt kartica */
-    .card{
-      margin-top:22px;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.10);
-      padding:18px;
-      border-radius:14px;
-    }
-
-    a{ color:#93c5fd; text-decoration:none; }
-    a:hover{ text-decoration:underline; }
-
-    /* Mobile: kolone jedna ispod druge */
-    @media (max-width: 900px){
-      header{ padding:28px 16px; }
-      .notebook{ flex:1 1 100%; }
-    }
-    /* ===== Background image ===== */
-body{
-  background:
-    linear-gradient(
-      rgba(11,18,32,0.88),
-      rgba(11,18,32,0.88)
-    ),
-    url("turska-srbija.jpg") no-repeat center center fixed;
-  background-size: cover;
-}
   </style>
 </head>
 
 <body>
-  <header>
-    <h1>Türkçe Dili ve Grameri</h1>
-    <p class="subtitle">Dersler, örnekler ve alıştırmalar. Aşağıda aynı içerik Türkçe (sol) ve Sırpça (sağ) olarak verilmiştir.</p>
-  </header>
+  <main class="page">
 
-  <main>
-
-    <div class="notebook-wrap">
-
-      <!-- LEVO: TR -->
-      <div class="notebook">
-        <div class="badge">TR</div>
-        <h2>Türk Dili ve Edebiyatı Çalışmaları</h2>
-
-        <p class="muted">
-          Türk dili ve edebiyatı çalışmaları; Türkçenin yapısını, tarihini ve en eski dönemlerden günümüze kadar uzanan
-          zengin edebî birikimini kapsamlı biçimde incelemeyi içerir.
-        </p>
-
-        <p><strong>Çalışmalar neleri kapsar?</strong></p>
-        <ul>
-          <li><strong>Dilbilim:</strong> Modern Türkçenin dilbilgisi, sözdizimi ve ses bilgisi; ayrıca Eski Türkçeden Osmanlı Türkçesine ve modern dile uzanan tarihsel gelişim.</li>
-          <li><strong>Edebiyat:</strong> Halk edebiyatı, klasik (Divan) edebiyatı ve modern Türk edebiyatı (Tanzimat döneminden Orhan Pamuk gibi çağdaş yazarlara kadar).</li>
-          <li><strong>Kültür ve tarih:</strong> Dili ve sanatı şekillendiren tarihsel bağlamın yanı sıra Türk gelenekleri ve kültürel değerlerinin anlaşılması.</li>
-        </ul>
-
-        <p><strong>Bölgede nerede okunabilir?</strong></p>
-        <p class="muted">Sırbistan’da ve çevrede türkologlık alanında saygın bölümler bulunmaktadır:</p>
-        <ul>
-          <li><strong>Belgrad Filoloji Fakültesi:</strong> Şarkiyat (Orientalistik) Kürsüsü; Türk dili ve edebiyatında lisans, yüksek lisans ve doktora programları sunar.</li>
-          <li><strong>Novi Sad Felsefe Fakültesi:</strong> Dil Merkezi kapsamında Türkçe öğrenim programları sunar.</li>
-        </ul>
-
-        <p><strong>Kariyer olanakları</strong></p>
-        <p class="muted">Mezun turkologlar farklı alanlarda çalışabilir:</p>
-        <ul>
-          <li><strong>Çeviri:</strong> Sözlü ve yazılı çeviri (edebî, uzmanlık alanı çevirileri, yeminli tercümanlık).</li>
-          <li><strong>Eğitim:</strong> Dil okullarında öğretmenlik veya okutmanlık.</li>
-          <li><strong>Diplomasi ve turizm:</strong> Büyükelçilikler, kültür merkezleri (Yunus Emre Enstitüsü gibi) ve turizm acentelerinde çalışma.</li>
-          <li><strong>Özel sektör:</strong> Sırbistan–Türkiye ekonomik iş birliğinin güçlü olması nedeniyle Türkçe bilenlere Türk şirketlerinde artan talep.</li>
-        </ul>
-
-        <p><strong>Öğrenme kaynakları</strong></p>
-        <ul>
-          <li><strong>Burslar:</strong> Türkiye hükümeti her yıl Türkiye Bursları kapsamında, Türkiye genelindeki üniversitelerde eğitim için prestijli burslar sunar.</li>
-          <li><strong>Online öğrenme:</strong> Leksiken gibi platformlar veya Türk kurumlarının resmî portalları ücretsiz materyaller sunabilir.</li>
-        </ul>
-      </div>
-
-      <!-- DESNO: SR -->
-      <div class="notebook">
-        <div class="badge">SR</div>
-        <h2>Studije turskog jezika i književnosti</h2>
-
-        <p class="muted">
-          Studije turskog jezika i književnosti obuhvataju sveobuhvatno izučavanje strukture turskog jezika, njegove istorije
-          i bogatog književnog stvaralaštva od najstarijih vremena do danas.
-        </p>
-
-        <p><strong>Šta obuhvataju studije?</strong></p>
-        <ul>
-          <li><strong>Lingvistika:</strong> Izučavanje gramatike, sintakse i fonetike savremenog turskog jezika, kao i istorijski razvoj od staroturkijskog preko osmanskog do modernog jezika.</li>
-          <li><strong>Književnost:</strong> Obuhvata narodnu književnost, klasičnu (Divansku) književnost i modernu tursku književnost (od perioda Tanzimata do savremenih pisaca poput Orhana Pamuka).</li>
-          <li><strong>Kultura i istorija:</strong> Razumevanje turske tradicije, običaja i istorijskog konteksta koji je oblikovao jezik i umetnost.</li>
-        </ul>
-
-        <p><strong>Gde studirati u regionu?</strong></p>
-        <p class="muted">U Srbiji i okruženju postoje renomirane katedre za turkologiju:</p>
-        <ul>
-          <li><strong>Filološki fakultet u Beogradu:</strong> Katedra za orijentalistiku nudi osnovne, master i doktorske studije turskog jezika i književnosti.</li>
-          <li><strong>Filozofski fakultet u Novom Sadu:</strong> Takođe nudi programe učenja turskog jezika u okviru Centra za jezike.</li>
-        </ul>
-
-        <p><strong>Mogućnosti za karijeru</strong></p>
-        <p class="muted">Diplomirani turkolozi mogu raditi u različitim oblastima:</p>
-        <ul>
-          <li><strong>Prevođenje:</strong> Usmeno i pismeno prevođenje (književno, stručno, sudski tumači).</li>
-          <li><strong>Obrazovanje:</strong> Rad u školama jezika ili kao lektori.</li>
-          <li><strong>Diplomatija i turizam:</strong> Rad u ambasadama, kulturnim centrima (poput Instituta Yunus Emre) i turističkim agencijama.</li>
-          <li><strong>Privreda:</strong> Zbog jake ekonomske saradnje Srbije i Turske, potražnja za govornicima turskog jezika u turskim kompanijama je u stalnom porastu.</li>
-        </ul>
-
-        <p><strong>Resursi za učenje</strong></p>
-        <ul>
-          <li><strong>Stipendije:</strong> Turska vlada svake godine nudi prestižne Türkiye Bursları stipendije za studiranje na univerzitetima širom Turske.</li>
-          <li><strong>Online učenje:</strong> Platforme poput Leksiken ili zvanični portali turskih instituta nude besplatne materijale.</li>
-        </ul>
-      </div>
-
+    <!-- Brush-style Turkey flag (inline SVG, no external images needed) -->
+    <div class="flag-wrap" aria-hidden="true">
+      <svg viewBox="0 0 320 200" width="100%" height="100%">
+        <!-- red brush blob -->
+        <path d="M28 56
+                 C20 20, 90 12, 138 26
+                 C170 8, 220 10, 264 34
+                 C300 50, 314 82, 290 114
+                 C316 146, 284 182, 244 172
+                 C218 194, 172 188, 144 170
+                 C110 194, 58 188, 56 154
+                 C18 146, 8 110, 28 56 Z"
+              fill="#e11d2e"/>
+        <!-- crescent -->
+        <circle cx="205" cy="92" r="34" fill="#fff"/>
+        <circle cx="216" cy="92" r="27" fill="#e11d2e"/>
+        <!-- star -->
+        <polygon fill="#fff"
+          points="252,68 257,83 273,83 260,92 265,107 252,98 239,107 244,92 231,83 247,83"/>
+      </svg>
     </div>
 
-    <div class="card">
-      <h2>İletişim</h2>
-      <p>Email: <a href="mailto:makadjokic12@gmail.com">makadjokic12@gmail.com</a></p>
-    </div>
+    <header class="title">
+      <h1>Büyük ünlü uyumu</h1>
+      <p>(Velika vokalna harmonija)</p>
+    </header>
+
+    <section class="intro">
+      U prethodnoj lekciji smo rekli da se mala vokalna harmonija odnosi na dvoverijantne nastavke,
+      a velika se odnosi na <span class="hl">četvorovarijantne</span>.
+    </section>
+
+    <section class="grid">
+      <!-- left: yellow vowel mapping -->
+      <div>
+        <div class="vowel-card">
+          <div class="vowel-table">
+            <div class="vowel-left">a, ı</div>
+            <div class="arrow"></div>
+            <div class="vowel-right">mı?</div>
+
+            <div class="vowel-left">e, i</div>
+            <div class="arrow"></div>
+            <div class="vowel-right">mi?</div>
+
+            <div class="vowel-left">o, u</div>
+            <div class="arrow"></div>
+            <div class="vowel-right">mu?</div>
+
+            <div class="vowel-left">ö, ü</div>
+            <div class="arrow"></div>
+            <div class="vowel-right">mü?</div>
+          </div>
+        </div>
+
+        <div class="bubble">
+          <p>
+            Upitna rečca <span class="em-red">mi</span> se tretira kao nastavak<br/>
+            i zato se uvek piše odvojeno od reči.
+          </p>
+        </div>
+      </div>
+
+      <!-- right: small board -->
+      <aside class="board">
+        <p class="t">Četvorovarijantni nastavci mogu u sebi da sadrže sledeće vokale:</p>
+        <p class="v">ı, i, u, ü</p>
+      </aside>
+    </section>
+
+    <section class="examples">
+      <div class="line tr">- Senin adın Mehmet <span class="em-red">mi</span>? (Da li je tvoje ime Mehmet?)</div>
+      <div class="line">- Evet, benim adım Mehmet. (Da, moje ime je Mehmet.)</div>
+      <div class="line">- Hayır, benim adım Mehmet değil. (Ne, moje ime nije Mehmet.)</div>
+
+      <div class="line tr" style="margin-top:14px;">- O İstanbullu <span class="em-red">mu</span>? (Da li je on/ona iz Istanbula?)</div>
+      <div class="line">- Evet, o İstanbullu. (Da, on/ona je iz Istanbula.)</div>
+      <div class="line">- Hayır, o İstanbullu değil. (Ne, on/ona nije iz Istanbula.)</div>
+    </section>
 
   </main>
 </body>
