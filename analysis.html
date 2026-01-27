@@ -1,212 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sr">
 <head>
-  <meta charset="UTF-8">
-  <title>JokerFX – Market Analysis</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Turski jezik i gramatika</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #e5e7eb;
-      background: url('joker1.jpg') no-repeat center center fixed;
-      background-size: cover;
-    }
-
-    header {
-      padding: 40px 20px;
-      text-align: center;
-      background: rgba(2, 6, 23, 0.85);
-    }
-
-    section {
-      max-width: 900px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-
-    .box {
-      background: rgba(15, 23, 42, 0.85);
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-
-    h1, h2, h3 {
-      color: #facc15;
-    }
-
-    a {
-      color: #facc15;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    /* LIVE SESSION CLOCK */
-    #session-clock {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.75);
-      color: #facc15;
-      padding: 12px 16px;
-      border-radius: 10px;
-      font-size: 14px;
-      z-index: 9999;
-      box-shadow: 0 0 10px rgba(0,0,0,0.6);
-    }
-
-    .clock-title {
-      font-weight: bold;
-      margin-bottom: 6px;
-      text-align: center;
-    }
-
-    .clock-date {
-      text-align: center;
-      font-size: 12px;
-      margin-bottom: 8px;
-      opacity: 0.9;
-    }
-
-    .clock-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      font-family: monospace;
-    }
+    body{font-family:Arial,sans-serif;margin:0;background:#0b1220;color:#e5e7eb}
+    header{padding:40px 20px;text-align:center;background:rgba(0,0,0,.4)}
+    main{max-width:900px;margin:0 auto;padding:30px 20px}
+    .card{background:rgba(255,255,255,.06);padding:18px;border-radius:14px;margin:14px 0}
+    a{color:#93c5fd}
   </style>
 </head>
-
 <body>
+  <header>
+    <h1>Turski jezik i gramatika</h1>
+    <p>Dobrodošli — lekcije, primeri i vežbe.</p>
+  </header>
 
-<header>
-  <h1>JokerFX</h1>
-  <p>Daily & Intraday Market Analysis • XAUUSD</p>
-</header>
+  <main>
+    <div class="card">
+      <h2>Lekcije</h2>
+      <p>Ovde će biti spisak lekcija i materijala.</p>
+    </div>
 
-<section>
-
-  <div class="box">
-    <h2>Daily & Intraday Analysis – XAUUSD</h2>
-    <p>
-      Ova analiza je bazirana na strukturi tržišta i višim vremenskim okvirima.
-      Sadržaj je edukativan i ne predstavlja finansijski savet.
-    </p>
-  </div>
-
-  <!-- D1 -->
-  <div class="box">
-    <h2>D1 (Daily) – Glavni Bias</h2>
-
-    <h3>Struktura</h3>
-    <ul>
-      <li><strong>BULLISH</strong></li>
-      <li>Jasni Higher High + Higher Low</li>
-      <li>Poslednji impuls je napravio novi HH</li>
-      <li>Nema daily break-a strukture naniže</li>
-    </ul>
-
-    <h3>Daily zaključak</h3>
-    <p>
-      <strong>Bias = BUY</strong><br>
-      Sell ima smisla samo kao kratkoročni pullback, ne kao swing short.
-    </p>
-
-    <h3>Bitne D1 zone</h3>
-    <ul>
-      <li><strong>Demand (key):</strong> 4,050 – 4,120</li>
-      <li><strong>Intermediate demand:</strong> 4,180 – 4,220</li>
-      <li><strong>Daily resistance / liquidity:</strong> 4,340 – 4,380</li>
-    </ul>
-  </div>
-
-  <!-- H4 -->
-  <div class="box">
-    <h2>H4 – Swing Struktura & Kontekst</h2>
-
-    <h3>Šta vidimo na H4</h3>
-    <ul>
-      <li>Nakon jakog impulsa gore → konsolidacija</li>
-      <li>Cena pravi bullish range / bull flag</li>
-      <li>Nema H4 CHoCH naniže</li>
-    </ul>
-
-    <h3>H4 zaključak</h3>
-    <p>
-      <strong>Continuation bullish</strong> – čekamo retracement u demand,
-      ne buy na vrhu.
-    </p>
-
-    <h3>H4 zone</h3>
-    <ul>
-      <li><strong>Strong demand:</strong> 4,250 – 4,280</li>
-      <li><strong>Deeper demand (ako dođe):</strong> 4,180 – 4,220</li>
-      <li><strong>Range high / liquidity:</strong> 4,340 – 4,360</li>
-    </ul>
-  </div>
-
-  <!-- H1 -->
-  <div class="box">
-    <h2>H1 – Entry Logika (Execution)</h2>
-
-    <h3>Trenutni kontekst</h3>
-    <ul>
-      <li>Cena je u range-u ispod resistance</li>
-      <li>Vidimo slabost kupaca na vrhu</li>
-      <li>Potreban nam je pullback + reakcija</li>
-    </ul>
-
-    <h3>Plan</h3>
-    <p>
-      <strong>❌ NEMA buy sada</strong><br>
-      <strong>✔ Čekamo da cena dođe u zonu</strong> i da H1 struktura potvrdi
-      reakciju (bez žurbe, bez FOMO).
-    </p>
-
-    <p>
-      Fokus je na strpljenju: prvo HTF kontekst (D1/H4), pa tek onda H1 potvrda.
-    </p>
-  </div>
-
-  <div class="box" style="text-align:center;">
-    <a href="index.html">← Back to main page</a>
-  </div>
-
-</section>
-
-<!-- LIVE MARKET SESSION CLOCK + DATE -->
-<div id="session-clock">
-  <div class="clock-title">Market Sessions</div>
-  <div class="clock-date" id="current-date"></div>
-  <div class="clock-row">New York <span id="ny-time"></span></div>
-  <div class="clock-row">London <span id="ldn-time"></span></div>
-  <div class="clock-row">Tokyo <span id="tokyo-time"></span></div>
-</div>
-
-<script>
-function updateClocks() {
-  const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
-  const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-
-  document.getElementById('ny-time').textContent =
-    new Date().toLocaleTimeString('en-US', { ...timeOptions, timeZone: 'America/New_York' });
-
-  document.getElementById('ldn-time').textContent =
-    new Date().toLocaleTimeString('en-GB', { ...timeOptions, timeZone: 'Europe/London' });
-
-  document.getElementById('tokyo-time').textContent =
-    new Date().toLocaleTimeString('ja-JP', { ...timeOptions, timeZone: 'Asia/Tokyo' });
-
-  document.getElementById('current-date').textContent =
-    new Date().toLocaleDateString('en-GB', dateOptions);
-}
-
-setInterval(updateClocks, 1000);
-updateClocks();
-</script>
-
+    <div class="card">
+      <h2>Kontakt</h2>
+      <p>Email: <a href="mailto:your@email.com">your@email.com</a></p>
+    </div>
+  </main>
 </body>
 </html>
+
