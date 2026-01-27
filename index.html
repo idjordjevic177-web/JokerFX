@@ -122,104 +122,7 @@
       header{ padding:28px 16px; }
       .notebook{ flex:1 1 100%; }
     }
-
-.pencil{
-  position:absolute;
-  right:12px;
-  top:48px;
-  width:10px;
-  height:160px;
-  opacity:0.9;
-  pointer-events:none;
-  animation: pencilFloat 3.5s ease-in-out infinite;
-}
-
-}
-
-.pencil-body{
-  width:100%;
-  height:130px;
-  background: linear-gradient(to bottom, #facc15, #eab308);
-  border-radius:4px;
-}
-
-.pencil-tip{
-  width:0;
-  height:0;
-  border-left:5px solid transparent;
-  border-right:5px solid transparent;
-  border-top:18px solid #d97706;
-  margin:0 auto;
-}
-
-.pencil-lead{
-  width:0;
-  height:0;
-  border-left:3px solid transparent;
-  border-right:3px solid transparent;
-  border-top:10px solid #111827;
-  margin:-4px auto 0;
-}
-
-@keyframes pencilFloat{
-  0%{
-    transform: translateY(0) rotate(-1deg);
-  }
-  50%{
-    transform: translateY(12px) rotate(1.5deg);
-  }
-  100%{
-    transform: translateY(0) rotate(-1deg);
-  }
-}
-
-/* Na manjim ekranima sakrij olovke */
-@media (max-width: 900px){
-  .pencil{
-    display:none;
-  }
-}
-.notebook{
-  overflow:hidden;
-}
-
-.notebook::after{
-  content:"";
-  position:absolute;
-  left:0;
-  top:0;
-  width:100%;
-  height:100%;
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(255,255,255,0.12) 0%,
-      rgba(255,255,255,0.04) 50%,
-      rgba(255,255,255,0) 100%
-    );
-  animation: writeLines 6s linear infinite;
-  pointer-events:none;
-}
-
-@keyframes writeLines{
-  0%{ transform: translateY(-100%); }
-  100%{ transform: translateY(100%); }
-}
-    .notebook{
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.15),
-    0 18px 40px rgba(0,0,0,0.35);
-}
-    .tr .pencil-body{
-  background: linear-gradient(to bottom, #facc15, #eab308); /* žuta */
-}
-
-.sr .pencil-body{
-  background: linear-gradient(to bottom, #60a5fa, #2563eb); /* plava */
-}
-
   </style>
-  
 </head>
 
 <body>
@@ -234,15 +137,8 @@
 
       <!-- LEVO: TR -->
       <div class="notebook">
-        
-<div class="pencil">
-  <div class="pencil-body"></div>
-  <div class="pencil-tip"></div>
-  <div class="pencil-lead"></div>
-</div>
         <div class="badge">TR</div>
         <h2>Türk Dili ve Edebiyatı Çalışmaları</h2>
-        <div class="notebook tr">
 
         <p class="muted">
           Türk dili ve edebiyatı çalışmaları; Türkçenin yapısını, tarihini ve en eski dönemlerden günümüze kadar uzanan
@@ -281,14 +177,8 @@
 
       <!-- DESNO: SR -->
       <div class="notebook">
-        <div class="pencil">
-  <div class="pencil-body"></div>
-  <div class="pencil-tip"></div>
-  <div class="pencil-lead"></div>
-</div>
         <div class="badge">SR</div>
         <h2>Studije turskog jezika i književnosti</h2>
-        <div class="notebook sr">
 
         <p class="muted">
           Studije turskog jezika i književnosti obuhvataju sveobuhvatno izučavanje strukture turskog jezika, njegove istorije
