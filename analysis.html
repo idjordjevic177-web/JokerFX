@@ -1,35 +1,148 @@
-<!doctype html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Türkçe Dili ve Grameri</title>
-  <style>
-    body{font-family:Arial,sans-serif;margin:0;background:#0b1220;color:#e5e7eb}
-    header{padding:40px 20px;text-align:center;background:rgba(0,0,0,.4)}
-    main{max-width:900px;margin:0 auto;padding:30px 20px}
-    .card{background:rgba(255,255,255,.06);padding:18px;border-radius:14px;margin:14px 0}
-    a{color:#93c5fd}
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Türkçe Dili ve Grameri</h1>
-    <p>Dersler, örnekler ve alıştırmalar.</p>
-  </header>
+<style>
+  /* ... tvoj postojeći CSS ... */
 
-  <main>
-    <div class="card">
-      <h2>Dersler</h2>
-      <p>Burada Türkçe dilbilgisi dersleri ve materyaller yer alacaktır.</p>
-    </div>
+  .notebook-wrap{
+    display:flex;
+    gap:22px;
+    align-items:stretch;
+    flex-wrap:wrap;
+  }
 
-    <div class="card">
-      <h2>İletişim</h2>
-      <p>Email: 
-        <a href="mailto:makadjokic12@gmail.com">makadjokic12@gmail.com</a>
-      </p>
-    </div>
-  </main>
-</body>
-</html>
+  .notebook{
+    flex:1 1 380px;
+    border-radius:16px;
+    padding:22px 22px 22px 34px;
+    position:relative;
+    background:
+      /* plave linije */
+      repeating-linear-gradient(
+        to bottom,
+        rgba(59,130,246,0.18) 0px,
+        rgba(59,130,246,0.18) 1px,
+        rgba(255,255,255,0) 1px,
+        rgba(255,255,255,0) 28px
+      ),
+      /* papir */
+      rgba(255,255,255,0.06);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  }
+
+  /* crvena margina levo kao sveska */
+  .notebook::before{
+    content:"";
+    position:absolute;
+    left:16px;
+    top:14px;
+    bottom:14px;
+    width:2px;
+    background: rgba(239,68,68,0.55);
+    border-radius:2px;
+  }
+
+  .notebook h2{
+    margin:0 0 10px 0;
+    font-size:20px;
+    letter-spacing:0.2px;
+  }
+
+  .notebook p{
+    margin:10px 0;
+    line-height:1.7;
+  }
+
+  .notebook ul{
+    margin:10px 0 10px 18px;
+    padding:0;
+    line-height:1.7;
+  }
+
+  .notebook li{
+    margin:8px 0;
+  }
+
+  .muted{
+    opacity:0.9;
+  }
+</style>
+
+<div class="notebook-wrap">
+
+  <!-- LEVO: Turski -->
+  <div class="notebook">
+    <h2>Türk Dili ve Edebiyatı Çalışmaları</h2>
+
+    <p class="muted">
+      Türk dili ve edebiyatı çalışmaları; Türkçenin yapısını, tarihini ve en eski dönemlerden günümüze kadar uzanan
+      zengin edebî birikimini kapsamlı biçimde incelemeyi içerir.
+    </p>
+
+    <p><strong>Çalışmalar neleri kapsar?</strong></p>
+    <ul>
+      <li><strong>Dilbilim:</strong> Modern Türkçenin dilbilgisi, sözdizimi ve ses bilgisi; ayrıca Eski Türkçeden Osmanlı Türkçesine ve modern dile uzanan tarihsel gelişim.</li>
+      <li><strong>Edebiyat:</strong> Halk edebiyatı, klasik (Divan) edebiyatı ve modern Türk edebiyatı (Tanzimat döneminden Orhan Pamuk gibi çağdaş yazarlara kadar).</li>
+      <li><strong>Kültür ve tarih:</strong> Dili ve sanatı şekillendiren tarihsel bağlamın yanı sıra Türk gelenekleri ve kültürel değerlerinin anlaşılması.</li>
+    </ul>
+
+    <p><strong>Bölgede nerede okunabilir?</strong></p>
+    <p class="muted">Sırbistan’da ve çevrede türkologlık alanında saygın bölümler bulunmaktadır:</p>
+    <ul>
+      <li><strong>Belgrad Filoloji Fakültesi:</strong> Şarkiyat (Orientalistik) Kürsüsü; Türk dili ve edebiyatında lisans, yüksek lisans ve doktora programları sunar.</li>
+      <li><strong>Novi Sad Felsefe Fakültesi:</strong> Dil Merkezi kapsamında Türkçe öğrenim programları sunar.</li>
+    </ul>
+
+    <p><strong>Kariyer olanakları</strong></p>
+    <p class="muted">Mezun turkologlar farklı alanlarda çalışabilir:</p>
+    <ul>
+      <li><strong>Çeviri:</strong> Sözlü ve yazılı çeviri (edebî, uzmanlık alanı çevirileri, yeminli tercümanlık).</li>
+      <li><strong>Eğitim:</strong> Dil okullarında öğretmenlik veya okutmanlık.</li>
+      <li><strong>Diplomasi ve turizm:</strong> Büyükelçilikler, kültür merkezleri (Yunus Emre Enstitüsü gibi) ve turizm acentelerinde çalışma.</li>
+      <li><strong>Özel sektör:</strong> Sırbistan–Türkiye ekonomik iş birliğinin güçlü olması nedeniyle Türkçe bilenlere Türk şirketlerinde artan talep.</li>
+    </ul>
+
+    <p><strong>Öğrenme kaynakları</strong></p>
+    <ul>
+      <li><strong>Burslar:</strong> Türkiye hükümeti her yıl Türkiye Bursları kapsamında, Türkiye genelindeki üniversitelerde eğitim için prestijli burslar sunar.</li>
+      <li><strong>Online öğrenme:</strong> Leksiken gibi platformlar veya Türk kurumlarının resmî portalları ücretsiz materyaller sunabilir.</li>
+    </ul>
+  </div>
+
+  <!-- DESNO: Srpski -->
+  <div class="notebook">
+    <h2>Studije turskog jezika i književnosti</h2>
+
+    <p class="muted">
+      Studije turskog jezika i književnosti obuhvataju sveobuhvatno izučavanje strukture turskog jezika, njegove istorije
+      i bogatog književnog stvaralaštva od najstarijih vremena do danas.
+    </p>
+
+    <p><strong>Šta obuhvataju studije?</strong></p>
+    <ul>
+      <li><strong>Lingvistika:</strong> Izučavanje gramatike, sintakse i fonetike savremenog turskog jezika, kao i istorijski razvoj od staroturkijskog preko osmanskog do modernog jezika.</li>
+      <li><strong>Književnost:</strong> Obuhvata narodnu književnost, klasičnu (Divansku) književnost i modernu tursku književnost (od perioda Tanzimata do savremenih pisaca poput Orhana Pamuka).</li>
+      <li><strong>Kultura i istorija:</strong> Razumevanje turske tradicije, običaja i istorijskog konteksta koji je oblikovao jezik i umetnost.</li>
+    </ul>
+
+    <p><strong>Gde studirati u regionu?</strong></p>
+    <p class="muted">U Srbiji i okruženju postoje renomirane katedre za turkologiju:</p>
+    <ul>
+      <li><strong>Filološki fakultet u Beogradu:</strong> Katedra za orijentalistiku nudi osnovne, master i doktorske studije turskog jezika i književnosti.</li>
+      <li><strong>Filozofski fakultet u Novom Sadu:</strong> Takođe nudi programe učenja turskog jezika u okviru Centra za jezike.</li>
+    </ul>
+
+    <p><strong>Mogućnosti za karijeru</strong></p>
+    <p class="muted">Diplomirani turkolozi mogu raditi u različitim oblastima:</p>
+    <ul>
+      <li><strong>Prevođenje:</strong> Usmeno i pismeno prevođenje (književno, stručno, sudski tumači).</li>
+      <li><strong>Obrazovanje:</strong> Rad u školama jezika ili kao lektori.</li>
+      <li><strong>Diplomatija i turizam:</strong> Rad u ambasadama, kulturnim centrima (poput Instituta Yunus Emre) i turističkim agencijama.</li>
+      <li><strong>Privreda:</strong> Zbog jake ekonomske saradnje Srbije i Turske, potražnja za govornicima turskog jezika u turskim kompanijama je u stalnom porastu.</li>
+    </ul>
+
+    <p><strong>Resursi za učenje</strong></p>
+    <ul>
+      <li><strong>Stipendije:</strong> Turska vlada svake godine nudi prestižne Türkiye Bursları stipendije za studiranje na univerzitetima širom Turske.</li>
+      <li><strong>Online učenje:</strong> Platforme poput Leksiken ili zvanični portali turskih instituta nude besplatne materijale.</li>
+    </ul>
+  </div>
+
+</div>
