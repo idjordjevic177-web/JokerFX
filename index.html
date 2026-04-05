@@ -13,7 +13,6 @@ body{
     background-size:cover;
     color:white;
     font-family:Arial;
-    cursor:default;
 }
 
 body::before{
@@ -25,54 +24,42 @@ body::before{
     z-index:-1;
 }
 
-/* 🔥 HEADER ANIMATION */
+/* HEADER */
 .header{
     padding:20px;
     font-size:32px;
     font-weight:bold;
-    position:relative;
-    text-shadow:0 0 10px #0ea5e9;
+    text-shadow:0 0 15px #0ea5e9;
 }
 
-.header span{
-    animation:glow 2s infinite alternate;
+/* CONTACT PANEL */
+.left-panel{
+    width:200px;
+    padding:25px;
 }
 
-@keyframes glow{
-    from{ text-shadow:0 0 5px #0ea5e9; }
-    to{ text-shadow:0 0 20px #22c55e; }
+.contact-title{
+    font-size:16px;
+    margin-bottom:15px;
+    opacity:0.7;
 }
 
-/* LIVE */
-.live-badge{
-    position:absolute;
-    top:25px;
-    right:20px;
-    background:#ef4444;
-    padding:6px 12px;
-    border-radius:20px;
-    font-size:12px;
-    animation:blink 1s infinite;
+.contact-item{
+    margin:15px 0;
+    font-size:15px;
+    padding:10px;
+    background:rgba(255,255,255,0.05);
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s;
 }
 
-@keyframes blink{
-    0%{opacity:1}
-    50%{opacity:0.3}
-    100%{opacity:1}
+.contact-item:hover{
+    background:rgba(14,165,233,0.2);
 }
 
 /* LAYOUT */
 .main{display:flex;}
-
-.left-panel{
-    width:180px;
-    padding:20px;
-}
-
-.left-panel div{
-    margin:10px 0;
-    cursor:pointer;
-}
 
 /* CHART */
 #chart-container{
@@ -80,19 +67,26 @@ body::before{
     margin:20px;
 }
 
+/* 🔥 BUTTONS UPGRADE */
 .buttons{
     text-align:center;
-    margin-bottom:10px;
+    margin-bottom:15px;
 }
 
 .buttons button{
     margin:5px;
-    padding:8px 15px;
-    background:#1f2937;
+    padding:10px 18px;
     border:none;
+    border-radius:8px;
+    background:linear-gradient(145deg,#1f2937,#111827);
     color:white;
-    border-radius:6px;
     cursor:pointer;
+    transition:0.3s;
+}
+
+.buttons button:hover{
+    box-shadow:0 0 10px #0ea5e9;
+    transform:translateY(-2px);
 }
 
 /* RIGHT */
@@ -101,7 +95,6 @@ body::before{
     margin:20px;
 }
 
-/* FIX TV SPACE */
 .tradingview-widget-copyright{
     display:none !important;
 }
@@ -144,7 +137,6 @@ body::before{
     margin:auto;
 }
 
-/* DOTS */
 .dot{
     width:6px;
     height:6px;
@@ -153,7 +145,6 @@ body::before{
     position:absolute;
 }
 
-/* CLOCK HANDS */
 .hand{
     position:absolute;
     bottom:50%;
@@ -169,13 +160,12 @@ body::before{
 .digital{margin-top:10px;}
 .sessions{font-size:12px;opacity:0.7;}
 
-/* 🎧 RADIO FOOTER */
+/* RADIO */
 #radio-bar{
     position:fixed;
     bottom:0;
     width:100%;
     background:rgba(0,0,0,0.8);
-    backdrop-filter: blur(10px);
     padding:10px;
     display:flex;
     justify-content:space-between;
@@ -186,30 +176,35 @@ body::before{
 @media(max-width:768px){
 .main{flex-direction:column;}
 .left-panel{display:none;}
-#price-panel{width:100%;margin:10px;}
-#chart{height:300px !important;}
+#price-panel{width:100%;}
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-<span>JokerFX</span>
-<div class="live-badge">LIVE</div>
-</div>
+<div class="header">JokerFX</div>
 
 <div class="main">
 
 <div class="left-panel">
-<div onclick="window.open('https://instagram.com/ivan.djordjevic13')">📸 Instagram</div>
-<div onclick="window.open('https://t.me/jokeerfX')">📲 Telegram</div>
+
+<div class="contact-title">Contact</div>
+
+<div class="contact-item" onclick="window.open('https://instagram.com/ivan.djordjevic13')">
+📸 Instagram
+</div>
+
+<div class="contact-item" onclick="window.open('https://t.me/jokeerfX')">
+📲 Telegram
+</div>
+
 </div>
 
 <div id="chart-container">
 
 <div class="buttons">
-<button onclick="changeSymbol('FOREXCOM:XAUUSD')">GOLD</button>
+<button onclick="changeSymbol('FOREXCOM:XAUUSD')">XAUUSD</button>
 <button onclick="changeSymbol('FOREXCOM:EURUSD')">EURUSD</button>
 <button onclick="changeSymbol('BINANCE:BTCUSDT')">BTC</button>
 </div>
@@ -246,10 +241,8 @@ body::before{
 
 <!-- CLOCK -->
 <div id="clock-widget">
-
 <div class="clock">
 
-<!-- DOTS -->
 <div class="dot" style="top:5%;left:50%"></div>
 <div class="dot" style="top:20%;right:15%"></div>
 <div class="dot" style="top:50%;right:5%"></div>
@@ -267,7 +260,6 @@ body::before{
 
 <div class="digital" id="digital"></div>
 <div class="sessions" id="sessions"></div>
-
 </div>
 
 <!-- RADIO -->
