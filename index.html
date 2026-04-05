@@ -76,7 +76,7 @@ button {
 <h1>Gig4FX</h1>
 
 <div id="price-panel">
-    <div id="main-prices"></div>
+    <div id="main-prices">Loading...</div>
 
     <button onclick="toggleMore()">Open More</button>
 
@@ -93,7 +93,8 @@ Correlation loading...
 
 <script>
 
-const mainSymbols = ["BTC/USD", "XAU/USD", "DXY"];
+// 🔥 ISPRAVLJENI SYMBOLI
+const mainSymbols = ["BTC/USD", "XAU/USD", "ICEUS:DXY"];
 const moreSymbols = ["EUR/USD","GBP/USD","USD/JPY","AUD/USD","USD/CAD"];
 
 let expanded = false;
@@ -110,14 +111,23 @@ async function getPrice(symbol){
     try {
         let res = await fetch(`https://api.twelvedata.com/price?symbol=${symbol}&apikey=${API_KEY}`);
         let data = await res.json();
-        return parseFloat(data.price);
+
+        console.log(symbol, data); // 🔍 DEBUG
+
+        if(data.price){
+            return parseFloat(data.price);
+        } else {
+            return null;
+        }
+
     } catch(e){
+        console.log("ERROR:", e);
         return null;
     }
 }
 
 function renderItem(symbol, price){
-    if(!price) return "";
+    if(!price) return `<div>${symbol} - error</div>`;
 
     let last = lastPrices[symbol];
     let color = "";
@@ -154,7 +164,9 @@ async function updatePrices(){
     updateCorrelation();
 }
 
-setInterval(updatePrices, 2000);
+// 🔥 SPORIJI REFRESH (da ne blokira API)
+setInterval(updatePrices, 5000);
+
 updatePrices();
 
 
@@ -170,7 +182,7 @@ function openChart(symbol){
 
 // 🧠 KORELACIJA
 function updateCorrelation(){
-    let dxy = lastPrices["DXY"];
+    let dxy = lastPrices["ICEUS:DXY"];
     let gold = lastPrices["XAU/USD"];
 
     if(!dxy || !gold) return;
