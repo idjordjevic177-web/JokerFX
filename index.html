@@ -6,19 +6,44 @@
 
 <style>
 body {
-    background: #0b0f1a;
+    background: linear-gradient(135deg,#0b0f1a,#020617);
     color: white;
     font-family: Arial;
 }
 
+/* PANEL */
 #price-panel {
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 240px;
+    width: 300px;
     background: #111827;
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 10px;
+}
+
+/* SAT GLASS */
+#clock-widget {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    backdrop-filter: blur(15px);
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: 20px 40px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.time {
+    font-size: 40px;
+    font-weight: 300;
+}
+
+.session {
+    font-size: 14px;
+    opacity: 0.7;
 }
 </style>
 </head>
@@ -27,46 +52,76 @@ body {
 
 <h1>Gig4FX</h1>
 
+<!-- PRICE PANEL -->
 <div id="price-panel">
 
+<!-- MAIN (bez DXY) -->
 <div class="tradingview-widget-container">
-  <div class="tradingview-widget-container__widget"></div>
+<div class="tradingview-widget-container__widget"></div>
 
-  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-  {
-    "colorTheme": "dark",
-    "dateRange": "1D",
-    "showChart": false,
-    "locale": "en",
-    "isTransparent": true,
-    "showSymbolLogo": true,
-    "width": "100%",
-    "height": "220",
-    "tabs": [
-      {
-        "title": "Main",
-        "symbols": [
-          {"s": "BINANCE:BTCUSDT", "d": "BTC"},
-          {"s": "FOREXCOM:XAUUSD", "d": "Gold"},
-          {"s": "TVC:DXY", "d": "DXY"}
-        ]
-      },
-      {
-        "title": "Forex",
-        "symbols": [
-          {"s": "FOREXCOM:EURUSD"},
-          {"s": "FOREXCOM:GBPUSD"},
-          {"s": "FOREXCOM:USDJPY"},
-          {"s": "FOREXCOM:AUDUSD"},
-          {"s": "FOREXCOM:USDCAD"}
-        ]
-      }
-    ]
-  }
-  </script>
+<script src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+{
+  "colorTheme": "dark",
+  "showChart": false,
+  "locale": "en",
+  "width": "100%",
+  "height": "180",
+  "tabs": [
+    {
+      "title": "Main",
+      "symbols": [
+        {"s": "BINANCE:BTCUSDT", "d": "BTC"},
+        {"s": "FOREXCOM:XAUUSD", "d": "XAUUSD"}
+      ]
+    }
+  ]
+}
+</script>
+</div>
+
+<!-- DXY POSEBNO -->
+<div style="margin-top:10px;">
+<div class="tradingview-widget-container">
+<div class="tradingview-widget-container__widget"></div>
+
+<script src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+{
+  "symbol": "TVC:DXY",
+  "colorTheme": "dark",
+  "isTransparent": true,
+  "locale": "en"
+}
+</script>
+</div>
 </div>
 
 </div>
+
+<!-- CLOCK -->
+<div id="clock-widget">
+    <div class="time" id="time"></div>
+    <div class="session" id="sessions"></div>
+</div>
+
+<script>
+
+function updateClock(){
+    let now = new Date();
+
+    let ny = new Date().toLocaleTimeString("en-US",{timeZone:"America/New_York"});
+    let london = new Date().toLocaleTimeString("en-GB",{timeZone:"Europe/London"});
+    let tokyo = new Date().toLocaleTimeString("en-US",{timeZone:"Asia/Tokyo"});
+
+    document.getElementById("time").innerHTML = ny;
+
+    document.getElementById("sessions").innerHTML =
+    "NY: " + ny + " | London: " + london + " | Tokyo: " + tokyo;
+}
+
+setInterval(updateClock,1000);
+updateClock();
+
+</script>
 
 </body>
 </html>
