@@ -13,6 +13,7 @@ body {
     font-family: Arial;
 }
 
+/* DARK OVERLAY */
 body::before{
     content:"";
     position:fixed;
@@ -22,25 +23,35 @@ body::before{
     z-index:-1;
 }
 
+/* HEADER */
 .header{
     padding:20px;
     font-size:26px;
 }
 
+/* LAYOUT */
 .main{
     display:flex;
 }
 
+/* LEFT PANEL */
 .left-panel{
     width:180px;
     padding:20px;
 }
 
+.left-panel div{
+    margin:12px 0;
+    cursor:pointer;
+}
+
+/* CHART */
 #chart-container{
     flex:1;
     margin:20px;
 }
 
+/* BUTTONS */
 .buttons{
     text-align:center;
     margin-bottom:10px;
@@ -56,11 +67,13 @@ body::before{
     cursor:pointer;
 }
 
+/* RIGHT PANEL */
 #price-panel{
     width:260px;
     margin:20px;
 }
 
+/* SIGNAL BUTTON */
 .signals-btn{
     position:fixed;
     bottom:20px;
@@ -76,6 +89,7 @@ body::before{
     background:#1f2937;
 }
 
+/* CLOCK */
 #clock-widget{
     position:fixed;
     bottom:20px;
@@ -87,6 +101,7 @@ body::before{
     text-align:center;
 }
 
+/* ANALOG */
 .clock{
     width:90px;
     height:90px;
@@ -127,13 +142,19 @@ body::before{
 
 <div class="main">
 
+<!-- LEFT PANEL -->
 <div class="left-panel">
 <div>Instagram:</div>
 <div>Telegram:</div>
 <div>Discord:</div>
 <div>Website:</div>
+
+<div onclick="window.location.href='ftmo.html'">
+💰 FTMO Service
+</div>
 </div>
 
+<!-- CENTER -->
 <div id="chart-container">
 
 <div class="buttons">
@@ -146,6 +167,7 @@ body::before{
 
 </div>
 
+<!-- RIGHT PANEL -->
 <div id="price-panel">
 
 <div class="tradingview-widget-container">
@@ -183,10 +205,12 @@ body::before{
 
 </div>
 
+<!-- SIGNAL BUTTON -->
 <div class="signals-btn" onclick="window.location.href='signals.html'">
 Signals & Analysis
 </div>
 
+<!-- CLOCK -->
 <div id="clock-widget">
 
 <div class="clock">
@@ -232,6 +256,7 @@ function changeSymbol(symbol){
 
 createChart("FOREXCOM:XAUUSD");
 
+/* CLOCK */
 function updateClock(){
     let now=new Date();
 
@@ -253,11 +278,6 @@ function updateClock(){
 
 setInterval(updateClock,1000);
 updateClock();
-
-    <div onclick="window.location.href='ftmo.html'" style="cursor:pointer;">
-FTMO Service
-</div>
-    
 </script>
 
 </body>
