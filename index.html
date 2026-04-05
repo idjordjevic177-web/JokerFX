@@ -22,30 +22,25 @@ body::before{
     z-index:-1;
 }
 
-/* HEADER */
 .header{
     padding:20px;
     font-size:26px;
 }
 
-/* LAYOUT */
 .main{
     display:flex;
 }
 
-/* LEFT PANEL */
 .left-panel{
     width:180px;
     padding:20px;
 }
 
-/* CHART */
 #chart-container{
     flex:1;
     margin:20px;
 }
 
-/* BUTTONS */
 .buttons{
     text-align:center;
     margin-bottom:10px;
@@ -61,26 +56,11 @@ body::before{
     cursor:pointer;
 }
 
-/* RIGHT PANEL */
 #price-panel{
     width:260px;
     margin:20px;
 }
 
-/* PRO DASHBOARD */
-#pro-dashboard{
-    width:80%;
-    margin:40px auto;
-}
-
-.dash-box{
-    background:rgba(255,255,255,0.05);
-    padding:20px;
-    margin:15px 0;
-    border-radius:12px;
-}
-
-/* SIGNAL BUTTON */
 .signals-btn{
     position:fixed;
     bottom:20px;
@@ -96,7 +76,6 @@ body::before{
     background:#1f2937;
 }
 
-/* CLOCK */
 #clock-widget{
     position:fixed;
     bottom:20px;
@@ -108,7 +87,6 @@ body::before{
     text-align:center;
 }
 
-/* ANALOG */
 .clock{
     width:90px;
     height:90px;
@@ -149,7 +127,6 @@ body::before{
 
 <div class="main">
 
-<!-- LEFT -->
 <div class="left-panel">
 <div>Instagram:</div>
 <div>Telegram:</div>
@@ -157,7 +134,6 @@ body::before{
 <div>Website:</div>
 </div>
 
-<!-- CENTER -->
 <div id="chart-container">
 
 <div class="buttons">
@@ -170,7 +146,6 @@ body::before{
 
 </div>
 
-<!-- RIGHT -->
 <div id="price-panel">
 
 <div class="tradingview-widget-container">
@@ -208,34 +183,10 @@ body::before{
 
 </div>
 
-<!-- PRO DASHBOARD -->
-<div id="pro-dashboard">
-
-<h2>Market Dashboard</h2>
-
-<div class="dash-box">
-    <h3>📊 Market Bias</h3>
-    <p id="bias" style="color:#22c55e;">Bullish</p>
-</div>
-
-<div class="dash-box">
-    <h3>💵 DXY vs GOLD</h3>
-    <p>DXY Weak → Gold Bullish</p>
-</div>
-
-<div class="dash-box">
-    <h3>⚡ Current Setup</h3>
-    <p>Waiting for pullback into demand zone</p>
-</div>
-
-</div>
-
-<!-- SIGNAL BUTTON -->
 <div class="signals-btn" onclick="window.location.href='signals.html'">
 Signals & Analysis
 </div>
 
-<!-- CLOCK -->
 <div id="clock-widget">
 
 <div class="clock">
@@ -281,7 +232,6 @@ function changeSymbol(symbol){
 
 createChart("FOREXCOM:XAUUSD");
 
-/* CLOCK */
 function updateClock(){
     let now=new Date();
 
@@ -303,21 +253,6 @@ function updateClock(){
 
 setInterval(updateClock,1000);
 updateClock();
-
-/* FAKE LIVE BIAS */
-let bullish=true;
-setInterval(()=>{
-    bullish=!bullish;
-    let el=document.getElementById("bias");
-
-    if(bullish){
-        el.innerText="Bullish";
-        el.style.color="#22c55e";
-    }else{
-        el.innerText="Bearish";
-        el.style.color="#ef4444";
-    }
-},5000);
 </script>
 
 </body>
