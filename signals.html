@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>JokerFX Signals</title>
 
 <style>
@@ -12,43 +14,118 @@ body{
     font-family:Arial;
 }
 
+/* LAYOUT */
+.container{
+    display:flex;
+    padding:20px;
+    gap:20px;
+}
+
+/* LEFT SIDE (SIGNALS) */
+.left{
+    width:300px;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+/* SIGNAL CARD */
+.card{
+    padding:20px;
+    border-radius:12px;
+}
+
+/* BUY */
+.buy{
+    background:rgba(34,197,94,0.15);
+}
+
+.buy .signal{
+    background:#22c55e;
+    padding:6px 10px;
+    border-radius:6px;
+    display:inline-block;
+    margin-bottom:10px;
+}
+
+/* SELL */
+.sell{
+    background:rgba(239,68,68,0.15);
+}
+
+.sell .signal{
+    background:#ef4444;
+    padding:6px 10px;
+    border-radius:6px;
+    display:inline-block;
+    margin-bottom:10px;
+}
+
+/* TEXT */
+.pair{
+    font-size:18px;
+    margin-bottom:5px;
+}
+
+.info{
+    font-size:14px;
+    opacity:0.8;
+}
+
+/* CENTER */
+.center{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+/* EXPLANATION */
+.explain{
+    padding:20px;
+    border-radius:12px;
+}
+
+/* BUY EXPLAIN */
+.explain-buy{
+    background:rgba(34,197,94,0.1);
+    border-left:4px solid #22c55e;
+}
+
+/* SELL EXPLAIN */
+.explain-sell{
+    background:rgba(239,68,68,0.1);
+    border-left:4px solid #ef4444;
+}
+
 /* HEADER */
 .header{
     padding:20px;
     font-size:24px;
 }
 
-/* CONTAINER */
-.container{
-    width:80%;
-    margin:auto;
-}
-
-/* CARD */
-.card{
+/* BACK BUTTON */
+.back{
+    position:fixed;
+    bottom:20px;
+    left:20px;
     background:#111827;
-    padding:20px;
-    margin:20px 0;
-    border-radius:12px;
-}
-
-/* BUY BUTTON */
-.buy{
-    background:#22c55e;
-    padding:12px;
-    text-align:center;
-    border-radius:8px;
-    margin-top:20px;
+    padding:12px 18px;
+    border-radius:10px;
     cursor:pointer;
 }
 
-/* SIGNAL */
-.signal{
-    border-left:4px solid #22c55e;
-    padding:10px;
-    margin:10px 0;
+/* MOBILE */
+@media(max-width:768px){
+.container{
+    flex-direction:column;
+}
+.left{
+    width:100%;
+}
 }
 </style>
+
 </head>
 
 <body>
@@ -57,49 +134,61 @@ body{
 
 <div class="container">
 
-<div class="card">
-<h2>📊 Latest Signal</h2>
+<!-- LEFT SIGNALS -->
+<div class="left">
 
-<div class="signal">
-BUY XAUUSD<br>
-Entry: 2350<br>
-SL: 2335<br>
-TP: 2380
+<!-- BUY -->
+<div class="card buy">
+<div class="signal">BUY</div>
+
+<div class="pair">XAUUSD</div>
+
+<div class="info">Entry: 2300</div>
+<div class="info">SL: 2285</div>
+<div class="info">TP: 2350</div>
 </div>
 
-<div class="signal">
-SELL EURUSD<br>
-Entry: 1.0850<br>
-SL: 1.0900<br>
-TP: 1.0750
+<!-- SELL -->
+<div class="card sell">
+<div class="signal">SELL</div>
+
+<div class="pair">XAUUSD</div>
+
+<div class="info">Entry: 2350</div>
+<div class="info">SL: 2370</div>
+<div class="info">TP: 2280</div>
 </div>
-
-</div>
-
-<div class="card">
-<h2>💰 Join Premium Signals</h2>
-<p>Get daily high-probability setups, analysis, and mentorship.</p>
-
-<div class="buy">
-Join Telegram (Coming Soon)
-</div>
-</div>
-
-    <div style="
-position:fixed;
-bottom:20px;
-left:20px;
-background:#111827;
-padding:12px 18px;
-border-radius:10px;
-cursor:pointer;
-border:1px solid rgba(255,255,255,0.1);
-" onclick="window.location.href='index.html'">
-
-← Back to Home
 
 </div>
 
+<!-- CENTER EXPLANATION -->
+<div class="center">
+
+<div class="explain explain-buy">
+<h3>📈 Buy Analysis</h3>
+<p>
+Market shows bullish structure with higher highs and higher lows.  
+Liquidity sweep below previous low confirmed reversal.  
+Expect continuation towards higher resistance.
+</p>
+</div>
+
+<div class="explain explain-sell">
+<h3>📉 Sell Analysis</h3>
+<p>
+Price reached strong resistance zone with liquidity above highs.  
+Potential rejection and move down expected.  
+Market likely to retrace before continuation.
+</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- BACK -->
+<div class="back" onclick="window.location.href='index.html'">
+← Back
 </div>
 
 </body>
