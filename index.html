@@ -12,6 +12,18 @@ body {
     font-family: Arial;
 }
 
+/* HEADER */
+h1 {
+    padding:20px;
+}
+
+/* CHART */
+#chart-container {
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+}
+
 /* PANEL */
 #price-panel {
     position: fixed;
@@ -82,7 +94,32 @@ body {
 
 <body>
 
-<h1 style="padding:20px;">Gig4FX</h1>
+<h1>Gig4FX</h1>
+
+<!-- 🔥 CHART (OVO JE ISPOD H1) -->
+<div id="chart-container">
+<div class="tradingview-widget-container">
+  <div id="tradingview_chart"></div>
+
+  <script src="https://s3.tradingview.com/tv.js"></script>
+  <script>
+  new TradingView.widget({
+    "width": "100%",
+    "height": 500,
+    "symbol": "FOREXCOM:XAUUSD",
+    "interval": "60",
+    "timezone": "Europe/Belgrade",
+    "theme": "dark",
+    "style": "1",
+    "locale": "en",
+    "toolbar_bg": "#0b0f1a",
+    "enable_publishing": false,
+    "allow_symbol_change": true,
+    "container_id": "tradingview_chart"
+  });
+  </script>
+</div>
+</div>
 
 <!-- PRICE PANEL -->
 <div id="price-panel">
@@ -126,9 +163,8 @@ body {
 <!-- CLOCK -->
 <div id="clock-widget">
 
-<div class="clock" id="clock">
+<div class="clock">
 
-<!-- DOTS -->
 <div class="dot" style="top:5%; left:50%; transform:translateX(-50%)"></div>
 <div class="dot" style="top:20%; right:15%"></div>
 <div class="dot" style="top:50%; right:5%"></div>
@@ -171,7 +207,6 @@ function updateClock(){
     let london = new Date().toLocaleTimeString("en-GB",{timeZone:"Europe/London"});
     let tokyo = new Date().toLocaleTimeString("en-US",{timeZone:"Asia/Tokyo"});
 
-    // GLAVNI = LONDON
     document.getElementById("digital").innerHTML = london;
 
     document.getElementById("sessions").innerHTML =
