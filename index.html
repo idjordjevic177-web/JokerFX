@@ -42,7 +42,6 @@ body::before{
 
 .left-panel div{
     margin:12px 0;
-    cursor:pointer;
 }
 
 /* CHART */
@@ -73,19 +72,27 @@ body::before{
     margin:20px;
 }
 
-/* SIGNAL BUTTON */
-.signals-btn{
+/* FLOAT BUTTONS CONTAINER */
+.bottom-buttons{
     position:fixed;
     bottom:20px;
     left:20px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+/* BUTTON STYLE */
+.btn{
     background:#111827;
     padding:12px 18px;
     border-radius:10px;
     cursor:pointer;
     border:1px solid rgba(255,255,255,0.1);
+    transition:0.2s;
 }
 
-.signals-btn:hover{
+.btn:hover{
     background:#1f2937;
 }
 
@@ -142,16 +149,12 @@ body::before{
 
 <div class="main">
 
-<!-- LEFT PANEL -->
+<!-- LEFT -->
 <div class="left-panel">
 <div>Instagram:</div>
 <div>Telegram:</div>
 <div>Discord:</div>
 <div>Website:</div>
-
-<div onclick="window.location.href='ftmo.html'">
-💰 FTMO Service
-</div>
 </div>
 
 <!-- CENTER -->
@@ -167,7 +170,7 @@ body::before{
 
 </div>
 
-<!-- RIGHT PANEL -->
+<!-- RIGHT -->
 <div id="price-panel">
 
 <div class="tradingview-widget-container">
@@ -205,9 +208,15 @@ body::before{
 
 </div>
 
-<!-- SIGNAL BUTTON -->
-<div class="signals-btn" onclick="window.location.href='signals.html'">
+<!-- 🔥 BOTTOM BUTTONS -->
+<div class="bottom-buttons">
+<div class="btn" onclick="window.location.href='ftmo.html'">
+FTMO Service
+</div>
+
+<div class="btn" onclick="window.location.href='signals.html'">
 Signals & Analysis
+</div>
 </div>
 
 <!-- CLOCK -->
