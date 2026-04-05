@@ -32,24 +32,7 @@ body::before{
     position:relative;
 }
 
-/* GLITCH */
-.glitch:hover::before,
-.glitch:hover::after{
-    content:attr(data-text);
-    position:absolute;
-    left:20px;
-}
-
-.glitch:hover::before{color:#22c55e;animation:glitch 0.2s infinite;}
-.glitch:hover::after{color:#0ea5e9;animation:glitch 0.2s infinite reverse;}
-
-@keyframes glitch{
-    0%{transform:translate(2px,0)}
-    50%{transform:translate(-2px,2px)}
-    100%{transform:translate(2px,-2px)}
-}
-
-/* LIVE BADGE */
+/* LIVE */
 .live-badge{
     position:absolute;
     top:25px;
@@ -101,6 +84,37 @@ body::before{
     cursor:pointer;
 }
 
+/* RADIO BAR */
+#radio-bar{
+    width:100%;
+    margin-top:10px;
+    background:rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+    padding:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-radius:10px;
+}
+
+#radio-info{
+    font-size:14px;
+}
+
+#now-playing{
+    font-size:12px;
+    opacity:0.7;
+}
+
+#radio-controls button{
+    background:#111827;
+    color:white;
+    border:none;
+    padding:6px 12px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
 /* RIGHT */
 #price-panel{
     width:260px;
@@ -123,13 +137,6 @@ body::before{
     border-radius:10px;
     cursor:pointer;
     border:1px solid rgba(255,255,255,0.1);
-    animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-    0%{box-shadow:0 0 0px rgba(34,197,94,0.2)}
-    50%{box-shadow:0 0 20px rgba(34,197,94,0.7)}
-    100%{box-shadow:0 0 0px rgba(34,197,94,0.2)}
 }
 
 /* CLOCK */
@@ -153,14 +160,6 @@ body::before{
     margin:auto;
 }
 
-.dot{
-    width:5px;
-    height:5px;
-    background:white;
-    border-radius:50%;
-    position:absolute;
-}
-
 .hand{
     position:absolute;
     bottom:50%;
@@ -173,9 +172,6 @@ body::before{
 .minute{width:2px;height:30px;}
 .second{width:1px;height:35px;background:#22c55e;}
 
-.digital{margin-top:10px;}
-.sessions{font-size:12px;opacity:0.7;}
-
 /* CURSOR */
 .cursor{
     width:12px;
@@ -185,37 +181,6 @@ body::before{
     position:fixed;
     pointer-events:none;
     transform:translate(-50%,-50%);
-}
-
-.cursor-trail{
-    width:6px;
-    height:6px;
-    background:#0ea5e9;
-    border-radius:50%;
-    position:fixed;
-    pointer-events:none;
-}
-
-/* RADIO */
-#radio-player{
-    position:fixed;
-    top:20px;
-    right:20px;
-    background:rgba(0,0,0,0.6);
-    padding:15px;
-    border-radius:12px;
-    backdrop-filter: blur(10px);
-    text-align:center;
-    font-size:12px;
-}
-
-#radio-controls button{
-    background:#111827;
-    border:none;
-    color:white;
-    padding:6px 12px;
-    border-radius:6px;
-    cursor:pointer;
 }
 
 /* MOBILE */
@@ -230,7 +195,7 @@ body::before{
 
 <body>
 
-<div class="header glitch" data-text="JokerFX">
+<div class="header">
 JokerFX
 <div class="live-badge">LIVE</div>
 </div>
@@ -251,6 +216,25 @@ JokerFX
 </div>
 
 <div id="chart"></div>
+
+<!-- 🎧 RADIO -->
+<div id="radio-bar">
+
+<div id="radio-info">
+🎧 Afro House Radio
+<div id="now-playing">Loading track...</div>
+</div>
+
+<div id="radio-controls">
+<button onclick="togglePlay()">▶ / ⏸</button>
+<input type="range" min="0" max="1" step="0.01" value="0.2" onchange="setVolume(this.value)">
+</div>
+
+<audio id="radio">
+<source src="https://stream.zeno.fm/0r0xa792kwzuv" type="audio/mpeg">
+</audio>
+
+</div>
 
 </div>
 
@@ -275,35 +259,18 @@ JokerFX
 
 </div>
 
-<!-- BUTTONS -->
 <div class="bottom-buttons">
 <div class="btn" onclick="window.location.href='ftmo.html'">🔥 FTMO Service</div>
 <div class="btn" onclick="window.location.href='signals.html'">🔥 Signals & Analysis</div>
 </div>
 
-<!-- CLOCK -->
 <div id="clock-widget">
-
 <div class="clock">
-<div class="dot" style="top:5%;left:50%;transform:translateX(-50%)"></div>
 <div class="hand hour" id="hour"></div>
 <div class="hand minute" id="minute"></div>
 <div class="hand second" id="second"></div>
 </div>
-
-<div class="digital" id="digital"></div>
-<div class="sessions" id="sessions"></div>
-
-</div>
-
-<!-- RADIO -->
-<div id="radio-player">
-🎧 Afro House<br><br>
-<button onclick="togglePlay()">▶ / ⏸</button><br><br>
-<input type="range" min="0" max="1" step="0.01" value="0.2" onchange="setVolume(this.value)">
-<audio id="radio" autoplay muted loop>
-<source src="https://stream.zeno.fm/f3d3y1xqv8zuv" type="audio/mpeg">
-</audio>
+<div id="digital"></div>
 </div>
 
 <div class="cursor" id="cursor"></div>
@@ -328,43 +295,18 @@ createChart("FOREXCOM:XAUUSD");
 /* CLOCK */
 function updateClock(){
     let now=new Date();
-
     hour.style.transform=`rotate(${now.getHours()*30}deg)`;
     minute.style.transform=`rotate(${now.getMinutes()*6}deg)`;
     second.style.transform=`rotate(${now.getSeconds()*6}deg)`;
-
-    let ny=new Date().toLocaleTimeString("en-US",{timeZone:"America/New_York"});
-    let london=new Date().toLocaleTimeString("en-GB",{timeZone:"Europe/London"});
-    let tokyo=new Date().toLocaleTimeString("en-US",{timeZone:"Asia/Tokyo"});
-
-    digital.innerHTML=london;
-    sessions.innerHTML=`NY: ${ny}<br>London: ${london}<br>Tokyo: ${tokyo}`;
+    digital.innerHTML=now.toLocaleTimeString();
 }
 setInterval(updateClock,1000);
-updateClock();
-
-/* CURSOR */
-const cursor=document.getElementById("cursor");
-
-document.addEventListener("mousemove",(e)=>{
-    cursor.style.left=e.clientX+"px";
-    cursor.style.top=e.clientY+"px";
-
-    let trail=document.createElement("div");
-    trail.className="cursor-trail";
-    trail.style.left=e.clientX+"px";
-    trail.style.top=e.clientY+"px";
-    document.body.appendChild(trail);
-
-    setTimeout(()=>trail.remove(),300);
-});
 
 /* RADIO */
 const radio=document.getElementById("radio");
 
 function togglePlay(){
     if(radio.paused){
-        radio.muted=false;
         radio.play();
     }else{
         radio.pause();
@@ -374,6 +316,13 @@ function togglePlay(){
 function setVolume(val){
     radio.volume=val;
 }
+
+/* FAKE TRACK NAME */
+const tracks=["Afro House Session","Deep Groove","Night Mix","Tribal Beats"];
+setInterval(()=>{
+    document.getElementById("now-playing").innerText=
+    tracks[Math.floor(Math.random()*tracks.length)];
+},5000);
 </script>
 
 </body>
