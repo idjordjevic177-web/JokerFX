@@ -13,7 +13,6 @@ body {
     font-family: Arial;
 }
 
-/* DARK OVERLAY */
 body::before{
     content:"";
     position:fixed;
@@ -26,7 +25,7 @@ body::before{
 /* HEADER */
 .header{
     padding:20px;
-    font-size:24px;
+    font-size:26px;
 }
 
 /* LAYOUT */
@@ -64,11 +63,24 @@ body::before{
 
 /* RIGHT PANEL */
 #price-panel{
-    width:250px;
+    width:260px;
     margin:20px;
 }
 
-/* SIGNAL BUTTON (FIXED) */
+/* PRO DASHBOARD */
+#pro-dashboard{
+    width:80%;
+    margin:40px auto;
+}
+
+.dash-box{
+    background:rgba(255,255,255,0.05);
+    padding:20px;
+    margin:15px 0;
+    border-radius:12px;
+}
+
+/* SIGNAL BUTTON */
 .signals-btn{
     position:fixed;
     bottom:20px;
@@ -78,7 +90,6 @@ body::before{
     border-radius:10px;
     cursor:pointer;
     border:1px solid rgba(255,255,255,0.1);
-    transition:0.2s;
 }
 
 .signals-btn:hover{
@@ -197,6 +208,28 @@ body::before{
 
 </div>
 
+<!-- PRO DASHBOARD -->
+<div id="pro-dashboard">
+
+<h2>Market Dashboard</h2>
+
+<div class="dash-box">
+    <h3>📊 Market Bias</h3>
+    <p id="bias" style="color:#22c55e;">Bullish</p>
+</div>
+
+<div class="dash-box">
+    <h3>💵 DXY vs GOLD</h3>
+    <p>DXY Weak → Gold Bullish</p>
+</div>
+
+<div class="dash-box">
+    <h3>⚡ Current Setup</h3>
+    <p>Waiting for pullback into demand zone</p>
+</div>
+
+</div>
+
 <!-- SIGNAL BUTTON -->
 <div class="signals-btn" onclick="window.location.href='signals.html'">
 Signals & Analysis
@@ -270,6 +303,21 @@ function updateClock(){
 
 setInterval(updateClock,1000);
 updateClock();
+
+/* FAKE LIVE BIAS */
+let bullish=true;
+setInterval(()=>{
+    bullish=!bullish;
+    let el=document.getElementById("bias");
+
+    if(bullish){
+        el.innerText="Bullish";
+        el.style.color="#22c55e";
+    }else{
+        el.innerText="Bearish";
+        el.style.color="#ef4444";
+    }
+},5000);
 </script>
 
 </body>
