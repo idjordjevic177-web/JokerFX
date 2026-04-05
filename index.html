@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
+<!-- MOBILE -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>JokerFX</title>
 
 <style>
@@ -40,10 +44,6 @@ body::before{
     padding:20px;
 }
 
-.left-panel div{
-    margin:12px 0;
-}
-
 /* CHART */
 #chart-container{
     flex:1;
@@ -72,7 +72,7 @@ body::before{
     margin:20px;
 }
 
-/* FLOAT BUTTONS CONTAINER */
+/* 🔥 FLOAT BUTTONS */
 .bottom-buttons{
     position:fixed;
     bottom:20px;
@@ -82,13 +82,13 @@ body::before{
     gap:10px;
 }
 
-/* BUTTON STYLE */
 .btn{
     background:#111827;
     padding:12px 18px;
     border-radius:10px;
     cursor:pointer;
     border:1px solid rgba(255,255,255,0.1);
+    font-weight:500;
     transition:0.2s;
 }
 
@@ -140,6 +140,49 @@ body::before{
 
 .digital{margin-top:10px;}
 .sessions{font-size:12px;opacity:0.7;}
+
+/* 📱 MOBILE */
+@media (max-width:768px){
+
+.main{
+    flex-direction:column;
+}
+
+.left-panel{
+    display:none;
+}
+
+#chart-container{
+    width:100%;
+    margin:10px;
+}
+
+#price-panel{
+    width:100%;
+    margin:10px;
+}
+
+.buttons button{
+    padding:6px 10px;
+    font-size:12px;
+}
+
+#chart{
+    height:300px !important;
+}
+
+#clock-widget{
+    transform:scale(0.8);
+    bottom:10px;
+    right:10px;
+}
+
+.bottom-buttons{
+    left:10px;
+    bottom:10px;
+}
+
+}
 </style>
 </head>
 
@@ -208,15 +251,17 @@ body::before{
 
 </div>
 
-<!-- 🔥 BOTTOM BUTTONS -->
+<!-- 🔥 BUTTONS -->
 <div class="bottom-buttons">
+
 <div class="btn" onclick="window.location.href='ftmo.html'">
-FTMO Service
+🔥 FTMO Service
 </div>
 
 <div class="btn" onclick="window.location.href='signals.html'">
-Signals & Analysis
+🔥 Signals & Analysis
 </div>
+
 </div>
 
 <!-- CLOCK -->
