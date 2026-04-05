@@ -17,57 +17,65 @@ body {
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 280px;
+    width: 300px;
     background: #111827;
     border-radius: 12px;
     padding: 10px;
 }
 
-/* CLOCK GLASS */
+/* CLOCK */
 #clock-widget {
     position: fixed;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 20px;
+    right: 20px;
     backdrop-filter: blur(20px);
     background: rgba(255,255,255,0.05);
     border-radius: 20px;
-    padding: 25px 40px;
-    display: flex;
-    align-items: center;
-    gap: 30px;
+    padding: 20px;
+    text-align: center;
 }
 
-/* ANALOG CLOCK */
+/* ANALOG */
 .clock {
-    width: 120px;
-    height: 120px;
-    border: 4px solid rgba(255,255,255,0.2);
+    width: 100px;
+    height: 100px;
+    border: 3px solid rgba(255,255,255,0.2);
     border-radius: 50%;
     position: relative;
+    margin: auto;
+}
+
+/* DOTS */
+.dot {
+    width:6px;
+    height:6px;
+    background:white;
+    border-radius:50%;
+    position:absolute;
 }
 
 .hand {
-    position: absolute;
-    bottom: 50%;
-    left: 50%;
+    position:absolute;
+    bottom:50%;
+    left:50%;
     transform-origin: bottom;
-    background: white;
+    background:white;
 }
 
-.hour { width:4px; height:30px; }
-.minute { width:3px; height:45px; }
-.second { width:2px; height:50px; background:#22c55e; }
+.hour { width:3px; height:25px; }
+.minute { width:2px; height:35px; }
+.second { width:1px; height:40px; background:#22c55e; }
 
 /* DIGITAL */
 .digital {
-    font-size: 36px;
-    font-weight: 300;
+    font-size:20px;
+    margin-top:10px;
 }
 
 .sessions {
-    font-size: 13px;
-    opacity: 0.7;
+    font-size:12px;
+    opacity:0.7;
+    margin-top:5px;
 }
 </style>
 </head>
@@ -94,7 +102,8 @@ body {
       "title": "Main",
       "symbols": [
         {"s": "BINANCE:BTCUSDT", "d": "BTC"},
-        {"s": "FOREXCOM:XAUUSD", "d": "Gold"}
+        {"s": "FOREXCOM:XAUUSD", "d": "Gold"},
+        {"s": "CAPITALCOM:DXY", "d": "DXY"}
       ]
     },
     {
@@ -117,16 +126,26 @@ body {
 <!-- CLOCK -->
 <div id="clock-widget">
 
-<div class="clock">
-    <div class="hand hour" id="hour"></div>
-    <div class="hand minute" id="minute"></div>
-    <div class="hand second" id="second"></div>
+<div class="clock" id="clock">
+
+<!-- DOTS -->
+<div class="dot" style="top:5%; left:50%; transform:translateX(-50%)"></div>
+<div class="dot" style="top:20%; right:15%"></div>
+<div class="dot" style="top:50%; right:5%"></div>
+<div class="dot" style="bottom:20%; right:15%"></div>
+<div class="dot" style="bottom:5%; left:50%; transform:translateX(-50%)"></div>
+<div class="dot" style="bottom:20%; left:15%"></div>
+<div class="dot" style="top:50%; left:5%"></div>
+<div class="dot" style="top:20%; left:15%"></div>
+
+<div class="hand hour" id="hour"></div>
+<div class="hand minute" id="minute"></div>
+<div class="hand second" id="second"></div>
+
 </div>
 
-<div>
-    <div class="digital" id="digital"></div>
-    <div class="sessions" id="sessions"></div>
-</div>
+<div class="digital" id="digital"></div>
+<div class="sessions" id="sessions"></div>
 
 </div>
 
@@ -152,10 +171,11 @@ function updateClock(){
     let london = new Date().toLocaleTimeString("en-GB",{timeZone:"Europe/London"});
     let tokyo = new Date().toLocaleTimeString("en-US",{timeZone:"Asia/Tokyo"});
 
-    document.getElementById("digital").innerHTML = ny;
+    // GLAVNI = LONDON
+    document.getElementById("digital").innerHTML = london;
 
     document.getElementById("sessions").innerHTML =
-        "NY: " + ny + " | London: " + london + " | Tokyo: " + tokyo;
+        "NY: " + ny + "<br>London: " + london + "<br>Tokyo: " + tokyo;
 }
 
 setInterval(updateClock,1000);
