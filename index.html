@@ -13,7 +13,7 @@ body{
     background-size:cover;
     color:white;
     font-family:Arial;
-    cursor:none;
+    cursor:default; /* FIX */
 }
 
 body::before{
@@ -84,7 +84,7 @@ body::before{
     cursor:pointer;
 }
 
-/* RADIO BAR */
+/* RADIO */
 #radio-bar{
     width:100%;
     margin-top:10px;
@@ -95,15 +95,6 @@ body::before{
     justify-content:space-between;
     align-items:center;
     border-radius:10px;
-}
-
-#radio-info{
-    font-size:14px;
-}
-
-#now-playing{
-    font-size:12px;
-    opacity:0.7;
 }
 
 #radio-controls button{
@@ -119,6 +110,11 @@ body::before{
 #price-panel{
     width:260px;
     margin:20px;
+}
+
+/* REMOVE TV SPACE */
+.tradingview-widget-copyright{
+    display:none !important;
 }
 
 /* BUTTONS */
@@ -172,17 +168,6 @@ body::before{
 .minute{width:2px;height:30px;}
 .second{width:1px;height:35px;background:#22c55e;}
 
-/* CURSOR */
-.cursor{
-    width:12px;
-    height:12px;
-    border:2px solid #0ea5e9;
-    border-radius:50%;
-    position:fixed;
-    pointer-events:none;
-    transform:translate(-50%,-50%);
-}
-
 /* MOBILE */
 @media(max-width:768px){
 .main{flex-direction:column;}
@@ -217,12 +202,11 @@ JokerFX
 
 <div id="chart"></div>
 
-<!-- 🎧 RADIO -->
+<!-- RADIO -->
 <div id="radio-bar">
-
-<div id="radio-info">
-🎧 Afro House Radio
-<div id="now-playing">Loading track...</div>
+<div>
+🎧 Afro House
+<div id="now-playing">Live Stream</div>
 </div>
 
 <div id="radio-controls">
@@ -233,7 +217,6 @@ JokerFX
 <audio id="radio">
 <source src="https://stream.zeno.fm/0r0xa792kwzuv" type="audio/mpeg">
 </audio>
-
 </div>
 
 </div>
@@ -244,7 +227,7 @@ JokerFX
   "colorTheme": "dark",
   "showChart": false,
   "width": "100%",
-  "height": "260",
+  "height": "220",
   "tabs": [{
     "title": "Main",
     "symbols": [
@@ -273,8 +256,6 @@ JokerFX
 <div id="digital"></div>
 </div>
 
-<div class="cursor" id="cursor"></div>
-
 <script src="https://s3.tradingview.com/tv.js"></script>
 
 <script>
@@ -292,37 +273,37 @@ function createChart(symbol){
 function changeSymbol(symbol){createChart(symbol);}
 createChart("FOREXCOM:XAUUSD");
 
-/* CLOCK */
+/* CLOCK FIX */
 function updateClock(){
     let now=new Date();
-    hour.style.transform=`rotate(${now.getHours()*30}deg)`;
-    minute.style.transform=`rotate(${now.getMinutes()*6}deg)`;
-    second.style.transform=`rotate(${now.getSeconds()*6}deg)`;
+
+    let sec=now.getSeconds();
+    let min=now.getMinutes();
+    let hr=now.getHours();
+
+    let secDeg=sec*6;
+    let minDeg=min*6+sec*0.1;
+    let hrDeg=(hr%12)*30+min*0.5;
+
+    second.style.transform=`rotate(${secDeg}deg)`;
+    minute.style.transform=`rotate(${minDeg}deg)`;
+    hour.style.transform=`rotate(${hrDeg}deg)`;
+
     digital.innerHTML=now.toLocaleTimeString();
 }
 setInterval(updateClock,1000);
 
-/* RADIO */
+/* RADIO FIX */
 const radio=document.getElementById("radio");
 
 function togglePlay(){
-    if(radio.paused){
-        radio.play();
-    }else{
-        radio.pause();
-    }
+    radio.muted=false;
+    radio.play().catch(()=>alert("Klikni opet"));
 }
 
 function setVolume(val){
     radio.volume=val;
 }
-
-/* FAKE TRACK NAME */
-const tracks=["Afro House Session","Deep Groove","Night Mix","Tribal Beats"];
-setInterval(()=>{
-    document.getElementById("now-playing").innerText=
-    tracks[Math.floor(Math.random()*tracks.length)];
-},5000);
 </script>
 
 </body>
