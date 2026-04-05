@@ -13,7 +13,7 @@ body{
     background-size:cover;
     color:white;
     font-family:Arial;
-    cursor:default; /* FIX */
+    cursor:default;
 }
 
 body::before{
@@ -25,11 +25,22 @@ body::before{
     z-index:-1;
 }
 
-/* HEADER */
+/* 🔥 HEADER ANIMATION */
 .header{
     padding:20px;
-    font-size:30px;
+    font-size:32px;
+    font-weight:bold;
     position:relative;
+    text-shadow:0 0 10px #0ea5e9;
+}
+
+.header span{
+    animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 5px #0ea5e9; }
+    to{ text-shadow:0 0 20px #22c55e; }
 }
 
 /* LIVE */
@@ -84,35 +95,13 @@ body::before{
     cursor:pointer;
 }
 
-/* RADIO */
-#radio-bar{
-    width:100%;
-    margin-top:10px;
-    background:rgba(0,0,0,0.6);
-    backdrop-filter: blur(10px);
-    padding:12px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-radius:10px;
-}
-
-#radio-controls button{
-    background:#111827;
-    color:white;
-    border:none;
-    padding:6px 12px;
-    border-radius:6px;
-    cursor:pointer;
-}
-
 /* RIGHT */
 #price-panel{
     width:260px;
     margin:20px;
 }
 
-/* REMOVE TV SPACE */
+/* FIX TV SPACE */
 .tradingview-widget-copyright{
     display:none !important;
 }
@@ -120,7 +109,7 @@ body::before{
 /* BUTTONS */
 .bottom-buttons{
     position:fixed;
-    bottom:20px;
+    bottom:100px;
     left:20px;
     display:flex;
     flex-direction:column;
@@ -132,13 +121,12 @@ body::before{
     padding:12px 18px;
     border-radius:10px;
     cursor:pointer;
-    border:1px solid rgba(255,255,255,0.1);
 }
 
 /* CLOCK */
 #clock-widget{
     position:fixed;
-    bottom:20px;
+    bottom:100px;
     right:20px;
     backdrop-filter: blur(20px);
     background: rgba(255,255,255,0.05);
@@ -148,14 +136,24 @@ body::before{
 }
 
 .clock{
-    width:90px;
-    height:90px;
+    width:100px;
+    height:100px;
     border:3px solid rgba(255,255,255,0.2);
     border-radius:50%;
     position:relative;
     margin:auto;
 }
 
+/* DOTS */
+.dot{
+    width:6px;
+    height:6px;
+    background:white;
+    border-radius:50%;
+    position:absolute;
+}
+
+/* CLOCK HANDS */
 .hand{
     position:absolute;
     bottom:50%;
@@ -164,9 +162,25 @@ body::before{
     background:white;
 }
 
-.hour{width:3px;height:20px;}
-.minute{width:2px;height:30px;}
-.second{width:1px;height:35px;background:#22c55e;}
+.hour{width:3px;height:25px;}
+.minute{width:2px;height:35px;}
+.second{width:1px;height:40px;background:#22c55e;}
+
+.digital{margin-top:10px;}
+.sessions{font-size:12px;opacity:0.7;}
+
+/* 🎧 RADIO FOOTER */
+#radio-bar{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background:rgba(0,0,0,0.8);
+    backdrop-filter: blur(10px);
+    padding:10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
 
 /* MOBILE */
 @media(max-width:768px){
@@ -181,7 +195,7 @@ body::before{
 <body>
 
 <div class="header">
-JokerFX
+<span>JokerFX</span>
 <div class="live-badge">LIVE</div>
 </div>
 
@@ -201,23 +215,6 @@ JokerFX
 </div>
 
 <div id="chart"></div>
-
-<!-- RADIO -->
-<div id="radio-bar">
-<div>
-🎧 Afro House
-<div id="now-playing">Live Stream</div>
-</div>
-
-<div id="radio-controls">
-<button onclick="togglePlay()">▶ / ⏸</button>
-<input type="range" min="0" max="1" step="0.01" value="0.2" onchange="setVolume(this.value)">
-</div>
-
-<audio id="radio">
-<source src="https://stream.zeno.fm/0r0xa792kwzuv" type="audio/mpeg">
-</audio>
-</div>
 
 </div>
 
@@ -247,13 +244,43 @@ JokerFX
 <div class="btn" onclick="window.location.href='signals.html'">🔥 Signals & Analysis</div>
 </div>
 
+<!-- CLOCK -->
 <div id="clock-widget">
+
 <div class="clock">
+
+<!-- DOTS -->
+<div class="dot" style="top:5%;left:50%"></div>
+<div class="dot" style="top:20%;right:15%"></div>
+<div class="dot" style="top:50%;right:5%"></div>
+<div class="dot" style="bottom:20%;right:15%"></div>
+<div class="dot" style="bottom:5%;left:50%"></div>
+<div class="dot" style="bottom:20%;left:15%"></div>
+<div class="dot" style="top:50%;left:5%"></div>
+<div class="dot" style="top:20%;left:15%"></div>
+
 <div class="hand hour" id="hour"></div>
 <div class="hand minute" id="minute"></div>
 <div class="hand second" id="second"></div>
+
 </div>
-<div id="digital"></div>
+
+<div class="digital" id="digital"></div>
+<div class="sessions" id="sessions"></div>
+
+</div>
+
+<!-- RADIO -->
+<div id="radio-bar">
+<div>🎧 Afro House Radio</div>
+<div>
+<button onclick="togglePlay()">▶ / ⏸</button>
+<input type="range" min="0" max="1" step="0.01" value="0.2" onchange="setVolume(this.value)">
+</div>
+
+<audio id="radio">
+<source src="https://stream.zeno.fm/0r0xa792kwzuv" type="audio/mpeg">
+</audio>
 </div>
 
 <script src="https://s3.tradingview.com/tv.js"></script>
@@ -273,7 +300,7 @@ function createChart(symbol){
 function changeSymbol(symbol){createChart(symbol);}
 createChart("FOREXCOM:XAUUSD");
 
-/* CLOCK FIX */
+/* CLOCK */
 function updateClock(){
     let now=new Date();
 
@@ -281,24 +308,25 @@ function updateClock(){
     let min=now.getMinutes();
     let hr=now.getHours();
 
-    let secDeg=sec*6;
-    let minDeg=min*6+sec*0.1;
-    let hrDeg=(hr%12)*30+min*0.5;
+    second.style.transform=`rotate(${sec*6}deg)`;
+    minute.style.transform=`rotate(${min*6+sec*0.1}deg)`;
+    hour.style.transform=`rotate(${(hr%12)*30+min*0.5}deg)`;
 
-    second.style.transform=`rotate(${secDeg}deg)`;
-    minute.style.transform=`rotate(${minDeg}deg)`;
-    hour.style.transform=`rotate(${hrDeg}deg)`;
+    let ny=new Date().toLocaleTimeString("en-US",{timeZone:"America/New_York"});
+    let london=new Date().toLocaleTimeString("en-GB",{timeZone:"Europe/London"});
+    let tokyo=new Date().toLocaleTimeString("en-US",{timeZone:"Asia/Tokyo"});
 
-    digital.innerHTML=now.toLocaleTimeString();
+    digital.innerHTML=london;
+    sessions.innerHTML=`NY: ${ny}<br>London: ${london}<br>Tokyo: ${tokyo}`;
 }
 setInterval(updateClock,1000);
 
-/* RADIO FIX */
+/* RADIO */
 const radio=document.getElementById("radio");
 
 function togglePlay(){
     radio.muted=false;
-    radio.play().catch(()=>alert("Klikni opet"));
+    radio.play();
 }
 
 function setVolume(val){
