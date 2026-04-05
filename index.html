@@ -2,89 +2,123 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Gig4FX</title>
+<title>JokerFX</title>
 
 <style>
 body {
     margin:0;
-    background: linear-gradient(135deg,#020617,#0b0f1a);
+    background: url('joker.jpg') no-repeat center center fixed;
+    background-size: cover;
     color:white;
     font-family: Arial;
 }
 
+/* OVERLAY */
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.75);
+    z-index:-1;
+}
+
 /* HEADER */
-h1 {
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
     padding:20px;
 }
 
+h1{
+    margin:0;
+}
+
+/* SIGNAL BUTTON */
+.signals-btn{
+    background:#22c55e;
+    padding:10px 20px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+/* LAYOUT */
+.main{
+    display:flex;
+}
+
+/* LEFT PANEL */
+.left-panel{
+    width:200px;
+    padding:20px;
+}
+
+.left-panel div{
+    margin:15px 0;
+}
+
 /* CHART */
-#chart-container {
-    width: 80%;
-    margin: auto;
-    margin-top: 30px;
+#chart-container{
+    flex:1;
+    margin:20px;
 }
 
-/* ANALYSIS */
-#analysis-panel {
-    width: 80%;
-    margin: 40px auto;
+/* BUTTONS */
+.buttons{
+    text-align:center;
+    margin-bottom:10px;
 }
 
-.analysis-box {
-    background: rgba(255,255,255,0.05);
-    padding: 20px;
-    margin: 15px 0;
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
+.buttons button{
+    margin:5px;
+    padding:8px 15px;
+    background:#111827;
+    border:none;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
 }
 
-.analysis-box h3 {
-    margin-bottom: 10px;
-}
-
-/* PANEL */
-#price-panel {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 300px;
-    background: #111827;
-    border-radius: 12px;
-    padding: 10px;
+/* RIGHT PANEL */
+#price-panel{
+    width:260px;
+    margin:20px;
 }
 
 /* CLOCK */
-#clock-widget {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+#clock-widget{
+    position:fixed;
+    bottom:20px;
+    right:20px;
     backdrop-filter: blur(20px);
     background: rgba(255,255,255,0.05);
-    border-radius: 20px;
-    padding: 20px;
-    text-align: center;
+    border-radius:20px;
+    padding:20px;
+    text-align:center;
 }
 
 /* ANALOG */
-.clock {
-    width: 100px;
-    height: 100px;
-    border: 3px solid rgba(255,255,255,0.2);
-    border-radius: 50%;
-    position: relative;
-    margin: auto;
+.clock{
+    width:90px;
+    height:90px;
+    border:3px solid rgba(255,255,255,0.2);
+    border-radius:50%;
+    position:relative;
+    margin:auto;
 }
 
-/* DOTS */
-.dot {
-    width:6px;
-    height:6px;
+.dot{
+    width:5px;
+    height:5px;
     background:white;
     border-radius:50%;
     position:absolute;
 }
 
-.hand {
+.hand{
     position:absolute;
     bottom:50%;
     left:50%;
@@ -92,81 +126,52 @@ h1 {
     background:white;
 }
 
-.hour { width:3px; height:25px; }
-.minute { width:2px; height:35px; }
-.second { width:1px; height:40px; background:#22c55e; }
+.hour{width:3px;height:20px;}
+.minute{width:2px;height:30px;}
+.second{width:1px;height:35px;background:#22c55e;}
 
-/* DIGITAL */
-.digital {
-    font-size:20px;
+.digital{
     margin-top:10px;
 }
 
-.sessions {
+.sessions{
     font-size:12px;
     opacity:0.7;
-    margin-top:5px;
 }
 </style>
 </head>
 
 <body>
 
-<h1>Gig4FX</h1>
+<div class="header">
+<h1>JokerFX</h1>
+<div class="signals-btn" onclick="window.location.href='signals.html'">Signals</div>
+</div>
 
-<!-- CHART -->
+<div class="main">
+
+<!-- LEFT -->
+<div class="left-panel">
+<div>Instagram:</div>
+<div>Telegram:</div>
+<div>Discord:</div>
+<div>Website:</div>
+</div>
+
+<!-- CENTER -->
 <div id="chart-container">
-<div class="tradingview-widget-container">
-  <div id="tradingview_chart"></div>
 
-  <script src="https://s3.tradingview.com/tv.js"></script>
-  <script>
-  new TradingView.widget({
-    "width": "100%",
-    "height": 500,
-    "symbol": "FOREXCOM:XAUUSD",
-    "interval": "60",
-    "timezone": "Europe/Belgrade",
-    "theme": "dark",
-    "style": "1",
-    "locale": "en",
-    "toolbar_bg": "#0b0f1a",
-    "enable_publishing": false,
-    "allow_symbol_change": true,
-    "container_id": "tradingview_chart"
-  });
-  </script>
-</div>
+<div class="buttons">
+<button onclick="changeSymbol('FOREXCOM:XAUUSD')">GOLD</button>
+<button onclick="changeSymbol('FOREXCOM:EURUSD')">EURUSD</button>
+<button onclick="changeSymbol('BINANCE:BTCUSDT')">BTC</button>
 </div>
 
-<!-- ANALYSIS -->
-<div id="analysis-panel">
-
-<h2>Market Analysis</h2>
-
-<div class="analysis-box">
-    <h3>🟢 Bias</h3>
-    <p>Bullish on Gold while DXY shows weakness</p>
-</div>
-
-<div class="analysis-box">
-    <h3>📊 Key Levels</h3>
-    <p>Support: 2300<br>Resistance: 2380</p>
-</div>
-
-<div class="analysis-box">
-    <h3>🧠 Outlook</h3>
-    <p>Looking for pullbacks into demand before continuation. Clean structure on H4.</p>
-</div>
-
-<div class="analysis-box">
-    <h3>⚡ Setup</h3>
-    <p>Buy after liquidity sweep + confirmation on lower timeframe.</p>
-</div>
+<div id="chart"></div>
 
 </div>
 
-<!-- PRICE PANEL -->
+<!-- RIGHT -->
 <div id="price-panel">
 
 <div class="tradingview-widget-container">
@@ -176,26 +181,15 @@ h1 {
 {
   "colorTheme": "dark",
   "showChart": false,
-  "locale": "en",
   "width": "100%",
-  "height": "260",
+  "height": "300",
   "tabs": [
     {
       "title": "Main",
       "symbols": [
-        {"s": "BINANCE:BTCUSDT", "d": "BTC"},
-        {"s": "FOREXCOM:XAUUSD", "d": "Gold"},
-        {"s": "CAPITALCOM:DXY", "d": "DXY"}
-      ]
-    },
-    {
-      "title": "Forex",
-      "symbols": [
-        {"s": "FOREXCOM:EURUSD"},
-        {"s": "FOREXCOM:GBPUSD"},
-        {"s": "FOREXCOM:USDJPY"},
-        {"s": "FOREXCOM:AUDUSD"},
-        {"s": "FOREXCOM:USDCAD"}
+        {"s": "BINANCE:BTCUSDT"},
+        {"s": "FOREXCOM:XAUUSD"},
+        {"s": "CAPITALCOM:DXY"}
       ]
     }
   ]
@@ -205,19 +199,21 @@ h1 {
 
 </div>
 
+</div>
+
 <!-- CLOCK -->
 <div id="clock-widget">
 
 <div class="clock">
 
-<div class="dot" style="top:5%; left:50%; transform:translateX(-50%)"></div>
-<div class="dot" style="top:20%; right:15%"></div>
-<div class="dot" style="top:50%; right:5%"></div>
-<div class="dot" style="bottom:20%; right:15%"></div>
-<div class="dot" style="bottom:5%; left:50%; transform:translateX(-50%)"></div>
-<div class="dot" style="bottom:20%; left:15%"></div>
-<div class="dot" style="top:50%; left:5%"></div>
-<div class="dot" style="top:20%; left:15%"></div>
+<div class="dot" style="top:5%;left:50%;transform:translateX(-50%)"></div>
+<div class="dot" style="top:20%;right:15%"></div>
+<div class="dot" style="top:50%;right:5%"></div>
+<div class="dot" style="bottom:20%;right:15%"></div>
+<div class="dot" style="bottom:5%;left:50%;transform:translateX(-50%)"></div>
+<div class="dot" style="bottom:20%;left:15%"></div>
+<div class="dot" style="top:50%;left:5%"></div>
+<div class="dot" style="top:20%;left:15%"></div>
 
 <div class="hand hour" id="hour"></div>
 <div class="hand minute" id="minute"></div>
@@ -230,27 +226,46 @@ h1 {
 
 </div>
 
+<script src="https://s3.tradingview.com/tv.js"></script>
+
 <script>
+let widget;
 
+function createChart(symbol){
+    document.getElementById("chart").innerHTML="";
+    widget = new TradingView.widget({
+        "width":"100%",
+        "height":500,
+        "symbol":symbol,
+        "interval":"60",
+        "theme":"dark",
+        "container_id":"chart"
+    });
+}
+
+function changeSymbol(symbol){
+    createChart(symbol);
+}
+
+createChart("FOREXCOM:XAUUSD");
+
+// CLOCK
 function updateClock(){
-    let now = new Date();
+    let now=new Date();
+    let sec=now.getSeconds();
+    let min=now.getMinutes();
+    let hr=now.getHours();
 
-    let sec = now.getSeconds();
-    let min = now.getMinutes();
-    let hr = now.getHours();
+    hour.style.transform=`rotate(${hr*30+min/2}deg)`;
+    minute.style.transform=`rotate(${min*6}deg)`;
+    second.style.transform=`rotate(${sec*6}deg)`;
 
-    document.getElementById("second").style.transform = `rotate(${sec*6}deg)`;
-    document.getElementById("minute").style.transform = `rotate(${min*6}deg)`;
-    document.getElementById("hour").style.transform = `rotate(${hr*30 + min/2}deg)`;
+    let ny=new Date().toLocaleTimeString("en-US",{timeZone:"America/New_York"});
+    let london=new Date().toLocaleTimeString("en-GB",{timeZone:"Europe/London"});
+    let tokyo=new Date().toLocaleTimeString("en-US",{timeZone:"Asia/Tokyo"});
 
-    let ny = new Date().toLocaleTimeString("en-US",{timeZone:"America/New_York"});
-    let london = new Date().toLocaleTimeString("en-GB",{timeZone:"Europe/London"});
-    let tokyo = new Date().toLocaleTimeString("en-US",{timeZone:"Asia/Tokyo"});
-
-    document.getElementById("digital").innerHTML = london;
-
-    document.getElementById("sessions").innerHTML =
-        "NY: " + ny + "<br>London: " + london + "<br>Tokyo: " + tokyo;
+    digital.innerHTML=london;
+    sessions.innerHTML=`NY: ${ny}<br>London: ${london}<br>Tokyo: ${tokyo}`;
 }
 
 setInterval(updateClock,1000);
