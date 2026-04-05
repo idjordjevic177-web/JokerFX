@@ -2,55 +2,84 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
-<!-- MOBILE -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>JokerFX</title>
 
 <style>
-body {
+body{
     margin:0;
-    background: url('joker.jpg') no-repeat center center fixed;
-    background-size: cover;
+    background:url('joker.jpg') no-repeat center center fixed;
+    background-size:cover;
     color:white;
-    font-family: Arial;
+    font-family:Arial;
+    cursor:none;
 }
 
-/* DARK OVERLAY */
 body::before{
     content:"";
     position:fixed;
     width:100%;
     height:100%;
-    background: rgba(0,0,0,0.75);
+    background:rgba(0,0,0,0.75);
     z-index:-1;
 }
 
 /* HEADER */
 .header{
     padding:20px;
-    font-size:26px;
+    font-size:30px;
+    position:relative;
+}
+
+/* GLITCH */
+.glitch:hover::before,
+.glitch:hover::after{
+    content:attr(data-text);
+    position:absolute;
+    left:20px;
+}
+
+.glitch:hover::before{color:#22c55e;animation:glitch 0.2s infinite;}
+.glitch:hover::after{color:#0ea5e9;animation:glitch 0.2s infinite reverse;}
+
+@keyframes glitch{
+    0%{transform:translate(2px,0)}
+    50%{transform:translate(-2px,2px)}
+    100%{transform:translate(2px,-2px)}
+}
+
+/* LIVE BADGE */
+.live-badge{
+    position:absolute;
+    top:25px;
+    right:20px;
+    background:#ef4444;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:12px;
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    0%{opacity:1}
+    50%{opacity:0.3}
+    100%{opacity:1}
 }
 
 /* LAYOUT */
-.main{
-    display:flex;
-}
+.main{display:flex;}
 
-/* LEFT PANEL */
 .left-panel{
     width:180px;
     padding:20px;
 }
 
-/* CHART */
 #chart-container{
     flex:1;
     margin:20px;
 }
 
-/* BUTTONS */
 .buttons{
     text-align:center;
     margin-bottom:10px;
@@ -66,13 +95,13 @@ body::before{
     cursor:pointer;
 }
 
-/* RIGHT PANEL */
+/* RIGHT */
 #price-panel{
     width:260px;
     margin:20px;
 }
 
-/* 🔥 FLOAT BUTTONS */
+/* BUTTONS */
 .bottom-buttons{
     position:fixed;
     bottom:20px;
@@ -88,121 +117,80 @@ body::before{
     border-radius:10px;
     cursor:pointer;
     border:1px solid rgba(255,255,255,0.1);
-    font-weight:500;
-    transition:0.2s;
+    animation:pulse 2s infinite;
 }
 
-.btn:hover{
-    background:#1f2937;
+@keyframes pulse{
+    0%{box-shadow:0 0 0px rgba(34,197,94,0.2)}
+    50%{box-shadow:0 0 20px rgba(34,197,94,0.7)}
+    100%{box-shadow:0 0 0px rgba(34,197,94,0.2)}
 }
 
-/* CLOCK */
-#clock-widget{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    backdrop-filter: blur(20px);
-    background: rgba(255,255,255,0.05);
-    border-radius:20px;
-    padding:20px;
+/* PROFIT COUNTER */
+.profit{
     text-align:center;
+    font-size:22px;
+    margin-top:10px;
+    color:#22c55e;
 }
 
-/* ANALOG */
-.clock{
-    width:90px;
-    height:90px;
-    border:3px solid rgba(255,255,255,0.2);
-    border-radius:50%;
-    position:relative;
-    margin:auto;
-}
-
-.dot{
-    width:5px;
-    height:5px;
-    background:white;
-    border-radius:50%;
-    position:absolute;
-}
-
-.hand{
-    position:absolute;
-    bottom:50%;
-    left:50%;
-    transform-origin: bottom;
-    background:white;
-}
-
-.hour{width:3px;height:20px;}
-.minute{width:2px;height:30px;}
-.second{width:1px;height:35px;background:#22c55e;}
-
-.digital{margin-top:10px;}
-.sessions{font-size:12px;opacity:0.7;}
-
-/* 📱 MOBILE */
-@media (max-width:768px){
-
-.main{
-    flex-direction:column;
-}
-
-.left-panel{
+/* POPUP */
+.popup{
+    position:fixed;
+    bottom:100px;
+    right:20px;
+    background:#111827;
+    padding:12px;
+    border-radius:10px;
     display:none;
 }
 
-#chart-container{
-    width:100%;
-    margin:10px;
+/* CURSOR */
+.cursor{
+    width:12px;
+    height:12px;
+    border:2px solid #0ea5e9;
+    border-radius:50%;
+    position:fixed;
+    pointer-events:none;
+    transform:translate(-50%,-50%);
 }
 
-#price-panel{
-    width:100%;
-    margin:10px;
+.cursor-trail{
+    width:6px;
+    height:6px;
+    background:#0ea5e9;
+    border-radius:50%;
+    position:fixed;
+    pointer-events:none;
 }
 
-.buttons button{
-    padding:6px 10px;
-    font-size:12px;
-}
-
-#chart{
-    height:300px !important;
-}
-
-#clock-widget{
-    transform:scale(0.8);
-    bottom:10px;
-    right:10px;
-}
-
-.bottom-buttons{
-    left:10px;
-    bottom:10px;
-}
-
+/* MOBILE */
+@media(max-width:768px){
+.main{flex-direction:column;}
+.left-panel{display:none;}
+#price-panel{width:100%;margin:10px;}
+#chart{height:300px !important;}
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">JokerFX</div>
+<div class="header glitch" data-text="JokerFX">
+JokerFX
+<div class="live-badge">LIVE</div>
+</div>
+
+<div class="profit" id="profit">+0%</div>
 
 <div class="main">
 
-<!-- LEFT -->
 <div class="left-panel">
-<div onclick="window.open('https://instagram.com/ivan.djordjevic13')" style="cursor:pointer;">
-📸 Instagram
-</div>
-<div onclick="window.open('https://t.me/jokeerfX')" style="cursor:pointer;">
-📲 Telegram
-</div>
+<div>📸 Instagram</div>
+<div>📲 Telegram</div>
 </div>
 
-<!-- CENTER -->
 <div id="chart-container">
 
 <div class="buttons">
@@ -215,11 +203,7 @@ body::before{
 
 </div>
 
-<!-- RIGHT -->
 <div id="price-panel">
-
-<div class="tradingview-widget-container">
-<div class="tradingview-widget-container__widget"></div>
 
 <script src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
 {
@@ -227,69 +211,31 @@ body::before{
   "showChart": false,
   "width": "100%",
   "height": "260",
-  "tabs": [
-    {
-      "title": "Main",
-      "symbols": [
-        {"s": "BINANCE:BTCUSDT"},
-        {"s": "FOREXCOM:XAUUSD"},
-        {"s": "CAPITALCOM:DXY"}
-      ]
-    },
-    {
-      "title": "Forex",
-      "symbols": [
-        {"s": "FOREXCOM:EURUSD"},
-        {"s": "FOREXCOM:GBPUSD"},
-        {"s": "FOREXCOM:USDJPY"}
-      ]
-    }
-  ]
+  "tabs": [{
+    "title": "Main",
+    "symbols": [
+      {"s":"BINANCE:BTCUSDT"},
+      {"s":"FOREXCOM:XAUUSD"},
+      {"s":"CAPITALCOM:DXY"}
+    ]
+  }]
 }
 </script>
-</div>
 
 </div>
 
 </div>
 
-<!-- 🔥 BUTTONS -->
+<!-- BUTTONS -->
 <div class="bottom-buttons">
-
-<div class="btn" onclick="window.location.href='ftmo.html'">
-🔥 FTMO Service
+<div class="btn" onclick="window.location.href='ftmo.html'">🔥 FTMO Service</div>
+<div class="btn" onclick="window.location.href='signals.html'">🔥 Signals & Analysis</div>
 </div>
 
-<div class="btn" onclick="window.location.href='signals.html'">
-🔥 Signals & Analysis
-</div>
+<!-- POPUP -->
+<div class="popup" id="popup"></div>
 
-</div>
-
-<!-- CLOCK -->
-<div id="clock-widget">
-
-<div class="clock">
-
-<div class="dot" style="top:5%;left:50%;transform:translateX(-50%)"></div>
-<div class="dot" style="top:20%;right:15%"></div>
-<div class="dot" style="top:50%;right:5%"></div>
-<div class="dot" style="bottom:20%;right:15%"></div>
-<div class="dot" style="bottom:5%;left:50%;transform:translateX(-50%)"></div>
-<div class="dot" style="bottom:20%;left:15%"></div>
-<div class="dot" style="top:50%;left:5%"></div>
-<div class="dot" style="top:20%;left:15%"></div>
-
-<div class="hand hour" id="hour"></div>
-<div class="hand minute" id="minute"></div>
-<div class="hand second" id="second"></div>
-
-</div>
-
-<div class="digital" id="digital"></div>
-<div class="sessions" id="sessions"></div>
-
-</div>
+<div class="cursor" id="cursor"></div>
 
 <script src="https://s3.tradingview.com/tv.js"></script>
 
@@ -305,35 +251,41 @@ function createChart(symbol){
         "container_id":"chart"
     });
 }
-
-function changeSymbol(symbol){
-    createChart(symbol);
-}
-
+function changeSymbol(symbol){createChart(symbol);}
 createChart("FOREXCOM:XAUUSD");
 
-/* CLOCK */
-function updateClock(){
-    let now=new Date();
+/* PROFIT COUNTER */
+let profit=0;
+setInterval(()=>{
+    profit+=Math.floor(Math.random()*5);
+    document.getElementById("profit").innerText="+"+profit+"%";
+},2000);
 
-    let sec=now.getSeconds();
-    let min=now.getMinutes();
-    let hr=now.getHours();
+/* POPUP */
+const names=["John","Mike","Alex","David"];
+setInterval(()=>{
+    let popup=document.getElementById("popup");
+    let name=names[Math.floor(Math.random()*names.length)];
+    popup.innerText=name+" just bought 100K FTMO";
+    popup.style.display="block";
+    setTimeout(()=>popup.style.display="none",3000);
+},6000);
 
-    hour.style.transform=`rotate(${hr*30+min/2}deg)`;
-    minute.style.transform=`rotate(${min*6}deg)`;
-    second.style.transform=`rotate(${sec*6}deg)`;
+/* CURSOR */
+const cursor=document.getElementById("cursor");
 
-    let ny=new Date().toLocaleTimeString("en-US",{timeZone:"America/New_York"});
-    let london=new Date().toLocaleTimeString("en-GB",{timeZone:"Europe/London"});
-    let tokyo=new Date().toLocaleTimeString("en-US",{timeZone:"Asia/Tokyo"});
+document.addEventListener("mousemove",(e)=>{
+    cursor.style.left=e.clientX+"px";
+    cursor.style.top=e.clientY+"px";
 
-    digital.innerHTML=london;
-    sessions.innerHTML=`NY: ${ny}<br>London: ${london}<br>Tokyo: ${tokyo}`;
-}
+    let trail=document.createElement("div");
+    trail.className="cursor-trail";
+    trail.style.left=e.clientX+"px";
+    trail.style.top=e.clientY+"px";
+    document.body.appendChild(trail);
 
-setInterval(updateClock,1000);
-updateClock();
+    setTimeout(()=>trail.remove(),300);
+});
 </script>
 
 </body>
