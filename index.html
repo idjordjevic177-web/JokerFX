@@ -196,6 +196,28 @@ body::before{
     pointer-events:none;
 }
 
+/* RADIO */
+#radio-player{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:rgba(0,0,0,0.6);
+    padding:15px;
+    border-radius:12px;
+    backdrop-filter: blur(10px);
+    text-align:center;
+    font-size:12px;
+}
+
+#radio-controls button{
+    background:#111827;
+    border:none;
+    color:white;
+    padding:6px 12px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
 /* MOBILE */
 @media(max-width:768px){
 .main{flex-direction:column;}
@@ -233,7 +255,6 @@ JokerFX
 </div>
 
 <div id="price-panel">
-
 <script src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
 {
   "colorTheme": "dark",
@@ -250,7 +271,6 @@ JokerFX
   }]
 }
 </script>
-
 </div>
 
 </div>
@@ -265,25 +285,25 @@ JokerFX
 <div id="clock-widget">
 
 <div class="clock">
-
 <div class="dot" style="top:5%;left:50%;transform:translateX(-50%)"></div>
-<div class="dot" style="top:20%;right:15%"></div>
-<div class="dot" style="top:50%;right:5%"></div>
-<div class="dot" style="bottom:20%;right:15%"></div>
-<div class="dot" style="bottom:5%;left:50%;transform:translateX(-50%)"></div>
-<div class="dot" style="bottom:20%;left:15%"></div>
-<div class="dot" style="top:50%;left:5%"></div>
-<div class="dot" style="top:20%;left:15%"></div>
-
 <div class="hand hour" id="hour"></div>
 <div class="hand minute" id="minute"></div>
 <div class="hand second" id="second"></div>
-
 </div>
 
 <div class="digital" id="digital"></div>
 <div class="sessions" id="sessions"></div>
 
+</div>
+
+<!-- RADIO -->
+<div id="radio-player">
+🎧 Afro House<br><br>
+<button onclick="togglePlay()">▶ / ⏸</button><br><br>
+<input type="range" min="0" max="1" step="0.01" value="0.2" onchange="setVolume(this.value)">
+<audio id="radio" autoplay muted loop>
+<source src="https://stream.zeno.fm/f3d3y1xqv8zuv" type="audio/mpeg">
+</audio>
 </div>
 
 <div class="cursor" id="cursor"></div>
@@ -309,13 +329,9 @@ createChart("FOREXCOM:XAUUSD");
 function updateClock(){
     let now=new Date();
 
-    let sec=now.getSeconds();
-    let min=now.getMinutes();
-    let hr=now.getHours();
-
-    hour.style.transform=`rotate(${hr*30+min/2}deg)`;
-    minute.style.transform=`rotate(${min*6}deg)`;
-    second.style.transform=`rotate(${sec*6}deg)`;
+    hour.style.transform=`rotate(${now.getHours()*30}deg)`;
+    minute.style.transform=`rotate(${now.getMinutes()*6}deg)`;
+    second.style.transform=`rotate(${now.getSeconds()*6}deg)`;
 
     let ny=new Date().toLocaleTimeString("en-US",{timeZone:"America/New_York"});
     let london=new Date().toLocaleTimeString("en-GB",{timeZone:"Europe/London"});
@@ -342,6 +358,22 @@ document.addEventListener("mousemove",(e)=>{
 
     setTimeout(()=>trail.remove(),300);
 });
+
+/* RADIO */
+const radio=document.getElementById("radio");
+
+function togglePlay(){
+    if(radio.paused){
+        radio.muted=false;
+        radio.play();
+    }else{
+        radio.pause();
+    }
+}
+
+function setVolume(val){
+    radio.volume=val;
+}
 </script>
 
 </body>
