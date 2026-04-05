@@ -11,22 +11,37 @@ body {
     font-family: Arial;
 }
 
-/* PANEL DESNO */
+/* PANEL */
 #price-panel {
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 200px;
+    width: 220px;
     background: #111827;
     border-radius: 10px;
     padding: 15px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
+/* ITEM */
 .price-item {
     display: flex;
     justify-content: space-between;
-    margin: 5px 0;
+    margin: 6px 0;
+    cursor: pointer;
+}
+
+/* BOJE */
+.green { color: #22c55e; }
+.red { color: #ef4444; }
+
+/* BLINK */
+.flash {
+    animation: flash 0.4s;
+}
+
+@keyframes flash {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
 }
 
 button {
@@ -40,8 +55,18 @@ button {
     cursor: pointer;
 }
 
-#more {
+#more { display: none; }
+
+/* CHART */
+#chartModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #111;
+    padding: 10px;
     display: none;
+    z-index: 999;
 }
 </style>
 </head>
@@ -58,50 +83,108 @@ button {
     <div id="more"></div>
 </div>
 
+<!-- CHART -->
+<div id="chartModal"></div>
+
+<!-- KORELACIJA -->
+<div id="correlation" style="position:fixed; bottom:20px; right:20px; background:#111; padding:10px; border-radius:8px;">
+Correlation loading...
+</div>
+
 <script>
 
 const mainSymbols = ["BTC/USD", "XAU/USD", "DXY"];
-const moreSymbols = ["EUR/USD", "GBP/USD", "USD/JPY", "AUD/USD", "USD/CAD"];
+const moreSymbols = ["EUR/USD","GBP/USD","USD/JPY","AUD/USD","USD/CAD"];
 
 let expanded = false;
+let lastPrices = {};
+
+const API_KEY = "30653f857f3e4719b0edc51afad3c225";
 
 function toggleMore(){
     expanded = !expanded;
     document.getElementById("more").style.display = expanded ? "block" : "none";
 }
 
-const API_KEY = "30653f857f3e4719b0edc51afad3c225";
-
 async function getPrice(symbol){
-    try{
+    try {
         let res = await fetch(`https://api.twelvedata.com/price?symbol=${symbol}&apikey=${API_KEY}`);
         let data = await res.json();
-        return data.price;
+        return parseFloat(data.price);
     } catch(e){
-        return "err";
+        return null;
     }
+}
+
+function renderItem(symbol, price){
+    if(!price) return "";
+
+    let last = lastPrices[symbol];
+    let color = "";
+
+    if(last){
+        if(price > last) color = "green";
+        if(price < last) color = "red";
+    }
+
+    lastPrices[symbol] = price;
+
+    return `
+    <div class="price-item flash" onclick="openChart('${symbol}')">
+        <span>${symbol}</span>
+        <span class="${color}">${price}</span>
+    </div>`;
 }
 
 async function updatePrices(){
     let mainHTML = "";
     for(let s of mainSymbols){
         let price = await getPrice(s);
-        mainHTML += `<div class="price-item"><span>${s}</span><span>${price}</span></div>`;
+        mainHTML += renderItem(s, price);
     }
     document.getElementById("main-prices").innerHTML = mainHTML;
 
     let moreHTML = "";
     for(let s of moreSymbols){
         let price = await getPrice(s);
-        moreHTML += `<div class="price-item"><span>${s}</span><span>${price}</span></div>`;
+        moreHTML += renderItem(s, price);
     }
     document.getElementById("more").innerHTML = moreHTML;
+
+    updateCorrelation();
 }
 
-// refresh svake 2 sekunde
 setInterval(updatePrices, 2000);
-
 updatePrices();
+
+
+// 📈 CHART
+function openChart(symbol){
+    document.getElementById("chartModal").style.display = "block";
+
+    document.getElementById("chartModal").innerHTML = `
+    <iframe src="https://s.tradingview.com/widgetembed/?symbol=${symbol.replace("/","")}&interval=15"
+    width="400" height="300"></iframe>`;
+}
+
+
+// 🧠 KORELACIJA
+function updateCorrelation(){
+    let dxy = lastPrices["DXY"];
+    let gold = lastPrices["XAU/USD"];
+
+    if(!dxy || !gold) return;
+
+    let text = "";
+
+    if(dxy > gold){
+        text = "DXY strong → Gold weak";
+    } else {
+        text = "Gold strong → DXY weak";
+    }
+
+    document.getElementById("correlation").innerText = text;
+}
 
 </script>
 
