@@ -11,12 +11,11 @@ body {
     font-family: Arial;
 }
 
-/* PANEL DESNO */
 #price-panel {
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 260px;
+    width: 240px;
     background: #111827;
     border-radius: 10px;
     padding: 10px;
@@ -30,7 +29,6 @@ body {
 
 <div id="price-panel">
 
-<!-- TradingView Widget -->
 <div class="tradingview-widget-container">
   <div class="tradingview-widget-container__widget"></div>
 
@@ -40,28 +38,27 @@ body {
     "dateRange": "1D",
     "showChart": false,
     "locale": "en",
-    "largeChartUrl": "",
     "isTransparent": true,
     "showSymbolLogo": true,
     "width": "100%",
-    "height": "400",
+    "height": "220",
     "tabs": [
       {
         "title": "Main",
         "symbols": [
           {"s": "BINANCE:BTCUSDT", "d": "BTC"},
-          {"s": "OANDA:XAUUSD", "d": "Gold"},
-          {"s": "TVC:DXY", "d": "DXY"}
+          {"s": "FOREXCOM:XAUUSD", "d": "Gold"},
+          {"s": "ICEUS:DXY", "d": "DXY"}
         ]
       },
       {
         "title": "Forex",
         "symbols": [
-          {"s": "FX:EURUSD"},
-          {"s": "FX:GBPUSD"},
-          {"s": "FX:USDJPY"},
-          {"s": "FX:AUDUSD"},
-          {"s": "FX:USDCAD"}
+          {"s": "FOREXCOM:EURUSD"},
+          {"s": "FOREXCOM:GBPUSD"},
+          {"s": "FOREXCOM:USDJPY"},
+          {"s": "FOREXCOM:AUDUSD"},
+          {"s": "FOREXCOM:USDCAD"}
         ]
       }
     ]
