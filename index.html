@@ -75,6 +75,12 @@ body::before{
     padding:20px;
 }
 
+.left-panel div{
+    margin:10px 0;
+    cursor:pointer;
+}
+
+/* CHART */
 #chart-container{
     flex:1;
     margin:20px;
@@ -126,24 +132,49 @@ body::before{
     100%{box-shadow:0 0 0px rgba(34,197,94,0.2)}
 }
 
-/* PROFIT COUNTER */
-.profit{
+/* CLOCK */
+#clock-widget{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.05);
+    border-radius:20px;
+    padding:20px;
     text-align:center;
-    font-size:22px;
-    margin-top:10px;
-    color:#22c55e;
 }
 
-/* POPUP */
-.popup{
-    position:fixed;
-    bottom:100px;
-    right:20px;
-    background:#111827;
-    padding:12px;
-    border-radius:10px;
-    display:none;
+.clock{
+    width:90px;
+    height:90px;
+    border:3px solid rgba(255,255,255,0.2);
+    border-radius:50%;
+    position:relative;
+    margin:auto;
 }
+
+.dot{
+    width:5px;
+    height:5px;
+    background:white;
+    border-radius:50%;
+    position:absolute;
+}
+
+.hand{
+    position:absolute;
+    bottom:50%;
+    left:50%;
+    transform-origin: bottom;
+    background:white;
+}
+
+.hour{width:3px;height:20px;}
+.minute{width:2px;height:30px;}
+.second{width:1px;height:35px;background:#22c55e;}
+
+.digital{margin-top:10px;}
+.sessions{font-size:12px;opacity:0.7;}
 
 /* CURSOR */
 .cursor{
@@ -182,13 +213,11 @@ JokerFX
 <div class="live-badge">LIVE</div>
 </div>
 
-<div class="profit" id="profit">+0%</div>
-
 <div class="main">
 
 <div class="left-panel">
-<div>📸 Instagram</div>
-<div>📲 Telegram</div>
+<div onclick="window.open('https://instagram.com/ivan.djordjevic13')">📸 Instagram</div>
+<div onclick="window.open('https://t.me/jokeerfX')">📲 Telegram</div>
 </div>
 
 <div id="chart-container">
@@ -232,8 +261,30 @@ JokerFX
 <div class="btn" onclick="window.location.href='signals.html'">🔥 Signals & Analysis</div>
 </div>
 
-<!-- POPUP -->
-<div class="popup" id="popup"></div>
+<!-- CLOCK -->
+<div id="clock-widget">
+
+<div class="clock">
+
+<div class="dot" style="top:5%;left:50%;transform:translateX(-50%)"></div>
+<div class="dot" style="top:20%;right:15%"></div>
+<div class="dot" style="top:50%;right:5%"></div>
+<div class="dot" style="bottom:20%;right:15%"></div>
+<div class="dot" style="bottom:5%;left:50%;transform:translateX(-50%)"></div>
+<div class="dot" style="bottom:20%;left:15%"></div>
+<div class="dot" style="top:50%;left:5%"></div>
+<div class="dot" style="top:20%;left:15%"></div>
+
+<div class="hand hour" id="hour"></div>
+<div class="hand minute" id="minute"></div>
+<div class="hand second" id="second"></div>
+
+</div>
+
+<div class="digital" id="digital"></div>
+<div class="sessions" id="sessions"></div>
+
+</div>
 
 <div class="cursor" id="cursor"></div>
 
@@ -254,22 +305,27 @@ function createChart(symbol){
 function changeSymbol(symbol){createChart(symbol);}
 createChart("FOREXCOM:XAUUSD");
 
-/* PROFIT COUNTER */
-let profit=0;
-setInterval(()=>{
-    profit+=Math.floor(Math.random()*5);
-    document.getElementById("profit").innerText="+"+profit+"%";
-},2000);
+/* CLOCK */
+function updateClock(){
+    let now=new Date();
 
-/* POPUP */
-const names=["John","Mike","Alex","David"];
-setInterval(()=>{
-    let popup=document.getElementById("popup");
-    let name=names[Math.floor(Math.random()*names.length)];
-    popup.innerText=name+" just bought 100K FTMO";
-    popup.style.display="block";
-    setTimeout(()=>popup.style.display="none",3000);
-},6000);
+    let sec=now.getSeconds();
+    let min=now.getMinutes();
+    let hr=now.getHours();
+
+    hour.style.transform=`rotate(${hr*30+min/2}deg)`;
+    minute.style.transform=`rotate(${min*6}deg)`;
+    second.style.transform=`rotate(${sec*6}deg)`;
+
+    let ny=new Date().toLocaleTimeString("en-US",{timeZone:"America/New_York"});
+    let london=new Date().toLocaleTimeString("en-GB",{timeZone:"Europe/London"});
+    let tokyo=new Date().toLocaleTimeString("en-US",{timeZone:"Asia/Tokyo"});
+
+    digital.innerHTML=london;
+    sessions.innerHTML=`NY: ${ny}<br>London: ${london}<br>Tokyo: ${tokyo}`;
+}
+setInterval(updateClock,1000);
+updateClock();
 
 /* CURSOR */
 const cursor=document.getElementById("cursor");
