@@ -6,8 +6,9 @@
 
 <style>
 body {
-    background: linear-gradient(135deg,#0b0f1a,#020617);
-    color: white;
+    margin:0;
+    background: linear-gradient(135deg,#020617,#0b0f1a);
+    color:white;
     font-family: Arial;
 }
 
@@ -16,33 +17,56 @@ body {
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 300px;
+    width: 280px;
     background: #111827;
     border-radius: 12px;
     padding: 10px;
 }
 
-/* SAT GLASS */
+/* CLOCK GLASS */
 #clock-widget {
     position: fixed;
-    bottom: 20px;
+    bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(20px);
     background: rgba(255,255,255,0.05);
     border-radius: 20px;
-    padding: 20px 40px;
-    text-align: center;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    padding: 25px 40px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
-.time {
-    font-size: 40px;
+/* ANALOG CLOCK */
+.clock {
+    width: 120px;
+    height: 120px;
+    border: 4px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    position: relative;
+}
+
+.hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom;
+    background: white;
+}
+
+.hour { width:4px; height:30px; }
+.minute { width:3px; height:45px; }
+.second { width:2px; height:50px; background:#22c55e; }
+
+/* DIGITAL */
+.digital {
+    font-size: 36px;
     font-weight: 300;
 }
 
-.session {
-    font-size: 14px;
+.sessions {
+    font-size: 13px;
     opacity: 0.7;
 }
 </style>
@@ -50,12 +74,11 @@ body {
 
 <body>
 
-<h1>Gig4FX</h1>
+<h1 style="padding:20px;">Gig4FX</h1>
 
 <!-- PRICE PANEL -->
 <div id="price-panel">
 
-<!-- MAIN (bez DXY) -->
 <div class="tradingview-widget-container">
 <div class="tradingview-widget-container__widget"></div>
 
@@ -65,13 +88,23 @@ body {
   "showChart": false,
   "locale": "en",
   "width": "100%",
-  "height": "180",
+  "height": "260",
   "tabs": [
     {
       "title": "Main",
       "symbols": [
         {"s": "BINANCE:BTCUSDT", "d": "BTC"},
-        {"s": "FOREXCOM:XAUUSD", "d": "XAUUSD"}
+        {"s": "FOREXCOM:XAUUSD", "d": "Gold"}
+      ]
+    },
+    {
+      "title": "Forex",
+      "symbols": [
+        {"s": "FOREXCOM:EURUSD"},
+        {"s": "FOREXCOM:GBPUSD"},
+        {"s": "FOREXCOM:USDJPY"},
+        {"s": "FOREXCOM:AUDUSD"},
+        {"s": "FOREXCOM:USDCAD"}
       ]
     }
   ]
@@ -79,28 +112,22 @@ body {
 </script>
 </div>
 
-<!-- DXY POSEBNO -->
-<div style="margin-top:10px;">
-<div class="tradingview-widget-container">
-<div class="tradingview-widget-container__widget"></div>
-
-<script src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-{
-  "symbol": "TVC:DXY",
-  "colorTheme": "dark",
-  "isTransparent": true,
-  "locale": "en"
-}
-</script>
-</div>
-</div>
-
 </div>
 
 <!-- CLOCK -->
 <div id="clock-widget">
-    <div class="time" id="time"></div>
-    <div class="session" id="sessions"></div>
+
+<div class="clock">
+    <div class="hand hour" id="hour"></div>
+    <div class="hand minute" id="minute"></div>
+    <div class="hand second" id="second"></div>
+</div>
+
+<div>
+    <div class="digital" id="digital"></div>
+    <div class="sessions" id="sessions"></div>
+</div>
+
 </div>
 
 <script>
@@ -108,14 +135,27 @@ body {
 function updateClock(){
     let now = new Date();
 
+    let sec = now.getSeconds();
+    let min = now.getMinutes();
+    let hr = now.getHours();
+
+    document.getElementById("second").style.transform =
+        `rotate(${sec*6}deg)`;
+
+    document.getElementById("minute").style.transform =
+        `rotate(${min*6}deg)`;
+
+    document.getElementById("hour").style.transform =
+        `rotate(${hr*30 + min/2}deg)`;
+
     let ny = new Date().toLocaleTimeString("en-US",{timeZone:"America/New_York"});
     let london = new Date().toLocaleTimeString("en-GB",{timeZone:"Europe/London"});
     let tokyo = new Date().toLocaleTimeString("en-US",{timeZone:"Asia/Tokyo"});
 
-    document.getElementById("time").innerHTML = ny;
+    document.getElementById("digital").innerHTML = ny;
 
     document.getElementById("sessions").innerHTML =
-    "NY: " + ny + " | London: " + london + " | Tokyo: " + tokyo;
+        "NY: " + ny + " | London: " + london + " | Tokyo: " + tokyo;
 }
 
 setInterval(updateClock,1000);
