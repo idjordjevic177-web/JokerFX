@@ -2,14 +2,29 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
+<!-- MOBILE -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>JokerFX FTMO</title>
 
 <style>
 body{
     margin:0;
-    background:#020617;
+    background: url('ftmo.jpg') no-repeat center center fixed;
+    background-size: cover;
     color:white;
     font-family:Arial;
+}
+
+/* DARK OVERLAY */
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.75);
+    z-index:-1;
 }
 
 /* HEADER */
@@ -43,7 +58,7 @@ body{
     border-bottom:1px solid rgba(255,255,255,0.1);
 }
 
-/* SERVICE BOX */
+/* SERVICE */
 .service{
     background:rgba(255,255,255,0.05);
     padding:20px;
@@ -74,6 +89,13 @@ body{
     padding:12px 18px;
     border-radius:10px;
     cursor:pointer;
+}
+
+/* MOBILE */
+@media (max-width:768px){
+.container{
+    width:95%;
+}
 }
 </style>
 </head>
@@ -110,10 +132,14 @@ I provide professional assistance in passing FTMO challenges using disciplined r
 </p>
 
 <p>
-✔ Strict risk management  
-✔ High probability setups  
-✔ Market structure & liquidity trading  
-✔ Transparent communication  
+✔ Strict risk management<br>
+✔ High probability setups<br>
+✔ Market structure & liquidity trading<br>
+✔ Transparent communication<br>
+</p>
+
+<p style="color:#f87171;">
+⚠ Limited slots available each month
 </p>
 
 </div>
