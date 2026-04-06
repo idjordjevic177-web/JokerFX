@@ -17,7 +17,7 @@ body{
     color:white;
 }
 
-/* DARK OVERLAY */
+/* OVERLAY */
 body::before{
     content:"";
     position:fixed;
@@ -36,112 +36,89 @@ body::before{
 
 /* MAIN */
 .container{
-    display:flex;
-    gap:20px;
     padding:20px;
 }
 
-/* LEFT DAYS */
-.days{
-    width:200px;
+/* TABLE HEADER */
+.table-header{
+    display:grid;
+    grid-template-columns: 120px repeat(6,1fr);
+    background:rgba(255,255,255,0.08);
+    padding:12px;
+    border-radius:12px;
+    margin-bottom:10px;
+    font-weight:bold;
+    text-align:center;
 }
 
-.day{
-    background:#1e293b;
+/* ROW */
+.row{
+    display:grid;
+    grid-template-columns: 120px repeat(6,1fr);
+    background:rgba(255,255,255,0.06);
     padding:14px;
-    border-radius:10px;
+    border-radius:12px;
     margin-bottom:10px;
     text-align:center;
-    cursor:pointer;
+    backdrop-filter: blur(6px);
     transition:0.3s;
 }
 
-.day:hover{
-    background:#334155;
+.row:hover{
+    background:rgba(255,255,255,0.1);
 }
 
-/* RIGHT SIDE */
-.signals{
-    flex:1;
-}
-
-/* HEADER ROW */
-.table-header{
-    display:flex;
-    background:#1e293b;
-    padding:12px;
-    border-radius:10px;
-    font-weight:bold;
-    opacity:0.8;
-}
-
-.table-header div{
-    flex:1;
-    text-align:center;
-}
-
-/* CARD ROW */
-.signal-card{
-    display:flex;
-    align-items:center;
-    background:#1e293b;
-    margin-top:10px;
-    padding:12px;
-    border-radius:10px;
-    transition:0.3s;
-}
-
-.signal-card:hover{
-    background:#334155;
-}
-
-/* BUY / SELL ICON */
-.type{
-    width:60px;
-    text-align:center;
+/* DAY */
+.day{
     font-weight:bold;
 }
 
-.buy{color:#22c55e;}
-.sell{color:#ef4444;}
+/* BUY / SELL (SOFT COLORS) */
+.buy{
+    color:#4ade80; /* soft green */
+    font-weight:bold;
+}
 
-/* COLUMNS */
-.col{
-    flex:1;
-    text-align:center;
+.sell{
+    color:#f87171; /* soft red */
+    font-weight:bold;
 }
 
 /* STATUS */
-.win{color:#22c55e;}
-.loss{color:#ef4444;}
+.win{color:#4ade80;}
+.loss{color:#f87171;}
 .active{color:#facc15;}
 
 /* STATS */
 .stats{
-    margin:20px;
-    background:#1e293b;
+    width:80%;
+    margin:30px auto;
+    background:rgba(255,255,255,0.08);
     padding:20px;
-    border-radius:10px;
+    border-radius:12px;
+    backdrop-filter: blur(6px);
+}
+
+.stats h3{
+    margin-bottom:5px;
+}
+
+.stats-date{
+    opacity:0.7;
+    margin-bottom:15px;
 }
 
 .stats-row{
     display:flex;
     justify-content:space-around;
-    margin-top:10px;
+    text-align:center;
 }
 
 /* MOBILE */
 @media(max-width:768px){
-.container{
-    flex-direction:column;
-}
-.days{
-    width:100%;
-    display:flex;
-    overflow:auto;
-}
-.day{
-    min-width:120px;
+.table-header, .row{
+    grid-template-columns: repeat(3,1fr);
+    font-size:12px;
 }
 }
 
@@ -154,69 +131,96 @@ body::before{
 
 <div class="container">
 
-<!-- LEFT -->
-<div class="days">
-<div class="day">Monday</div>
-<div class="day">Tuesday</div>
-<div class="day">Wednesday</div>
-<div class="day">Thursday</div>
-<div class="day">Friday</div>
-<div class="day">Saturday</div>
-<div class="day">Sunday</div>
-</div>
-
-<!-- RIGHT -->
-<div class="signals">
-
 <!-- HEADER -->
 <div class="table-header">
+<div>Day</div>
 <div>Type</div>
 <div>Pair</div>
 <div>Entry</div>
 <div>SL</div>
 <div>TP</div>
-<div>RR</div>
 <div>Status</div>
 </div>
 
-<!-- SIGNAL -->
-<div class="signal-card">
-<div class="type buy">BUY</div>
-<div class="col">EURUSD</div>
-<div class="col">1.0650</div>
-<div class="col">1.0600</div>
-<div class="col">1.0750</div>
-<div class="col">1:3</div>
-<div class="col win">Closed - Profit</div>
+<!-- ROWS (1 DAY = 1 SIGNAL) -->
+
+<div class="row">
+<div class="day">Monday</div>
+<div class="buy">BUY</div>
+<div>XAUUSD</div>
+<div>2300</div>
+<div>2285</div>
+<div>2350</div>
+<div class="win">Closed - Profit</div>
 </div>
 
-<div class="signal-card">
-<div class="type sell">SELL</div>
-<div class="col">GBPJPY</div>
-<div class="col">182.20</div>
-<div class="col">183.00</div>
-<div class="col">180.50</div>
-<div class="col">1:2</div>
-<div class="col loss">Closed - Loss</div>
+<div class="row">
+<div class="day">Tuesday</div>
+<div class="sell">SELL</div>
+<div>XAUUSD</div>
+<div>2350</div>
+<div>2370</div>
+<div>2280</div>
+<div class="loss">Closed - Loss</div>
 </div>
 
-<div class="signal-card">
-<div class="type buy">BUY</div>
-<div class="col">AUDUSD</div>
-<div class="col">1.0650</div>
-<div class="col">1.0600</div>
-<div class="col">1.0750</div>
-<div class="col">1:3</div>
-<div class="col active">Active</div>
+<div class="row">
+<div class="day">Wednesday</div>
+<div class="buy">BUY</div>
+<div>XAUUSD</div>
+<div>2300</div>
+<div>2285</div>
+<div>2350</div>
+<div class="active">Active</div>
 </div>
 
+<div class="row">
+<div class="day">Thursday</div>
+<div class="buy">BUY</div>
+<div>XAUUSD</div>
+<div>2300</div>
+<div>2285</div>
+<div>2350</div>
+<div class="win">Closed - Profit</div>
+</div>
+
+<div class="row">
+<div class="day">Friday</div>
+<div class="sell">SELL</div>
+<div>XAUUSD</div>
+<div>2350</div>
+<div>2370</div>
+<div>2280</div>
+<div class="loss">Closed - Loss</div>
+</div>
+
+<div class="row">
+<div class="day">Saturday</div>
+<div>-</div>
+<div>-</div>
+<div>-</div>
+<div>-</div>
+<div>-</div>
+<div>-</div>
+</div>
+
+<div class="row">
+<div class="day">Sunday</div>
+<div>-</div>
+<div>-</div>
+<div>-</div>
+<div>-</div>
+<div>-</div>
+<div>-</div>
 </div>
 
 </div>
 
 <!-- STATS -->
 <div class="stats">
+
 <h3>Weekly Statistics</h3>
+<div class="stats-date">04.06.2026 - 11.06.2026</div>
 
 <div class="stats-row">
 <div>
