@@ -156,10 +156,10 @@ body::before{
 
 .calendar-box{
     background:#0b1220;
-    padding:20px;
+    padding:25px;
     border-radius:15px;
-    width:80%;
-    max-width:900px;
+    width:90%;
+    max-width:1000px;
 }
 
 #closeCalendar{
@@ -167,17 +167,24 @@ body::before{
     cursor:pointer;
 }
 
+/* CALENDAR */
 .calendar-grid{
     display:grid;
     grid-template-columns:repeat(7,1fr);
-    gap:10px;
+    gap:12px;
     margin-top:20px;
 }
 
-.calendar-grid div{
-    padding:10px;
+.day-name{
+    text-align:center;
+    opacity:0.6;
+}
+
+.day{
+    min-height:70px;
+    padding:8px;
+    border-radius:10px;
     background:rgba(255,255,255,0.05);
-    border-radius:8px;
 }
 
 .day.win{background:rgba(34,197,94,0.2);}
@@ -250,13 +257,21 @@ body::before{
 <!-- MODAL -->
 <div id="calendarModal">
 <div class="calendar-box">
+
 <span id="closeCalendar">✖</span>
 <h2>April 2026</h2>
 
 <div class="calendar-grid">
-<div>Mon</div><div>Tue</div><div>Wed</div>
-<div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
 
+<div class="day-name">Mon</div>
+<div class="day-name">Tue</div>
+<div class="day-name">Wed</div>
+<div class="day-name">Thu</div>
+<div class="day-name">Fri</div>
+<div class="day-name">Sat</div>
+<div class="day-name">Sun</div>
+
+<!-- WEEK 1 -->
 <div></div><div></div>
 <div class="day loss">1<br>-$22</div>
 <div class="day win">2<br>$401</div>
@@ -264,9 +279,42 @@ body::before{
 <div class="day loss">4<br>-$48</div>
 <div></div>
 
+<!-- WEEK 2 -->
 <div class="day loss">6<br>-$43</div>
+<div class="day">7</div>
+<div class="day">8</div>
+<div class="day">9</div>
+<div class="day">10</div>
+<div class="day">11</div>
+<div class="day">12</div>
+
+<!-- WEEK 3 -->
+<div class="day">13</div>
+<div class="day">14</div>
+<div class="day">15</div>
+<div class="day">16</div>
+<div class="day">17</div>
+<div class="day">18</div>
+<div class="day">19</div>
+
+<!-- WEEK 4 -->
+<div class="day">20</div>
+<div class="day">21</div>
+<div class="day">22</div>
+<div class="day">23</div>
+<div class="day">24</div>
+<div class="day">25</div>
+<div class="day">26</div>
+
+<!-- WEEK 5 -->
+<div class="day">27</div>
+<div class="day">28</div>
+<div class="day">29</div>
+<div class="day">30</div>
+<div></div><div></div><div></div>
 
 </div>
+
 </div>
 </div>
 
@@ -298,8 +346,8 @@ function updateClock(){
     let hr=now.getHours();
 
     document.querySelector(".second").style.transform=`rotate(${sec*6}deg)`;
-    document.querySelector(".minute").style.transform=`rotate(${min*6}deg)`;
-    document.querySelector(".hour").style.transform=`rotate(${hr*30}deg)`;
+    document.querySelector(".minute").style.transform=`rotate(${min*6+sec*0.1}deg)`;
+    document.querySelector(".hour").style.transform=`rotate(${(hr%12)*30+min*0.5}deg)`;
 
     let london=new Date().toLocaleTimeString("en-GB",{timeZone:"Europe/London"});
     let ny=new Date().toLocaleTimeString("en-US",{timeZone:"America/New_York"});
