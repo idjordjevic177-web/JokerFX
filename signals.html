@@ -31,10 +31,8 @@ body::before{
     font-size:26px;
 }
 
-/* LIVE BADGE */
 .live{
     color:#22c55e;
-    font-size:14px;
     animation:blink 1s infinite;
 }
 
@@ -68,7 +66,7 @@ body::before{
 }
 
 .card:hover{
-    transform:translateY(-6px);
+    transform:translateY(-5px);
 }
 
 /* BUY */
@@ -93,11 +91,8 @@ body::before{
     border-radius:6px;
 }
 
-/* STATUS */
-.status{
-    margin-top:10px;
-    font-size:13px;
-}
+/* TEXT */
+.info{font-size:14px;opacity:0.8;}
 
 /* CENTER */
 .center{
@@ -129,41 +124,23 @@ body::before{
     gap:20px;
 }
 
-.winrate{
-    background:#111827;
-    padding:20px;
-    border-radius:12px;
-    text-align:center;
-}
-
 .win{color:#22c55e;}
 .loss{color:#ef4444;}
 
-.history{
+.panel{
     background:#111827;
     padding:15px;
     border-radius:12px;
 }
 
-.history-item{
-    display:flex;
-    justify-content:space-between;
-    margin:5px 0;
-}
-
-/* LOCK */
-.lock{
-    background:rgba(255,255,255,0.05);
-    padding:20px;
-    border-radius:12px;
-    text-align:center;
-}
-
-.lock-btn{
-    background:#22c55e;
-    padding:10px;
-    margin-top:10px;
-    border-radius:8px;
+/* BACK */
+.back{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    background:#111827;
+    padding:12px 18px;
+    border-radius:10px;
     cursor:pointer;
 }
 
@@ -191,21 +168,19 @@ JokerFX Signals <span class="live">● LIVE</span>
 <div class="left">
 
 <div class="card buy">
-<div class="signal">BUY</div>
+<div class="signal">BUY • RR 1:3</div>
 <div>XAUUSD</div>
-<div>Entry: 2300</div>
-<div>SL: 2285</div>
-<div>TP: 2350</div>
-<div class="status" id="buyStatus">Running...</div>
+<div class="info">Entry: 2300</div>
+<div class="info">SL: 2285</div>
+<div class="info">TP: 2350</div>
 </div>
 
 <div class="card sell">
-<div class="signal">SELL</div>
+<div class="signal">SELL • RR 1:2.5</div>
 <div>XAUUSD</div>
-<div>Entry: 2350</div>
-<div>SL: 2370</div>
-<div>TP: 2280</div>
-<div class="status" id="sellStatus">Waiting...</div>
+<div class="info">Entry: 2350</div>
+<div class="info">SL: 2370</div>
+<div class="info">TP: 2280</div>
 </div>
 
 </div>
@@ -215,12 +190,16 @@ JokerFX Signals <span class="live">● LIVE</span>
 
 <div class="explain explain-buy">
 <h3>📈 Buy Analysis</h3>
-<p>Liquidity sweep + bullish continuation expected.</p>
+<p>
+Liquidity sweep + bullish continuation expected.
+</p>
 </div>
 
 <div class="explain explain-sell">
 <h3>📉 Sell Analysis</h3>
-<p>Resistance hit, possible rejection.</p>
+<p>
+Resistance hit, possible rejection.
+</p>
 </div>
 
 </div>
@@ -228,21 +207,26 @@ JokerFX Signals <span class="live">● LIVE</span>
 <!-- RIGHT -->
 <div class="right">
 
-<div class="winrate" id="winrateBox">
-<h3>Win Rate</h3>
-<div class="win">Wins: <span id="wins">23</span></div>
-<div class="loss">Losses: <span id="losses">7</span></div>
-<p id="wr">76%</p>
+<div class="panel">
+<h3>📊 Performance Today</h3>
+<p>Trades: 3</p>
+<p class="win">Wins: 2</p>
+<p class="loss">Losses: 1</p>
+<p>+4.5 RR</p>
 </div>
 
-<div class="history" id="history">
-<h3>History</h3>
+<div class="panel">
+<h3>⚠ Risk Management</h3>
+<p>Risk per trade: 1%</p>
+<p>Max trades: 3/day</p>
+<p>Always use SL</p>
 </div>
 
-<div class="lock">
-<h3>🔒 Premium Signals</h3>
-<p>Join Telegram</p>
-<div class="lock-btn" onclick="window.open('https://t.me/jokeerfX')">
+<div class="panel">
+<h3>🔒 Premium</h3>
+<p>Full signals in Telegram</p>
+<div style="margin-top:10px;cursor:pointer;background:#22c55e;padding:10px;border-radius:8px;"
+onclick="window.open('https://t.me/jokeerfX')">
 Join Telegram
 </div>
 </div>
@@ -251,59 +235,9 @@ Join Telegram
 
 </div>
 
-<script>
-
-/* STATUS CHANGE */
-const statuses = ["Running...", "TP Hit ✅", "Closed", "In Profit +2RR"];
-
-setInterval(()=>{
-    document.getElementById("buyStatus").innerText =
-    statuses[Math.floor(Math.random()*statuses.length)];
-
-    document.getElementById("sellStatus").innerText =
-    statuses[Math.floor(Math.random()*statuses.length)];
-},4000);
-
-/* WINRATE AUTO */
-let wins = 23;
-let losses = 7;
-
-setInterval(()=>{
-    if(Math.random()>0.3){
-        wins++;
-    } else {
-        losses++;
-    }
-
-    document.getElementById("wins").innerText = wins;
-    document.getElementById("losses").innerText = losses;
-
-    let wr = Math.round((wins/(wins+losses))*100);
-    document.getElementById("wr").innerText = wr+"%";
-},6000);
-
-/* HISTORY AUTO */
-const pairs = ["XAUUSD","EURUSD","BTC"];
-
-setInterval(()=>{
-    let result = Math.random()>0.3 ? "WIN" : "LOSS";
-
-    let div = document.createElement("div");
-    div.className="history-item";
-    div.innerHTML = `
-        <span>${pairs[Math.floor(Math.random()*pairs.length)]}</span>
-        <span style="color:${result=="WIN"?"#22c55e":"#ef4444"}">${result}</span>
-    `;
-
-    document.getElementById("history").appendChild(div);
-
-    if(document.getElementById("history").children.length > 6){
-        document.getElementById("history").removeChild(document.getElementById("history").children[1]);
-    }
-
-},5000);
-
-</script>
+<div class="back" onclick="window.location.href='index.html'">
+← Back
+</div>
 
 </body>
 </html>
