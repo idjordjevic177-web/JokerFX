@@ -47,16 +47,29 @@
             padding: 20px;
         }
 
-        /* TABELA SIGNALA */
+        /* TABELA SIGNALA - SREĐENA VISINA I FONT */
         .table-header, .row {
             display: grid;
-            grid-template-columns: 120px repeat(7, 1fr);
+            grid-template-columns: 140px repeat(7, 1fr);
             text-align: center;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
-        .table-header { background: rgba(14, 165, 233, 0.2); font-weight: bold; font-size: 12px; border-radius: 10px; padding: 15px; }
-        .row { padding: 16px; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .table-header { 
+            background: rgba(14, 165, 233, 0.2); 
+            font-weight: bold; 
+            font-size: 15px; /* Povećan font naslova */
+            border-radius: 10px; 
+            padding: 20px; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .row { 
+            padding: 22px; /* Povećan padding za popunjavanje prostora */
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            font-size: 16px; /* Povećan font podataka */
+            min-height: 30px;
+        }
 
         /* SPECIFIČNE BOJE ZA BROJEVE */
         .entry-val { color: #facc15; font-weight: bold; } /* ŽUTA */
@@ -65,7 +78,7 @@
         
         .buy { color: #4ade80; font-weight: bold; }
         .sell { color: #f87171; font-weight: bold; }
-        .win-status { color: #4ade80; text-shadow: 0 0 8px rgba(74, 222, 128, 0.4); }
+        .win-status { color: #4ade80; text-shadow: 0 0 8px rgba(74, 222, 128, 0.4); font-weight: bold; }
 
         /* ANIMACIJA ZA ACTIVE STATUS */
         .active-status {
@@ -85,7 +98,7 @@
         .side-panel { display: flex; flex-direction: column; gap: 20px; }
         .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
 
-        /* STRONG NEWS WIDGET - NEW */
+        /* STRONG NEWS WIDGET */
         .strong-news-box {
             margin-top: 20px;
             height: 350px;
@@ -112,7 +125,7 @@
             filter: invert(90%) hue-rotate(180deg) brightness(1.1);
         }
 
-        /* SAT SA TAČKICAMA */
+        /* SAT */
         #clock { position: fixed; bottom: 30px; right: 25px; text-align: center; z-index: 100; }
         .clock-face { width: 90px; height: 90px; border: 2px solid rgba(14, 165, 233, 0.5); border-radius: 50%; position: relative; margin: 0 auto 10px; }
         .hand { position: absolute; bottom: 50%; left: 50%; transform-origin: bottom; background: white; border-radius: 2px; }
@@ -193,9 +206,9 @@
             <div>Tuesday</div><div class="sell">SELL</div><div>XAUUSD</div><div class="entry-val">4670</div><div class="sl-val">4695</div><div class="tp-val">4580</div><div>1:4</div><div class="active-status">Active</div>
         </div>
 
-        <div class="row fancy-ui"><div>Wednesday</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-        <div class="row fancy-ui"><div>Thursday</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-        <div class="row fancy-ui"><div>Friday</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <div class="row fancy-ui"><div>Wednesday</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div></div>
+        <div class="row fancy-ui"><div>Thursday</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div></div>
+        <div class="row fancy-ui"><div>Friday</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div></div>
 
         <div class="strong-news-box fancy-ui">
             <div class="news-header">🔥 TODAY'S HIGH IMPACT NEWS (STRONG)</div>
@@ -292,7 +305,7 @@
 </div>
 
 <script>
-    /* SAT SA TAČKICAMA */
+    /* SAT */
     const face = document.getElementById("face");
     ["hour", "minute", "second"].forEach(type => {
         let h = document.createElement("div"); h.className = "hand " + type; face.appendChild(h);
@@ -319,7 +332,6 @@
     }
     setInterval(updateClock, 1000); updateClock();
 
-    /* KALENDAR LOGIKA */
     const modal = document.getElementById("calendarModal");
     document.getElementById("openCalendar").onclick = () => modal.style.display = "flex";
     document.getElementById("closeCalendar").onclick = () => modal.style.display = "none";
