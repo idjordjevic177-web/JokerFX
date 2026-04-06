@@ -68,15 +68,16 @@
     }
 
     /* MAIN LAYOUT */
-    .main { display: flex; padding: 0 20px; gap: 10px; }
+    .main { display: flex; padding: 0 20px; gap: 15px; align-items: flex-start; }
 
     .left-panel {
         width: 200px;
-        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
     }
 
     .contact-item {
-        margin: 10px 0;
         padding: 12px;
         font-size: 14px;
         cursor: pointer;
@@ -91,6 +92,9 @@
     /* CHART CONTAINER */
     #chart-container {
         flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
     }
 
     #chart {
@@ -102,55 +106,46 @@
     /* RIGHT PRICE PANEL */
     #price-panel {
         width: 320px;
-        height: 420px; 
+        height: 550px; 
         overflow: hidden;
     }
 
-    /* ECONOMIC NEWS PANEL - UPDATED */
+    /* HORIZONTAL NEWS WIDGET - UPDATED */
     .news-widget {
-        position: fixed;
-        bottom: 110px; /* Spušteno iznad action dugmića */
-        left: 20px;
-        width: 230px; /* Malo uži da ne smeta */
-        height: 280px; /* Smanjena visina da ne prelazi preko charta */
-        z-index: 99;
+        width: 100%;
+        height: 180px; /* Vodoravna visina */
         overflow: hidden;
         border: 1px solid rgba(255, 165, 0, 0.2);
+        margin-top: 10px;
     }
 
     .news-header {
-        padding: 8px;
-        font-size: 11px;
+        padding: 6px;
+        font-size: 12px;
         font-weight: bold;
         color: #facc15;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         text-align: center;
-        background: rgba(0, 0, 0, 0.3);
+        background: rgba(0, 0, 0, 0.4);
     }
 
     .news-iframe-container {
         height: calc(100% - 30px);
-        overflow: hidden;
     }
 
-    /* Filter koji osigurava tamni mod i vidljivost tabele */
     .news-iframe-container iframe {
         filter: invert(90%) hue-rotate(180deg) brightness(1.1);
     }
 
-    /* BOTTOM CONTROLS */
-    .bottom-buttons {
-        position: fixed;
-        bottom: 100px;
-        left: 20px;
+    /* SIDE ACTION BUTTONS */
+    .action-group {
         display: flex;
         flex-direction: column;
         gap: 10px;
-        z-index: 100;
+        margin-top: 20px;
     }
 
     .btn-action {
-        width: 200px;
         padding: 14px;
         text-align: center;
         font-weight: bold;
@@ -167,23 +162,21 @@
         right: 20px;
         padding: 10px;
         text-align: center;
-        background: transparent;
-        border: none;
     }
 
     .clock {
-        width: 90px;
-        height: 90px;
+        width: 80px;
+        height: 80px;
         border: 2px solid rgba(14, 165, 233, 0.6);
         border-radius: 50%;
         position: relative;
-        margin: 0 auto 10px;
+        margin: 0 auto 5px;
     }
 
     .clock-dot {
         position: absolute;
-        width: 4px;
-        height: 4px;
+        width: 3px;
+        height: 3px;
         background: #0ea5e9;
         border-radius: 50%;
     }
@@ -197,12 +190,12 @@
         border-radius: 2px;
     }
 
-    .hour { width: 3px; height: 22px; }
-    .minute { width: 2px; height: 32px; }
-    .second { width: 1px; height: 38px; background: #0ea5e9; }
+    .hour { width: 3px; height: 18px; }
+    .minute { width: 2px; height: 28px; }
+    .second { width: 1px; height: 32px; background: #0ea5e9; }
 
-    .digital { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 5px; }
-    .sessions { font-size: 14px; font-weight: 600; opacity: 0.9; color: #fff; line-height: 1.4; }
+    .digital { font-size: 20px; font-weight: 800; color: #fff; }
+    .sessions { font-size: 12px; opacity: 0.8; color: #fff; line-height: 1.2; margin-top: 5px; }
 
     /* RADIO BAR */
     #radio-bar {
@@ -216,6 +209,7 @@
         justify-content: space-between;
         align-items: center;
         box-sizing: border-box;
+        z-index: 1000;
     }
 
     .play-btn {
@@ -228,11 +222,10 @@
         font-weight: bold;
     }
 
-    @media(max-width: 1100px){
+    @media(max-width: 1200px){
         .main { flex-direction: column; }
-        .left-panel, #price-panel { width: 100%; }
+        .left-panel, #price-panel, #chart-container { width: 100%; }
         #clock-widget { position: static; margin: 20px auto; }
-        .news-widget { position: static; width: 100%; margin: 20px 0; }
     }
 </style>
 </head>
@@ -243,8 +236,14 @@
 
 <div class="main">
     <div class="left-panel">
+        <div style="font-size: 11px; color: #94a3b8; font-weight: bold; margin-bottom: 5px;">DIRECT SUPPORT</div>
         <div class="contact-item fancy-ui" onclick="window.open('https://instagram.com/ivan.djordjevic13')">📸 Instagram</div>
         <div class="contact-item fancy-ui" onclick="window.open('https://t.me/jokeerfX')">📲 Telegram</div>
+        
+        <div class="action-group">
+            <div class="btn-action fancy-ui disabled">🔥 FTMO SERVICE<br><span style="font-size:9px; color:#0ea5e9;">COMING SOON</span></div>
+            <div class="btn-action fancy-ui" onclick="window.location.href='signals.html'">📊 SIGNALS & ANALYSIS</div>
+        </div>
     </div>
 
     <div id="chart-container">
@@ -253,7 +252,21 @@
             <button onclick="changeSymbol('FOREXCOM:EURUSD')">EURUSD</button>
             <button onclick="changeSymbol('BINANCE:BTCUSDT')">BTC</button>
         </div>
+        
         <div id="chart"></div>
+
+        <div class="news-widget fancy-ui">
+            <div class="news-header">TODAY'S IMPACT NEWS</div>
+            <div class="news-iframe-container">
+                <iframe src="https://sslecal2.forexprostools.com?columns=exc_flags,exc_currency,exc_importance,exc_actual,exc_forecast,exc_previous&importance=2,3&features=datepicker,timezone&countries=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40&calType=day&timeZone=58&lang=1" 
+                        width="100%" 
+                        height="100%" 
+                        frameborder="0" 
+                        allowtransparency="true" 
+                        marginwidth="0" 
+                        marginheight="0"></iframe>
+            </div>
+        </div>
     </div>
 
     <div id="price-panel" class="fancy-ui">
@@ -295,24 +308,6 @@
     </div>
 </div>
 
-<div class="news-widget fancy-ui">
-    <div class="news-header">TODAY'S IMPACT NEWS</div>
-    <div class="news-iframe-container">
-        <iframe src="https://sslecal2.forexprostools.com?columns=exc_flags,exc_currency,exc_importance&importance=2,3&features=datepicker,timezone&countries=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40&calType=day&timeZone=58&lang=1" 
-                width="100%" 
-                height="100%" 
-                frameborder="0" 
-                allowtransparency="true" 
-                marginwidth="0" 
-                marginheight="0"></iframe>
-    </div>
-</div>
-
-<div class="bottom-buttons">
-    <div class="btn-action fancy-ui disabled">🔥 FTMO SERVICE<br><span style="font-size:9px; color:#0ea5e9;">COMING SOON</span></div>
-    <div class="btn-action fancy-ui" onclick="window.location.href='signals.html'">📊 SIGNALS & ANALYSIS</div>
-</div>
-
 <div id="clock-widget">
     <div class="clock" id="clock-face">
         <div class="hand hour" id="hour"></div>
@@ -334,7 +329,7 @@
 
 <script src="https://s3.tradingview.com/tv.js"></script>
 <script>
-/* CREATE DOTS ON CLOCK */
+/* CLOCK LOGIC */
 const face = document.getElementById('clock-face');
 for(let i=0; i<12; i++) {
     const dot = document.createElement('div');
@@ -380,7 +375,7 @@ function updateClock(){
     let tky = new Date().toLocaleTimeString("en-US", {timeZone: "Asia/Tokyo", ...options});
 
     document.getElementById("digital").innerHTML = lon;
-    document.getElementById("sessions").innerHTML = `NY: ${ny}<br>LDN: ${lon}<br>TKY: ${tky}`;
+    document.getElementById("sessions").innerHTML = `NY: ${ny} | LDN: ${lon} | TKY: ${tky}`;
 }
 setInterval(updateClock, 1000);
 updateClock();
