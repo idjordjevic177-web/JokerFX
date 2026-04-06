@@ -21,7 +21,7 @@
             z-index: -1;
         }
 
-        /* LIVE TICKER NA VRHU */
+        /* LIVE TICKER */
         .top-ticker {
             width: 100%;
             height: 40px;
@@ -47,7 +47,7 @@
             padding: 20px;
         }
 
-        /* TABELA SA BOJAMA ZA ENTRY, SL, TP */
+        /* TABELA SIGNALA */
         .table-header, .row {
             display: grid;
             grid-template-columns: 120px repeat(7, 1fr);
@@ -58,20 +58,19 @@
         .table-header { background: rgba(14, 165, 233, 0.2); font-weight: bold; font-size: 12px; border-radius: 10px; padding: 15px; }
         .row { padding: 16px; border: 1px solid rgba(255, 255, 255, 0.05); }
 
+        /* SPECIFIČNE BOJE ZA BROJEVE */
         .entry-val { color: #facc15; font-weight: bold; } /* ŽUTA */
         .sl-val { color: #f87171; font-weight: bold; }    /* CRVENA */
         .tp-val { color: #4ade80; font-weight: bold; }    /* ZELENA */
         
         .buy { color: #4ade80; font-weight: bold; }
-        .win { color: #4ade80; text-shadow: 0 0 8px rgba(74, 222, 128, 0.4); }
+        .win-status { color: #4ade80; text-shadow: 0 0 8px rgba(74, 222, 128, 0.4); }
 
         /* DESNI PANEL */
         .side-panel { display: flex; flex-direction: column; gap: 20px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
 
-        /* STATS */
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 15px; }
-
-        /* ANALOGNI SAT SA TAČKICAMA */
+        /* SAT SA TAČKICAMA */
         #clock { position: fixed; bottom: 30px; right: 25px; text-align: center; z-index: 100; }
         .clock-face { width: 90px; height: 90px; border: 2px solid rgba(14, 165, 233, 0.5); border-radius: 50%; position: relative; margin: 0 auto 10px; }
         .hand { position: absolute; bottom: 50%; left: 50%; transform-origin: bottom; background: white; border-radius: 2px; }
@@ -82,19 +81,48 @@
         .digital { font-size: 22px; font-weight: 800; }
         .sessions { font-size: 10px; opacity: 0.7; line-height: 1.4; }
 
-        /* KONTROLE I KALENDAR */
-        .controls-left { position: fixed; bottom: 30px; left: 25px; display: flex; flex-direction: column; gap: 12px; }
-        .controls-left button { width: 200px; padding: 15px; border: 1px solid rgba(14, 165, 233, 0.3); background: rgba(15, 23, 42, 0.8); color: white; cursor: pointer; font-weight: bold; text-transform: uppercase; }
-        
-        #calendarModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); justify-content: center; align-items: center; z-index: 9999; backdrop-filter: blur(10px); }
-        .calendar-box { background: #0b1220; border: 2px solid #0ea5e9; padding: 30px; border-radius: 20px; width: 90%; max-width: 900px; }
-        
-        /* POPRAVLJEN KALENDAR GRID */
-        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; margin-top: 20px; }
-        .day { min-height: 70px; padding: 8px; border-radius: 10px; background: rgba(255, 255, 255, 0.05); text-align: center; font-size: 12px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        /* KALENDAR MODAL */
+        #calendarModal { 
+            display: none; 
+            position: fixed; 
+            top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0, 0, 0, 0.95); 
+            justify-content: center; align-items: center; 
+            z-index: 9999; backdrop-filter: blur(10px); 
+        }
+        .calendar-box { 
+            background: #0b1220; 
+            padding: 25px; 
+            border-radius: 15px; 
+            width: 90%; 
+            max-width: 1000px; 
+            border: 1px solid #0ea5e9;
+        }
+        #closeCalendar { float: right; cursor: pointer; font-size: 20px; color: #0ea5e9; }
+        .calendar-grid { 
+            display: grid; 
+            grid-template-columns: repeat(7, 1fr); 
+            gap: 12px; 
+            margin-top: 20px; 
+        }
+        .day-name { text-align: center; opacity: 0.6; font-size: 14px; padding-bottom: 5px; }
+        .day { 
+            min-height: 70px; 
+            padding: 8px; 
+            border-radius: 10px; 
+            background: rgba(255, 255, 255, 0.05); 
+            text-align: center; 
+            font-size: 13px;
+            display: flex; flex-direction: column; justify-content: center;
+        }
         .day.win { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
         .day.loss { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
-        .day.prev, .day.next { opacity: 0.2; }
+        .day.prev, .day.next { opacity: 0.3; }
+
+        /* KONTROLE LEVO */
+        .controls-left { position: fixed; bottom: 30px; left: 25px; display: flex; flex-direction: column; gap: 12px; }
+        .controls-left button { width: 200px; padding: 15px; border: 1px solid rgba(14, 165, 233, 0.3); background: rgba(15, 23, 42, 0.8); color: white; cursor: pointer; font-weight: bold; text-transform: uppercase; border-radius: 8px; transition: 0.3s; }
+        .controls-left button:hover { background: #0ea5e9; box-shadow: 0 0 15px #0ea5e9; }
     </style>
 </head>
 <body>
@@ -116,7 +144,7 @@
         </div>
         
         <div class="row fancy-ui">
-            <div>Monday</div><div class="buy">BUY</div><div>XAUUSD</div><div class="entry-val">4610</div><div class="sl-val">4595</div><div class="tp-val">4700</div><div>1:6</div><div class="win">Profit</div>
+            <div>Monday</div><div class="buy">BUY</div><div>XAUUSD</div><div class="entry-val">4610</div><div class="sl-val">4595</div><div class="tp-val">4700</div><div>1:6</div><div class="win-status">Closed - Profit</div>
         </div>
         <div class="row fancy-ui"><div>Tuesday</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
         <div class="row fancy-ui"><div>Wednesday</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
@@ -143,7 +171,7 @@
         <div class="fancy-ui" style="padding: 15px; text-align: center;">
             <span style="font-size: 12px; opacity: 0.7;">WEEKLY STATISTICS</span>
             <div class="stats-grid">
-                <div><small>WIN</small><h2 class="win" style="margin:5px 0;">1</h2></div>
+                <div><small>WIN</small><h2 class="tp-val" style="margin:5px 0;">1</h2></div>
                 <div><small>LOSE</small><h2 style="margin:5px 0; color: #f87171;">0</h2></div>
                 <div><small>PIPS</small><h2 style="margin:5px 0;">+900</h2></div>
             </div>
@@ -158,18 +186,25 @@
 </div>
 
 <div class="controls-left">
-    <button id="openCalendar" class="fancy-ui">📊 Previous Month</button>
-    <button class="fancy-ui" onclick="window.location.href='index.html'">🏠 Back to Home</button>
+    <button id="openCalendar">📊 Previous Month</button>
+    <button id="backHome" onclick="window.location.href='index.html'">🏠 Back to Home</button>
 </div>
 
 <div id="calendarModal">
     <div class="calendar-box">
-        <span id="closeCalendar" style="float:right; cursor:pointer; font-size: 24px; color: #0ea5e9;">✖</span>
-        <h2 style="color:#0ea5e9; margin-top:0;">April 2026 - Earnings</h2>
+        <span id="closeCalendar">✖</span>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h2>April 2026</h2>
+            <div id="monthStats" style="font-size:14px; opacity:0.8;">
+                Monthly stats: $3,371 | Trading days: 30
+            </div>
+        </div>
+
         <div class="calendar-grid">
-            <div style="text-align:center; opacity:0.6;">Mon</div><div style="text-align:center; opacity:0.6;">Tue</div><div style="text-align:center; opacity:0.6;">Wed</div><div style="text-align:center; opacity:0.6;">Thu</div><div style="text-align:center; opacity:0.6;">Fri</div><div style="text-align:center; opacity:0.6;">Sat</div><div style="text-align:center; opacity:0.6;">Sun</div>
+            <div class="day-name">Mon</div><div class="day-name">Tue</div><div class="day-name">Wed</div><div class="day-name">Thu</div><div class="day-name">Fri</div><div class="day-name">Sat</div><div class="day-name">Sun</div>
 
             <div class="day prev">30</div><div class="day prev">31</div>
+
             <div class="day loss">1<br>-$22</div>
             <div class="day win">2<br>$401</div>
             <div class="day">3</div>
@@ -180,6 +215,28 @@
             <div class="day">8</div>
             <div class="day win">9<br>$250</div>
             <div class="day win">10<br>$550</div>
+            <div class="day">11</div>
+            <div class="day">12</div>
+            <div class="day loss">13<br>-$120</div>
+            <div class="day loss">14<br>-$90</div>
+            <div class="day win">15<br>$465</div>
+            <div class="day">16</div>
+            <div class="day win">17<br>$240</div>
+            <div class="day">18</div>
+            <div class="day">19</div>
+            <div class="day">20</div>
+            <div class="day win">21<br>$240</div>
+            <div class="day win">22<br>$340</div>
+            <div class="day win">23<br>$223</div>
+            <div class="day">24</div>
+            <div class="day">25</div>
+            <div class="day">26</div>
+            <div class="day loss">27<br>-$134</div>
+            <div class="day win">28<br>$780</div>
+            <div class="day">29</div>
+            <div class="day win">30<br>$738</div>
+
+            <div class="day next">1</div><div class="day next">2</div><div class="day next">3</div>
         </div>
     </div>
 </div>
@@ -212,6 +269,7 @@
     }
     setInterval(updateClock, 1000); updateClock();
 
+    /* KALENDAR LOGIKA */
     const modal = document.getElementById("calendarModal");
     document.getElementById("openCalendar").onclick = () => modal.style.display = "flex";
     document.getElementById("closeCalendar").onclick = () => modal.style.display = "none";
