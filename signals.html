@@ -8,35 +8,47 @@
 
 <style>
 
+/* BACKGROUND */
 body{
     margin:0;
-    background:#0f172a;
-    color:white;
+    background:url('joker.jpg') no-repeat center center fixed;
+    background-size:cover;
     font-family:Arial;
+    color:white;
+}
+
+/* DARK OVERLAY */
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.75);
+    z-index:-1;
 }
 
 /* HEADER */
 .header{
     text-align:center;
     padding:20px;
-    font-size:28px;
+    font-size:26px;
 }
 
 /* MAIN */
 .container{
     display:flex;
-    padding:20px;
     gap:20px;
+    padding:20px;
 }
 
-/* DAYS */
+/* LEFT DAYS */
 .days{
     width:200px;
 }
 
 .day{
     background:#1e293b;
-    padding:15px;
+    padding:14px;
     border-radius:10px;
     margin-bottom:10px;
     text-align:center;
@@ -48,51 +60,61 @@ body{
     background:#334155;
 }
 
-/* SIGNAL TABLE */
+/* RIGHT SIDE */
 .signals{
     flex:1;
 }
 
-/* ROW */
-.row{
+/* HEADER ROW */
+.table-header{
+    display:flex;
     background:#1e293b;
-    padding:15px;
+    padding:12px;
     border-radius:10px;
-    margin-bottom:10px;
-}
-
-/* GRID */
-.grid{
-    display:grid;
-    grid-template-columns: repeat(7,1fr);
-    gap:10px;
-    align-items:center;
-}
-
-/* HEAD */
-.head{
     font-weight:bold;
-    opacity:0.7;
+    opacity:0.8;
 }
 
-/* BUY SELL */
-.buy{
-    color:#22c55e;
+.table-header div{
+    flex:1;
+    text-align:center;
 }
-.sell{
-    color:#ef4444;
+
+/* CARD ROW */
+.signal-card{
+    display:flex;
+    align-items:center;
+    background:#1e293b;
+    margin-top:10px;
+    padding:12px;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+.signal-card:hover{
+    background:#334155;
+}
+
+/* BUY / SELL ICON */
+.type{
+    width:60px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.buy{color:#22c55e;}
+.sell{color:#ef4444;}
+
+/* COLUMNS */
+.col{
+    flex:1;
+    text-align:center;
 }
 
 /* STATUS */
-.win{
-    color:#22c55e;
-}
-.loss{
-    color:#ef4444;
-}
-.active{
-    color:#facc15;
-}
+.win{color:#22c55e;}
+.loss{color:#ef4444;}
+.active{color:#facc15;}
 
 /* STATS */
 .stats{
@@ -102,10 +124,10 @@ body{
     border-radius:10px;
 }
 
-.stats-grid{
+.stats-row{
     display:flex;
     justify-content:space-around;
-    text-align:center;
+    margin-top:10px;
 }
 
 /* MOBILE */
@@ -132,9 +154,8 @@ body{
 
 <div class="container">
 
-<!-- LEFT DAYS -->
+<!-- LEFT -->
 <div class="days">
-
 <div class="day">Monday</div>
 <div class="day">Tuesday</div>
 <div class="day">Wednesday</div>
@@ -142,14 +163,13 @@ body{
 <div class="day">Friday</div>
 <div class="day">Saturday</div>
 <div class="day">Sunday</div>
-
 </div>
 
-<!-- SIGNALS -->
+<!-- RIGHT -->
 <div class="signals">
 
 <!-- HEADER -->
-<div class="row grid head">
+<div class="table-header">
 <div>Type</div>
 <div>Pair</div>
 <div>Entry</div>
@@ -160,34 +180,34 @@ body{
 </div>
 
 <!-- SIGNAL -->
-<div class="row grid">
-<div class="buy">BUY</div>
-<div>EURUSD</div>
-<div>1.0650</div>
-<div>1.0600</div>
-<div>1.0750</div>
-<div>1:3</div>
-<div class="win">Closed - Profit</div>
+<div class="signal-card">
+<div class="type buy">BUY</div>
+<div class="col">EURUSD</div>
+<div class="col">1.0650</div>
+<div class="col">1.0600</div>
+<div class="col">1.0750</div>
+<div class="col">1:3</div>
+<div class="col win">Closed - Profit</div>
 </div>
 
-<div class="row grid">
-<div class="sell">SELL</div>
-<div>GBPJPY</div>
-<div>182.20</div>
-<div>183.00</div>
-<div>180.50</div>
-<div>1:2</div>
-<div class="loss">Closed - Loss</div>
+<div class="signal-card">
+<div class="type sell">SELL</div>
+<div class="col">GBPJPY</div>
+<div class="col">182.20</div>
+<div class="col">183.00</div>
+<div class="col">180.50</div>
+<div class="col">1:2</div>
+<div class="col loss">Closed - Loss</div>
 </div>
 
-<div class="row grid">
-<div class="buy">BUY</div>
-<div>AUDUSD</div>
-<div>1.0650</div>
-<div>1.0600</div>
-<div>1.0750</div>
-<div>1:3</div>
-<div class="active">Active</div>
+<div class="signal-card">
+<div class="type buy">BUY</div>
+<div class="col">AUDUSD</div>
+<div class="col">1.0650</div>
+<div class="col">1.0600</div>
+<div class="col">1.0750</div>
+<div class="col">1:3</div>
+<div class="col active">Active</div>
 </div>
 
 </div>
@@ -196,10 +216,9 @@ body{
 
 <!-- STATS -->
 <div class="stats">
-
 <h3>Weekly Statistics</h3>
 
-<div class="stats-grid">
+<div class="stats-row">
 <div>
 <p>Total Trades</p>
 <h2>12</h2>
@@ -214,7 +233,6 @@ body{
 <p>Losing Trades</p>
 <h2 class="loss">4</h2>
 </div>
-
 </div>
 
 </div>
