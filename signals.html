@@ -190,6 +190,10 @@ body::before{
 .day.win{background:rgba(34,197,94,0.2);}
 .day.loss{background:rgba(239,68,68,0.2);}
 
+.day.prev,.day.next{
+    opacity:0.3;
+}
+
 </style>
 </head>
 
@@ -231,7 +235,6 @@ body::before{
 
 </div>
 
-<!-- STATS -->
 <div class="stats">
 <h3>Weekly Statistics</h3>
 <p>04.06.2026 - 11.06.2026</p>
@@ -272,12 +275,13 @@ body::before{
 <div class="day-name">Sun</div>
 
 <!-- WEEK 1 -->
-<div></div><div></div>
+<div class="day prev">30</div>
+<div class="day prev">31</div>
 <div class="day loss">1<br>-$22</div>
 <div class="day win">2<br>$401</div>
-<div></div>
+<div class="day">3</div>
 <div class="day loss">4<br>-$48</div>
-<div></div>
+<div class="day">5</div>
 
 <!-- WEEK 2 -->
 <div class="day loss">6<br>-$43</div>
@@ -311,7 +315,9 @@ body::before{
 <div class="day">28</div>
 <div class="day">29</div>
 <div class="day">30</div>
-<div></div><div></div><div></div>
+<div class="day next">1</div>
+<div class="day next">2</div>
+<div class="day next">3</div>
 
 </div>
 
