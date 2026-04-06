@@ -7,176 +7,191 @@
 <title>JokerFX</title>
 
 <style>
-body{
-    margin:0;
-    background:url('joker.jpg') no-repeat center center fixed;
-    background-size:cover;
-    color:white;
-    font-family:Arial;
+body {
+    margin: 0;
+    background: url('joker.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    font-family: Arial;
 }
 
-body::before{
-    content:"";
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.75);
-    z-index:-1;
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: -1;
 }
 
 /* HEADER */
-.header{
-    padding:20px;
-    font-size:32px;
-    font-weight:bold;
-    text-shadow:0 0 15px #0ea5e9;
+.header {
+    padding: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    text-shadow: 0 0 15px #0ea5e9;
 }
 
 /* CONTACT PANEL */
-.left-panel{
-    width:200px;
-    padding:25px;
+.left-panel {
+    width: 200px;
+    padding: 25px;
 }
 
-.contact-title{
-    font-size:16px;
-    margin-bottom:15px;
-    opacity:0.7;
+.contact-title {
+    font-size: 16px;
+    margin-bottom: 15px;
+    opacity: 0.7;
 }
 
-.contact-item{
-    margin:15px 0;
-    font-size:15px;
-    padding:10px;
-    background:rgba(255,255,255,0.05);
-    border-radius:8px;
-    cursor:pointer;
-    transition:0.3s;
+.contact-item {
+    margin: 15px 0;
+    font-size: 15px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.contact-item:hover{
-    background:rgba(14,165,233,0.2);
+.contact-item:hover {
+    background: rgba(14, 165, 233, 0.2);
 }
 
 /* LAYOUT */
-.main{display:flex;}
+.main { display: flex; }
 
 /* CHART */
-#chart-container{
-    flex:1;
-    margin:20px;
+#chart-container {
+    flex: 1;
+    margin: 20px;
 }
 
 /* 🔥 BUTTONS UPGRADE */
-.buttons{
-    text-align:center;
-    margin-bottom:15px;
+.buttons {
+    text-align: center;
+    margin-bottom: 15px;
 }
 
-.buttons button{
-    margin:5px;
-    padding:10px 18px;
-    border:none;
-    border-radius:8px;
-    background:linear-gradient(145deg,#1f2937,#111827);
-    color:white;
-    cursor:pointer;
-    transition:0.3s;
+.buttons button {
+    margin: 5px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #1f2937, #111827);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.buttons button:hover{
-    box-shadow:0 0 10px #0ea5e9;
-    transform:translateY(-2px);
+.buttons button:hover {
+    box-shadow: 0 0 10px #0ea5e9;
+    transform: translateY(-2px);
 }
 
 /* RIGHT */
-#price-panel{
-    width:260px;
-    margin:20px;
+#price-panel {
+    width: 260px;
+    margin: 20px;
 }
 
-.tradingview-widget-copyright{
-    display:none !important;
+.tradingview-widget-copyright {
+    display: none !important;
 }
 
 /* BUTTONS */
-.bottom-buttons{
-    position:fixed;
-    bottom:100px;
-    left:20px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
+.bottom-buttons {
+    position: fixed;
+    bottom: 100px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.btn{
-    background:#111827;
-    padding:12px 18px;
-    border-radius:10px;
-    cursor:pointer;
+.btn {
+    background: #111827;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #1f2937;
+}
+
+/* DISABLED BUTTON */
+.btn.disabled {
+    cursor: default;
+    opacity: 0.5;
+}
+
+.btn.disabled:hover {
+    background: #111827; /* Zadrzava istu boju na hover */
 }
 
 /* CLOCK */
-#clock-widget{
-    position:fixed;
-    bottom:100px;
-    right:20px;
+#clock-widget {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
     backdrop-filter: blur(20px);
-    background: rgba(255,255,255,0.05);
-    border-radius:20px;
-    padding:20px;
-    text-align:center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
 }
 
-.clock{
-    width:100px;
-    height:100px;
-    border:3px solid rgba(255,255,255,0.2);
-    border-radius:50%;
-    position:relative;
-    margin:auto;
+.clock {
+    width: 100px;
+    height: 100px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    position: relative;
+    margin: auto;
 }
 
-.dot{
-    width:6px;
-    height:6px;
-    background:white;
-    border-radius:50%;
-    position:absolute;
+.dot {
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
 }
 
-.hand{
-    position:absolute;
-    bottom:50%;
-    left:50%;
+.hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
     transform-origin: bottom;
-    background:white;
+    background: white;
 }
 
-.hour{width:3px;height:25px;}
-.minute{width:2px;height:35px;}
-.second{width:1px;height:40px;background:#22c55e;}
+.hour { width: 3px; height: 25px; }
+.minute { width: 2px; height: 35px; }
+.second { width: 1px; height: 40px; background: #22c55e; }
 
-.digital{margin-top:10px;}
-.sessions{font-size:12px;opacity:0.7;}
+.digital { margin-top: 10px; }
+.sessions { font-size: 12px; opacity: 0.7; }
 
 /* RADIO */
-#radio-bar{
-    position:fixed;
-    bottom:0;
-    width:100%;
-    background:rgba(0,0,0,0.8);
-    padding:10px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+#radio-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* MOBILE */
-@media(max-width:768px){
-.main{flex-direction:column;}
-.left-panel{display:none;}
-#price-panel{width:100%;}
+@media(max-width: 768px){
+    .main { flex-direction: column; }
+    .left-panel { display: none; }
+    #price-panel { width: 100%; }
 }
 </style>
 </head>
@@ -187,142 +202,142 @@ body::before{
 
 <div class="main">
 
-<div class="left-panel">
+    <div class="left-panel">
+        <div class="contact-title">Contact</div>
+        <div class="contact-item" onclick="window.open('https://instagram.com/ivan.djordjevic13')">
+            📸 Instagram
+        </div>
+        <div class="contact-item" onclick="window.open('https://t.me/jokeerfX')">
+            📲 Telegram
+        </div>
+    </div>
 
-<div class="contact-title">Contact</div>
+    <div id="chart-container">
+        <div class="buttons">
+            <button onclick="changeSymbol('FOREXCOM:XAUUSD')">XAUUSD</button>
+            <button onclick="changeSymbol('FOREXCOM:EURUSD')">EURUSD</button>
+            <button onclick="changeSymbol('BINANCE:BTCUSDT')">BTC</button>
+        </div>
+        <div id="chart"></div>
+    </div>
 
-<div class="contact-item" onclick="window.open('https://instagram.com/ivan.djordjevic13')">
-📸 Instagram
-</div>
-
-<div class="contact-item" onclick="window.open('https://t.me/jokeerfX')">
-📲 Telegram
-</div>
-
-</div>
-
-<div id="chart-container">
-
-<div class="buttons">
-<button onclick="changeSymbol('FOREXCOM:XAUUSD')">XAUUSD</button>
-<button onclick="changeSymbol('FOREXCOM:EURUSD')">EURUSD</button>
-<button onclick="changeSymbol('BINANCE:BTCUSDT')">BTC</button>
-</div>
-
-<div id="chart"></div>
-
-</div>
-
-<div id="price-panel">
-<script src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-{
-  "colorTheme": "dark",
-  "showChart": false,
-  "width": "100%",
-  "height": "220",
-  "tabs": [{
-    "title": "Main",
-    "symbols": [
-      {"s":"BINANCE:BTCUSDT"},
-      {"s":"FOREXCOM:XAUUSD"},
-      {"s":"CAPITALCOM:DXY"}
-    ]
-  }]
-}
-</script>
-</div>
+    <div id="price-panel">
+        <script src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+        {
+          "colorTheme": "dark",
+          "showChart": false,
+          "width": "100%",
+          "height": "220",
+          "tabs": [{
+            "title": "Main",
+            "symbols": [
+              {"s":"BINANCE:BTCUSDT"},
+              {"s":"FOREXCOM:XAUUSD"},
+              {"s":"CAPITALCOM:DXY"}
+            ]
+          }]
+        }
+        </script>
+    </div>
 
 </div>
 
 <div class="bottom-buttons">
-<div class="btn" onclick="window.location.href='ftmo.html'">🔥 FTMO Service</div>
-<div class="btn" onclick="window.location.href='signals.html'">🔥 Signals & Analysis</div>
+    <div class="btn disabled">🔥 FTMO Service <span style="font-size: 12px; opacity: 0.7; margin-left: 5px;">(Coming soon)</span></div>
+    
+    <div class="btn" onclick="window.location.href='signals.html'">🔥 Signals & Analysis</div>
 </div>
 
-<!-- CLOCK -->
 <div id="clock-widget">
-<div class="clock">
+    <div class="clock">
+        <div class="dot" style="top:5%;left:50%"></div>
+        <div class="dot" style="top:20%;right:15%"></div>
+        <div class="dot" style="top:50%;right:5%"></div>
+        <div class="dot" style="bottom:20%;right:15%"></div>
+        <div class="dot" style="bottom:5%;left:50%"></div>
+        <div class="dot" style="bottom:20%;left:15%"></div>
+        <div class="dot" style="top:50%;left:5%"></div>
+        <div class="dot" style="top:20%;left:15%"></div>
+        
+        <div class="hand hour" id="hour"></div>
+        <div class="hand minute" id="minute"></div>
+        <div class="hand second" id="second"></div>
+    </div>
 
-<div class="dot" style="top:5%;left:50%"></div>
-<div class="dot" style="top:20%;right:15%"></div>
-<div class="dot" style="top:50%;right:5%"></div>
-<div class="dot" style="bottom:20%;right:15%"></div>
-<div class="dot" style="bottom:5%;left:50%"></div>
-<div class="dot" style="bottom:20%;left:15%"></div>
-<div class="dot" style="top:50%;left:5%"></div>
-<div class="dot" style="top:20%;left:15%"></div>
-
-<div class="hand hour" id="hour"></div>
-<div class="hand minute" id="minute"></div>
-<div class="hand second" id="second"></div>
-
+    <div class="digital" id="digital"></div>
+    <div class="sessions" id="sessions"></div>
 </div>
 
-<div class="digital" id="digital"></div>
-<div class="sessions" id="sessions"></div>
-</div>
-
-<!-- RADIO -->
 <div id="radio-bar">
-<div>🎧 Afro House Radio</div>
-<div>
-<button onclick="togglePlay()">▶ / ⏸</button>
-<input type="range" min="0" max="1" step="0.01" value="0.2" onchange="setVolume(this.value)">
-</div>
-
-<audio id="radio">
-<source src="https://stream.zeno.fm/0r0xa792kwzuv" type="audio/mpeg">
-</audio>
+    <div>🎧 Afro House Radio</div>
+    <div>
+        <button onclick="togglePlay()">▶ / ⏸</button>
+        <input type="range" min="0" max="1" step="0.01" value="0.2" onchange="setVolume(this.value)">
+    </div>
+    
+    <audio id="radio">
+        <source src="https://stream.zeno.fm/0r0xa792kwzuv" type="audio/mpeg">
+    </audio>
 </div>
 
 <script src="https://s3.tradingview.com/tv.js"></script>
 
 <script>
 function createChart(symbol){
-    document.getElementById("chart").innerHTML="";
+    document.getElementById("chart").innerHTML = "";
     new TradingView.widget({
-        "width":"100%",
-        "height":500,
-        "symbol":symbol,
-        "interval":"60",
-        "theme":"dark",
-        "container_id":"chart"
+        "width": "100%",
+        "height": 500,
+        "symbol": symbol,
+        "interval": "60",
+        "theme": "dark",
+        "container_id": "chart"
     });
 }
-function changeSymbol(symbol){createChart(symbol);}
+
+function changeSymbol(symbol){
+    createChart(symbol);
+}
+
 createChart("FOREXCOM:XAUUSD");
 
 /* CLOCK */
 function updateClock(){
-    let now=new Date();
+    let now = new Date();
 
-    let sec=now.getSeconds();
-    let min=now.getMinutes();
-    let hr=now.getHours();
+    let sec = now.getSeconds();
+    let min = now.getMinutes();
+    let hr = now.getHours();
 
-    second.style.transform=`rotate(${sec*6}deg)`;
-    minute.style.transform=`rotate(${min*6+sec*0.1}deg)`;
-    hour.style.transform=`rotate(${(hr%12)*30+min*0.5}deg)`;
+    document.getElementById("second").style.transform = `rotate(${sec * 6}deg)`;
+    document.getElementById("minute").style.transform = `rotate(${min * 6 + sec * 0.1}deg)`;
+    document.getElementById("hour").style.transform = `rotate(${(hr % 12) * 30 + min * 0.5}deg)`;
 
-    let ny=new Date().toLocaleTimeString("en-US",{timeZone:"America/New_York"});
-    let london=new Date().toLocaleTimeString("en-GB",{timeZone:"Europe/London"});
-    let tokyo=new Date().toLocaleTimeString("en-US",{timeZone:"Asia/Tokyo"});
+    let ny = new Date().toLocaleTimeString("en-US", {timeZone: "America/New_York"});
+    let london = new Date().toLocaleTimeString("en-GB", {timeZone: "Europe/London"});
+    let tokyo = new Date().toLocaleTimeString("en-US", {timeZone: "Asia/Tokyo"});
 
-    digital.innerHTML=london;
-    sessions.innerHTML=`NY: ${ny}<br>London: ${london}<br>Tokyo: ${tokyo}`;
+    document.getElementById("digital").innerHTML = london;
+    document.getElementById("sessions").innerHTML = `NY: ${ny}<br>London: ${london}<br>Tokyo: ${tokyo}`;
 }
-setInterval(updateClock,1000);
+
+setInterval(updateClock, 1000);
+updateClock(); // Pozivamo odmah da se izbegne delay
 
 /* RADIO */
-const radio=document.getElementById("radio");
+const radio = document.getElementById("radio");
 
 function togglePlay(){
-    radio.muted=false;
-    radio.play();
+    radio.muted = false;
+    if (radio.paused) {
+        radio.play();
+    } else {
+        radio.pause();
+    }
 }
 
 function setVolume(val){
-    radio.volume=val;
+    radio.volume = val;
 }
 </script>
 
