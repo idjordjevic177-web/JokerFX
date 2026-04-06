@@ -7,17 +7,32 @@
 <title>JokerFX Signals</title>
 
 <style>
+
+/* 🔥 BACKGROUND */
 body{
     margin:0;
-    background:#020617;
+    background:url('joker-bg.jpg') no-repeat center center fixed;
+    background-size:cover;
     color:white;
     font-family:Arial;
+}
+
+/* DARK OVERLAY */
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.75);
+    backdrop-filter: blur(4px);
+    z-index:-1;
 }
 
 /* HEADER */
 .header{
     padding:20px;
     font-size:26px;
+    text-shadow:0 0 10px #0ea5e9;
 }
 
 /* LAYOUT */
@@ -27,7 +42,7 @@ body{
     padding:20px;
 }
 
-/* LEFT SIGNALS */
+/* LEFT */
 .left{
     width:300px;
     display:flex;
@@ -35,33 +50,57 @@ body{
     gap:20px;
 }
 
+/* CARD BASE */
 .card{
     padding:20px;
     border-radius:12px;
+    backdrop-filter: blur(10px);
+    box-shadow:0 0 20px rgba(0,0,0,0.6);
+    transition:0.3s;
+}
+
+/* 🔥 HOVER */
+.card:hover{
+    transform:translateY(-6px) scale(1.02);
+    box-shadow:0 0 25px rgba(14,165,233,0.4);
 }
 
 /* BUY */
 .buy{
     background:rgba(34,197,94,0.15);
+    border:1px solid rgba(34,197,94,0.3);
 }
+
 .buy .signal{
     background:#22c55e;
-    padding:6px 10px;
+    padding:6px 12px;
     border-radius:6px;
+    font-weight:bold;
 }
 
 /* SELL */
 .sell{
     background:rgba(239,68,68,0.15);
-}
-.sell .signal{
-    background:#ef4444;
-    padding:6px 10px;
-    border-radius:6px;
+    border:1px solid rgba(239,68,68,0.3);
 }
 
-.pair{font-size:18px;}
-.info{font-size:14px;opacity:0.8;}
+.sell .signal{
+    background:#ef4444;
+    padding:6px 12px;
+    border-radius:6px;
+    font-weight:bold;
+}
+
+/* TEXT */
+.pair{
+    font-size:18px;
+    margin-top:10px;
+}
+
+.info{
+    font-size:14px;
+    opacity:0.8;
+}
 
 /* CENTER */
 .center{
@@ -71,20 +110,30 @@ body{
     gap:20px;
 }
 
+/* EXPLAIN */
 .explain{
     padding:20px;
     border-radius:12px;
+    backdrop-filter: blur(10px);
+    box-shadow:0 0 20px rgba(0,0,0,0.6);
+    transition:0.3s;
+}
+
+.explain:hover{
+    transform:translateY(-4px);
 }
 
 .explain-buy{
     background:rgba(34,197,94,0.1);
+    border-left:4px solid #22c55e;
 }
 
 .explain-sell{
     background:rgba(239,68,68,0.1);
+    border-left:4px solid #ef4444;
 }
 
-/* RIGHT PANEL */
+/* RIGHT */
 .right{
     width:260px;
     display:flex;
@@ -98,6 +147,7 @@ body{
     padding:20px;
     border-radius:12px;
     text-align:center;
+    box-shadow:0 0 20px rgba(0,0,0,0.6);
 }
 
 .win{color:#22c55e;}
@@ -108,7 +158,7 @@ body{
     background:#111827;
     padding:15px;
     border-radius:12px;
-    font-size:14px;
+    box-shadow:0 0 20px rgba(0,0,0,0.6);
 }
 
 .history-item{
@@ -117,12 +167,13 @@ body{
     margin:5px 0;
 }
 
-/* PREMIUM LOCK */
+/* LOCK */
 .lock{
     background:rgba(255,255,255,0.05);
     padding:20px;
     border-radius:12px;
     text-align:center;
+    backdrop-filter: blur(10px);
 }
 
 .lock-btn{
@@ -131,6 +182,12 @@ body{
     margin-top:10px;
     border-radius:8px;
     cursor:pointer;
+    transition:0.3s;
+}
+
+.lock-btn:hover{
+    background:#16a34a;
+    transform:scale(1.05);
 }
 
 /* BACK */
@@ -153,6 +210,7 @@ body{
     width:100%;
 }
 }
+
 </style>
 </head>
 
@@ -189,14 +247,14 @@ body{
 <div class="explain explain-buy">
 <h3>📈 Buy Analysis</h3>
 <p>
-Bullish market structure, liquidity sweep, continuation expected.
+Bullish structure, liquidity sweep and continuation expected.
 </p>
 </div>
 
 <div class="explain explain-sell">
 <h3>📉 Sell Analysis</h3>
 <p>
-Resistance zone hit, liquidity above highs, potential rejection.
+Strong resistance hit, potential rejection and retracement.
 </p>
 </div>
 
@@ -205,15 +263,13 @@ Resistance zone hit, liquidity above highs, potential rejection.
 <!-- RIGHT -->
 <div class="right">
 
-<!-- WINRATE -->
 <div class="winrate">
 <h3>Win Rate</h3>
 <div class="win">Wins: 23</div>
 <div class="loss">Losses: 7</div>
-<p>Winrate: 76%</p>
+<p>76%</p>
 </div>
 
-<!-- HISTORY -->
 <div class="history">
 <h3>History</h3>
 
@@ -234,7 +290,6 @@ Resistance zone hit, liquidity above highs, potential rejection.
 
 </div>
 
-<!-- LOCK -->
 <div class="lock">
 <h3>🔒 Premium Signals</h3>
 <p>Join Telegram for full access</p>
