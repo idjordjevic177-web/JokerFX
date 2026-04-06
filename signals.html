@@ -7,141 +7,105 @@
 <title>JokerFX Signals</title>
 
 <style>
+
 body{
     margin:0;
-    background:url('joker-bg.jpg') no-repeat center center fixed;
-    background-size:cover;
+    background:#0f172a;
     color:white;
     font-family:Arial;
 }
 
-body::before{
-    content:"";
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.75);
-    backdrop-filter: blur(4px);
-    z-index:-1;
-}
-
 /* HEADER */
 .header{
+    text-align:center;
     padding:20px;
-    font-size:26px;
+    font-size:28px;
 }
 
-.live{
-    color:#22c55e;
-    animation:blink 1s infinite;
-}
-
-@keyframes blink{
-    0%{opacity:1}
-    50%{opacity:0.3}
-    100%{opacity:1}
-}
-
-/* LAYOUT */
+/* MAIN */
 .container{
     display:flex;
-    gap:20px;
     padding:20px;
-}
-
-.left{
-    width:300px;
-    display:flex;
-    flex-direction:column;
     gap:20px;
 }
 
-/* CARD */
-.card{
-    padding:20px;
-    border-radius:12px;
-    backdrop-filter: blur(10px);
-    box-shadow:0 0 20px rgba(0,0,0,0.6);
+/* DAYS */
+.days{
+    width:200px;
+}
+
+.day{
+    background:#1e293b;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:10px;
+    text-align:center;
+    cursor:pointer;
     transition:0.3s;
 }
 
-.card:hover{
-    transform:translateY(-5px);
+.day:hover{
+    background:#334155;
 }
 
-/* BUY */
-.buy{
-    background:rgba(34,197,94,0.15);
-}
-
-.buy .signal{
-    background:#22c55e;
-    padding:10px 10px;
-    border-radius:6px;
-}
-
-/* SELL */
-.sell{
-    background:rgba(239,68,68,0.15);
-}
-
-.sell .signal{
-    background:#ef4444;
-    padding:10px 10px;
-    border-radius:6px;
-}
-
-/* TEXT */
-.info{font-size:14px;opacity:0.8;}
-
-/* CENTER */
-.center{
+/* SIGNAL TABLE */
+.signals{
     flex:1;
-    display:flex;
-    flex-direction:column;
-    gap:20px;
 }
 
-.explain{
-    padding:20px;
-    border-radius:12px;
-    backdrop-filter: blur(10px);
-}
-
-.explain-buy{
-    background:rgba(34,197,94,0.1);
-}
-
-.explain-sell{
-    background:rgba(239,68,68,0.1);
-}
-
-/* RIGHT */
-.right{
-    width:260px;
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-}
-
-.win{color:#22c55e;}
-.loss{color:#ef4444;}
-
-.panel{
-    background:#111827;
+/* ROW */
+.row{
+    background:#1e293b;
     padding:15px;
-    border-radius:12px;
+    border-radius:10px;
+    margin-bottom:10px;
 }
 
-/* BACK */
-.back{
-    position:fixed;
-    bottom:20px;
-    left:20px;
-    background:#111827;
-    padding:12px 18px;
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns: repeat(7,1fr);
+    gap:10px;
+    align-items:center;
+}
+
+/* HEAD */
+.head{
+    font-weight:bold;
+    opacity:0.7;
+}
+
+/* BUY SELL */
+.buy{
+    color:#22c55e;
+}
+.sell{
+    color:#ef4444;
+}
+
+/* STATUS */
+.win{
+    color:#22c55e;
+}
+.loss{
+    color:#ef4444;
+}
+.active{
+    color:#facc15;
+}
+
+/* STATS */
+.stats{
+    margin:20px;
+    background:#1e293b;
+    padding:20px;
     border-radius:10px;
-    cursor:pointer;
+}
+
+.stats-grid{
+    display:flex;
+    justify-content:space-around;
+    text-align:center;
 }
 
 /* MOBILE */
@@ -149,94 +113,110 @@ body::before{
 .container{
     flex-direction:column;
 }
-.left,.right{
+.days{
     width:100%;
+    display:flex;
+    overflow:auto;
+}
+.day{
+    min-width:120px;
 }
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="header">
-JokerFX Signals <span class="live">● LIVE</span>
-</div>
+<div class="header">Weekly Signals Overview</div>
 
 <div class="container">
 
-<!-- LEFT -->
-<div class="left">
+<!-- LEFT DAYS -->
+<div class="days">
 
-<div class="card buy">
-<div class="signal">BUY • RR 1:3</div>
-<div>XAUUSD</div>
-<div class="info">Entry: 4603</div>
-<div class="info">SL: 4598</div>
-<div class="info">TP: 4625</div>
-</div>
-
-<div class="card sell">
-<div class="signal">SELL • RR: Waiting</div>
-<div>Waiting</div>
-<div class="info">Entry: Waiting</div>
-<div class="info">SL: Waiting</div>
-<div class="info">TP: Waiting</div>
-</div>
+<div class="day">Monday</div>
+<div class="day">Tuesday</div>
+<div class="day">Wednesday</div>
+<div class="day">Thursday</div>
+<div class="day">Friday</div>
+<div class="day">Saturday</div>
+<div class="day">Sunday</div>
 
 </div>
 
-<!-- CENTER -->
-<div class="center">
+<!-- SIGNALS -->
+<div class="signals">
 
-<div class="explain explain-buy">
-<h3>📈 Buy Analysis</h3>
-<p>
-Liquidity sweep + bullish continuation expected.
-</p>
+<!-- HEADER -->
+<div class="row grid head">
+<div>Type</div>
+<div>Pair</div>
+<div>Entry</div>
+<div>SL</div>
+<div>TP</div>
+<div>RR</div>
+<div>Status</div>
 </div>
 
-<div class="explain explain-sell">
-<h3>📉 Sell Analysis</h3>
-<p>
-Resistance hit, possible rejection.
-</p>
+<!-- SIGNAL -->
+<div class="row grid">
+<div class="buy">BUY</div>
+<div>EURUSD</div>
+<div>1.0650</div>
+<div>1.0600</div>
+<div>1.0750</div>
+<div>1:3</div>
+<div class="win">Closed - Profit</div>
 </div>
 
+<div class="row grid">
+<div class="sell">SELL</div>
+<div>GBPJPY</div>
+<div>182.20</div>
+<div>183.00</div>
+<div>180.50</div>
+<div>1:2</div>
+<div class="loss">Closed - Loss</div>
 </div>
 
-<!-- RIGHT -->
-<div class="right">
-
-<div class="panel">
-<h3>📊 Performance Today</h3>
-<p>Trades: 3</p>
-<p class="win">Wins: 2</p>
-<p class="loss">Losses: 1</p>
-<p>+4.5 RR</p>
-</div>
-
-<div class="panel">
-<h3>⚠ Risk Management</h3>
-<p>Risk per trade: 1%</p>
-<p>Max trades: 3/day</p>
-<p>Always use SL</p>
-</div>
-
-<div class="panel">
-<h3>🔒 Premium</h3>
-<p>Full signals in Telegram</p>
-<div style="margin-top:10px;cursor:pointer;background:#22c55e;padding:10px;border-radius:8px;"
-onclick="window.open('https://t.me/jokeerfX')">
-Join Telegram
-</div>
+<div class="row grid">
+<div class="buy">BUY</div>
+<div>AUDUSD</div>
+<div>1.0650</div>
+<div>1.0600</div>
+<div>1.0750</div>
+<div>1:3</div>
+<div class="active">Active</div>
 </div>
 
 </div>
 
 </div>
 
-<div class="back" onclick="window.location.href='index.html'">
-← Back
+<!-- STATS -->
+<div class="stats">
+
+<h3>Weekly Statistics</h3>
+
+<div class="stats-grid">
+<div>
+<p>Total Trades</p>
+<h2>12</h2>
+</div>
+
+<div>
+<p>Winning Trades</p>
+<h2 class="win">8</h2>
+</div>
+
+<div>
+<p>Losing Trades</p>
+<h2 class="loss">4</h2>
+</div>
+
+</div>
+
 </div>
 
 </body>
