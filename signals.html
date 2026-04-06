@@ -17,7 +17,7 @@
             content: "";
             position: fixed;
             width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.92);
             z-index: -1;
         }
 
@@ -87,11 +87,14 @@
         .controls-left button { width: 200px; padding: 15px; border: 1px solid rgba(14, 165, 233, 0.3); background: rgba(15, 23, 42, 0.8); color: white; cursor: pointer; font-weight: bold; text-transform: uppercase; }
         
         #calendarModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); justify-content: center; align-items: center; z-index: 9999; backdrop-filter: blur(10px); }
-        .calendar-box { background: #0b1220; border: 1px solid #0ea5e9; padding: 30px; border-radius: 20px; width: 90%; max-width: 800px; }
-        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin-top: 20px; }
-        .day { min-height: 60px; padding: 5px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); text-align: center; font-size: 11px; }
-        .day.win { background: rgba(34, 197, 94, 0.2); color: #4ade80; }
-        .day.loss { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+        .calendar-box { background: #0b1220; border: 2px solid #0ea5e9; padding: 30px; border-radius: 20px; width: 90%; max-width: 900px; }
+        
+        /* POPRAVLJEN KALENDAR GRID */
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; margin-top: 20px; }
+        .day { min-height: 70px; padding: 8px; border-radius: 10px; background: rgba(255, 255, 255, 0.05); text-align: center; font-size: 12px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .day.win { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+        .day.loss { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+        .day.prev, .day.next { opacity: 0.2; }
     </style>
 </head>
 <body>
@@ -120,13 +123,10 @@
         <div class="row fancy-ui"><div>Thursday</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
         <div class="row fancy-ui"><div>Friday</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 
-        <div class="fancy-ui" style="margin-top: 20px; height: 350px; overflow: hidden;">
-            <div style="padding: 12px; font-size: 13px; font-weight: bold; border-bottom: 1px solid rgba(14, 165, 233, 0.3);">LIVE MARKET NEWS</div>
-            <div class="tradingview-widget-container">
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
-                { "feedMode": "all_symbols", "colorTheme": "dark", "isTransparent": true, "width": "100%", "height": "300", "locale": "en" }
-                </script>
-            </div>
+        <div class="fancy-ui" style="margin-top: 20px; height: 420px; overflow: hidden;">
+            <div style="padding: 12px; font-size: 13px; font-weight: bold; border-bottom: 1px solid rgba(14, 165, 233, 0.3); color: #0ea5e9;">FAST MARKET NEWS (LIVE FEED)</div>
+            <iframe src="https://cryptopanic.com/widgets/news/?bg_color=0B1220&font_family=sans-serif&header_bg_color=0B1220&header_text_color=0ea5e9&link_color=ffffff&news_feed=all&text_color=bbbbbb&title=Global%20News" 
+                    width="100%" height="370px" frameborder="0" scrolling="yes"></iframe>
         </div>
     </div>
 
@@ -164,10 +164,23 @@
 
 <div id="calendarModal">
     <div class="calendar-box">
-        <span id="closeCalendar" style="float:right; cursor:pointer;">✖</span>
+        <span id="closeCalendar" style="float:right; cursor:pointer; font-size: 24px; color: #0ea5e9;">✖</span>
         <h2 style="color:#0ea5e9; margin-top:0;">April 2026 - Earnings</h2>
-        <div class="calendar-grid" id="cal-content">
-            </div>
+        <div class="calendar-grid">
+            <div style="text-align:center; opacity:0.6;">Mon</div><div style="text-align:center; opacity:0.6;">Tue</div><div style="text-align:center; opacity:0.6;">Wed</div><div style="text-align:center; opacity:0.6;">Thu</div><div style="text-align:center; opacity:0.6;">Fri</div><div style="text-align:center; opacity:0.6;">Sat</div><div style="text-align:center; opacity:0.6;">Sun</div>
+
+            <div class="day prev">30</div><div class="day prev">31</div>
+            <div class="day loss">1<br>-$22</div>
+            <div class="day win">2<br>$401</div>
+            <div class="day">3</div>
+            <div class="day loss">4<br>-$48</div>
+            <div class="day">5</div>
+            <div class="day loss">6<br>-$43</div>
+            <div class="day win">7<br>$650</div>
+            <div class="day">8</div>
+            <div class="day win">9<br>$250</div>
+            <div class="day win">10<br>$550</div>
+        </div>
     </div>
 </div>
 
@@ -199,23 +212,10 @@
     }
     setInterval(updateClock, 1000); updateClock();
 
-    /* KALENDAR DATA */
-    const calData = [
-        {d:1, p:-22, c:'loss'}, {d:2, p:401, c:'win'}, {d:3, p:0, c:''}, {d:4, p:-48, c:'loss'}, {d:5, p:0, c:''},
-        {d:6, p:-43, c:'loss'}, {d:7, p:650, c:'win'}, {d:8, p:0, c:''}, {d:9, p:250, c:'win'}, {d:10, p:550, c:'win'}
-        // ... dopuni ostale dane po potrebi
-    ];
-    const calGrid = document.getElementById('cal-content');
-    calData.forEach(item => {
-        let div = document.createElement('div');
-        div.className = `day ${item.c}`;
-        div.innerHTML = `${item.d}<br>${item.p !== 0 ? '$' + item.p : ''}`;
-        calGrid.appendChild(div);
-    });
-
     const modal = document.getElementById("calendarModal");
     document.getElementById("openCalendar").onclick = () => modal.style.display = "flex";
     document.getElementById("closeCalendar").onclick = () => modal.style.display = "none";
+    window.onclick = (e) => { if(e.target == modal) modal.style.display = "none"; }
 </script>
 
 </body>
