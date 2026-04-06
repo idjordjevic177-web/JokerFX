@@ -32,10 +32,9 @@
             font-weight: 800;
             text-shadow: 0 0 20px #0ea5e9;
             letter-spacing: 2px;
-            text-transform: uppercase;
         }
 
-        /* FANCY UI CLASS */
+        /* FANCY UI GLASS EFFECT */
         .fancy-ui {
             background: rgba(30, 41, 59, 0.4);
             border: 1px solid rgba(14, 165, 233, 0.3);
@@ -65,34 +64,21 @@
             font-weight: bold;
             text-transform: uppercase;
             font-size: 13px;
-            letter-spacing: 1px;
-            border: 1px solid rgba(14, 165, 233, 0.4);
             border-radius: 10px;
+            border: 1px solid rgba(14, 165, 233, 0.4);
         }
 
         .row {
             padding: 16px;
             font-size: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .row:hover {
-            border-color: #0ea5e9;
-            background: rgba(14, 165, 233, 0.1);
-            transform: scale(1.01);
         }
 
         /* COLORS */
         .buy { color: #4ade80; font-weight: bold; }
         .sell { color: #f87171; font-weight: bold; }
-        .win { color: #4ade80; text-shadow: 0 0 10px rgba(74, 222, 128, 0.3); }
-        .loss { color: #f87171; text-shadow: 0 0 10px rgba(248, 113, 113, 0.3); }
-
-        .active {
-            color: #facc15;
-            font-weight: bold;
-            animation: pulse 1.5s infinite;
-        }
+        .win { color: #4ade80; }
+        .loss { color: #f87171; }
+        .active { color: #facc15; animation: pulse 1.5s infinite; }
 
         @keyframes pulse {
             0% { opacity: 1; }
@@ -100,18 +86,12 @@
             100% { opacity: 1; }
         }
 
-        /* STATS SEKCION */
+        /* STATS */
         .stats {
             max-width: 900px;
             margin: 40px auto;
             padding: 25px;
             text-align: center;
-        }
-
-        .stats h3 {
-            margin-top: 0;
-            color: #0ea5e9;
-            text-transform: uppercase;
         }
 
         .stats-row {
@@ -120,12 +100,7 @@
             margin-top: 20px;
         }
 
-        .stats-item h2 {
-            font-size: 28px;
-            margin: 5px 0;
-        }
-
-        /* TRANSPARENT CLOCK (Isti kao na home) */
+        /* TRANSPARENT CLOCK */
         #clock {
             position: fixed;
             bottom: 90px;
@@ -166,9 +141,9 @@
         }
 
         .digital { font-size: 22px; font-weight: 800; }
-        .sessions { font-size: 13px; opacity: 0.8; margin-top: 5px; line-height: 1.4; }
+        .sessions { font-size: 13px; opacity: 0.8; line-height: 1.4; }
 
-        /* CONTROLS LEFT (Buttons) */
+        /* BUTTONS LEFT */
         .controls-left {
             position: fixed;
             bottom: 100px;
@@ -176,7 +151,6 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            z-index: 100;
         }
 
         .controls-left button {
@@ -188,7 +162,6 @@
             cursor: pointer;
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 12px;
         }
 
         .controls-left button:hover {
@@ -196,7 +169,7 @@
             box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
         }
 
-        /* MODAL */
+        /* CALENDAR MODAL */
         #calendarModal {
             display: none;
             position: fixed;
@@ -212,7 +185,7 @@
         }
 
         .calendar-box {
-            background: rgba(15, 23, 42, 0.95);
+            background: #0b1220;
             border: 1px solid #0ea5e9;
             padding: 30px;
             border-radius: 20px;
@@ -220,39 +193,33 @@
             max-width: 900px;
         }
 
-        #closeCalendar {
-            float: right;
-            cursor: pointer;
-            font-size: 24px;
-            color: #0ea5e9;
-        }
-
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 10px;
+            gap: 12px;
             margin-top: 20px;
         }
 
         .day {
-            min-height: 60px;
-            padding: 10px;
-            border-radius: 8px;
+            min-height: 70px;
+            padding: 8px;
+            border-radius: 10px;
             background: rgba(255, 255, 255, 0.05);
             text-align: center;
             font-size: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .day.win { background: rgba(34, 197, 94, 0.15); border-color: rgba(34, 197, 94, 0.3); }
-        .day.loss { background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.3); }
+        .day.win { background: rgba(34, 197, 94, 0.2); }
+        .day.loss { background: rgba(239, 68, 68, 0.2); }
+        .day.prev, .day.next { opacity: 0.3; }
 
+        #closeCalendar { float: right; cursor: pointer; color: #0ea5e9; font-size: 24px; }
     </style>
 </head>
 
 <body>
 
-    <div class="header">Weekly Signals Overview</div>
+    <div class="header">JokerFX Signals</div>
 
     <div class="container">
         <div class="table-header">
@@ -266,35 +233,26 @@
         </div>
 
         <div class="row fancy-ui">
-            <div>Tuesday</div><div class="sell">SELL</div><div>EURUSD</div>
-            <div>1.0850</div><div>1.0870</div><div>1.0800</div><div>1:2.5</div><div class="loss">Closed - SL</div>
+            <div>Tuesday</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
         </div>
-
         <div class="row fancy-ui">
-            <div>Wednesday</div><div class="buy">BUY</div><div>BTCUSDT</div>
-            <div>68500</div><div>67800</div><div>71000</div><div>1:3.5</div><div class="active">Running...</div>
+            <div>Wednesday</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
         </div>
-
         <div class="row fancy-ui">
-            <div>Thursday</div><div class="buy">BUY</div><div>XAUUSD</div>
-            <div>4630</div><div>4615</div><div>4680</div><div>1:4</div><div class="win">Closed - Profit</div>
+            <div>Thursday</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
         </div>
-
         <div class="row fancy-ui">
-            <div>Friday</div><div class="sell">SELL</div><div>GBPUSD</div>
-            <div>1.2640</div><div>1.2665</div><div>1.2580</div><div>1:2.4</div><div class="loss">Closed - SL</div>
+            <div>Friday</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
         </div>
     </div>
 
     <div class="stats fancy-ui">
         <h3>Weekly Statistics</h3>
-        <p style="opacity:0.6; font-size: 14px;">Period: 06.04.2026 - 10.04.2026</p>
-
         <div class="stats-row">
-            <div class="stats-item"><p>Total Trades</p><h2>5</h2></div>
-            <div class="stats-item"><p>Win Rate</p><h2 class="win">60%</h2></div>
-            <div class="stats-item"><p>Loss</p><h2 class="loss">2</h2></div>
-            <div class="stats-item"><p>Net Pips</p><h2>+1240</h2></div>
+            <div><p>Total</p><h2>1</h2></div>
+            <div><p>Win</p><h2 class="win">1</h2></div>
+            <div><p>Loss</p><h2 class="loss">0</h2></div>
+            <div><p>Pips</p><h2>+900</h2></div>
         </div>
     </div>
 
@@ -305,7 +263,7 @@
     </div>
 
     <div class="controls-left">
-        <button id="openCalendar" class="fancy-ui">📊 History Calendar</button>
+        <button id="openCalendar" class="fancy-ui">📊 Previous Month</button>
         <button id="backHome" class="fancy-ui" onclick="window.location.href='index.html'">🏠 Back to Home</button>
     </div>
 
@@ -314,45 +272,62 @@
             <span id="closeCalendar">✖</span>
             <div style="display:flex; justify-content:space-between; align-items:center;">
                 <h2 style="color:#0ea5e9;">April 2026</h2>
-                <div id="monthStats" style="font-size:14px; opacity:0.8;">
-                    Monthly stats: $0 | Trading days: 0
-                </div>
+                <div id="monthStats" style="font-size:14px; opacity:0.8;"></div>
             </div>
 
             <div class="calendar-grid">
-                <div style="opacity:0.5; text-align:center;">Mon</div>
-                <div style="opacity:0.5; text-align:center;">Tue</div>
-                <div style="opacity:0.5; text-align:center;">Wed</div>
-                <div style="opacity:0.5; text-align:center;">Thu</div>
-                <div style="opacity:0.5; text-align:center;">Fri</div>
-                <div style="opacity:0.5; text-align:center;">Sat</div>
-                <div style="opacity:0.5; text-align:center;">Sun</div>
+                <div style="text-align:center; opacity:0.6;">Mon</div>
+                <div style="text-align:center; opacity:0.6;">Tue</div>
+                <div style="text-align:center; opacity:0.6;">Wed</div>
+                <div style="text-align:center; opacity:0.6;">Thu</div>
+                <div style="text-align:center; opacity:0.6;">Fri</div>
+                <div style="text-align:center; opacity:0.6;">Sat</div>
+                <div style="text-align:center; opacity:0.6;">Sun</div>
 
-                <div class="day">30</div><div class="day">31</div>
+                <div class="day prev">30</div><div class="day prev">31</div>
                 <div class="day loss" data-profit="-22">1<br>-$22</div>
                 <div class="day win" data-profit="401">2<br>$401</div>
-                <div class="day">3</div>
+                <div class="day" data-profit="0">3</div>
                 <div class="day loss" data-profit="-48">4<br>-$48</div>
-                <div class="day">5</div>
+                <div class="day" data-profit="0">5</div>
                 <div class="day loss" data-profit="-43">6<br>-$43</div>
                 <div class="day win" data-profit="650">7<br>$650</div>
-                <div class="day">8</div>
+                <div class="day" data-profit="0">8</div>
                 <div class="day win" data-profit="250">9<br>$250</div>
                 <div class="day win" data-profit="550">10<br>$550</div>
+                <div class="day" data-profit="0">11</div>
+                <div class="day" data-profit="0">12</div>
+                <div class="day loss" data-profit="-120">13<br>-$120</div>
+                <div class="day loss" data-profit="-90">14<br>-$90</div>
+                <div class="day win" data-profit="465">15<br>$465</div>
+                <div class="day" data-profit="0">16</div>
+                <div class="day win" data-profit="240">17<br>$240</div>
+                <div class="day" data-profit="0">18</div>
+                <div class="day" data-profit="0">19</div>
+                <div class="day" data-profit="0">20</div>
+                <div class="day win" data-profit="240">21<br>$240</div>
+                <div class="day win" data-profit="340">22<br>$340</div>
+                <div class="day win" data-profit="223">23<br>$223</div>
+                <div class="day" data-profit="0">24</div>
+                <div class="day" data-profit="0">25</div>
+                <div class="day" data-profit="0">26</div>
+                <div class="day loss" data-profit="-134">27<br>-$134</div>
+                <div class="day win" data-profit="780">28<br>$780</div>
+                <div class="day" data-profit="0">29</div>
+                <div class="day win" data-profit="738">30<br>$738</div>
+                <div class="day next">1</div><div class="day next">2</div><div class="day next">3</div>
             </div>
         </div>
     </div>
 
     <script>
-        /* CLOCK LOGIC (Tačkice umesto brojeva) */
-        let face = document.getElementById("face");
-
+        /* CLOCK */
+        const face = document.getElementById("face");
         ["hour", "minute", "second"].forEach(type => {
             let h = document.createElement("div");
             h.className = "hand " + type;
             face.appendChild(h);
         });
-
         for(let i = 0; i < 12; i++){
             let dot = document.createElement("div");
             dot.className = "dot";
@@ -364,44 +339,34 @@
 
         function updateClock(){
             let now = new Date();
-            let sec = now.getSeconds();
-            let min = now.getMinutes();
-            let hr = now.getHours();
-
+            let sec = now.getSeconds(), min = now.getMinutes(), hr = now.getHours();
             document.querySelector(".second").style.transform = `rotate(${sec * 6}deg)`;
             document.querySelector(".minute").style.transform = `rotate(${min * 6 + sec * 0.1}deg)`;
             document.querySelector(".hour").style.transform = `rotate(${(hr % 12) * 30 + min * 0.5}deg)`;
-
-            let options = { hour: '2-digit', minute: '2-digit', hour12: false };
-            let london = new Date().toLocaleTimeString("en-GB", {timeZone: "Europe/London", ...options});
-            let ny = new Date().toLocaleTimeString("en-US", {timeZone: "America/New_York", ...options});
-            let tokyo = new Date().toLocaleTimeString("en-US", {timeZone: "Asia/Tokyo", ...options});
-
-            document.getElementById("digital").innerHTML = london;
-            document.getElementById("sessions").innerHTML = `NY: ${ny} | LDN: ${london} | TKY: ${tokyo}`;
+            let lon = new Date().toLocaleTimeString("en-GB", {timeZone: "Europe/London", hour:'2-digit', minute:'2-digit'});
+            let ny = new Date().toLocaleTimeString("en-US", {timeZone: "America/New_York", hour:'2-digit', minute:'2-digit'});
+            let tky = new Date().toLocaleTimeString("en-US", {timeZone: "Asia/Tokyo", hour:'2-digit', minute:'2-digit'});
+            document.getElementById("digital").innerHTML = lon;
+            document.getElementById("sessions").innerHTML = `NY: ${ny} | LDN: ${lon} | TKY: ${tky}`;
         }
+        setInterval(updateClock, 1000); updateClock();
 
-        setInterval(updateClock, 1000);
-        updateClock(); 
-
-        /* MODAL CALENDAR */
+        /* MODAL */
         const modal = document.getElementById("calendarModal");
         document.getElementById("openCalendar").onclick = () => modal.style.display = "flex";
         document.getElementById("closeCalendar").onclick = () => modal.style.display = "none";
         window.onclick = (e) => { if(e.target == modal) modal.style.display = "none"; }
 
-        /* MONTH STATS CALC */
+        /* CALC MONTH STATS */
         function calculateMonthStats(){
-            let total = 0;
-            let tradingDays = 0;
+            let total = 0, tradingDays = 0;
             document.querySelectorAll('.day').forEach(day => {
                 let val = parseFloat(day.getAttribute('data-profit')) || 0;
                 if(val !== 0){ total += val; tradingDays++; }
             });
-            document.getElementById("monthStats").innerHTML = `Monthly: $${total} | Days: ${tradingDays}`;
+            document.getElementById("monthStats").innerHTML = `Monthly stats: $${total} | Trading days: ${tradingDays}`;
         }
         calculateMonthStats();
     </script>
-
 </body>
 </html>
