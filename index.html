@@ -12,7 +12,7 @@ body {
     background: url('joker.jpg') no-repeat center center fixed;
     background-size: cover;
     color: white;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
 }
 
 body::before {
@@ -89,9 +89,9 @@ body::before {
     transform: translateY(-2px);
 }
 
-/* RIGHT */
+/* RIGHT PANEL (WIDGET) */
 #price-panel {
-    width: 260px;
+    width: 300px; /* Malo prosireno radi preglednosti tabova */
     margin: 20px;
 }
 
@@ -99,7 +99,7 @@ body::before {
     display: none !important;
 }
 
-/* BUTTONS */
+/* BOTTOM BUTTONS */
 .bottom-buttons {
     position: fixed;
     bottom: 100px;
@@ -115,20 +115,16 @@ body::before {
     border-radius: 10px;
     cursor: pointer;
     transition: 0.3s;
+    text-align: center;
 }
 
 .btn:hover {
     background: #1f2937;
 }
 
-/* DISABLED BUTTON */
 .btn.disabled {
     cursor: default;
     opacity: 0.5;
-}
-
-.btn.disabled:hover {
-    background: #111827; /* Zadrzava istu boju na hover */
 }
 
 /* CLOCK */
@@ -188,10 +184,10 @@ body::before {
 }
 
 /* MOBILE */
-@media(max-width: 768px){
+@media(max-width: 1024px){
     .main { flex-direction: column; }
-    .left-panel { display: none; }
-    #price-panel { width: 100%; }
+    .left-panel { display: flex; width: 100%; justify-content: center; gap: 20px; padding: 10px 0; }
+    #price-panel { width: 95%; margin: 10px auto; }
 }
 </style>
 </head>
@@ -222,29 +218,52 @@ body::before {
     </div>
 
     <div id="price-panel">
-        <script src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-        {
-          "colorTheme": "dark",
-          "showChart": false,
-          "width": "100%",
-          "height": "220",
-          "tabs": [{
-            "title": "Main",
-            "symbols": [
-              {"s":"BINANCE:BTCUSDT"},
-              {"s":"FOREXCOM:XAUUSD"},
-              {"s":"CAPITALCOM:DXY"}
-            ]
-          }]
-        }
-        </script>
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+            {
+              "colorTheme": "dark",
+              "dateRange": "12M",
+              "showChart": false,
+              "locale": "en",
+              "width": "100%",
+              "height": "400",
+              "largeChartUrl": "",
+              "isTransparent": true,
+              "showSymbolLogo": true,
+              "showFloatingTooltip": false,
+              "tabs": [
+                {
+                  "title": "Main",
+                  "symbols": [
+                    { "s": "FOREXCOM:XAUUSD", "d": "Gold" },
+                    { "s": "BINANCE:BTCUSDT", "d": "Bitcoin" },
+                    { "s": "FOREXCOM:DXY", "d": "US Dollar Index" },
+                    { "s": "FOREXCOM:SPX500", "d": "S&P 500" }
+                  ]
+                },
+                {
+                  "title": "Forex",
+                  "symbols": [
+                    { "s": "FOREXCOM:EURUSD", "d": "EUR/USD" },
+                    { "s": "FOREXCOM:GBPUSD", "d": "GBP/USD" },
+                    { "s": "FOREXCOM:USDJPY", "d": "USD/JPY" },
+                    { "s": "FOREXCOM:USDCHF", "d": "USD/CHF" },
+                    { "s": "FOREXCOM:AUDUSD", "d": "AUD/USD" },
+                    { "s": "FOREXCOM:USDCAD", "d": "USD/CAD" },
+                    { "s": "FOREXCOM:NZDUSD", "d": "NZD/USD" }
+                  ]
+                }
+              ]
+            }
+            </script>
+        </div>
     </div>
 
 </div>
 
 <div class="bottom-buttons">
-    <div class="btn disabled">🔥 FTMO Service <span style="font-size: 12px; opacity: 0.7; margin-left: 5px;">(Coming soon)</span></div>
-    
+    <div class="btn disabled">🔥 FTMO Service <span style="font-size: 11px; opacity: 0.7; display: block;">(Coming soon)</span></div>
     <div class="btn" onclick="window.location.href='signals.html'">🔥 Signals & Analysis</div>
 </div>
 
@@ -263,16 +282,15 @@ body::before {
         <div class="hand minute" id="minute"></div>
         <div class="hand second" id="second"></div>
     </div>
-
     <div class="digital" id="digital"></div>
     <div class="sessions" id="sessions"></div>
 </div>
 
 <div id="radio-bar">
-    <div>🎧 Afro House Radio</div>
+    <div style="font-size: 14px; margin-left: 10px;">🎧 Afro House Radio</div>
     <div>
-        <button onclick="togglePlay()">▶ / ⏸</button>
-        <input type="range" min="0" max="1" step="0.01" value="0.2" onchange="setVolume(this.value)">
+        <button style="background: #111827; color: white; border: 1px solid #374151; padding: 5px 10px; border-radius: 5px; cursor: pointer;" onclick="togglePlay()">Play / Pause</button>
+        <input type="range" min="0" max="1" step="0.01" value="0.2" onchange="setVolume(this.value)" style="vertical-align: middle; margin-left: 10px;">
     </div>
     
     <audio id="radio">
@@ -291,6 +309,12 @@ function createChart(symbol){
         "symbol": symbol,
         "interval": "60",
         "theme": "dark",
+        "style": "1",
+        "locale": "en",
+        "toolbar_bg": "#f1f3f6",
+        "enable_publishing": false,
+        "hide_side_toolbar": false,
+        "allow_symbol_change": true,
         "container_id": "chart"
     });
 }
@@ -304,7 +328,6 @@ createChart("FOREXCOM:XAUUSD");
 /* CLOCK */
 function updateClock(){
     let now = new Date();
-
     let sec = now.getSeconds();
     let min = now.getMinutes();
     let hr = now.getHours();
@@ -313,20 +336,19 @@ function updateClock(){
     document.getElementById("minute").style.transform = `rotate(${min * 6 + sec * 0.1}deg)`;
     document.getElementById("hour").style.transform = `rotate(${(hr % 12) * 30 + min * 0.5}deg)`;
 
-    let ny = new Date().toLocaleTimeString("en-US", {timeZone: "America/New_York"});
-    let london = new Date().toLocaleTimeString("en-GB", {timeZone: "Europe/London"});
-    let tokyo = new Date().toLocaleTimeString("en-US", {timeZone: "Asia/Tokyo"});
+    let ny = new Date().toLocaleTimeString("en-US", {timeZone: "America/New_York", hour: '2-digit', minute:'2-digit'});
+    let london = new Date().toLocaleTimeString("en-GB", {timeZone: "Europe/London", hour: '2-digit', minute:'2-digit'});
+    let tokyo = new Date().toLocaleTimeString("en-US", {timeZone: "Asia/Tokyo", hour: '2-digit', minute:'2-digit'});
 
     document.getElementById("digital").innerHTML = london;
-    document.getElementById("sessions").innerHTML = `NY: ${ny}<br>London: ${london}<br>Tokyo: ${tokyo}`;
+    document.getElementById("sessions").innerHTML = `NY: ${ny} | LDN: ${london} | TKY: ${tokyo}`;
 }
 
 setInterval(updateClock, 1000);
-updateClock(); // Pozivamo odmah da se izbegne delay
+updateClock();
 
 /* RADIO */
 const radio = document.getElementById("radio");
-
 function togglePlay(){
     radio.muted = false;
     if (radio.paused) {
@@ -335,7 +357,6 @@ function togglePlay(){
         radio.pause();
     }
 }
-
 function setVolume(val){
     radio.volume = val;
 }
