@@ -3,207 +3,222 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>JokerFX</title>
 
 <style>
-body {
-    margin: 0;
-    background: url('joker.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: white;
-    font-family: Arial, sans-serif;
-}
+    body {
+        margin: 0;
+        background: url('joker.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
 
-body::before {
-    content: "";
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.75);
-    z-index: -1;
-}
+    body::before {
+        content: "";
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: -1;
+    }
 
-/* HEADER */
-.header {
-    padding: 20px;
-    font-size: 32px;
-    font-weight: bold;
-    text-shadow: 0 0 15px #0ea5e9;
-}
+    /* HEADER */
+    .header {
+        padding: 25px;
+        font-size: 36px;
+        font-weight: 800;
+        text-align: center;
+        letter-spacing: 2px;
+        text-shadow: 0 0 20px #0ea5e9;
+        color: #fff;
+    }
 
-/* CONTACT PANEL */
-.left-panel {
-    width: 200px;
-    padding: 25px;
-}
+    /* COMMON STYLES FOR ALL BUTTONS AND PANELS */
+    .fancy-ui {
+        background: rgba(30, 41, 59, 0.5); /* Deep slate blue */
+        border: 1px solid rgba(14, 165, 233, 0.3); /* Subtle blue border */
+        backdrop-filter: blur(12px);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        color: white;
+    }
 
-.contact-title {
-    font-size: 16px;
-    margin-bottom: 15px;
-    opacity: 0.7;
-}
+    .fancy-ui:hover {
+        border-color: #0ea5e9;
+        box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
+        transform: translateY(-2px);
+    }
 
-.contact-item {
-    margin: 15px 0;
-    font-size: 15px;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-}
+    /* TOP PAIR BUTTONS */
+    .buttons {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-.contact-item:hover {
-    background: rgba(14, 165, 233, 0.2);
-}
+    .buttons button {
+        margin: 0 8px;
+        padding: 12px 24px;
+        border: 1px solid rgba(14, 165, 233, 0.3);
+        background: rgba(15, 23, 42, 0.8);
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.3s;
+        text-transform: uppercase;
+    }
 
-/* LAYOUT */
-.main { display: flex; }
+    .buttons button:hover {
+        background: #0ea5e9;
+        box-shadow: 0 0 20px rgba(14, 165, 233, 0.6);
+    }
 
-/* CHART */
-#chart-container {
-    flex: 1;
-    margin: 20px;
-}
+    /* MAIN LAYOUT */
+    .main { display: flex; padding: 0 20px; }
 
-/* 🔥 BUTTONS UPGRADE */
-.buttons {
-    text-align: center;
-    margin-bottom: 15px;
-}
+    .left-panel {
+        width: 220px;
+        padding: 20px;
+    }
 
-.buttons button {
-    margin: 5px;
-    padding: 10px 18px;
-    border: none;
-    border-radius: 8px;
-    background: linear-gradient(145deg, #1f2937, #111827);
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
-}
+    .contact-title {
+        font-size: 14px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        opacity: 0.6;
+        letter-spacing: 1px;
+    }
 
-.buttons button:hover {
-    box-shadow: 0 0 10px #0ea5e9;
-    transform: translateY(-2px);
-}
+    .contact-item {
+        margin: 12px 0;
+        padding: 12px;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 
-/* RIGHT PANEL (WIDGET) */
-#price-panel {
-    width: 300px; /* Malo prosireno radi preglednosti tabova */
-    margin: 20px;
-}
+    /* CHART CONTAINER */
+    #chart-container {
+        flex: 1;
+        margin: 0 20px;
+    }
 
-.tradingview-widget-copyright {
-    display: none !important;
-}
+    #chart {
+        border-radius: 15px;
+        overflow: hidden;
+        border: 1px solid rgba(14, 165, 233, 0.2);
+    }
 
-/* BOTTOM BUTTONS */
-.bottom-buttons {
-    position: fixed;
-    bottom: 100px;
-    left: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+    /* RIGHT PRICE PANEL (WIDGET) */
+    #price-panel {
+        width: 320px;
+        padding: 10px;
+        height: 500px;
+    }
 
-.btn {
-    background: #111827;
-    padding: 12px 18px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-    text-align: center;
-}
+    /* BOTTOM CONTROLS */
+    .bottom-buttons {
+        position: fixed;
+        bottom: 100px;
+        left: 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        z-index: 100;
+    }
 
-.btn:hover {
-    background: #1f2937;
-}
+    .btn-action {
+        width: 220px;
+        padding: 15px;
+        text-align: center;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 14px;
+    }
 
-.btn.disabled {
-    cursor: default;
-    opacity: 0.5;
-}
+    .btn-action.disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
 
-/* CLOCK */
-#clock-widget {
-    position: fixed;
-    bottom: 100px;
-    right: 20px;
-    backdrop-filter: blur(20px);
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    padding: 20px;
-    text-align: center;
-}
+    .btn-action.disabled:hover {
+        transform: none;
+        box-shadow: none;
+        border-color: rgba(14, 165, 233, 0.3);
+    }
 
-.clock {
-    width: 100px;
-    height: 100px;
-    border: 3px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    position: relative;
-    margin: auto;
-}
+    /* CLOCK WIDGET */
+    #clock-widget {
+        position: fixed;
+        bottom: 100px;
+        right: 25px;
+        padding: 25px;
+        min-width: 150px;
+    }
 
-.dot {
-    width: 6px;
-    height: 6px;
-    background: white;
-    border-radius: 50%;
-    position: absolute;
-}
+    .clock {
+        width: 100px;
+        height: 100px;
+        border: 2px solid rgba(14, 165, 233, 0.4);
+        border-radius: 50%;
+        position: relative;
+        margin: auto;
+    }
 
-.hand {
-    position: absolute;
-    bottom: 50%;
-    left: 50%;
-    transform-origin: bottom;
-    background: white;
-}
+    .hand {
+        position: absolute;
+        bottom: 50%;
+        left: 50%;
+        transform-origin: bottom;
+        background: white;
+    }
 
-.hour { width: 3px; height: 25px; }
-.minute { width: 2px; height: 35px; }
-.second { width: 1px; height: 40px; background: #22c55e; }
+    .hour { width: 3px; height: 25px; }
+    .minute { width: 2px; height: 35px; }
+    .second { width: 1px; height: 42px; background: #0ea5e9; }
 
-.digital { margin-top: 10px; }
-.sessions { font-size: 12px; opacity: 0.7; }
+    .digital { font-size: 18px; margin-top: 15px; font-weight: bold; }
+    .sessions { font-size: 11px; opacity: 0.7; margin-top: 8px; line-height: 1.5; }
 
-/* RADIO */
-#radio-bar {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+    /* RADIO BAR */
+    #radio-bar {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: rgba(15, 23, 42, 0.95);
+        border-top: 1px solid #0ea5e9;
+        padding: 12px 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+    }
 
-/* MOBILE */
-@media(max-width: 1024px){
-    .main { flex-direction: column; }
-    .left-panel { display: flex; width: 100%; justify-content: center; gap: 20px; padding: 10px 0; }
-    #price-panel { width: 95%; margin: 10px auto; }
-}
+    input[type=range] {
+        accent-color: #0ea5e9;
+    }
+
+    @media(max-width: 1100px){
+        .main { flex-direction: column; }
+        .left-panel, #price-panel { width: 100%; margin: 10px 0; }
+    }
 </style>
 </head>
 
 <body>
 
-<div class="header">JokerFX</div>
+<div class="header">JOKER FX</div>
 
 <div class="main">
-
     <div class="left-panel">
-        <div class="contact-title">Contact</div>
-        <div class="contact-item" onclick="window.open('https://instagram.com/ivan.djordjevic13')">
+        <div class="contact-title">Direct Support</div>
+        <div class="contact-item fancy-ui" onclick="window.open('https://instagram.com/ivan.djordjevic13')">
             📸 Instagram
         </div>
-        <div class="contact-item" onclick="window.open('https://t.me/jokeerfX')">
+        <div class="contact-item fancy-ui" onclick="window.open('https://t.me/jokeerfX')">
             📲 Telegram
         </div>
     </div>
@@ -217,67 +232,57 @@ body::before {
         <div id="chart"></div>
     </div>
 
-    <div id="price-panel">
-        <div class="tradingview-widget-container">
-            <div class="tradingview-widget-container__widget"></div>
-            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+    <div id="price-panel" class="fancy-ui">
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+        {
+          "colorTheme": "dark",
+          "dateRange": "12M",
+          "showChart": false,
+          "locale": "en",
+          "width": "100%",
+          "height": "100%",
+          "largeChartUrl": "",
+          "isTransparent": true,
+          "showSymbolLogo": true,
+          "tabs": [
             {
-              "colorTheme": "dark",
-              "dateRange": "12M",
-              "showChart": false,
-              "locale": "en",
-              "width": "100%",
-              "height": "400",
-              "largeChartUrl": "",
-              "isTransparent": true,
-              "showSymbolLogo": true,
-              "showFloatingTooltip": false,
-              "tabs": [
-                {
-                  "title": "Main",
-                  "symbols": [
-                    { "s": "FOREXCOM:XAUUSD", "d": "Gold" },
-                    { "s": "BINANCE:BTCUSDT", "d": "Bitcoin" },
-                    { "s": "FOREXCOM:DXY", "d": "US Dollar Index" },
-                    { "s": "FOREXCOM:SPX500", "d": "S&P 500" }
-                  ]
-                },
-                {
-                  "title": "Forex",
-                  "symbols": [
-                    { "s": "FOREXCOM:EURUSD", "d": "EUR/USD" },
-                    { "s": "FOREXCOM:GBPUSD", "d": "GBP/USD" },
-                    { "s": "FOREXCOM:USDJPY", "d": "USD/JPY" },
-                    { "s": "FOREXCOM:USDCHF", "d": "USD/CHF" },
-                    { "s": "FOREXCOM:AUDUSD", "d": "AUD/USD" },
-                    { "s": "FOREXCOM:USDCAD", "d": "USD/CAD" },
-                    { "s": "FOREXCOM:NZDUSD", "d": "NZD/USD" }
-                  ]
-                }
+              "title": "Main",
+              "symbols": [
+                { "s": "FOREXCOM:XAUUSD", "d": "Gold" },
+                { "s": "BINANCE:BTCUSDT", "d": "Bitcoin" },
+                { "s": "TVC:DXY", "d": "DXY Index" },
+                { "s": "FOREXCOM:SPX500", "d": "S&P 500" }
+              ]
+            },
+            {
+              "title": "Forex",
+              "symbols": [
+                { "s": "FOREXCOM:EURUSD" },
+                { "s": "FOREXCOM:GBPUSD" },
+                { "s": "FOREXCOM:USDJPY" },
+                { "s": "FOREXCOM:USDCHF" },
+                { "s": "FOREXCOM:AUDUSD" },
+                { "s": "FOREXCOM:USDCAD" }
               ]
             }
-            </script>
-        </div>
+          ]
+        }
+        </script>
     </div>
-
 </div>
 
 <div class="bottom-buttons">
-    <div class="btn disabled">🔥 FTMO Service <span style="font-size: 11px; opacity: 0.7; display: block;">(Coming soon)</span></div>
-    <div class="btn" onclick="window.location.href='signals.html'">🔥 Signals & Analysis</div>
+    <div class="btn-action fancy-ui disabled">
+        🔥 FTMO SERVICE
+        <span style="display:block; font-size:10px; color:#0ea5e9;">COMING SOON</span>
+    </div>
+    <div class="btn-action fancy-ui" onclick="window.location.href='signals.html'">
+        📊 SIGNALS & ANALYSIS
+    </div>
 </div>
 
-<div id="clock-widget">
+<div id="clock-widget" class="fancy-ui">
     <div class="clock">
-        <div class="dot" style="top:5%;left:50%"></div>
-        <div class="dot" style="top:20%;right:15%"></div>
-        <div class="dot" style="top:50%;right:5%"></div>
-        <div class="dot" style="bottom:20%;right:15%"></div>
-        <div class="dot" style="bottom:5%;left:50%"></div>
-        <div class="dot" style="bottom:20%;left:15%"></div>
-        <div class="dot" style="top:50%;left:5%"></div>
-        <div class="dot" style="top:20%;left:15%"></div>
-        
         <div class="hand hour" id="hour"></div>
         <div class="hand minute" id="minute"></div>
         <div class="hand second" id="second"></div>
@@ -287,45 +292,39 @@ body::before {
 </div>
 
 <div id="radio-bar">
-    <div style="font-size: 14px; margin-left: 10px;">🎧 Afro House Radio</div>
-    <div>
-        <button style="background: #111827; color: white; border: 1px solid #374151; padding: 5px 10px; border-radius: 5px; cursor: pointer;" onclick="togglePlay()">Play / Pause</button>
-        <input type="range" min="0" max="1" step="0.01" value="0.2" onchange="setVolume(this.value)" style="vertical-align: middle; margin-left: 10px;">
+    <div style="font-weight:bold; color:#0ea5e9;">🎧 AFRO HOUSE RADIO</div>
+    <div style="display:flex; align-items:center; gap:15px;">
+        <button style="background:#0ea5e9; border:none; color:white; padding:8px 15px; border-radius:5px; cursor:pointer; font-weight:bold;" onclick="togglePlay()">PLAY / PAUSE</button>
+        <input type="range" min="0" max="1" step="0.01" value="0.2" onchange="setVolume(this.value)">
     </div>
-    
     <audio id="radio">
         <source src="https://stream.zeno.fm/0r0xa792kwzuv" type="audio/mpeg">
     </audio>
 </div>
 
 <script src="https://s3.tradingview.com/tv.js"></script>
-
 <script>
 function createChart(symbol){
     document.getElementById("chart").innerHTML = "";
     new TradingView.widget({
         "width": "100%",
-        "height": 500,
+        "height": 550,
         "symbol": symbol,
         "interval": "60",
         "theme": "dark",
         "style": "1",
         "locale": "en",
-        "toolbar_bg": "#f1f3f6",
+        "container_id": "chart",
         "enable_publishing": false,
         "hide_side_toolbar": false,
         "allow_symbol_change": true,
-        "container_id": "chart"
+        "save_image": false
     });
 }
-
-function changeSymbol(symbol){
-    createChart(symbol);
-}
-
+function changeSymbol(symbol){ createChart(symbol); }
 createChart("FOREXCOM:XAUUSD");
 
-/* CLOCK */
+/* CLOCK LOGIC */
 function updateClock(){
     let now = new Date();
     let sec = now.getSeconds();
@@ -336,30 +335,23 @@ function updateClock(){
     document.getElementById("minute").style.transform = `rotate(${min * 6 + sec * 0.1}deg)`;
     document.getElementById("hour").style.transform = `rotate(${(hr % 12) * 30 + min * 0.5}deg)`;
 
-    let ny = new Date().toLocaleTimeString("en-US", {timeZone: "America/New_York", hour: '2-digit', minute:'2-digit'});
-    let london = new Date().toLocaleTimeString("en-GB", {timeZone: "Europe/London", hour: '2-digit', minute:'2-digit'});
-    let tokyo = new Date().toLocaleTimeString("en-US", {timeZone: "Asia/Tokyo", hour: '2-digit', minute:'2-digit'});
+    let ny = new Date().toLocaleTimeString("en-US", {timeZone: "America/New_York", hour:'2-digit', minute:'2-digit'});
+    let london = new Date().toLocaleTimeString("en-GB", {timeZone: "Europe/London", hour:'2-digit', minute:'2-digit'});
+    let tokyo = new Date().toLocaleTimeString("en-US", {timeZone: "Asia/Tokyo", hour:'2-digit', minute:'2-digit'});
 
     document.getElementById("digital").innerHTML = london;
-    document.getElementById("sessions").innerHTML = `NY: ${ny} | LDN: ${london} | TKY: ${tokyo}`;
+    document.getElementById("sessions").innerHTML = `NY: ${ny}<br>LDN: ${london}<br>TKY: ${tokyo}`;
 }
-
 setInterval(updateClock, 1000);
 updateClock();
 
-/* RADIO */
+/* RADIO LOGIC */
 const radio = document.getElementById("radio");
 function togglePlay(){
     radio.muted = false;
-    if (radio.paused) {
-        radio.play();
-    } else {
-        radio.pause();
-    }
+    radio.paused ? radio.play() : radio.pause();
 }
-function setVolume(val){
-    radio.volume = val;
-}
+function setVolume(val){ radio.volume = val; }
 </script>
 
 </body>
