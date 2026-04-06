@@ -1,99 +1,416 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JokerFX Signals</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JokerFX Signals</title>
 
-<style>
-/* Tvoj CSS ostaje isti */
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            background: url('joker.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
 
-.entry{color:#facc15;}
-.sl{color:#f87171;}
-.tp{color:#4ade80;}
+        body::before {
+            content: "";
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: -1;
+        }
 
-/* BACK HOME */
-#backHome{
-    position:fixed;
-    bottom:70px;
-    left:20px;
-    padding:10px 16px;
-    border-radius:10px;
-    background:rgba(255,255,255,0.1);
-    color:white;
-    text-decoration:none;
-    font-size:14px;
-}
-</style>
+        /* HEADER */
+        .header {
+            text-align: center;
+            padding: 20px;
+            font-size: 26px;
+        }
+
+        /* TABLE */
+        .container {
+            padding: 20px;
+        }
+
+        .table-header, .row {
+            display: grid;
+            grid-template-columns: 120px repeat(7, 1fr);
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .table-header {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 12px;
+        }
+
+        .row {
+            background: rgba(255, 255, 255, 0.06);
+            padding: 14px;
+            backdrop-filter: blur(6px);
+        }
+
+        .buy { color: #4ade80; }
+        .sell { color: #f87171; }
+        .win { color: #4ade80; }
+        .loss { color: #f87171; }
+
+        .active {
+            color: #facc15;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        /* STATS */
+        .stats {
+            width: 80%;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        /* CLOCK */
+        #clock {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            z-index: 100;
+        }
+
+        .clock-face {
+            width: 80px;
+            height: 80px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            position: relative;
+            margin: auto;
+        }
+
+        .hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom;
+            background: white;
+        }
+
+        .hour { width: 3px; height: 20px; }
+        .minute { width: 2px; height: 30px; }
+        .second { width: 1px; height: 35px; background: #22c55e; }
+
+        .dot {
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .digital { font-size: 14px; margin-top: 10px; }
+        .sessions { font-size: 10px; opacity: 0.7; margin-top: 5px; line-height: 1.4; }
+
+        /* BOTTOM LEFT CONTROLS (Buttons) */
+        .controls-left {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .controls-left button {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 14px;
+            text-align: left;
+            backdrop-filter: blur(5px);
+        }
+        
+        .controls-left button:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* MODAL */
+        #calendarModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .calendar-box {
+            background: #0b1220;
+            padding: 25px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 1000px;
+        }
+
+        #closeCalendar {
+            float: right;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        /* CALENDAR */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .day-name {
+            text-align: center;
+            opacity: 0.6;
+        }
+
+        .day {
+            min-height: 70px;
+            padding: 8px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .day.win { background: rgba(34, 197, 94, 0.2); }
+        .day.loss { background: rgba(239, 68, 68, 0.2); }
+
+        .day.prev, .day.next {
+            opacity: 0.3;
+        }
+
+    </style>
 </head>
 
 <body>
 
-<div class="header">Weekly Signals Overview</div>
+    <div class="header">Weekly Signals Overview</div>
 
-<div class="container">
-<div class="table-header">
-<div>Day</div><div>Type</div><div>Pair</div>
-<div>Entry</div><div>SL</div><div>TP</div><div>RR</div><div>Status</div>
-</div>
+    <div class="container">
+        <div class="table-header">
+            <div>Day</div><div>Type</div><div>Pair</div>
+            <div>Entry</div><div>SL</div><div>TP</div><div>RR</div><div>Status</div>
+        </div>
 
-<!-- ✅ SAMO OVDE DODATE KLASE -->
-<div class="row">
-<div>Monday</div><div class="buy">BUY</div><div>XAUUSD</div>
-<div class="entry">4610</div>
-<div class="sl">4595</div>
-<div class="tp">4700</div>
-<div>1:6</div>
-<div class="win">Closed - Profit</div>
-</div>
+        <div class="row">
+            <div>Monday</div><div class="buy">BUY</div><div>XAUUSD</div>
+            <div>4610</div><div>4595</div><div>4700</div><div>1:6</div><div class="win">Closed - Profit</div>
+        </div>
 
-<!-- OSTALO NIJE DIRANO -->
-<div class="row">
-<div>Tuesday</div><div class="sell"></div><div></div>
-<div></div><div></div><div></div><div></div><div class="loss"></div>
-</div>
+        <div class="row">
+            <div>Tuesday</div><div class="sell"></div><div></div>
+            <div></div><div></div><div></div><div></div><div class="loss"></div>
+        </div>
 
-<div class="row">
-<div>Wednesday</div><div class="buy"></div><div></div>
-<div></div><div></div><div></div><div></div><div class="active"></div>
-</div>
+        <div class="row">
+            <div>Wednesday</div><div class="buy"></div><div></div>
+            <div></div><div></div><div></div><div></div><div class="active"></div>
+        </div>
 
-<div class="row">
-<div>Thursday</div><div class="buy"></div><div></div>
-<div></div><div></div><div></div><div></div><div class="win"></div>
-</div>
+        <div class="row">
+            <div>Thursday</div><div class="buy"></div><div></div>
+            <div></div><div></div><div></div><div></div><div class="win"></div>
+        </div>
 
-<div class="row">
-<div>Friday</div><div class="sell"></div><div></div>
-<div></div><div></div><div></div><div></div><div class="loss"></div>
-</div>
-</div>
+        <div class="row">
+            <div>Friday</div><div class="sell"></div><div></div>
+            <div></div><div></div><div></div><div></div><div class="loss"></div>
+        </div>
+    </div>
 
-<div class="stats">
-<h3>Weekly Statistics</h3>
-<p>06.04.2026 - 13.06.2026</p>
+    <div class="stats">
+        <h3>Weekly Statistics</h3>
+        <p>06.04.2026 - 13.06.2026</p>
 
-<div class="stats-row">
-<div><p>Total</p><h2>1</h2></div>
-<div><p>Win</p><h2 class="win">1</h2></div>
-<div><p>Loss</p><h2 class="loss">0</h2></div>
-<div><p>Pips</p><h2>+900</h2></div>
-</div>
-</div>
+        <div class="stats-row">
+            <div><p>Total</p><h2>1</h2></div>
+            <div><p>Win</p><h2 class="win">1</h2></div>
+            <div><p>Loss</p><h2 class="loss">0</h2></div>
+            <div><p>Pips</p><h2>+900</h2></div>
+        </div>
+    </div>
 
-<!-- CLOCK -->
-<div id="clock">
-<div class="clock-face" id="face"></div>
-<div class="digital" id="digital"></div>
-<div class="sessions" id="sessions"></div>
-</div>
+    <div id="clock">
+        <div class="clock-face" id="face"></div>
+        <div class="digital" id="digital"></div>
+        <div class="sessions" id="sessions"></div>
+    </div>
 
-<!-- ✅ BACK HOME -->
-<a href="index.html" id="backHome">🏠 Home</a>
+    <div class="controls-left">
+        <button id="openCalendar">📊 Previous Month</button>
+        <button id="backHome" onclick="window.location.href='index.html'">🏠 Back to Home</button>
+    </div>
 
-<button id="openCalendar">📊 Previous Month</button>
+    <div id="calendarModal">
+        <div class="calendar-box">
 
-<!-- OSTATAK TVOG KODA (KALENDAR + SCRIPT) NIJE DIRAN -->
+            <span id="closeCalendar">✖</span>
+
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h2>April 2026</h2>
+                <div id="monthStats" style="font-size:14px; opacity:0.8;">
+                    Monthly stats: $0 | Trading days: 0
+                </div>
+            </div>
+
+            <div class="calendar-grid">
+                <div class="day-name">Mon</div>
+                <div class="day-name">Tue</div>
+                <div class="day-name">Wed</div>
+                <div class="day-name">Thu</div>
+                <div class="day-name">Fri</div>
+                <div class="day-name">Sat</div>
+                <div class="day-name">Sun</div>
+
+                <div class="day prev">30</div>
+                <div class="day prev">31</div>
+                <div class="day loss" data-profit="-22">1<br>-$22</div>
+                <div class="day win" data-profit="401">2<br>$401</div>
+                <div class="day" data-profit="0">3</div>
+                <div class="day loss" data-profit="-48">4<br>-$48</div>
+                <div class="day" data-profit="0">5</div>
+
+                <div class="day loss" data-profit="-43">6<br>-$43</div>
+                <div class="day win" data-profit="650">7<br>$650</div>
+                <div class="day" data-profit="0">8</div>
+                <div class="day win" data-profit="250">9<br>$250</div>
+                <div class="day win" data-profit="550">10<br>$550</div>
+                <div class="day" data-profit="0">11</div>
+                <div class="day" data-profit="0">12</div>
+
+                <div class="day loss" data-profit="-120">13<br>-$120</div>
+                <div class="day loss" data-profit="-90">14<br>-$90</div>
+                <div class="day win" data-profit="465">15<br>$465</div>
+                <div class="day" data-profit="0">16</div>
+                <div class="day win" data-profit="240">17<br>$240</div>
+                <div class="day" data-profit="0">18</div>
+                <div class="day" data-profit="0">19</div>
+
+                <div class="day" data-profit="0">20</div>
+                <div class="day win" data-profit="240">21<br>$240</div>
+                <div class="day win" data-profit="340">22<br>$340</div>
+                <div class="day win" data-profit="223">23<br>$223</div>
+                <div class="day" data-profit="0">24</div>
+                <div class="day" data-profit="0">25</div>
+                <div class="day" data-profit="0">26</div>
+
+                <div class="day loss" data-profit="-134">27<br>-$134</div>
+                <div class="day win" data-profit="780">28<br>$780</div>
+                <div class="day" data-profit="0">29</div>
+                <div class="day win" data-profit="738">30<br>$738</div>
+                <div class="day next">1</div>
+                <div class="day next">2</div>
+                <div class="day next">3</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* CLOCK */
+        let face = document.getElementById("face");
+
+        ["hour", "minute", "second"].forEach(type => {
+            let h = document.createElement("div");
+            h.className = "hand " + type;
+            face.appendChild(h);
+        });
+
+        for(let i = 0; i < 12; i++){
+            let dot = document.createElement("div");
+            dot.className = "dot";
+            let angle = i * 30;
+            dot.style.top = 50 - 40 * Math.cos(angle * Math.PI / 180) + "%";
+            dot.style.left = 50 + 40 * Math.sin(angle * Math.PI / 180) + "%";
+            face.appendChild(dot);
+        }
+
+        function updateClock(){
+            let now = new Date();
+
+            let sec = now.getSeconds();
+            let min = now.getMinutes();
+            let hr = now.getHours();
+
+            document.querySelector(".second").style.transform = `rotate(${sec * 6}deg)`;
+            document.querySelector(".minute").style.transform = `rotate(${min * 6 + sec * 0.1}deg)`;
+            document.querySelector(".hour").style.transform = `rotate(${(hr % 12) * 30 + min * 0.5}deg)`;
+
+            let london = new Date().toLocaleTimeString("en-GB", {timeZone: "Europe/London"});
+            let ny = new Date().toLocaleTimeString("en-US", {timeZone: "America/New_York"});
+            let tokyo = new Date().toLocaleTimeString("en-US", {timeZone: "Asia/Tokyo"});
+
+            document.getElementById("digital").innerHTML = london;
+            document.getElementById("sessions").innerHTML = `NY: ${ny}<br>London: ${london}<br>Tokyo: ${tokyo}`;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock(); 
+
+        /* MODAL */
+        const openBtn = document.getElementById("openCalendar");
+        const closeBtn = document.getElementById("closeCalendar");
+        const modal = document.getElementById("calendarModal");
+
+        openBtn.onclick = () => modal.style.display = "flex";
+        closeBtn.onclick = () => modal.style.display = "none";
+
+        window.onclick = (e) => {
+            if(e.target == modal) modal.style.display = "none";
+        }
+
+        /* MONTH STATS */
+        function calculateMonthStats(){
+            let total = 0;
+            let tradingDays = 0;
+
+            document.querySelectorAll('.day').forEach(day => {
+                let val = parseFloat(day.getAttribute('data-profit')) || 0;
+
+                if(val !== 0){
+                    total += val;
+                    tradingDays++;
+                }
+            });
+
+            document.getElementById("monthStats").innerHTML = `Monthly stats: $${total} | Trading days: ${tradingDays}`;
+        }
+
+        calculateMonthStats();
+    </script>
 
 </body>
 </html>
