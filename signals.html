@@ -34,32 +34,28 @@ body::before{
     font-size:26px;
 }
 
-/* MAIN */
+/* TABLE */
 .container{
     padding:20px;
 }
 
-/* TABLE HEADER */
-.table-header{
+.table-header, .row{
     display:grid;
     grid-template-columns: 120px repeat(6,1fr);
-    background:rgba(255,255,255,0.08);
-    padding:12px;
+    text-align:center;
     border-radius:12px;
     margin-bottom:10px;
-    font-weight:bold;
-    text-align:center;
 }
 
-/* ROW */
+.table-header{
+    background:rgba(255,255,255,0.08);
+    padding:12px;
+    font-weight:bold;
+}
+
 .row{
-    display:grid;
-    grid-template-columns: 120px repeat(6,1fr);
     background:rgba(255,255,255,0.06);
     padding:14px;
-    border-radius:12px;
-    margin-bottom:10px;
-    text-align:center;
     backdrop-filter: blur(6px);
     transition:0.3s;
 }
@@ -68,26 +64,24 @@ body::before{
     background:rgba(255,255,255,0.1);
 }
 
-/* DAY */
-.day{
-    font-weight:bold;
-}
+/* COLORS */
+.buy{color:#4ade80;font-weight:bold;}
+.sell{color:#f87171;font-weight:bold;}
 
-/* BUY / SELL (SOFT COLORS) */
-.buy{
-    color:#4ade80; /* soft green */
-    font-weight:bold;
-}
-
-.sell{
-    color:#f87171; /* soft red */
-    font-weight:bold;
-}
-
-/* STATUS */
 .win{color:#4ade80;}
 .loss{color:#f87171;}
-.active{color:#facc15;}
+
+/* ACTIVE ANIMATION */
+.active{
+    color:#facc15;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%{opacity:1;}
+    50%{opacity:0.4;}
+    100%{opacity:1;}
+}
 
 /* STATS */
 .stats{
@@ -99,10 +93,6 @@ body::before{
     backdrop-filter: blur(6px);
 }
 
-.stats h3{
-    margin-bottom:5px;
-}
-
 .stats-date{
     opacity:0.7;
     margin-bottom:15px;
@@ -111,16 +101,51 @@ body::before{
 .stats-row{
     display:flex;
     justify-content:space-around;
+}
+
+/* CLOCK */
+#clock{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+    padding:15px;
+    border-radius:15px;
     text-align:center;
 }
 
-/* MOBILE */
-@media(max-width:768px){
-.table-header, .row{
-    grid-template-columns: repeat(3,1fr);
-    font-size:12px;
+.clock-face{
+    width:80px;
+    height:80px;
+    border:2px solid rgba(255,255,255,0.2);
+    border-radius:50%;
+    position:relative;
+    margin:auto;
 }
+
+.hand{
+    position:absolute;
+    bottom:50%;
+    left:50%;
+    transform-origin:bottom;
+    background:white;
 }
+
+.hour{width:3px;height:20px;}
+.minute{width:2px;height:30px;}
+.second{width:1px;height:35px;background:#22c55e;}
+
+.dot{
+    width:4px;
+    height:4px;
+    background:white;
+    border-radius:50%;
+    position:absolute;
+}
+
+.digital{margin-top:5px;font-size:14px;}
+.sessions{font-size:10px;opacity:0.7;}
 
 </style>
 </head>
@@ -131,7 +156,6 @@ body::before{
 
 <div class="container">
 
-<!-- HEADER -->
 <div class="table-header">
 <div>Day</div>
 <div>Type</div>
@@ -139,86 +163,71 @@ body::before{
 <div>Entry</div>
 <div>SL</div>
 <div>TP</div>
+<div>RR</div>
 <div>Status</div>
 </div>
 
-<!-- ROWS (1 DAY = 1 SIGNAL) -->
+<!-- ROWS -->
 
 <div class="row">
-<div class="day">Monday</div>
+<div>Monday</div>
 <div class="buy">BUY</div>
 <div>XAUUSD</div>
 <div>2300</div>
 <div>2285</div>
 <div>2350</div>
+<div>1:3</div>
 <div class="win">Closed - Profit</div>
 </div>
 
 <div class="row">
-<div class="day">Tuesday</div>
+<div>Tuesday</div>
 <div class="sell">SELL</div>
 <div>XAUUSD</div>
 <div>2350</div>
 <div>2370</div>
 <div>2280</div>
+<div>1:2</div>
 <div class="loss">Closed - Loss</div>
 </div>
 
 <div class="row">
-<div class="day">Wednesday</div>
+<div>Wednesday</div>
 <div class="buy">BUY</div>
 <div>XAUUSD</div>
 <div>2300</div>
 <div>2285</div>
 <div>2350</div>
+<div>1:3</div>
 <div class="active">Active</div>
 </div>
 
 <div class="row">
-<div class="day">Thursday</div>
+<div>Thursday</div>
 <div class="buy">BUY</div>
 <div>XAUUSD</div>
 <div>2300</div>
 <div>2285</div>
 <div>2350</div>
+<div>1:3</div>
 <div class="win">Closed - Profit</div>
 </div>
 
 <div class="row">
-<div class="day">Friday</div>
+<div>Friday</div>
 <div class="sell">SELL</div>
 <div>XAUUSD</div>
 <div>2350</div>
 <div>2370</div>
 <div>2280</div>
+<div>1:2</div>
 <div class="loss">Closed - Loss</div>
-</div>
-
-<div class="row">
-<div class="day">Saturday</div>
-<div>-</div>
-<div>-</div>
-<div>-</div>
-<div>-</div>
-<div>-</div>
-<div>-</div>
-</div>
-
-<div class="row">
-<div class="day">Sunday</div>
-<div>-</div>
-<div>-</div>
-<div>-</div>
-<div>-</div>
-<div>-</div>
-<div>-</div>
 </div>
 
 </div>
 
 <!-- STATS -->
 <div class="stats">
-
 <h3>Weekly Statistics</h3>
 <div class="stats-date">04.06.2026 - 11.06.2026</div>
 
@@ -238,8 +247,69 @@ body::before{
 <h2 class="loss">4</h2>
 </div>
 </div>
+</div>
+
+<!-- CLOCK -->
+<div id="clock">
+
+<div class="clock-face" id="face"></div>
+
+<div class="digital" id="digital"></div>
+<div class="sessions" id="sessions"></div>
 
 </div>
+
+<script>
+
+/* CLOCK HANDS */
+let face=document.getElementById("face");
+
+let hour=document.createElement("div");
+hour.className="hand hour";
+
+let minute=document.createElement("div");
+minute.className="hand minute";
+
+let second=document.createElement("div");
+second.className="hand second";
+
+face.appendChild(hour);
+face.appendChild(minute);
+face.appendChild(second);
+
+/* DOTS */
+for(let i=0;i<12;i++){
+    let dot=document.createElement("div");
+    dot.className="dot";
+    let angle=i*30;
+    dot.style.top=50-40*Math.cos(angle*Math.PI/180)+"%";
+    dot.style.left=50+40*Math.sin(angle*Math.PI/180)+"%";
+    face.appendChild(dot);
+}
+
+function updateClock(){
+    let now=new Date();
+
+    let sec=now.getSeconds();
+    let min=now.getMinutes();
+    let hr=now.getHours();
+
+    second.style.transform=`rotate(${sec*6}deg)`;
+    minute.style.transform=`rotate(${min*6+sec*0.1}deg)`;
+    hour.style.transform=`rotate(${(hr%12)*30+min*0.5}deg)`;
+
+    let ny=new Date().toLocaleTimeString("en-US",{timeZone:"America/New_York"});
+    let london=new Date().toLocaleTimeString("en-GB",{timeZone:"Europe/London"});
+    let tokyo=new Date().toLocaleTimeString("en-US",{timeZone:"Asia/Tokyo"});
+
+    document.getElementById("digital").innerHTML=london;
+    document.getElementById("sessions").innerHTML=
+    `NY: ${ny}<br>London: ${london}<br>Tokyo: ${tokyo}`;
+}
+
+setInterval(updateClock,1000);
+
+</script>
 
 </body>
 </html>
