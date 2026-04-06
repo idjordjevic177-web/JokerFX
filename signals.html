@@ -64,7 +64,22 @@
         .tp-val { color: #4ade80; font-weight: bold; }    /* ZELENA */
         
         .buy { color: #4ade80; font-weight: bold; }
+        .sell { color: #f87171; font-weight: bold; }
         .win-status { color: #4ade80; text-shadow: 0 0 8px rgba(74, 222, 128, 0.4); }
+
+        /* ANIMACIJA ZA ACTIVE STATUS */
+        .active-status {
+            color: #facc15;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(250, 204, 21, 0.5);
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
 
         /* DESNI PANEL */
         .side-panel { display: flex; flex-direction: column; gap: 20px; }
@@ -146,7 +161,11 @@
         <div class="row fancy-ui">
             <div>Monday</div><div class="buy">BUY</div><div>XAUUSD</div><div class="entry-val">4610</div><div class="sl-val">4595</div><div class="tp-val">4700</div><div>1:6</div><div class="win-status">Closed - Profit</div>
         </div>
-        <div class="row fancy-ui"><div>Tuesday</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+        <div class="row fancy-ui">
+            <div>Tuesday</div><div class="sell">SELL</div><div>XAUUSD</div><div class="entry-val">4670</div><div class="sl-val">4695</div><div class="tp-val">4580</div><div>1:4</div><div class="active-status">Active</div>
+        </div>
+
         <div class="row fancy-ui"><div>Wednesday</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
         <div class="row fancy-ui"><div>Thursday</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
         <div class="row fancy-ui"><div>Friday</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
@@ -214,9 +233,7 @@
 
         <div class="calendar-grid">
             <div class="day-name">Mon</div><div class="day-name">Tue</div><div class="day-name">Wed</div><div class="day-name">Thu</div><div class="day-name">Fri</div><div class="day-name">Sat</div><div class="day-name">Sun</div>
-
             <div class="day prev">30</div><div class="day prev">31</div>
-
             <div class="day loss">1<br>-$22</div>
             <div class="day win">2<br>$401</div>
             <div class="day">3</div>
@@ -247,7 +264,6 @@
             <div class="day win">28<br>$780</div>
             <div class="day">29</div>
             <div class="day win">30<br>$738</div>
-
             <div class="day next">1</div><div class="day next">2</div><div class="day next">3</div>
         </div>
     </div>
