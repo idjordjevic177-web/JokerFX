@@ -29,7 +29,7 @@
             border-bottom: 1px solid #0ea5e9;
         }
 
-        .header { text-align: center; padding: 20px; font-size: 32px; font-weight: 800; text-shadow: 0 0 20px #0ea5e9; }
+        .header { text-align: center; padding: 20px; font-size: 32px; font-weight: 800; text-shadow: 0 0 20px #0ea5e9; letter-spacing: 2px; }
         
         .fancy-ui {
             background: rgba(30, 41, 59, 0.4);
@@ -47,49 +47,59 @@
             padding: 20px;
         }
 
-        /* TABELA */
+        /* TABELA SA BOJAMA ZA ENTRY, SL, TP */
         .table-header, .row {
             display: grid;
-            grid-template-columns: 100px repeat(7, 1fr);
+            grid-template-columns: 120px repeat(7, 1fr);
             text-align: center;
-            padding: 15px;
+            align-items: center;
             margin-bottom: 10px;
         }
-        .table-header { background: rgba(14, 165, 233, 0.2); font-weight: bold; font-size: 12px; border-radius: 10px; }
-        .row { border: 1px solid rgba(255, 255, 255, 0.05); }
+        .table-header { background: rgba(14, 165, 233, 0.2); font-weight: bold; font-size: 12px; border-radius: 10px; padding: 15px; }
+        .row { padding: 16px; border: 1px solid rgba(255, 255, 255, 0.05); }
+
+        .entry-val { color: #facc15; font-weight: bold; } /* ŽUTA */
+        .sl-val { color: #f87171; font-weight: bold; }    /* CRVENA */
+        .tp-val { color: #4ade80; font-weight: bold; }    /* ZELENA */
+        
         .buy { color: #4ade80; font-weight: bold; }
         .win { color: #4ade80; text-shadow: 0 0 8px rgba(74, 222, 128, 0.4); }
 
-        /* DESNI PANEL (SENTIMENT & NEWS) */
+        /* DESNI PANEL */
         .side-panel { display: flex; flex-direction: column; gap: 20px; }
 
-        /* SAT I KONTROLE (Kao ranije) */
-        .controls-left { position: fixed; bottom: 30px; left: 20px; display: flex; flex-direction: column; gap: 10px; }
-        .controls-left button { 
-            width: 180px; padding: 12px; border: 1px solid #0ea5e9; 
-            background: rgba(15, 23, 42, 0.8); color: white; cursor: pointer; font-weight: bold; 
-        }
+        /* STATS */
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 15px; }
+
+        /* ANALOGNI SAT SA TAČKICAMA */
+        #clock { position: fixed; bottom: 30px; right: 25px; text-align: center; z-index: 100; }
+        .clock-face { width: 90px; height: 90px; border: 2px solid rgba(14, 165, 233, 0.5); border-radius: 50%; position: relative; margin: 0 auto 10px; }
+        .hand { position: absolute; bottom: 50%; left: 50%; transform-origin: bottom; background: white; border-radius: 2px; }
+        .hour { width: 3px; height: 22px; }
+        .minute { width: 2px; height: 32px; }
+        .second { width: 1px; height: 38px; background: #0ea5e9; }
+        .dot { width: 4px; height: 4px; background: #0ea5e9; border-radius: 50%; position: absolute; }
+        .digital { font-size: 22px; font-weight: 800; }
+        .sessions { font-size: 10px; opacity: 0.7; line-height: 1.4; }
+
+        /* KONTROLE I KALENDAR */
+        .controls-left { position: fixed; bottom: 30px; left: 25px; display: flex; flex-direction: column; gap: 12px; }
+        .controls-left button { width: 200px; padding: 15px; border: 1px solid rgba(14, 165, 233, 0.3); background: rgba(15, 23, 42, 0.8); color: white; cursor: pointer; font-weight: bold; text-transform: uppercase; }
+        
+        #calendarModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); justify-content: center; align-items: center; z-index: 9999; backdrop-filter: blur(10px); }
+        .calendar-box { background: #0b1220; border: 1px solid #0ea5e9; padding: 30px; border-radius: 20px; width: 90%; max-width: 800px; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin-top: 20px; }
+        .day { min-height: 60px; padding: 5px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); text-align: center; font-size: 11px; }
+        .day.win { background: rgba(34, 197, 94, 0.2); color: #4ade80; }
+        .day.loss { background: rgba(239, 68, 68, 0.2); color: #f87171; }
     </style>
 </head>
 <body>
 
 <div class="top-ticker">
     <div class="tradingview-widget-container">
-        <div class="tradingview-widget-container__widget"></div>
         <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-        {
-        "symbols": [
-            {"proName": "FOREXCOM:XAUUSD", "title": "GOLD"},
-            {"proName": "BINANCE:BTCUSDT", "title": "BITCOIN"},
-            {"proName": "FX_IDC:EURUSD", "title": "EURUSD"},
-            {"proName": "INDEX:DXY", "title": "DXY"}
-        ],
-        "showSymbolLogo": true,
-        "colorTheme": "dark",
-        "isTransparent": true,
-        "displayMode": "adaptive",
-        "locale": "en"
-        }
+        { "symbols": [{"proName": "FOREXCOM:XAUUSD", "title": "GOLD"},{"proName": "BINANCE:BTCUSDT", "title": "BITCOIN"},{"proName": "FX_IDC:EURUSD", "title": "EURUSD"},{"proName": "INDEX:DXY", "title": "DXY"}], "colorTheme": "dark", "isTransparent": true, "displayMode": "adaptive", "locale": "en" }
         </script>
     </div>
 </div>
@@ -101,62 +111,112 @@
         <div class="table-header">
             <div>Day</div><div>Type</div><div>Pair</div><div>Entry</div><div>SL</div><div>TP</div><div>RR</div><div>Status</div>
         </div>
+        
         <div class="row fancy-ui">
-            <div>Monday</div><div class="buy">BUY</div><div>XAUUSD</div><div>4610</div><div>4595</div><div>4700</div><div>1:6</div><div class="win">Profit</div>
+            <div>Monday</div><div class="buy">BUY</div><div>XAUUSD</div><div class="entry-val">4610</div><div class="sl-val">4595</div><div class="tp-val">4700</div><div>1:6</div><div class="win">Profit</div>
         </div>
-        <div class="fancy-ui" style="margin-top: 20px; height: 450px; overflow: hidden;">
-            <div style="padding: 15px; font-weight: bold; border-bottom: 1px solid rgba(14, 165, 233, 0.3);">LIVE MARKET NEWS</div>
+        <div class="row fancy-ui"><div>Tuesday</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <div class="row fancy-ui"><div>Wednesday</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <div class="row fancy-ui"><div>Thursday</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <div class="row fancy-ui"><div>Friday</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+        <div class="fancy-ui" style="margin-top: 20px; height: 350px; overflow: hidden;">
+            <div style="padding: 12px; font-size: 13px; font-weight: bold; border-bottom: 1px solid rgba(14, 165, 233, 0.3);">LIVE MARKET NEWS</div>
             <div class="tradingview-widget-container">
-                <div class="tradingview-widget-container__widget"></div>
                 <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
-                {
-                "feedMode": "all_symbols",
-                "colorTheme": "dark",
-                "isTransparent": true,
-                "displayMode": "regular",
-                "width": "100%",
-                "height": "400",
-                "locale": "en"
-                }
+                { "feedMode": "all_symbols", "colorTheme": "dark", "isTransparent": true, "width": "100%", "height": "300", "locale": "en" }
                 </script>
             </div>
         </div>
     </div>
 
     <div class="side-panel">
-        <div class="fancy-ui" style="padding: 15px; height: 400px;">
-            <div style="text-align: center; font-weight: bold; margin-bottom: 10px;">XAUUSD SENTIMENT</div>
+        <div class="fancy-ui" style="padding: 10px; height: 380px;">
+            <div style="text-align: center; font-size: 12px; font-weight: bold; margin-bottom: 5px;">XAUUSD SENTIMENT</div>
             <div class="tradingview-widget-container">
-                <div class="tradingview-widget-container__widget"></div>
                 <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
-                {
-                "interval": "1h",
-                "width": "100%",
-                "isTransparent": true,
-                "height": "330",
-                "symbol": "FOREXCOM:XAUUSD",
-                "showIntervalTabs": true,
-                "displayMode": "single",
-                "locale": "en",
-                "colorTheme": "dark"
-                }
+                { "interval": "1h", "width": "100%", "isTransparent": true, "height": "320", "symbol": "FOREXCOM:XAUUSD", "showIntervalTabs": true, "displayMode": "single", "locale": "en", "colorTheme": "dark" }
                 </script>
             </div>
         </div>
 
-        <div class="fancy-ui" style="padding: 20px; text-align: center;">
-            <h4 style="margin:0 0 15px 0;">Weekly Stats</h4>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                <div><small>Win</small><h2 class="win">1</h2></div>
-                <div><small>Pips</small><h2>+900</h2></div>
+        <div class="fancy-ui" style="padding: 15px; text-align: center;">
+            <span style="font-size: 12px; opacity: 0.7;">WEEKLY STATISTICS</span>
+            <div class="stats-grid">
+                <div><small>WIN</small><h2 class="win" style="margin:5px 0;">1</h2></div>
+                <div><small>LOSE</small><h2 style="margin:5px 0; color: #f87171;">0</h2></div>
+                <div><small>PIPS</small><h2 style="margin:5px 0;">+900</h2></div>
             </div>
         </div>
     </div>
 </div>
 
+<div id="clock">
+    <div class="clock-face" id="face"></div>
+    <div class="digital" id="digital"></div>
+    <div class="sessions" id="sessions"></div>
+</div>
+
 <div class="controls-left">
+    <button id="openCalendar" class="fancy-ui">📊 Previous Month</button>
     <button class="fancy-ui" onclick="window.location.href='index.html'">🏠 Back to Home</button>
 </div>
+
+<div id="calendarModal">
+    <div class="calendar-box">
+        <span id="closeCalendar" style="float:right; cursor:pointer;">✖</span>
+        <h2 style="color:#0ea5e9; margin-top:0;">April 2026 - Earnings</h2>
+        <div class="calendar-grid" id="cal-content">
+            </div>
+    </div>
+</div>
+
+<script>
+    /* SAT SA TAČKICAMA */
+    const face = document.getElementById("face");
+    ["hour", "minute", "second"].forEach(type => {
+        let h = document.createElement("div"); h.className = "hand " + type; face.appendChild(h);
+    });
+    for(let i = 0; i < 12; i++){
+        let dot = document.createElement("div"); dot.className = "dot";
+        let angle = i * 30;
+        dot.style.top = 50 - 42 * Math.cos(angle * Math.PI / 180) + "%";
+        dot.style.left = 50 + 42 * Math.sin(angle * Math.PI / 180) + "%";
+        face.appendChild(dot);
+    }
+
+    function updateClock(){
+        let now = new Date();
+        document.querySelector(".second").style.transform = `rotate(${now.getSeconds() * 6}deg)`;
+        document.querySelector(".minute").style.transform = `rotate(${now.getMinutes() * 6}deg)`;
+        document.querySelector(".hour").style.transform = `rotate(${(now.getHours() % 12) * 30 + now.getMinutes() * 0.5}deg)`;
+        
+        let lon = new Date().toLocaleTimeString("en-GB", {timeZone: "Europe/London", hour:'2-digit', minute:'2-digit'});
+        let ny = new Date().toLocaleTimeString("en-US", {timeZone: "America/New_York", hour:'2-digit', minute:'2-digit'});
+        let tky = new Date().toLocaleTimeString("en-US", {timeZone: "Asia/Tokyo", hour:'2-digit', minute:'2-digit'});
+        document.getElementById("digital").innerHTML = lon;
+        document.getElementById("sessions").innerHTML = `NY: ${ny}<br>LDN: ${lon}<br>TKY: ${tky}`;
+    }
+    setInterval(updateClock, 1000); updateClock();
+
+    /* KALENDAR DATA */
+    const calData = [
+        {d:1, p:-22, c:'loss'}, {d:2, p:401, c:'win'}, {d:3, p:0, c:''}, {d:4, p:-48, c:'loss'}, {d:5, p:0, c:''},
+        {d:6, p:-43, c:'loss'}, {d:7, p:650, c:'win'}, {d:8, p:0, c:''}, {d:9, p:250, c:'win'}, {d:10, p:550, c:'win'}
+        // ... dopuni ostale dane po potrebi
+    ];
+    const calGrid = document.getElementById('cal-content');
+    calData.forEach(item => {
+        let div = document.createElement('div');
+        div.className = `day ${item.c}`;
+        div.innerHTML = `${item.d}<br>${item.p !== 0 ? '$' + item.p : ''}`;
+        calGrid.appendChild(div);
+    });
+
+    const modal = document.getElementById("calendarModal");
+    document.getElementById("openCalendar").onclick = () => modal.style.display = "flex";
+    document.getElementById("closeCalendar").onclick = () => modal.style.display = "none";
+</script>
 
 </body>
 </html>
