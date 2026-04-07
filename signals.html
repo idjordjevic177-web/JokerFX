@@ -131,6 +131,60 @@
             border-top: 1px solid rgba(14, 165, 233, 0.2);
         }
         .footer-disclaimer strong { color: #f87171; }
+
+        /* --- RESPONSIVE DIZAJN ZA MOBILNI --- */
+        @media (max-width: 900px) {
+            .main-layout {
+                grid-template-columns: 1fr; /* Jedna kolona na mobilnom */
+                padding: 10px;
+                padding-bottom: 180px; /* Više mesta za fiksne elemente na dnu */
+            }
+
+            .left-col {
+                overflow-x: auto; /* Dozvoljava tabeli da se skroluje levo-desno */
+                width: 100%;
+            }
+
+            .table-header, .row {
+                min-width: 800px; /* Sprečava da se tabela previše "zgnječi" */
+            }
+
+            .header {
+                font-size: 24px;
+            }
+
+            /* Pomeranje sata i komandi na dno da ne smetaju */
+            #clock {
+                position: static;
+                margin-top: 20px;
+                background: rgba(15, 23, 42, 0.9);
+                padding: 20px;
+                border-radius: 12px;
+                border: 1px solid rgba(14, 165, 233, 0.3);
+            }
+
+            .controls-left {
+                position: static;
+                margin-top: 20px;
+                align-items: center;
+            }
+
+            .controls-left button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .calendar-grid {
+                grid-template-columns: repeat(7, 1fr);
+                gap: 2px; /* Manji razmak na mobilnom */
+            }
+
+            .day {
+                min-height: 50px;
+                font-size: 10px;
+                padding: 5px;
+            }
+        }
     </style>
 </head>
 <body>
