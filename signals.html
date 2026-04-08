@@ -54,7 +54,7 @@
             text-align: center;
             align-items: center;
             margin-bottom: 12px;
-            position: relative; /* Bitno za pozicioniranje ikonice */
+            position: relative;
         }
         .table-header { 
             background: rgba(14, 165, 233, 0.2); 
@@ -71,7 +71,6 @@
             min-height: 30px;
         }
 
-        /* IKONICA ZA SLIKU (LEVA STRANA) */
         .trade-preview-btn {
             position: absolute;
             left: -45px;
@@ -130,6 +129,14 @@
         .loss-status { color: #f87171; text-shadow: 0 0 8px rgba(248, 113, 113, 0.4); font-weight: bold; }
         .active-status { color: #facc15; font-weight: bold; text-shadow: 0 0 10px rgba(250, 204, 21, 0.5); animation: blink 2s infinite; }
         .no-trade-status { color: #94a3b8; font-style: italic; font-weight: bold; }
+        
+        /* PLAVI ANALYZING STATUS */
+        .analyzing-status { 
+            color: #0ea5e9; 
+            font-weight: bold; 
+            text-shadow: 0 0 10px rgba(14, 165, 233, 0.5); 
+            animation: blink 2s infinite; 
+        }
 
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
@@ -187,7 +194,7 @@
             .left-col { overflow-x: auto; width: 100%; }
             .table-header, .row { min-width: 800px; }
             .header { font-size: 24px; }
-            .trade-preview-btn { left: 5px; position: relative; margin-right: 15px; } /* Prilagođeno za mobilni da se vidi ikonica */
+            .trade-preview-btn { left: 5px; position: relative; margin-right: 15px; }
             #clock { position: static; margin-top: 20px; background: rgba(15, 23, 42, 0.9); padding: 20px; border-radius: 12px; border: 1px solid rgba(14, 165, 233, 0.3); }
             .controls-left { position: static; margin-top: 20px; align-items: center; }
             .controls-left button { width: 100%; max-width: 300px; }
@@ -227,8 +234,7 @@
         </div>
 
         <div class="row fancy-ui">
-            <div class="trade-preview-btn" onclick="openTradeImage('cetvrtak.jpg')" title="View Analysis">👁️</div>
-            <div>Thursday</div><div class="buy">BUY LIMIT</div><div>XAUUSD</div><div class="entry-val">4690</div><div class="sl-val">4660</div><div class="tp-val">4850</div><div>1:5</div><div class="active-status">Active</div>
+            <div>Thursday</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div class="analyzing-status">Analyzing</div>
         </div>
         
         <div class="row fancy-ui"><div>Friday</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div></div>
@@ -366,12 +372,10 @@
     }
     setInterval(updateClock, 1000); updateClock();
 
-    // KALENDAR MODAL
     const modal = document.getElementById("calendarModal");
     document.getElementById("openCalendar").onclick = () => modal.style.display = "flex";
     document.getElementById("closeCalendar").onclick = () => modal.style.display = "none";
 
-    // SLIKE TREJDA MODAL
     const imgModal = document.getElementById("imageModal");
     const tradeImg = document.getElementById("tradeImage");
     const closeImg = document.getElementById("closeImage");
@@ -383,7 +387,6 @@
 
     closeImg.onclick = () => imgModal.style.display = "none";
 
-    // GLOBALNO ZATVARANJE MODALA NA KLIK VAN NJIH
     window.onclick = (event) => { 
         if (event.target == modal) modal.style.display = "none"; 
         if (event.target == imgModal) imgModal.style.display = "none"; 
