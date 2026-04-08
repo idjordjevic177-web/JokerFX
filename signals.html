@@ -76,6 +76,7 @@
         .buy { color: #4ade80; font-weight: bold; }
         .sell { color: #f87171; font-weight: bold; }
         .win-status { color: #4ade80; text-shadow: 0 0 8px rgba(74, 222, 128, 0.4); font-weight: bold; }
+        .loss-status { color: #f87171; text-shadow: 0 0 8px rgba(248, 113, 113, 0.4); font-weight: bold; }
         .active-status { color: #facc15; font-weight: bold; text-shadow: 0 0 10px rgba(250, 204, 21, 0.5); animation: blink 2s infinite; }
 
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
@@ -135,25 +136,24 @@
         /* --- RESPONSIVE DIZAJN ZA MOBILNI --- */
         @media (max-width: 900px) {
             .main-layout {
-                grid-template-columns: 1fr; /* Jedna kolona na mobilnom */
+                grid-template-columns: 1fr; 
                 padding: 10px;
-                padding-bottom: 180px; /* Više mesta za fiksne elemente na dnu */
+                padding-bottom: 180px;
             }
 
             .left-col {
-                overflow-x: auto; /* Dozvoljava tabeli da se skroluje levo-desno */
+                overflow-x: auto;
                 width: 100%;
             }
 
             .table-header, .row {
-                min-width: 800px; /* Sprečava da se tabela previše "zgnječi" */
+                min-width: 800px;
             }
 
             .header {
                 font-size: 24px;
             }
 
-            /* Pomeranje sata i komandi na dno da ne smetaju */
             #clock {
                 position: static;
                 margin-top: 20px;
@@ -176,7 +176,7 @@
 
             .calendar-grid {
                 grid-template-columns: repeat(7, 1fr);
-                gap: 2px; /* Manji razmak na mobilnom */
+                gap: 2px;
             }
 
             .day {
@@ -210,7 +210,7 @@
         </div>
 
         <div class="row fancy-ui">
-            <div>Tuesday</div><div class="sell">SELL</div><div>XAUUSD</div><div class="entry-val">4670</div><div class="sl-val">4695</div><div class="tp-val">4580</div><div>1:4</div><div class="active-status">Active</div>
+            <div>Tuesday</div><div class="sell">SELL</div><div>XAUUSD</div><div class="entry-val">4670</div><div class="sl-val">4695</div><div class="tp-val">4580</div><div>1:4</div><div class="loss-status">Closed - Lost</div>
         </div>
 
         <div class="row fancy-ui"><div>Wednesday</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div></div>
@@ -238,8 +238,15 @@
             <span style="font-size: 12px; opacity: 0.7;">WEEKLY STATISTICS</span>
             <div class="stats-grid">
                 <div><small>WIN</small><h2 class="tp-val" style="margin:5px 0;">1</h2></div>
-                <div><small>LOSE</small><h2 style="margin:5px 0; color: #f87171;">0</h2></div>
-                <div><small>PIPS</small><h2 style="margin:5px 0;">+900</h2></div>
+                <div><small>LOSE</small><h2 style="margin:5px 0; color: #f87171;">1</h2></div>
+                <div>
+                    <small>PIPS</small>
+                    <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">
+                        <div style="color: #4ade80;">W: +900</div>
+                        <div style="color: #f87171;">L: -250</div>
+                        <div style="border-top: 1px solid rgba(255,255,255,0.2); margin-top: 3px; padding-top: 3px; color: white;">Tot: +650</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
