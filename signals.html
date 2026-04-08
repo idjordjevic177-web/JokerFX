@@ -129,6 +129,7 @@
         .win-status { color: #4ade80; text-shadow: 0 0 8px rgba(74, 222, 128, 0.4); font-weight: bold; }
         .loss-status { color: #f87171; text-shadow: 0 0 8px rgba(248, 113, 113, 0.4); font-weight: bold; }
         .active-status { color: #facc15; font-weight: bold; text-shadow: 0 0 10px rgba(250, 204, 21, 0.5); animation: blink 2s infinite; }
+        .no-trade-status { color: #94a3b8; font-style: italic; font-weight: bold; }
 
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
@@ -222,11 +223,14 @@
         </div>
 
         <div class="row fancy-ui">
-            <div class="trade-preview-btn" onclick="openTradeImage('sreda.jpg')" title="View Analysis">👁️</div>
-            <div>Wednesday</div><div class="buy">BUY LIMIT</div><div>XAUUSD</div><div class="entry-val">4690</div><div class="sl-val">4660</div><div class="tp-val">4850</div><div>1:5</div><div class="active-status">Active</div>
+            <div>Wednesday</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div class="no-trade-status">No Setup</div>
         </div>
 
-        <div class="row fancy-ui"><div>Thursday</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div></div>
+        <div class="row fancy-ui">
+            <div class="trade-preview-btn" onclick="openTradeImage('cetvrtak.jpg')" title="View Analysis">👁️</div>
+            <div>Thursday</div><div class="buy">BUY LIMIT</div><div>XAUUSD</div><div class="entry-val">4690</div><div class="sl-val">4660</div><div class="tp-val">4850</div><div>1:5</div><div class="active-status">Active</div>
+        </div>
+        
         <div class="row fancy-ui"><div>Friday</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div></div>
 
         <div class="news-box fancy-ui">
