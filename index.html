@@ -1,32 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JokerFX</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JokerFX</title>
 
-<style>
-/* (TVOJ CSS OSTAO ISTI) */
-body {
-    margin: 0;
-    background: url('joker.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: white;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    overflow-x: hidden;
-}
+    <style>
+        body {
+            margin: 0;
+            background: #0f172a url('joker.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            overflow-x: hidden;
+        }
 
-body::before {
-    content: "";
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: -1;
-}
+        body::before {
+            content: "";
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: -1;
+        }
 
-/* ... (NIŠTA NISAM MENJAO) ... */
-</style>
+        /* HEADER */
+        .header {
+            padding: 20px;
+            font-size: 36px;
+            font-weight: 800;
+            text-align: center;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px #0ea5e9;
+            color: #fff;
+        }
+
+        /* FANCY UI GLASS EFFECT */
+        .fancy-ui {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            backdrop-filter: blur(12px);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        /* TOP PAIR BUTTONS */
+        .buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .buttons button {
+            margin: 0 8px;
+            padding: 10px 20px;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            background: rgba(15, 23, 42, 0.8);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .buttons button:hover {
+            background: #0ea5e9;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.6);
+        }
+
+        /* MAIN LAYOUT */
+        .main { display: flex; padding: 0 20px; gap: 10px; }
+
+        .left-panel {
+            width: 200px;
+            padding: 10px;
+        }
+
+        .contact-item {
+            margin: 10px 0;
+            padding: 12px;
+            font-size: 14px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            color: white;
+        }
+
+        .contact-item:hover {
+            border-color: #0ea5e9;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
+        }
+
+        /* CHART CONTAINER */
+        #chart-container {
+            flex: 1;
+        }
+
+        #chart {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+        }
+
+        /* RIGHT PRICE PANEL */
+        #price-panel {
+            width: 320px;
+            height: 420px; 
+            overflow: hidden;
+        }
+
+        /* BOTTOM CONTROLS */
+        .bottom-buttons {
+            position: fixed;
+            bottom: 100px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .btn-action {
+            width: 200px;
+            padding: 14px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .btn-action.disabled { opacity: 0.4; cursor: not-allowed; }
+
+        /* CLOCK WIDGET */
+        #clock-widget {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            padding: 10px;
+            text-align: center;
+            background: transparent;
+            border: none;
+        }
+
+        .clock {
+            width: 90px;
+            height: 90px;
+            border: 2px solid rgba(14, 165, 233, 0.6);
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto 10px;
+        }
+
+        .clock-dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #0ea5e9;
+            border-radius: 50%;
+        }
+
+        .hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom;
+            background: white;
+            border-radius: 2px;
+        }
+
+        .hour { width: 3px; height: 22px; }
+        .minute { width: 2px; height: 32px; }
+        .second { width: 1px; height: 38px; background: #0ea5e9; }
+
+        .digital { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 5px; }
+        .sessions { font-size: 14px; font-weight: 600; opacity: 0.9; color: #fff; line-height: 1.4; }
+
+        /* RADIO BAR */
+        #radio-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            border-top: 1px solid #0ea5e9;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            z-index: 1000;
+        }
+
+        .play-btn {
+            background: #0ea5e9;
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        @media(max-width: 1100px){
+            .main { flex-direction: column; }
+            .left-panel, #price-panel { width: 100%; }
+            #clock-widget { position: static; margin: 20px auto; }
+            .bottom-buttons { position: static; margin: 20px; align-items: center; }
+        }
+    </style>
 </head>
 
 <body>
@@ -108,12 +288,23 @@ body::before {
         <button class="play-btn" onclick="togglePlay()">PLAY / PAUSE</button>
         <input type="range" min="0" max="1" step="0.01" value="0.2" onchange="setVolume(this.value)">
     </div>
-    <audio id="radio"><source src="https://stream.zeno.fm/0r0xa792kwzuv" type="audio/mpeg"></audio>
+    <audio id="radio" loop><source src="https://stream.zeno.fm/0r0xa792kwzuv" type="audio/mpeg"></audio>
 </div>
 
 <script src="https://s3.tradingview.com/tv.js"></script>
 <script>
-/* TVOJ JS OSTAO ISTI */
+/* CREATE DOTS ON CLOCK */
+const face = document.getElementById('clock-face');
+for(let i=0; i<12; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'clock-dot';
+    const angle = i * 30;
+    dot.style.left = 50 + 42 * Math.sin(angle * Math.PI/180) + '%';
+    dot.style.top = 50 - 42 * Math.cos(angle * Math.PI/180) + '%';
+    dot.style.transform = 'translate(-50%, -50%)';
+    face.appendChild(dot);
+}
+
 function createChart(symbol){
     document.getElementById("chart").innerHTML = "";
     new TradingView.widget({
@@ -141,26 +332,29 @@ function updateClock(){
     document.getElementById("second").style.transform = `rotate(${sec * 6}deg)`;
     document.getElementById("minute").style.transform = `rotate(${min * 6 + sec * 0.1}deg)`;
     document.getElementById("hour").style.transform = `rotate(${(hr % 12) * 30 + min * 0.5}deg)`;
+
+    let options = { hour: '2-digit', minute: '2-digit', hour12: false };
+    let ny = new Date().toLocaleTimeString("en-US", {timeZone: "America/New_York", ...options});
+    let lon = new Date().toLocaleTimeString("en-GB", {timeZone: "Europe/London", ...options});
+    let tky = new Date().toLocaleTimeString("en-US", {timeZone: "Asia/Tokyo", ...options});
+
+    document.getElementById("digital").innerHTML = lon;
+    document.getElementById("sessions").innerHTML = `NY: ${ny}<br>LDN: ${lon}<br>TKY: ${tky}`;
 }
 setInterval(updateClock, 1000);
 updateClock();
 
 const radio = document.getElementById("radio");
-function togglePlay(){ radio.muted = false; radio.paused ? radio.play() : radio.pause(); }
+function togglePlay(){ 
+    radio.muted = false; 
+    if (radio.paused) {
+        radio.play();
+    } else {
+        radio.pause();
+    }
+}
 function setVolume(val){ radio.volume = val; }
-</script>
 
-<!-- 🔥 DODATO: TRACKING -->
-<script>
-fetch("https://mike-transfusible-celia.ngrok-free.dev/visit", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        referrer: document.referrer || "direktno"
-    })
-});
 </script>
 
 </body>
