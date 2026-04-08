@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JokerFX - Academy</title>
+    <style>
+        body {
+            margin: 0;
+            background: #0f172a url('joker.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header-section h1 {
+            font-size: 42px;
+            text-shadow: 0 0 20px #0ea5e9;
+            margin-bottom: 10px;
+        }
+
+        .fancy-ui {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            backdrop-filter: blur(12px);
+            border-radius: 15px;
+            padding: 25px;
+            transition: 0.3s;
+        }
+
+        /* GRID ZA LEKCIJE */
+        .academy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .lesson-card:hover {
+            border-color: #0ea5e9;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.2);
+        }
+
+        .lesson-card h2 {
+            color: #0ea5e9;
+            margin-top: 0;
+        }
+
+        .lesson-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .btn-start {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #0ea5e9;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-start:hover {
+            background: #0284c7;
+            box-shadow: 0 0 10px #0ea5e9;
+        }
+
+        .back-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #0ea5e9;
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* STATUS BADGE */
+        .badge {
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            background: #0ea5e9;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<a href="index.html" class="back-home">← BACK TO TERMINAL</a>
+
+<div class="container">
+    <div class="header-section">
+        <h1>TRADING ACADEMY</h1>
+        <p style="color: #94a3b8;">Od nule do profesionalnog trejdera. Savladaj market uz JokerFX strategije.</p>
+    </div>
+
+    <div class="academy-grid">
+        <div class="lesson-card fancy-ui">
+            <h2>01. Osnove Forexa <span class="badge">BEGINNER</span></h2>
+            <p>Šta je zapravo Forex? Nauči kako funkcionišu valutni parovi, šta su pipsi, lotovi i kako se čita grafikon.</p>
+            <a href="#" class="btn-start">ZAPOČNI UČENJE</a>
+        </div>
+
+        <div class="lesson-card fancy-ui">
+            <h2>02. Psihologija Trejdinga <span class="badge">PRO</span></h2>
+            <p>Najveći neprijatelj trejdera je on sam. Nauči kako da kontrolišeš emocije (Fear & Greed) i ostaneš disciplinovan.</p>
+            <a href="#" class="btn-start">ZAPOČNI UČENJE</a>
+        </div>
+
+        <div class="lesson-card fancy-ui">
+            <h2>03. Risk Management <span class="badge">CRITICAL</span></h2>
+            <p>Bez ovoga ćeš izgubiti sav novac. Nauči kako da postaviš Stop Loss i koliko procenata računa smeš da rizikuješ.</p>
+            <a href="#" class="btn-start">ZAPOČNI UČENJE</a>
+        </div>
+
+        <div class="lesson-card fancy-ui">
+            <h2>04. JokerFX Strategija <span class="badge">EXCLUSIVE</span></h2>
+            <p>Moja lična strategija bazirana na Smart Money konceptima (SMC) i likvidnosti marketa.</p>
+            <a href="#" class="btn-start">ZAPOČNI UČENJE</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
