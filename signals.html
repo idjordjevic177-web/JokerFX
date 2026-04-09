@@ -29,7 +29,7 @@
         }
 
         .header { text-align: center; padding: 20px; font-size: 32px; font-weight: 800; text-shadow: 0 0 20px #0ea5e9; letter-spacing: 2px; }
-        
+
         .fancy-ui {
             background: rgba(30, 41, 59, 0.4);
             border: 1px solid rgba(14, 165, 233, 0.3);
@@ -84,7 +84,7 @@
             filter: drop-shadow(0 0 10px #0ea5e9);
         }
 
-        /* MODAL ZA PRIKAZ SLIKE TREJDA */
+        /* MODAL */
         #imageModal {
             display: none;
             position: fixed;
@@ -129,13 +129,6 @@
         .loss-status { color: #f87171; text-shadow: 0 0 8px rgba(248, 113, 113, 0.4); font-weight: bold; }
         .active-status { color: #facc15; font-weight: bold; text-shadow: 0 0 10px rgba(250, 204, 21, 0.5); animation: blink 2s infinite; }
         .no-trade-status { color: #94a3b8; font-style: italic; font-weight: bold; }
-        
-        .analyzing-status { 
-            color: #0ea5e9; 
-            font-weight: bold; 
-            text-shadow: 0 0 10px rgba(14, 165, 233, 0.5); 
-            animation: blink 2s infinite; 
-        }
 
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
@@ -165,13 +158,13 @@
         .calendar-box { background: #0b1220; padding: 25px; border-radius: 15px; width: 90%; max-width: 1000px; border: 1px solid #0ea5e9; position: relative; }
         #closeCalendar { position: absolute; top: 15px; right: 20px; cursor: pointer; font-size: 24px; color: #0ea5e9; }
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin-top: 20px; }
-        
+
         .day-name { text-align: center; font-weight: bold; color: #0ea5e9; font-size: 12px; text-transform: uppercase; padding-bottom: 5px; }
         .day { min-height: 70px; padding: 10px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); text-align: center; font-size: 14px; display: flex; flex-direction: column; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.1); }
         .day.win { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
         .day.loss { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
         .day.prev, .day.next { opacity: 0.3; }
-        
+
         .controls-left { position: fixed; bottom: 30px; left: 25px; display: flex; flex-direction: column; gap: 12px; }
         .controls-left button { width: 200px; padding: 15px; border: 1px solid rgba(14, 165, 233, 0.3); background: rgba(15, 23, 42, 0.8); color: white; cursor: pointer; font-weight: bold; text-transform: uppercase; border-radius: 8px; transition: 0.3s; }
         .controls-left button:hover { background: #0ea5e9; box-shadow: 0 0 15px #0ea5e9; }
@@ -191,7 +184,7 @@
         @media (max-width: 900px) {
             .main-layout { grid-template-columns: 1fr; padding: 10px; padding-bottom: 180px; }
             .left-col { overflow-x: auto; width: 100%; }
-            .table-header, .row { min-width: 800px; }
+            .table-header, .row { min-width: 850px; }
             .header { font-size: 24px; }
             .trade-preview-btn { left: 5px; position: relative; margin-right: 15px; }
             #clock { position: static; margin-top: 20px; background: rgba(15, 23, 42, 0.9); padding: 20px; border-radius: 12px; border: 1px solid rgba(14, 165, 233, 0.3); }
@@ -217,27 +210,64 @@
         <div class="table-header">
             <div>Day</div><div>Type</div><div>Pair</div><div>Entry</div><div>SL</div><div>TP</div><div>RR</div><div>Status</div>
         </div>
-        
+
         <div class="row fancy-ui">
             <div class="trade-preview-btn" onclick="openTradeImage('ponedeljak.jpg')" title="View Analysis">👁️</div>
-            <div>Monday</div><div class="buy">BUY</div><div>XAUUSD</div><div class="entry-val">4610</div><div class="sl-val">4595</div><div class="tp-val">4700</div><div>1:6</div><div class="win-status">Closed - Profit</div>
+            <div>Monday</div>
+            <div class="buy">BUY</div>
+            <div>XAUUSD</div>
+            <div class="entry-val">4610</div>
+            <div class="sl-val">4595</div>
+            <div class="tp-val">4700</div>
+            <div>1:6</div>
+            <div class="win-status">Closed - Profit</div>
         </div>
 
         <div class="row fancy-ui">
             <div class="trade-preview-btn" onclick="openTradeImage('utorak.jpg')" title="View Analysis">👁️</div>
-            <div>Tuesday</div><div class="sell">SELL</div><div>XAUUSD</div><div class="entry-val">4670</div><div class="sl-val">4695</div><div class="tp-val">4580</div><div>1:4</div><div class="loss-status">Closed - Lost</div>
+            <div>Tuesday</div>
+            <div class="sell">SELL</div>
+            <div>XAUUSD</div>
+            <div class="entry-val">4670</div>
+            <div class="sl-val">4695</div>
+            <div class="tp-val">4580</div>
+            <div>1:4</div>
+            <div class="loss-status">Closed - Lost</div>
         </div>
 
         <div class="row fancy-ui">
-            <div>Wednesday</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div class="no-trade-status">No Setup</div>
+            <div>Wednesday</div>
+            <div>-</div>
+            <div>-</div>
+            <div>-</div>
+            <div>-</div>
+            <div>-</div>
+            <div>-</div>
+            <div class="no-trade-status">No Setup</div>
         </div>
 
         <div class="row fancy-ui">
             <div class="trade-preview-btn" onclick="openTradeImage('cetvrtak.jpg')" title="View Analysis">👁️</div>
-            <div>Thursday</div><div class="buy">BUY LIMIT</div><div>XAUUSD</div><div class="entry-val">4746</div><div class="sl-val">4738</div><div class="tp-val">4800</div><div>1:5</div><div class="active-status">Active</div>
+            <div>Thursday</div>
+            <div class="buy">BUY LIMIT</div>
+            <div>XAUUSD</div>
+            <div class="entry-val">4746</div>
+            <div class="sl-val">4738</div>
+            <div class="tp-val">4800</div>
+            <div>1:5</div>
+            <div class="active-status">Active</div>
         </div>
-        
-        <div class="row fancy-ui"><div>Friday</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div></div>
+
+        <div class="row fancy-ui">
+            <div>Friday</div>
+            <div>-</div>
+            <div>-</div>
+            <div>-</div>
+            <div>-</div>
+            <div>-</div>
+            <div>-</div>
+            <div class="no-trade-status">Analyzing...</div>
+        </div>
 
         <div class="news-box fancy-ui">
             <div class="news-header">🔥 TODAY'S HIGH IMPACT NEWS (STRONG)</div>
@@ -309,7 +339,6 @@
 
         <div class="calendar-grid">
             <div class="day-name">Mon</div><div class="day-name">Tue</div><div class="day-name">Wed</div><div class="day-name">Thu</div><div class="day-name">Fri</div><div class="day-name">Sat</div><div class="day-name">Sun</div>
-            
             <div class="day prev">30</div><div class="day prev">31</div>
             <div class="day loss">1<br>-$22</div>
             <div class="day win">2<br>$401</div>
