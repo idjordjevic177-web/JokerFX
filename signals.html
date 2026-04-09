@@ -130,7 +130,6 @@
         .active-status { color: #facc15; font-weight: bold; text-shadow: 0 0 10px rgba(250, 204, 21, 0.5); animation: blink 2s infinite; }
         .no-trade-status { color: #94a3b8; font-style: italic; font-weight: bold; }
         
-        /* PLAVI ANALYZING STATUS */
         .analyzing-status { 
             color: #0ea5e9; 
             font-weight: bold; 
@@ -234,7 +233,8 @@
         </div>
 
         <div class="row fancy-ui">
-            <div>Thursday</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div class="analyzing-status">Analyzing</div>
+            <div class="trade-preview-btn" onclick="openTradeImage('cetvrtak.jpg')" title="View Analysis">👁️</div>
+            <div>Thursday</div><div class="buy">BUY</div><div>XAUUSD</div><div class="entry-val">4680</div><div class="sl-val">4650</div><div class="tp-val">4760</div><div>1:3</div><div class="active-status">Active</div>
         </div>
         
         <div class="row fancy-ui"><div>Friday</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div></div>
@@ -347,7 +347,6 @@
 </div>
 
 <script>
-    // SAT
     const face = document.getElementById("face");
     ["hour", "minute", "second"].forEach(type => {
         let h = document.createElement("div"); h.className = "hand " + type; face.appendChild(h);
