@@ -78,7 +78,7 @@
 
         .trade-preview-btn {
             position: absolute;
-            left: 15px; /* Fiksno levo unutar paddinga */
+            left: 15px; 
             cursor: pointer;
             font-size: 20px;
             transition: 0.3s;
@@ -197,9 +197,8 @@
         @media (max-width: 900px) {
             .main-layout { grid-template-columns: 1fr; padding: 10px; padding-bottom: 180px; }
             .left-col { overflow-x: auto; width: 100%; }
-            .table-header, .row { min-width: 950px; } /* Malo veći min-width za bolju preglednost na scrollu */
+            .table-header, .row { min-width: 950px; } 
             .header { font-size: 24px; }
-            /* Dugme ostaje apsolutno da ne kvari grid */
             .trade-preview-btn { position: absolute; left: 10px; } 
             #clock { position: static; margin-top: 20px; background: rgba(15, 23, 42, 0.9); padding: 20px; border-radius: 12px; border: 1px solid rgba(14, 165, 233, 0.3); }
             .controls-left { position: static; margin-top: 20px; align-items: center; }
@@ -241,6 +240,10 @@
 
         <div class="row fancy-ui">
             <div>Thursday</div><div class="buy">BUY LIMIT</div><div>XAUUSD</div><div class="entry-val">4746</div><div class="sl-val">4738</div><div class="tp-val">4800</div><div>1:5</div><div class="loss-status">Closed - Lost</div>
+        </div>
+
+        <div class="row fancy-ui">
+            <div>Thursday</div><div class="buy">BUY LIMIT</div><div>XAUUSD</div><div class="entry-val">4750</div><div class="sl-val">4735</div><div class="tp-val">4830</div><div>1:4</div><div class="active-status">Active</div>
         </div>
 
         <div class="row fancy-ui"><div>Friday</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div></div>
