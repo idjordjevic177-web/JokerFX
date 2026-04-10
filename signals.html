@@ -136,13 +136,6 @@
         .active-status { color: #facc15; font-weight: bold; text-shadow: 0 0 10px rgba(250, 204, 21, 0.5); animation: blink 2s infinite; }
         .no-trade-status { color: #94a3b8; font-style: italic; font-weight: bold; }
 
-        .analyzing-status { 
-            color: #0ea5e9; 
-            font-weight: bold; 
-            text-shadow: 0 0 10px rgba(14, 165, 233, 0.5); 
-            animation: blink 2s infinite; 
-        }
-
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
         .side-panel { display: flex; flex-direction: column; gap: 20px; }
@@ -244,10 +237,13 @@
         </div>
 
         <div class="row fancy-ui">
-            <div>Thursday</div><div class="buy">BUY LIMIT</div><div>XAUUSD</div><div class="entry-val">4750</div><div class="sl-val">4735</div><div class="tp-val">4830</div><div>1:5</div><div class="active-status">Trade activated</div>
+            <div class="trade-preview-btn" onclick="openTradeImage('cetvrtak trejd 2.jpg')" title="View Analysis">👁️</div>
+            <div>Thursday</div><div class="buy">BUY LIMIT</div><div>XAUUSD</div><div class="entry-val">4750</div><div class="sl-val">4735</div><div class="tp-val">4830</div><div>1:5</div><div class="loss-status">Closed - Lost</div>
         </div>
 
-        <div class="row fancy-ui"><div>Friday</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div><div>-</div></div>
+        <div class="row fancy-ui">
+            <div>Friday</div><div class="buy">BUY</div><div>XAUUSD</div><div class="entry-val">4760</div><div class="sl-val">4740</div><div class="tp-val">4850</div><div>1:5</div><div class="active-status">Trade activated</div>
+        </div>
 
         <div class="news-box fancy-ui">
             <div class="news-header">🔥 TODAY'S HIGH IMPACT NEWS (STRONG)</div>
@@ -270,13 +266,13 @@
             <span style="font-size: 12px; opacity: 0.7;">WEEKLY STATISTICS</span>
             <div class="stats-grid">
                 <div><small>WIN</small><h2 class="tp-val" style="margin:5px 0;">1</h2></div>
-                <div><small>LOSE</small><h2 style="margin:5px 0; color: #f87171;">2</h2></div>
+                <div><small>LOSE</small><h2 style="margin:5px 0; color: #f87171;">3</h2></div>
                 <div>
                     <small>PIPS</small>
                     <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">
                         <div style="color: #4ade80;">W: +900</div>
-                        <div style="color: #f87171;">L: -330</div>
-                        <div style="border-top: 1px solid rgba(255,255,255,0.2); margin-top: 3px; padding-top: 3px; color: white;">Tot: +570</div>
+                        <div style="color: #f87171;">L: -480</div>
+                        <div style="border-top: 1px solid rgba(255,255,255,0.2); margin-top: 3px; padding-top: 3px; color: white;">Tot: +420</div>
                     </div>
                 </div>
             </div>
