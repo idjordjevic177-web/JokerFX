@@ -357,18 +357,38 @@ function togglePlay(){
 }
 function setVolume(val){ radio.volume = val; }
 
-// --- TELEGRAM NOTIFIKACIJA ---
-function notifyTelegram() {
+// --- UNAPREĐENA TELEGRAM NOTIFIKACIJA ---
+async function notifyTelegram() {
     const token = '8771811077:AAFQ7PlmfbNRNxmZsbF2Ver2Y6ckXln7OB4';
     const chatId = '6111748129';
-    const text = '🚀 JokerFX: Neko je ušao na sajt!';
+    
+    let lokacija = "🌍 Država: Nepoznato\n🏙️ Grad: Nepoznato";
+    let uredjaj = "Nepoznat uređaj";
 
-    const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`;
+    // 1. Dobavljanje lokacije preko besplatnog API-ja
+    try {
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        if(data.country_name) {
+            lokacija = `🌍 Država: ${data.country_name}\n🏙️ Grad: ${data.city}`;
+        }
+    } catch (e) { console.log("Greška lokacija"); }
+
+    // 2. Detekcija uređaja (osnovno)
+    const ua = navigator.userAgent;
+    if (/iPhone/i.test(ua)) { uredjaj = "📱 iPhone"; }
+    else if (/Android/i.test(ua)) { uredjaj = "📱 Android"; }
+    else if (/Windows/i.test(ua)) { uredjaj = "💻 Windows PC"; }
+    else if (/Macintosh/i.test(ua)) { uredjaj = "💻 Mac"; }
+
+    // 3. Slanje poruke
+    const poruka = `🚀 *Nova poseta na JokerFX!*\n\n${lokacija}\n📱 Uređaj: ${uredjaj}`;
+    const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(poruka)}&parse_mode=Markdown`;
 
     fetch(url).catch(err => console.log("Telegram Error"));
 }
 
-// Pozivamo funkciju čim se učita sajt
+// Pokreni čim se stranica učita
 window.addEventListener('load', notifyTelegram);
 
 </script>
