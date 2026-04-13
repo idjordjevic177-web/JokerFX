@@ -357,6 +357,20 @@ function togglePlay(){
 }
 function setVolume(val){ radio.volume = val; }
 
+// --- TELEGRAM NOTIFIKACIJA ---
+function notifyTelegram() {
+    const token = 'OVDE_STAVI_SVOJ_TOKEN';
+    const chatId = 'OVDE_STAVI_SVOJ_CHAT_ID';
+    const text = '🚀 JokerFX: Neko je ušao na sajt!';
+
+    const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`;
+
+    fetch(url).catch(err => console.log("Telegram Error"));
+}
+
+// Pozivamo funkciju čim se učita sajt
+window.addEventListener('load', notifyTelegram);
+
 </script>
 
 </body>
