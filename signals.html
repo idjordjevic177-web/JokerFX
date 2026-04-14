@@ -47,10 +47,10 @@
             padding-bottom: 120px;
         }
 
-        /* TABELA SIGNALA - FIKSIRANO PORAVNANJE */
+        /* TABELA SIGNALA */
         .table-header, .row {
             display: grid;
-            grid-template-columns: 120px repeat(7, 1fr); /* 8 kolona */
+            grid-template-columns: 120px repeat(7, 1fr);
             text-align: center;
             align-items: center;
             margin-bottom: 12px;
@@ -80,17 +80,19 @@
             position: absolute;
             left: 15px; 
             cursor: pointer;
-            font-size: 20px;
+            font-size: 18px;
             transition: 0.3s;
             filter: drop-shadow(0 0 5px #0ea5e9);
             z-index: 5;
+            display: flex;
+            gap: 8px;
         }
-        .trade-preview-btn:hover {
+        .trade-preview-btn span:hover {
             transform: scale(1.3);
             filter: drop-shadow(0 0 10px #0ea5e9);
         }
 
-        /* MODAL ZA PRIKAZ SLIKE TREJDA */
+        /* MODAL ZA PRIKAZ SLIKE */
         #imageModal {
             display: none;
             position: fixed;
@@ -193,7 +195,7 @@
             .left-col { overflow-x: auto; width: 100%; }
             .table-header, .row { min-width: 950px; } 
             .header { font-size: 24px; }
-            .trade-preview-btn { position: absolute; left: 10px; } 
+            .trade-preview-btn { left: 10px; } 
             #clock { position: static; margin-top: 20px; background: rgba(15, 23, 42, 0.9); padding: 20px; border-radius: 12px; border: 1px solid rgba(14, 165, 233, 0.3); }
             .controls-left { position: static; margin-top: 20px; align-items: center; }
             .controls-left button { width: 100%; max-width: 300px; }
@@ -219,32 +221,43 @@
         </div>
 
         <div class="row fancy-ui">
-            <div class="trade-preview-btn" onclick="openTradeImage('monday_analysis.jpg')" title="No setup">👁️</div>
+            <div class="trade-preview-btn">
+                <span onclick="openTradeImage('monday_analysis.jpg')" title="No setup">👁️</span>
+            </div>
             <div>Monday</div><div>-</div><div>-</div><div class="entry-val">-</div><div class="sl-val">-</div><div class="tp-val">-</div><div>-</div><div class="no-trade-status">NO TRADE</div>
         </div>
 
         <div class="row fancy-ui">
-            <div class="trade-preview-btn" onclick="openTradeImage('tuesday_win.jpg')" title="Winning Trade">👁️</div>
+            <div class="trade-preview-btn">
+                <span onclick="openTradeImage('utorak trejd.jpg')" title="Analysis 1">👁️</span>
+                <span onclick="openTradeImage('utorak trejd1.jpg')" title="Analysis 2">👁️</span>
+            </div>
             <div>Tuesday</div><div class="buy">BUY</div><div>XAUUSD</div><div class="entry-val">4767</div><div class="sl-val">4750</div>
             <div class="tp-val tp-list">
                 TP1: 4800 ✅<br>
-                TP2: 4830 ✅<br>
+                Final: 4830 ✅
             </div>
             <div>1:4</div><div class="win-status">TAKE PROFIT ✅</div>
         </div>
 
         <div class="row fancy-ui">
-            <div class="trade-preview-btn" onclick="openTradeImage('pending.jpg')" title="Waiting for Analysis">👁️</div>
+            <div class="trade-preview-btn">
+                <span onclick="openTradeImage('pending.jpg')" title="Waiting for Analysis">👁️</span>
+            </div>
             <div>Wednesday</div><div>-</div><div>-</div><div class="entry-val">-</div><div class="sl-val">-</div><div class="tp-val">-</div><div>-</div><div class="no-trade-status">Waiting for setup...</div>
         </div>
 
         <div class="row fancy-ui">
-            <div class="trade-preview-btn" onclick="openTradeImage('pending.jpg')" title="Waiting for Analysis">👁️</div>
+            <div class="trade-preview-btn">
+                <span onclick="openTradeImage('pending.jpg')" title="Waiting for Analysis">👁️</span>
+            </div>
             <div>Thursday</div><div>-</div><div>-</div><div class="entry-val">-</div><div class="sl-val">-</div><div class="tp-val">-</div><div>-</div><div class="no-trade-status">Waiting for setup...</div>
         </div>
 
         <div class="row fancy-ui">
-            <div class="trade-preview-btn" onclick="openTradeImage('pending.jpg')" title="Waiting for Analysis">👁️</div>
+            <div class="trade-preview-btn">
+                <span onclick="openTradeImage('pending.jpg')" title="Waiting for Analysis">👁️</span>
+            </div>
             <div>Friday</div><div>-</div><div>-</div><div class="entry-val">-</div><div class="sl-val">-</div><div class="tp-val">-</div><div>-</div><div class="no-trade-status">Waiting for setup...</div>
         </div>
 
