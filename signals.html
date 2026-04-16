@@ -185,9 +185,54 @@
         .day.loss { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
         .day.prev, .day.next { opacity: 0.3; }
 
-        .controls-left { position: fixed; bottom: 30px; left: 25px; display: flex; flex-direction: column; gap: 12px; }
+        /* --- NOVO POZICIONIRANJE ZA LEVI UGAO --- */
+        .controls-left { 
+            position: fixed; 
+            bottom: 100px; /* Podignuto da oslobodi mesto za zvonce ispod */
+            left: 25px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+            z-index: 101;
+        }
         .controls-left button { width: 200px; padding: 15px; border: 1px solid rgba(14, 165, 233, 0.3); background: rgba(15, 23, 42, 0.8); color: white; cursor: pointer; font-weight: bold; text-transform: uppercase; border-radius: 8px; transition: 0.3s; }
         .controls-left button:hover { background: #0ea5e9; box-shadow: 0 0 15px #0ea5e9; }
+
+        /* OneSignal Zvonce u donjem levom uglu */
+        .onesignal-bell-launcher.onesignal-bell-launcher-theme-default .onesignal-bell-launcher-button {
+            background-color: #0ea5e9 !important;
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.6) !important;
+        }
+        .onesignal-bell-launcher-container {
+            left: 25px !important;
+            right: auto !important;
+            bottom: 25px !important;
+        }
+
+        /* Tekst ODMAH PORED zvonca (desno) */
+        .subscribe-notice {
+            position: fixed;
+            bottom: 32px;
+            left: 95px; /* Pomereno desno od zvonca */
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.5);
+            backdrop-filter: blur(8px);
+            padding: 8px 15px;
+            border-radius: 8px;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            pointer-events: none;
+            animation: pulseRight 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulseRight {
+            0%, 100% { transform: translateX(0); opacity: 0.8; }
+            50% { transform: translateX(10px); opacity: 1; }
+        }
+
+        .subscribe-notice strong { color: #facc15; font-size: 13px; letter-spacing: 0.5px; }
+        .subscribe-notice span { color: white; font-size: 11px; opacity: 0.9; }
 
         .footer-disclaimer {
             grid-column: 1 / -1;
@@ -201,48 +246,10 @@
         }
         .footer-disclaimer strong { color: #f87171; }
 
-        /* --- SREDIVANJE ONESIGNAL ZVONCA I TEXTA --- */
-
-        /* Boja i senka samog zvona */
-        .onesignal-bell-launcher.onesignal-bell-launcher-theme-default .onesignal-bell-launcher-button {
-            background-color: #0ea5e9 !important;
-            box-shadow: 0 0 20px rgba(14, 165, 233, 0.6) !important;
-        }
-        
-        /* Pozicija zvona u donji desni ugao */
-        .onesignal-bell-launcher-container {
-            right: 25px !important;
-            bottom: 25px !important;
-        }
-
-        /* Tekst pored zvona */
-        .subscribe-notice {
-            position: fixed;
-            bottom: 35px;
-            right: 100px; /* Pomereno levo od dugmeta */
-            background: rgba(14, 165, 233, 0.1);
-            border: 1px solid rgba(14, 165, 233, 0.5);
-            backdrop-filter: blur(8px);
-            padding: 8px 15px;
-            border-radius: 8px;
-            z-index: 99999;
-            display: flex;
-            flex-direction: column;
-            pointer-events: none;
-            animation: pulseLeft 2s ease-in-out infinite;
-        }
-        
-        @keyframes pulseLeft {
-            0%, 100% { transform: translateX(0); opacity: 0.8; }
-            50% { transform: translateX(-10px); opacity: 1; }
-        }
-
-        .subscribe-notice strong { color: #facc15; font-size: 13px; letter-spacing: 0.5px; }
-        .subscribe-notice span { color: white; font-size: 11px; opacity: 0.9; }
-
         @media (max-width: 900px) {
-            .subscribe-notice { display: none; } /* Sakrij tekst na malim ekranima da ne guši UI */
-            .onesignal-bell-launcher-container { bottom: 100px !important; }
+            .subscribe-notice { display: none; }
+            .controls-left { position: static; margin-top: 20px; align-items: center; }
+            .onesignal-bell-launcher-container { bottom: 25px !important; left: 25px !important; }
         }
     </style>
 </head>
@@ -260,7 +267,7 @@
 
 <div class="subscribe-notice">
     <strong>SUBSCRIBE NOW</strong>
-    <span>Get real-time alerts —></span>
+    <span><— Get real-time alerts</span>
 </div>
 
 <div class="main-layout">
