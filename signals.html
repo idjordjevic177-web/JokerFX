@@ -201,41 +201,48 @@
         }
         .footer-disclaimer strong { color: #f87171; }
 
-        /* NOVO: Stil za Subscribe Box */
+        /* --- SREDIVANJE ONESIGNAL ZVONCA I TEXTA --- */
+
+        /* Boja i senka samog zvona */
+        .onesignal-bell-launcher.onesignal-bell-launcher-theme-default .onesignal-bell-launcher-button {
+            background-color: #0ea5e9 !important;
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.6) !important;
+        }
+        
+        /* Pozicija zvona u donji desni ugao */
+        .onesignal-bell-launcher-container {
+            right: 25px !important;
+            bottom: 25px !important;
+        }
+
+        /* Tekst pored zvona */
         .subscribe-notice {
             position: fixed;
-            bottom: 25px;
-            right: 140px;
-            background: rgba(14, 165, 233, 0.15);
-            border: 1px solid #0ea5e9;
-            backdrop-filter: blur(10px);
-            padding: 10px 18px;
-            border-radius: 50px;
-            z-index: 99;
-            animation: floatNotice 3s ease-in-out infinite;
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
+            bottom: 35px;
+            right: 100px; /* Pomereno levo od dugmeta */
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.5);
+            backdrop-filter: blur(8px);
+            padding: 8px 15px;
+            border-radius: 8px;
+            z-index: 99999;
             display: flex;
-            align-items: center;
-            gap: 10px;
-            pointer-events: none; /* Da ne smeta kliku na zvonce ako se preklope */
+            flex-direction: column;
+            pointer-events: none;
+            animation: pulseLeft 2s ease-in-out infinite;
         }
-        @keyframes floatNotice {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+        
+        @keyframes pulseLeft {
+            0%, 100% { transform: translateX(0); opacity: 0.8; }
+            50% { transform: translateX(-10px); opacity: 1; }
         }
+
         .subscribe-notice strong { color: #facc15; font-size: 13px; letter-spacing: 0.5px; }
         .subscribe-notice span { color: white; font-size: 11px; opacity: 0.9; }
 
         @media (max-width: 900px) {
-            .main-layout { grid-template-columns: 1fr; padding: 10px; padding-bottom: 180px; }
-            .left-col { overflow-x: auto; width: 100%; }
-            .table-header, .row { min-width: 950px; } 
-            .header { font-size: 24px; }
-            .trade-preview-btn { left: 10px; } 
-            #clock { position: static; margin-top: 20px; background: rgba(15, 23, 42, 0.9); padding: 20px; border-radius: 12px; border: 1px solid rgba(14, 165, 233, 0.3); }
-            .controls-left { position: static; margin-top: 20px; align-items: center; }
-            .controls-left button { width: 100%; max-width: 300px; }
-            .subscribe-notice { right: 20px; bottom: 130px; width: calc(100% - 40px); justify-content: center; }
+            .subscribe-notice { display: none; } /* Sakrij tekst na malim ekranima da ne guši UI */
+            .onesignal-bell-launcher-container { bottom: 100px !important; }
         }
     </style>
 </head>
@@ -252,11 +259,8 @@
 <div class="header">JokerFX Signals</div>
 
 <div class="subscribe-notice">
-    <span style="font-size: 18px;">🔔</span>
-    <div style="display: flex; flex-direction: column;">
-        <strong>SUBSCRIBE NOW</strong>
-        <span>Get real-time trade alerts!</span>
-    </div>
+    <strong>SUBSCRIBE NOW</strong>
+    <span>Get real-time alerts —></span>
 </div>
 
 <div class="main-layout">
