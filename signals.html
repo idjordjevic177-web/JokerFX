@@ -14,7 +14,6 @@
         });
       });
     </script>
-
     <style>
         body {
             margin: 0;
@@ -39,14 +38,7 @@
             border-bottom: 1px solid #0ea5e9;
         }
 
-        .header { 
-            text-align: center; 
-            padding: 20px; 
-            font-size: clamp(24px, 5vw, 32px); 
-            font-weight: 800; 
-            text-shadow: 0 0 20px #0ea5e9; 
-            letter-spacing: 2px; 
-        }
+        .header { text-align: center; padding: 20px; font-size: 28px; font-weight: 800; text-shadow: 0 0 20px #0ea5e9; letter-spacing: 2px; }
 
         .fancy-ui {
             background: rgba(30, 41, 59, 0.4);
@@ -62,111 +54,144 @@
             max-width: 1400px;
             margin: auto;
             padding: 15px;
-            padding-bottom: 140px;
+            padding-bottom: 150px;
         }
 
-        /* TABELA - DESKTOP VERZIJA */
+        /* TABELA SIGNALA - DESKTOP */
         .table-header, .row {
             display: grid;
-            grid-template-columns: 80px 120px repeat(6, 1fr);
+            grid-template-columns: 120px repeat(7, 1fr);
             text-align: center;
             align-items: center;
             margin-bottom: 12px;
             position: relative;
+            padding-left: 50px; 
         }
         .table-header { 
             background: rgba(14, 165, 233, 0.2); 
             font-weight: bold; 
-            font-size: 14px; 
+            font-size: 13px; 
             border-radius: 10px; 
-            padding: 15px 0;
+            padding: 15px 20px 15px 50px;
             text-transform: uppercase;
         }
         .row { 
-            padding: 15px 0;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-right: 20px;
             border: 1px solid rgba(255, 255, 255, 0.05); 
             font-size: 15px; 
-            transition: 0.3s;
         }
-        .row:hover { background: rgba(14, 165, 233, 0.05); }
 
-        .trade-preview-btn { cursor: pointer; font-size: 18px; filter: drop-shadow(0 0 5px #0ea5e9); }
+        .trade-preview-btn {
+            position: absolute;
+            left: 15px; 
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.3s;
+            filter: drop-shadow(0 0 5px #0ea5e9);
+            z-index: 5;
+            display: flex;
+            gap: 8px;
+        }
 
-        /* MOBILNA VERZIJA - KARTICE */
-        @media (max-width: 950px) {
+        /* RESPONSIVE TABELA (MOBILNI) */
+        @media (max-width: 768px) {
             .main-layout { grid-template-columns: 1fr; }
-            .table-header { display: none; }
+            .table-header { display: none; } /* Sakrivamo zaglavlje na mobu */
             
             .row {
-                grid-template-columns: 1fr 1fr;
-                gap: 15px;
-                padding: 20px;
+                grid-template-columns: repeat(2, 1fr); /* Dve kolone na mobu za detalje */
+                padding-left: 15px;
+                padding-top: 40px; /* Mesto za oko */
+                gap: 10px;
                 text-align: left;
             }
-
-            .row div[data-label]::before {
-                content: attr(data-label);
-                display: block;
-                font-size: 10px;
-                color: #0ea5e9;
-                text-transform: uppercase;
-                margin-bottom: 4px;
-                opacity: 0.8;
-            }
-
-            .row div:nth-child(1) { grid-column: span 2; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
-            .row div:nth-child(2) { grid-column: span 2; font-size: 18px; color: #facc15; }
+            .row div:nth-child(1) { grid-column: 1 / -1; font-weight: bold; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; color: #0ea5e9; } /* Day */
+            .row .trade-preview-btn { top: 10px; left: auto; right: 15px; }
+            
+            .calendar-grid { grid-template-columns: repeat(5, 1fr); } /* Smanjen broj kolona za kalendar */
         }
-
-        /* BOJE I PROMENLJIVE */
-        .entry-val { color: #facc15; font-weight: bold; }
-        .sl-val { color: #f87171; font-weight: bold; }
-        .tp-val { color: #4ade80; font-weight: bold; }
-        .buy { color: #4ade80; font-weight: bold; }
-        .sell { color: #f87171; font-weight: bold; }
-        .win-status { color: #4ade80; font-weight: bold; text-shadow: 0 0 10px rgba(74, 222, 128, 0.3); }
-        .no-trade-status { color: #94a3b8; font-style: italic; opacity: 0.7; }
 
         /* MODAL */
         #imageModal {
-            display: none; position: fixed;
+            display: none;
+            position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9); z-index: 10000;
-            justify-content: center; align-items: center; backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
         }
-        .image-container { position: relative; max-width: 90%; max-height: 90%; }
-        .image-container img { width: 100%; border: 1px solid #0ea5e9; border-radius: 8px; }
-        #closeImage { position: absolute; top: -40px; right: 0; color: white; font-size: 30px; cursor: pointer; }
+        .image-container {
+            position: relative;
+            max-width: 95%;
+            max-height: 85%;
+            border: 2px solid #0ea5e9;
+            border-radius: 10px;
+            background: #000;
+        }
+        .image-container img {
+            display: block;
+            max-width: 100%;
+            max-height: 75vh;
+            height: auto;
+        }
 
-        /* KONTROLE I SAT */
+        .entry-val { color: #facc15; font-weight: bold; }
+        .sl-val { color: #f87171; font-weight: bold; }
+        .tp-val { color: #4ade80; font-weight: bold; }
+        .tp-list { font-size: 13px; line-height: 1.2; } 
+        .buy { color: #4ade80; font-weight: bold; }
+        .sell { color: #f87171; font-weight: bold; }
+        .win-status { color: #4ade80; font-weight: bold; }
+        .no-trade-status { color: #94a3b8; font-style: italic; opacity: 0.6; }
+
+        .side-panel { display: flex; flex-direction: column; gap: 20px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
+
+        .news-box { margin-top: 20px; height: 350px; overflow: hidden; }
+        .news-header { padding: 12px; font-size: 13px; font-weight: bold; color: #facc15; background: rgba(0, 0, 0, 0.3); }
+
+        /* SAT I KONTROLE */
+        #clock { position: fixed; bottom: 20px; right: 15px; text-align: center; z-index: 100; transform: scale(0.85); }
+        .clock-face { width: 80px; height: 80px; border: 2px solid rgba(14, 165, 233, 0.5); border-radius: 50%; position: relative; margin: 0 auto 5px; }
+        
         .controls-left { 
-            position: fixed; bottom: 100px; left: 25px; 
-            display: flex; flex-direction: column; gap: 12px; z-index: 101; 
+            position: fixed; 
+            bottom: 90px; 
+            left: 15px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+            z-index: 101;
         }
-        .controls-left button { 
-            width: 200px; padding: 12px; border: 1px solid rgba(14, 165, 233, 0.3); 
-            background: rgba(15, 23, 42, 0.9); color: white; cursor: pointer; border-radius: 8px; font-weight: bold; 
-        }
-
-        #clock { position: fixed; bottom: 30px; right: 25px; text-align: center; }
-        .digital { font-size: 22px; font-weight: 800; color: #0ea5e9; }
-
-        @media (max-width: 600px) {
-            .controls-left { position: static; padding: 20px; width: 100%; box-sizing: border-box; }
-            .controls-left button { width: 100%; }
-            #clock { display: none; }
-            .subscribe-notice { display: none; }
-        }
+        .controls-left button { width: 160px; padding: 12px; background: rgba(15, 23, 42, 0.9); color: white; border: 1px solid #0ea5e9; border-radius: 8px; font-size: 12px; }
 
         /* OneSignal Zvonce */
-        .onesignal-bell-launcher-container { left: 25px !important; bottom: 25px !important; right: auto !important; }
-        .subscribe-notice {
-            position: fixed; bottom: 32px; left: 95px;
-            background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(14, 165, 233, 0.5);
-            padding: 8px 15px; border-radius: 8px; z-index: 99;
-            animation: pulseRight 2s infinite;
+        .onesignal-bell-launcher-container {
+            left: 15px !important;
+            bottom: 15px !important;
         }
-        @keyframes pulseRight { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(10px); } }
+
+        .subscribe-notice {
+            position: fixed;
+            bottom: 22px;
+            left: 85px;
+            background: rgba(14, 165, 233, 0.2);
+            padding: 5px 12px;
+            border-radius: 8px;
+            z-index: 99;
+            font-size: 11px;
+        }
+
+        @media (max-width: 600px) {
+            .subscribe-notice { display: none; }
+            .header { font-size: 22px; }
+            .controls-left { position: static; width: 100%; align-items: center; margin-top: 20px; }
+            #clock { position: relative; bottom: 0; right: 0; margin-top: 30px; transform: scale(1); }
+        }
     </style>
 </head>
 <body>
@@ -182,98 +207,119 @@
 <div class="header">JokerFX Signals</div>
 
 <div class="subscribe-notice">
-    <strong style="color: #facc15; font-size: 13px;">SUBSCRIBE NOW</strong><br>
-    <span style="font-size: 11px;">Get real-time alerts</span>
+    <strong>SUBSCRIBE</strong> — Get alerts
 </div>
 
 <div class="main-layout">
     <div class="left-col">
         <div class="table-header">
-            <div>View</div><div>Day</div><div>Type</div><div>Pair</div><div>Entry</div><div>SL</div><div>TP</div><div>Status</div>
+            <div>Day</div><div>Type</div><div>Pair</div><div>Entry</div><div>SL</div><div>TP</div><div>RR</div><div>Status</div>
         </div>
 
         <div class="row fancy-ui">
-            <div class="trade-preview-btn" data-label="Analysis"><span onclick="openTradeImage('monday_analysis.jpg')">👁️</span></div>
-            <div data-label="Day">Monday</div>
-            <div data-label="Type">-</div>
-            <div data-label="Pair">-</div>
-            <div data-label="Entry" class="entry-val">-</div>
-            <div data-label="SL" class="sl-val">-</div>
-            <div data-label="TP" class="tp-val">-</div>
-            <div data-label="Status" class="no-trade-status">NO TRADE</div>
-        </div>
-
-        <div class="row fancy-ui">
-            <div class="trade-preview-btn" data-label="Analysis"><span onclick="openTradeImage('utorak trejd.jpg')">👁️</span></div>
-            <div data-label="Day">Tuesday</div>
-            <div data-label="Type" class="buy">BUY</div>
-            <div data-label="Pair">XAUUSD</div>
-            <div data-label="Entry" class="entry-val">4767</div>
-            <div data-label="SL" class="sl-val">4750</div>
-            <div data-label="TP" class="tp-val">4830</div>
-            <div data-label="Status" class="win-status">TAKE PROFIT ✅</div>
-        </div>
-
-        </div>
-
-    <div class="side-panel">
-        <div class="fancy-ui" style="padding: 15px; text-align: center;">
-            <span style="font-size: 12px; opacity: 0.7;">WEEKLY STATISTICS</span>
-            <div style="display: flex; justify-content: space-around; margin-top: 15px;">
-                <div><small>WIN</small><h2 class="tp-val">3</h2></div>
-                <div><small>LOSE</small><h2 style="color: #f87171;">0</h2></div>
-                <div><small>PIPS</small><h2 style="color: white;">+1570</h2></div>
+            <div class="trade-preview-btn">
+                <span onclick="openTradeImage('monday_analysis.jpg')">👁️</span>
             </div>
+            <div>Monday</div><div>-</div><div>-</div><div class="entry-val">-</div><div class="sl-val">-</div><div class="tp-val">-</div><div>-</div><div class="no-trade-status">NO TRADE</div>
         </div>
-        
-        <div class="fancy-ui" style="padding: 10px; height: 350px; margin-top: 20px;">
-             <div style="text-align: center; font-size: 12px; font-weight: bold; margin-bottom: 5px;">XAUUSD SENTIMENT</div>
-             <iframe src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" style="width: 100%; height: 300px; border:none;"></iframe>
+
+        <div class="row fancy-ui">
+            <div class="trade-preview-btn">
+                <span onclick="openTradeImage('utorak trejd.jpg')">👁️</span>
+                <span onclick="openTradeImage('utorak trejd1.jpg')">👁️</span>
+            </div>
+            <div>Tuesday</div><div class="buy">BUY</div><div>XAUUSD</div><div class="entry-val">4767</div><div class="sl-val">4750</div>
+            <div class="tp-val tp-list">TP1: 4800 ✅<br>Final: 4830 ✅</div>
+            <div>1:4</div><div class="win-status">TAKE PROFIT ✅</div>
+        </div>
+
+        <div class="row fancy-ui">
+            <div class="trade-preview-btn">
+                <span onclick="openTradeImage('S1likamrk.jpg')">👁️</span>
+            </div>
+            <div>Thursday</div><div class="buy">BUY</div><div>XAUUSD</div><div class="entry-val">4797</div><div class="sl-val">4787</div>
+            <div class="tp-val tp-list">TP1: 4810 ✅<br>TP2: 4820 ✅<br>TP3: 4830 ✅</div>
+            <div>1:3</div><div class="win-status">TAKE PROFIT ✅</div>
+        </div>
+
+        <div class="news-box fancy-ui">
+            <div class="news-header">🔥 HIGH IMPACT NEWS</div>
+            <iframe src="https://sslecal2.forexprostools.com?columns=exc_flags,exc_currency,exc_importance,exc_actual,exc_forecast,exc_previous&importance=3&features=datepicker,timezone&countries=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40&calType=day&timeZone=58&lang=1" 
+                    width="100%" height="300" frameborder="0" allowtransparency="true" style="filter: invert(90%) hue-rotate(180deg) brightness(1.1);"></iframe>
         </div>
     </div>
-</div>
 
-<div class="controls-left">
-    <button onclick="document.getElementById('calendarModal').style.display='flex'">📊 March 2026 Stats</button>
-    <button onclick="window.location.href='index.html'">🏠 Back to Home</button>
+    <div class="side-panel">
+        <div class="fancy-ui" style="padding: 10px; height: 380px;">
+            <div style="text-align: center; font-size: 12px; font-weight: bold; margin-bottom: 5px;">XAUUSD SENTIMENT</div>
+            <div class="tradingview-widget-container">
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
+                { "interval": "1h", "width": "100%", "isTransparent": true, "height": "320", "symbol": "FOREXCOM:XAUUSD", "showIntervalTabs": true, "displayMode": "single", "locale": "en", "colorTheme": "dark" }
+                </script>
+            </div>
+        </div>
+
+        <div class="fancy-ui" style="padding: 15px; text-align: center;">
+            <span style="font-size: 12px; opacity: 0.7;">WEEKLY STATS</span>
+            <div class="stats-grid">
+                <div><small>WIN</small><h2 class="tp-val" style="margin:5px 0;">3</h2></div>
+                <div><small>LOSE</small><h2 style="margin:5px 0; color: #f87171;">0</h2></div>
+                <div><small>PIPS</small><div style="font-size: 12px; font-weight: bold; color: #4ade80;">+1570</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-disclaimer">
+        <strong>RISK WARNING:</strong> Trading involves risk. All content is for <strong>educational purposes</strong>. We are not responsible for financial losses.
+    </div>
 </div>
 
 <div id="imageModal">
     <div class="image-container">
-        <span id="closeImage" onclick="document.getElementById('imageModal').style.display='none'">✖</span>
+        <span id="closeImage" style="position: absolute; top: -35px; right: 0; cursor: pointer; font-size: 25px;">✖</span>
         <img id="tradeImage" src="" alt="Analysis">
     </div>
 </div>
 
-<div id="calendarModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; justify-content:center; align-items:center;">
-    <div class="fancy-ui" style="padding:30px; width:90%; max-width:800px; position:relative;">
-        <span onclick="document.getElementById('calendarModal').style.display='none'" style="position:absolute; top:10px; right:20px; cursor:pointer; font-size:24px;">✖</span>
-        <h2 style="color:#0ea5e9;">March 2026 Performance</h2>
-        <p>Total Profit: $4,420 | Trading Days: 17</p>
-        <div style="font-size:12px; opacity:0.6;">(Calendar UI details go here...)</div>
-    </div>
+<div id="clock">
+    <div class="clock-face" id="face"></div>
+    <div class="digital" id="digital"></div>
+    <div class="sessions" id="sessions"></div>
 </div>
 
-<div id="clock">
-    <div class="digital" id="digital"></div>
+<div class="controls-left">
+    <button id="openCalendar">📊 Previous Month</button>
+    <button onclick="window.location.href='index.html'">🏠 Back to Home</button>
 </div>
 
 <script>
-    function openTradeImage(src) {
-        document.getElementById('tradeImage').src = src;
-        document.getElementById('imageModal').style.display = 'flex';
-    }
-
+    // SAT LOGIKA
+    const face = document.getElementById("face");
+    ["hour", "minute", "second"].forEach(type => {
+        let h = document.createElement("div"); h.className = "hand " + type; 
+        h.style.position = "absolute"; h.style.bottom = "50%"; h.style.left = "50%"; h.style.transformOrigin = "bottom"; h.style.background = "white";
+        if(type==="hour") { h.style.width="3px"; h.style.height="20px"; }
+        if(type==="minute") { h.style.width="2px"; h.style.height="28px"; }
+        if(type==="second") { h.style.width="1px"; h.style.height="32px"; h.style.background="#0ea5e9"; }
+        face.appendChild(h);
+    });
+    
     function updateClock(){
         let now = new Date();
-        document.getElementById("digital").innerHTML = now.toLocaleTimeString("en-GB", {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+        document.querySelector(".second").style.transform = `rotate(${now.getSeconds() * 6}deg)`;
+        document.querySelector(".minute").style.transform = `rotate(${now.getMinutes() * 6}deg)`;
+        document.querySelector(".hour").style.transform = `rotate(${(now.getHours() % 12) * 30 + now.getMinutes() * 0.5}deg)`;
+        let lon = new Date().toLocaleTimeString("en-GB", {timeZone: "Europe/London", hour:'2-digit', minute:'2-digit'});
+        document.getElementById("digital").innerHTML = lon;
     }
     setInterval(updateClock, 1000); updateClock();
 
-    window.onclick = function(event) {
-        if (event.target.id == 'imageModal') document.getElementById('imageModal').style.display = 'none';
-        if (event.target.id == 'calendarModal') document.getElementById('calendarModal').style.display = 'none';
+    function openTradeImage(imgSrc) {
+        document.getElementById("tradeImage").src = imgSrc;
+        document.getElementById("imageModal").style.display = "flex";
     }
+    document.getElementById("closeImage").onclick = () => document.getElementById("imageModal").style.display = "none";
+    window.onclick = (e) => { if(e.target.id === "imageModal") e.target.style.display = "none"; }
 </script>
 
 </body>
