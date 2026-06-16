@@ -174,15 +174,77 @@
         justify-content: center; align-items: center; 
         z-index: 9999; backdrop-filter: blur(10px); 
     }
-    .calendar-box { background: #0b1220; padding: 25px; border-radius: 15px; width: 90%; max-width: 1000px; border: 1px solid #0ea5e9; position: relative; max-height: 90vh; overflow-y: auto; }
-    #closeCalendar { position: absolute; top: 15px; right: 20px; cursor: pointer; font-size: 24px; color: #0ea5e9; }
-    .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin-top: 20px; }
+ .calendar-box{
+    background:#07101f;
+    padding:25px;
+    border-radius:18px;
+    width:95%;
+    max-width:1200px;
+    border:1px solid rgba(14,165,233,.4);
+    box-shadow:0 0 40px rgba(14,165,233,.15);
+    position:relative;
+    max-height:90vh;
+    overflow-y:auto;
+}
 
-    .day-name { text-align: center; font-weight: bold; color: #0ea5e9; font-size: 12px; text-transform: uppercase; padding-bottom: 5px; }
-    .day { min-height: 70px; padding: 10px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); text-align: center; font-size: 14px; display: flex; flex-direction: column; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.1); }
-    .day.win { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
-    .day.loss { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
-    .day.prev, .day.next { opacity: 0.3; }
+#closeCalendar{
+    position:absolute;
+    top:15px;
+    right:20px;
+    cursor:pointer;
+    font-size:26px;
+    color:#00b7ff;
+}
+
+.calendar-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:12px;
+    margin-top:20px;
+}
+
+.day-name{
+    text-align:center;
+    font-weight:700;
+    color:#00b7ff;
+    font-size:13px;
+    text-transform:uppercase;
+}
+
+.day{
+    min-height:90px;
+    border-radius:12px;
+    background:#101c32;
+    border:1px solid rgba(255,255,255,.08);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    transition:.25s;
+    font-size:15px;
+}
+
+.day:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 15px rgba(14,165,233,.25);
+}
+
+.day.win{
+    background:rgba(0,255,140,.12);
+    border:1px solid rgba(0,255,140,.25);
+    color:#42ff9c;
+}
+
+.day.loss{
+    background:rgba(255,70,70,.12);
+    border:1px solid rgba(255,70,70,.25);
+    color:#ff7272;
+}
+
+.day.prev,
+.day.next{
+    opacity:.25;
+}
 
     .controls-left { 
         position: fixed; 
@@ -370,50 +432,82 @@
 <button id="backHome" onclick="window.location.href='index.html'">🏠 Back to Home</button>
 </div> <div id="calendarModal"> <div class="calendar-box fancy-ui"> 
     <span id="closeCalendar">✖</span> 
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px;"> 
-        <h2 style="margin:0; color: #0ea5e9;">May 2026</h2> 
-        <div id="monthStats" style="font-size:14px; opacity:0.8; color: #4ade80;"> 
-            Monthly stats: $8,167 | Trading days: 17 
-        </div> 
-    </div> 
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
+
+    <div>
+        <h2 style="margin:0;color:#00b7ff;">May 2026</h2>
+        <small style="opacity:.7;">JokerFX Performance Report</small>
+    </div>
+
+    <div style="display:flex;gap:25px;">
+
+        <div>
+            <div style="font-size:11px;opacity:.6;">PROFIT</div>
+            <div style="color:#42ff9c;font-weight:bold;">+$8,167</div>
+        </div>
+
+        <div>
+            <div style="font-size:11px;opacity:.6;">WIN RATE</div>
+            <div style="color:#42ff9c;font-weight:bold;">78%</div>
+        </div>
+
+        <div>
+            <div style="font-size:11px;opacity:.6;">TRADING DAYS</div>
+            <div style="font-weight:bold;">17</div>
+        </div>
+
+    </div>
+
+</div> 
 
     <div class="calendar-grid"> 
         <div class="day-name">Mon</div><div class="day-name">Tue</div><div class="day-name">Wed</div><div class="day-name">Thu</div><div class="day-name">Fri</div><div class="day-name">Sat</div><div class="day-name">Sun</div> 
 
-        <div class="day prev">30</div><div class="day prev">31</div> 
-        <div class="day loss">1<br>-$98</div> 
-        <div class="day win">2<br>$785</div> 
-        <div class="day">3</div> 
-        <div class="day loss">4<br>-$140</div> 
-        <div class="day">5</div> 
-        <div class="day loss">6<br>-$65</div> 
-        <div class="day win">7<br>$1200</div> 
-        <div class="day">8</div> 
-        <div class="day win">9<br>$450</div> 
-        <div class="day win">10<br>$870</div> 
-        <div class="day">11</div> 
-        <div class="day">12</div> 
-        <div class="day loss">13<br>-$185</div> 
-        <div class="day loss">14<br>-$120</div> 
-        <div class="day win">15<br>$1400</div> 
-        <div class="day">16</div> 
-        <div class="day win">17<br>$500</div> 
-        <div class="day">18</div> 
-        <div class="day">19</div> 
-        <div class="day">20</div> 
-        <div class="day win">21<br>$360</div> 
-        <div class="day win">22<br>$850/div> 
-        <div class="day win">23<br>$670div> 
-        <div class="day">24</div> 
-        <div class="day">25</div> 
-        <div class="day">26</div> 
-        <div class="day loss">27<br>-$250</div> 
-        <div class="day win">28<br>$1100</div> 
-        <div class="day">29</div> 
-        <div class="day win">30<br>$840</div> 
-        <div class="day next">1</div><div class="day next">2</div><div class="day next">3</div> 
-    </div> 
-</div>
+        <div class="day prev">30</div>
+<div class="day prev">31</div>
+
+<div class="day loss">1<br>-$98</div>
+<div class="day win">2<br>$785</div>
+<div class="day win">3<br>$420</div>
+
+<div class="day">4</div>
+<div class="day">5</div>
+
+<div class="day loss">6<br>-$65</div>
+<div class="day win">7<br>$1200</div>
+<div class="day win">8<br>$310</div>
+<div class="day win">9<br>$450</div>
+<div class="day win">10<br>$870</div>
+
+<div class="day">11</div>
+<div class="day">12</div>
+
+<div class="day loss">13<br>-$185</div>
+<div class="day loss">14<br>-$120</div>
+<div class="day win">15<br>$1400</div>
+<div class="day win">16<br>$260</div>
+<div class="day win">17<br>$500</div>
+
+<div class="day">18</div>
+<div class="day">19</div>
+
+<div class="day loss">20<br>-$75</div>
+<div class="day win">21<br>$360</div>
+<div class="day win">22<br>$850</div>
+<div class="day win">23<br>$670</div>
+<div class="day win">24<br>$190</div>
+
+<div class="day">25</div>
+<div class="day">26</div>
+
+<div class="day loss">27<br>-$250</div>
+<div class="day win">28<br>$1100</div>
+<div class="day win">29<br>$430</div>
+<div class="day win">30<br>$840</div>
+
+<div class="day next">1</div>
+<div class="day next">2</div>
+<div class="day next">3</div>
 </div> <script> 
     // SAT 
     const face = document.getElementById("face"); 
