@@ -88,7 +88,7 @@
 
     .trade-preview-btn {
         position: absolute;
-        left: 15px; 
+        left:-130px; top:50%; transform:translateY(-50%); 
         cursor: pointer;
         font-size: 18px;
         transition: 0.3s;
@@ -97,7 +97,9 @@
         display: flex;
         gap: 8px;
     }
-    .trade-preview-btn span:hover {
+    .analysis-btn{padding:6px 12px;border-radius:8px;background:#0ea5e9;cursor:pointer;font-size:13px;font-weight:bold;transition:.3s;}
+.analysis-btn:hover{background:#27c4ff;box-shadow:0 0 15px #0ea5e9;}
+.trade-preview-btn span:hover {
         transform: scale(1.3);
         filter: drop-shadow(0 0 10px #0ea5e9);
     }
@@ -427,7 +429,7 @@ color:#00b7ff;
 <div class="row fancy-ui">
 
     <div class="trade-preview-btn">
-        <span onclick="openAnalysis()">📝 Analysis</span>
+        <span class="analysis-btn" onclick="openAnalysis()">📈 Analysis</span>
     </div>
 
     <div data-label="Day">Friday</div>
@@ -503,7 +505,10 @@ color:#00b7ff;
     <strong>LIMITATION OF LIABILITY:</strong> JokerFX and its owners are <strong>not responsible for any financial losses</strong> resulting from the use of our signals. By using this site, you acknowledge that you trade at your own risk. Past performance is not indicative of future results. 
 </div>
 </div> <div id="imageModal"> <div class="image-container">
-  <div id="analysisModal">
+  <span id="closeImage">✖</span> 
+    <img id="tradeImage" src="" alt="Trade Analysis"> 
+</div>
+</div> <div id="analysisModal">
 
 <div class="analysis-box">
 
@@ -527,10 +532,8 @@ Patience is required until price reaches the entry zone.
 
 </div>
 </div>
-    <span id="closeImage">✖</span> 
-    <img id="tradeImage" src="" alt="Trade Analysis"> 
-</div>
-</div> <div id="clock"> <div class="clock-face" id="face"></div> 
+    
+<div id="clock"> <div class="clock-face" id="face"></div> 
 <div class="digital" id="digital"></div> 
 <div class="sessions" id="sessions"></div>
 </div> <div class="controls-left"> <button id="openCalendar">📊 Previous Month</button> 
