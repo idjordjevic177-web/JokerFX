@@ -376,22 +376,44 @@
         <div data-label="RR">-</div><div data-label="Status" class="no-trade-status">NO TRADE</div> 
     </div>
 
-<div class="row fancy-ui"> 
-    <div class="trade-preview-btn"></div>
+<div class="row fancy-ui">
+
+    <div class="trade-preview-btn">
+        <span onclick="openAnalysis()">📝 Analysis</span>
+    </div>
 
     <div data-label="Day">Friday</div>
-    <div data-label="Type">-</div>
-    <div data-label="Pair">-</div>
-    <div data-label="Entry" class="entry-val">-</div>
-    <div data-label="SL" class="sl-val">-</div>
 
-    <div data-label="TP" class="tp-val tp-list">-</div>
-
-    <div data-label="RR">-</div>
-
-    <div data-label="Status" class="no-trade-status">
-        NO TRADE
+    <div data-label="Type" class="sell">
+        SELL
     </div>
+
+    <div data-label="Pair">
+        XAUUSD
+    </div>
+
+    <div data-label="Entry" class="entry-val">
+        4060-4065
+    </div>
+
+    <div data-label="SL" class="sl-val">
+        4088
+    </div>
+
+    <div data-label="TP" class="tp-val tp-list">
+        TP1:4020<br>
+        TP2:4000<br>
+        TP3:3940
+    </div>
+
+    <div data-label="RR">
+        1:4
+    </div>
+
+    <div data-label="Status" class="active-status">
+        WAITING FOR ENTRY
+    </div>
+
 </div>
 
     <div class="news-box fancy-ui"> 
@@ -432,7 +454,31 @@
     <strong>RISK WARNING:</strong> Trading Forex and Gold involves high risk and may not be suitable for all investors. All content, signals, and news provided on JokerFX are for <strong>educational and informational purposes only</strong>. We do not provide financial advice. <br> 
     <strong>LIMITATION OF LIABILITY:</strong> JokerFX and its owners are <strong>not responsible for any financial losses</strong> resulting from the use of our signals. By using this site, you acknowledge that you trade at your own risk. Past performance is not indicative of future results. 
 </div>
-</div> <div id="imageModal"> <div class="image-container"> 
+</div> <div id="imageModal"> <div class="image-container">
+  <div id="analysisModal">
+
+<div class="analysis-box">
+
+<span id="closeAnalysis">✖</span>
+
+<h2>Friday Analysis</h2>
+
+
+<p>
+
+Gold is approaching a major liquidity zone around 4060-4065.
+
+This bullish movement appears to be liquidity collection above previous sellers trapped around 4040.
+
+A rejection from this area could provide a high probability sell setup targeting 4020 initially, followed by 4000 and potentially 3940.
+
+Patience is required until price reaches the entry zone.
+
+</p>
+
+
+</div>
+</div>
     <span id="closeImage">✖</span> 
     <img id="tradeImage" src="" alt="Trade Analysis"> 
 </div>
