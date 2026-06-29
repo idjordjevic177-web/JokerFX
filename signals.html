@@ -755,19 +755,37 @@ Tot: +624
 const analysisTitle = document.getElementById("analysisTitle");
 const analysisContent = document.getElementById("analysisContent");
 
-function openAnalysis(type){
+if(type=="gold"){
 
-    analysisModal.style.display="flex";
+    analysisTitle.innerHTML="XAUUSD Analysis";
 
-    if(type=="gold"){
+    analysisContent.innerHTML=`
 
-        analysisTitle.innerHTML="XAUUSD Analysis";
+<h3>📌 Setup</h3>
 
-        analysisContent.innerHTML=`
-            <p>No analysis available.</p>
-        `;
+<p>
+This SELL setup was based on a liquidity sweep into a bearish IFVG,
+followed by a Change of Character (CHoCH). After taking liquidity above
+the highs, price respected the IFVG and rejected the area exactly as expected,
+providing a high-probability short opportunity.
+</p>
 
-    }
+<img src="trejd ponedeljak.JPG" class="analysis-image">
+
+<h3>🏆 Winning Result</h3>
+
+<p>
+The trade executed perfectly. Price triggered our <b>SELL LIMIT at 4075</b>,
+respected the bearish setup, and reached <b>TP1, TP2 and TP3</b> without
+hitting the stop loss.
+
+The complete move delivered the projected <b>1:6 Risk-to-Reward</b>,
+confirming the liquidity-based analysis and bearish market structure.
+</p>
+
+`;
+
+}
 
     if(type=="chfjpy"){
 
