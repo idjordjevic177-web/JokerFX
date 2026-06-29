@@ -751,15 +751,19 @@ Tot: +624
         if (event.target == modal) modal.style.display = "none"; 
         if (event.target == imgModal) imgModal.style.display = "none"; 
     } 
- const analysisModal = document.getElementById("analysisModal");
+const analysisModal = document.getElementById("analysisModal");
 const analysisTitle = document.getElementById("analysisTitle");
 const analysisContent = document.getElementById("analysisContent");
 
-if(type=="gold"){
+function openAnalysis(type){
 
-    analysisTitle.innerHTML="XAUUSD Analysis";
+    analysisModal.style.display = "flex";
 
-    analysisContent.innerHTML=`
+    if(type=="gold"){
+
+        analysisTitle.innerHTML="XAUUSD Analysis";
+
+        analysisContent.innerHTML=`
 
 <h3>📌 Setup</h3>
 
@@ -785,13 +789,13 @@ confirming the liquidity-based analysis and bearish market structure.
 
 `;
 
-}
+    }
 
     if(type=="chfjpy"){
 
         analysisTitle.innerHTML="CHFJPY Analysis";
 
-   analysisContent.innerHTML=`
+        analysisContent.innerHTML=`
 
 <h3>📌 Setup</h3>
 
@@ -816,11 +820,12 @@ demonstrating the importance of patience, discipline and following the trading p
 <img src="s.JPG" class="analysis-image">
 
 `;
+
     }
 
 }
 
-document.getElementById("closeAnalysis").onclick=()=>{
+document.getElementById("closeAnalysis").onclick = ()=>{
     analysisModal.style.display="none";
 }
 
