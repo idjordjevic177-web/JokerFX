@@ -365,18 +365,18 @@ color:#00b7ff;
     font-size:15px;
     opacity:.9;
 }
-  .analysis-image{
+
+.analysis-image{
     width:100%;
+    margin:15px 0;
     border-radius:10px;
     border:1px solid rgba(14,165,233,.4);
     box-shadow:0 0 20px rgba(14,165,233,.2);
-    margin:10px 0 20px;
 }
 
 .analysis-box h3{
     color:#00b7ff;
     margin:20px 0 10px;
-    font-size:18px;
 }
 
 .analysis-image{
@@ -411,6 +411,7 @@ color:#00b7ff;
    <div class="row fancy-ui">
 
     <div class="trade-preview-btn"></div>
+     <span class="analysis-btn" onclick="openAnalysis('chfjpy')">📈 Analysis</span>
 
     <div data-label="Day">Monday</div>
 
@@ -448,7 +449,7 @@ color:#00b7ff;
 <div class="row fancy-ui">
 
     <div class="trade-preview-btn">
-        <span class="analysis-btn" onclick="openAnalysis()">📈 Analysis</span>
+        <span class="analysis-btn" onclick="openAnalysis('gold')">📈 Analysis</span>
     </div>
 
     <div data-label="Day">Monday</div>
@@ -718,24 +719,46 @@ color:#00b7ff;
         if (event.target == modal) modal.style.display = "none"; 
         if (event.target == imgModal) imgModal.style.display = "none"; 
     } 
-  const analysisModal =
-document.getElementById("analysisModal");
+ const analysisModal = document.getElementById("analysisModal");
+const analysisTitle = document.getElementById("analysisTitle");
+const analysisContent = document.getElementById("analysisContent");
 
+function openAnalysis(type){
 
-function openAnalysis(){
-analysisModal.style.display="flex";
+    analysisModal.style.display="flex";
+
+    if(type=="gold"){
+
+        analysisTitle.innerHTML="XAUUSD Analysis";
+
+        analysisContent.innerHTML=`
+            <p>No analysis available.</p>
+        `;
+
+    }
+
+    if(type=="chfjpy"){
+
+        analysisTitle.innerHTML="CHFJPY Analysis";
+
+        analysisContent.innerHTML=`
+            <h3>📌 Setup</h3>
+            <img src="chfjpy.JPG" class="analysis-image">
+
+            <h3>🔄 Update</h3>
+            <img src="s.JPG" class="analysis-image">
+        `;
+    }
+
 }
 
-
-document.getElementById("closeAnalysis").onclick = ()=>{
-analysisModal.style.display="none";
+document.getElementById("closeAnalysis").onclick=()=>{
+    analysisModal.style.display="none";
 }
-
 
 window.addEventListener("click",(e)=>{
-
-if(e.target==analysisModal)
-analysisModal.style.display="none";
-
+    if(e.target==analysisModal)
+        analysisModal.style.display="none";
+});
 });
 </script> </body> </html>
