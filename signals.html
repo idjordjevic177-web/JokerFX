@@ -410,8 +410,9 @@ color:#00b7ff;
 
    <div class="row fancy-ui">
 
-    <div class="trade-preview-btn"></div>
-     <span class="analysis-btn" onclick="openAnalysis('chfjpy')">📈 Analysis</span>
+   <div class="trade-preview-btn">
+    <span class="analysis-btn" onclick="openAnalysis('chfjpy')">📈 Analysis</span>
+</div>
 
     <div data-label="Day">Monday</div>
 
@@ -580,10 +581,15 @@ color:#00b7ff;
     <strong>RISK WARNING:</strong> Trading Forex and Gold involves high risk and may not be suitable for all investors. All content, signals, and news provided on JokerFX are for <strong>educational and informational purposes only</strong>. We do not provide financial advice. <br> 
     <strong>LIMITATION OF LIABILITY:</strong> JokerFX and its owners are <strong>not responsible for any financial losses</strong> resulting from the use of our signals. By using this site, you acknowledge that you trade at your own risk. Past performance is not indicative of future results. 
 </div>
-</div> <div id="imageModal"> <div class="image-container">
-  <span id="closeImage">✖</span> 
-    <img id="tradeImage" src="" alt="Trade Analysis"> 
 </div>
+
+<div id="imageModal">
+    <div class="image-container">
+        <span id="closeImage">✖</span>
+        <img id="tradeImage" src="" alt="Trade Analysis">
+    </div>
+</div>
+
 <div id="analysisModal">
     <div class="analysis-box">
 
@@ -759,6 +765,5 @@ document.getElementById("closeAnalysis").onclick=()=>{
 window.addEventListener("click",(e)=>{
     if(e.target==analysisModal)
         analysisModal.style.display="none";
-});
 });
 </script> </body> </html>
