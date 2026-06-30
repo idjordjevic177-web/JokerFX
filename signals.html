@@ -512,7 +512,9 @@ color:#00b7ff;
 
 <div class="row fancy-ui">
 
-    <div class="trade-preview-btn"></div>
+    <div class="trade-preview-btn">
+        <span class="analysis-btn" onclick="openAnalysis('goldTuesday')">📈 Analysis</span>
+    </div>
 
     <div data-label="Day">Tuesday</div>
 
@@ -843,6 +845,44 @@ demonstrating the importance of patience, discipline and following the trading p
 
     }
 
+}
+  if(type=="goldTuesday"){
+
+    analysisTitle.innerHTML="XAUUSD Analysis";
+
+    analysisContent.innerHTML=`
+
+<h3>📌 Setup</h3>
+
+<p>
+Price rallied back into a strong premium supply zone after a sharp bullish
+impulse. The move into the highs appeared to be a liquidity grab rather than
+true bullish continuation, with buyers pushing directly into a key resistance
+area where sellers were expected to become active.
+</p>
+
+<p>
+The entry was planned inside the supply zone, allowing us to sell at a premium
+price while keeping a tight stop loss above the invalidation level. The overall
+market structure remains bearish, making this an attractive risk-to-reward
+opportunity.
+</p>
+
+<img src="trejd utorak.JPG" class="analysis-image">
+
+<h3>🎯 Trade Plan</h3>
+
+<p>
+The expectation is for price to reject this resistance area and rotate back
+towards lower liquidity levels. Our targets are positioned at previous demand
+zones where buyers may begin taking profits, providing a logical path for the
+move while maintaining a projected <b>1:5 Risk-to-Reward</b>.
+</p>
+
+`;
+
+}
+  
 }
 
 document.getElementById("closeAnalysis").onclick = ()=>{
