@@ -572,7 +572,7 @@ color:#00b7ff;
     </div>
 
     <div data-label="Entry" class="entry-val">
-        4248-4246
+        4248 - 4246
     </div>
 
     <div data-label="SL" class="sl-val">
@@ -593,6 +593,8 @@ color:#00b7ff;
         <br>
         +260 PIPS
     </div>
+
+</div>
 
 <div class="row fancy-ui">
 
@@ -643,17 +645,43 @@ color:#00b7ff;
 <div><small>LOSE</small><h2 style="margin:5px 0;color:#f87171;">0</h2></div>
             <div> 
                 <small>PIPS</small> 
-                <div style="font-size: 12px; font-weight: bold; margin-top: 5px;"> 
-                    <div style="color:#4ade80;">W: +624.5</div>
-<div style="color:#f87171;">L: </div>
-<div style="border-top:1px solid rgba(255,255,255,.2);margin-top:3px;padding-top:3px;color:white;">
-Tot: +624
-</div>
-                </div> 
+                <div class="fancy-ui" style="padding: 15px; text-align: center;"> 
+    <span style="font-size: 12px; opacity: 0.7;">WEEKLY STATISTICS</span> 
+
+    <div class="stats-grid"> 
+
+        <div>
+            <small>WIN</small>
+            <h2 class="tp-val" style="margin:5px 0;">3</h2>
+        </div>
+
+        <div>
+            <small>LOSE</small>
+            <h2 style="margin:5px 0;color:#f87171;">0</h2>
+        </div>
+
+        <div> 
+            <small>PIPS</small> 
+
+            <div style="font-size: 12px; font-weight: bold; margin-top: 5px;"> 
+
+                <div style="color:#4ade80;">
+                    W: +884.5
+                </div>
+
+                <div style="color:#f87171;">
+                    L: 0
+                </div>
+
+                <div style="border-top:1px solid rgba(255,255,255,.2);margin-top:3px;padding-top:3px;color:white;">
+                    Tot: +884.5
+                </div>
+
             </div> 
         </div> 
+
     </div> 
-</div> 
+</div>
 
 <div class="footer-disclaimer"> 
     <strong>RISK WARNING:</strong> Trading Forex and Gold involves high risk and may not be suitable for all investors. All content, signals, and news provided on JokerFX are for <strong>educational and informational purposes only</strong>. We do not provide financial advice. <br> 
@@ -758,7 +786,14 @@ Tot: +624
 <div class="day win">29<br>$620</div>
 <div class="day">30</div>
 <div class="day">31</div>
-</div> <script> 
+
+</div> <!-- calendar-grid -->
+
+</div> <!-- calendar-box -->
+
+</div> <!-- calendarModal -->
+
+<script>
     // SAT 
     const face = document.getElementById("face"); 
     ["hour", "minute", "second"].forEach(type => { 
