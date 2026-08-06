@@ -3,565 +3,874 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>JokerFX Signals PRO</title>
 
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+
 <script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(async function(OneSignal) {
+window.OneSignalDeferred = window.OneSignalDeferred || [];
+
+OneSignalDeferred.push(async function(OneSignal) {
     await OneSignal.init({
-      appId: "559996fa-eae6-4cd9-aa61-54f4888c4bc8",
+        appId: "559996fa-eae6-4cd9-aa61-54f4888c4bc8",
     });
-  });
+});
 </script>
+
 <style>
-    body {
-        margin: 0;
-        font-family: 'Segoe UI', Arial, sans-serif;
-        color: white;
-        background: url('joker.jpg') no-repeat center center fixed;
-        background-size: cover;
-        overflow-x: hidden;
-    }
-    body::before {
-        content: "";
-        position: fixed;
-        width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.92);
-        z-index: -1;
-    }
 
-    .top-ticker {
-        width: 100%;
-        height: 40px;
-        background: rgba(15, 23, 42, 0.9);
-        border-bottom: 1px solid #0ea5e9;
-    }
-
-    .header { text-align: center; padding: 20px; font-size: 32px; font-weight: 800; text-shadow: 0 0 20px #0ea5e9; letter-spacing: 2px; }
-
-    .fancy-ui {
-        background: rgba(30, 41, 59, 0.4);
-        border: 1px solid rgba(14, 165, 233, 0.3);
-        backdrop-filter: blur(12px);
-        border-radius: 12px;
-    }
-
-    .main-layout {
-        display: grid;
-        grid-template-columns: 1fr 350px;
-        gap: 20px;
-        max-width: 1400px;
-        margin: auto;
-        padding: 20px;
-        padding-bottom: 120px;
-    }
-
-    /* TABELA SIGNALA */
-    .table-header, .row {
-        display: grid;
-        grid-template-columns: 120px repeat(7, 1fr);
-        text-align: center;
-        align-items: center;
-        margin-bottom: 12px;
-        position: relative;
-        padding-left: 50px; 
-    }
-    .table-header { 
-        background: rgba(14, 165, 233, 0.2); 
-        font-weight: bold; 
-        font-size: 15px; 
-        border-radius: 10px; 
-        padding-top: 20px;
-        padding-bottom: 20px;
-        padding-right: 20px;
-        text-transform: uppercase;
-    }
-    .row { 
-        padding-top: 22px;
-        padding-bottom: 22px;
-        padding-right: 22px;
-        border: 1px solid rgba(255, 255, 255, 0.05); 
-        font-size: 16px; 
-        min-height: 30px;
-    }
-
-    .trade-preview-btn {
-        position: absolute;
-        left:-130px; top:50%; transform:translateY(-50%); 
-        cursor: pointer;
-        font-size: 18px;
-        transition: 0.3s;
-        filter: drop-shadow(0 0 5px #0ea5e9);
-        z-index: 5;
-        display: flex;
-        gap: 8px;
-    }
-    .analysis-btn{padding:6px 12px;border-radius:8px;background:#0ea5e9;cursor:pointer;font-size:13px;font-weight:bold;transition:.3s;}
-.analysis-btn:hover{background:#27c4ff;box-shadow:0 0 15px #0ea5e9;}
-.trade-preview-btn span:hover {
-        transform: scale(1.3);
-        filter: drop-shadow(0 0 10px #0ea5e9);
-    }
-
-    #imageModal {
-        display: none;
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        z-index: 10000;
-        justify-content: center;
-        align-items: center;
-        backdrop-filter: blur(8px);
-    }
-    .image-container {
-        position: relative;
-        max-width: 85%;
-        max-height: 85%;
-        border: 2px solid #0ea5e9;
-        box-shadow: 0 0 30px rgba(14, 165, 233, 0.5);
-        border-radius: 10px;
-        background: #000;
-    }
-    .image-container img {
-        display: block;
-        max-width: 100%;
-        max-height: 80vh;
-        height: auto;
-    }
-    #closeImage {
-        position: absolute;
-        top: -45px;
-        right: 0;
-        color: white;
-        font-size: 35px;
-        cursor: pointer;
-        font-weight: bold;
-    }
-
-    .entry-val { color: #facc15; font-weight: bold; }
-    .sl-val { color: #f87171; font-weight: bold; }
-    .tp-val { color: #4ade80; font-weight: bold; }
-    .tp-list { font-size: 13px; line-height: 1.2; } 
-    .buy { color: #4ade80; font-weight: bold; }
-    .sell { color: #f87171; font-weight: bold; }
-    .win-status { color: #4ade80; text-shadow: 0 0 12px rgba(74, 222, 128, 0.6); font-weight: bold; letter-spacing: 1px; }
-    .loss-status { color: #f87171; text-shadow: 0 0 8px rgba(248, 113, 113, 0.4); font-weight: bold; }
-    .active-status { color: #facc15; font-weight: bold; text-shadow: 0 0 10px rgba(250, 204, 21, 0.5); animation: blink 2s infinite; }
-    .be-status { color: #94a3b8; font-weight: bold; text-shadow: 0 0 8px rgba(148, 163, 184, 0.4); }
-    .no-trade-status { color: #94a3b8; font-style: italic; font-weight: bold; opacity: 0.6; }
-
-    @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-
-    .side-panel { display: flex; flex-direction: column; gap: 20px; }
-    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
-
-    .news-box { margin-top: 20px; height: 350px; overflow: hidden; border: 1px solid rgba(255, 165, 0, 0.3); }
-    .news-header { padding: 12px; font-size: 13px; font-weight: bold; border-bottom: 1px solid rgba(14, 165, 233, 0.3); color: #facc15; background: rgba(0, 0, 0, 0.3); }
-
-    #clock { position: fixed; bottom: 30px; right: 25px; text-align: center; z-index: 100; }
-    .clock-face { width: 90px; height: 90px; border: 2px solid rgba(14, 165, 233, 0.5); border-radius: 50%; position: relative; margin: 0 auto 10px; }
-    .hand { position: absolute; bottom: 50%; left: 50%; transform-origin: bottom; background: white; border-radius: 2px; }
-    .hour { width: 3px; height: 22px; }
-    .minute { width: 2px; height: 32px; }
-    .second { width: 1px; height: 38px; background: #0ea5e9; }
-    .dot { width: 4px; height: 4px; background: #0ea5e9; border-radius: 50%; position: absolute; }
-    .digital { font-size: 22px; font-weight: 800; }
-    .sessions { font-size: 10px; opacity: 0.7; line-height: 1.4; }
-
-    #calendarModal { 
-        display: none; position: fixed; 
-        top: 0; left: 0; width: 100%; height: 100%; 
-        background: rgba(0, 0, 0, 0.95); 
-        justify-content: center; align-items: center; 
-        z-index: 9999; backdrop-filter: blur(10px); 
-    }
- .calendar-box{
-    background:#07101f;
-    padding:25px;
-    border-radius:18px;
-    width:95%;
-    max-width:1200px;
-    border:1px solid rgba(14,165,233,.4);
-    box-shadow:0 0 40px rgba(14,165,233,.15);
-    position:relative;
-    max-height:90vh;
-    overflow-y:auto;
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: white;
+    background: url('joker.jpg') no-repeat center center fixed;
+    background-size: cover;
+    overflow-x: hidden;
 }
 
-#closeCalendar{
-    position:absolute;
-    top:15px;
-    right:20px;
-    cursor:pointer;
-    font-size:26px;
-    color:#00b7ff;
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: -1;
 }
 
-.calendar-grid{
-    display:grid;
-    grid-template-columns:repeat(7,1fr);
-    gap:12px;
-    margin-top:20px;
+/* ==========================
+   TOP
+========================== */
+
+.top-ticker {
+    width: 100%;
+    height: 40px;
+    background: rgba(15, 23, 42, 0.9);
+    border-bottom: 1px solid #0ea5e9;
 }
 
-.day-name{
-    text-align:center;
-    font-weight:700;
-    color:#00b7ff;
-    font-size:13px;
-    text-transform:uppercase;
+.header {
+    text-align: center;
+    padding: 20px;
+    font-size: 32px;
+    font-weight: 800;
+    text-shadow: 0 0 20px #0ea5e9;
+    letter-spacing: 2px;
 }
 
-.day{
-    min-height:90px;
-    border-radius:12px;
-    background:#101c32;
-    border:1px solid rgba(255,255,255,.08);
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    transition:.25s;
-    font-size:15px;
+.fancy-ui {
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(14, 165, 233, 0.3);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
 }
 
-.day:hover{
-    transform:translateY(-3px);
-    box-shadow:0 0 15px rgba(14,165,233,.25);
+/* ==========================
+   MAIN LAYOUT
+========================== */
+
+.main-layout {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 20px;
+    max-width: 1400px;
+    margin: auto;
+    padding: 20px;
+    padding-bottom: 120px;
 }
 
-.day.win{
-    background:rgba(0,255,140,.12);
-    border:1px solid rgba(0,255,140,.25);
-    color:#42ff9c;
+/* ==========================
+   SIGNAL TABLE
+========================== */
+
+.table-header,
+.row {
+    display: grid;
+    grid-template-columns: 120px repeat(7, 1fr);
+    text-align: center;
+    align-items: center;
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 50px;
 }
 
-.day.loss{
-    background:rgba(255,70,70,.12);
-    border:1px solid rgba(255,70,70,.25);
-    color:#ff7272;
+.table-header {
+    background: rgba(14, 165, 233, 0.2);
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    text-transform: uppercase;
+}
+
+.row {
+    padding-top: 22px;
+    padding-bottom: 22px;
+    padding-right: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 16px;
+    min-height: 30px;
+}
+
+/* ==========================
+   TRADE VALUES
+========================== */
+
+.entry-val {
+    color: #facc15;
+    font-weight: bold;
+}
+
+.sl-val {
+    color: #f87171;
+    font-weight: bold;
+}
+
+.tp-val {
+    color: #4ade80;
+    font-weight: bold;
+}
+
+.tp-list {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.buy {
+    color: #4ade80;
+    font-weight: bold;
+}
+
+.sell {
+    color: #f87171;
+    font-weight: bold;
+}
+
+.win-status {
+    color: #4ade80;
+    text-shadow: 0 0 12px rgba(74, 222, 128, 0.6);
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.loss-status {
+    color: #f87171;
+    text-shadow: 0 0 8px rgba(248, 113, 113, 0.4);
+    font-weight: bold;
+}
+
+.active-status {
+    color: #facc15;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(250, 204, 21, 0.5);
+    animation: blink 2s infinite;
+}
+
+.be-status {
+    color: #94a3b8;
+    font-weight: bold;
+}
+
+.no-trade-status {
+    color: #94a3b8;
+    font-style: italic;
+    font-weight: bold;
+    opacity: 0.6;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* ==========================
+   ANALYSIS BUTTON
+========================== */
+
+.trade-preview-btn {
+    position: absolute;
+    left: -130px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s;
+    filter: drop-shadow(0 0 5px #0ea5e9);
+    z-index: 5;
+    display: flex;
+    gap: 8px;
+}
+
+.analysis-btn {
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: #0ea5e9;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.analysis-btn:hover {
+    background: #27c4ff;
+    box-shadow: 0 0 15px #0ea5e9;
+}
+
+/* ==========================
+   SIDE PANEL
+========================== */
+
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* ==========================
+   NEWS
+========================== */
+
+.news-box {
+    margin-top: 20px;
+    height: 350px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 165, 0, 0.3);
+}
+
+.news-header {
+    padding: 12px;
+    font-size: 13px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(14, 165, 233, 0.3);
+    color: #facc15;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================
+   CLOCK
+========================== */
+
+#clock {
+    position: fixed;
+    bottom: 30px;
+    right: 25px;
+    text-align: center;
+    z-index: 100;
+}
+
+.clock-face {
+    width: 90px;
+    height: 90px;
+    border: 2px solid rgba(14, 165, 233, 0.5);
+    border-radius: 50%;
+    position: relative;
+    margin: 0 auto 10px;
+}
+
+.hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom;
+    background: white;
+    border-radius: 2px;
+}
+
+.hour {
+    width: 3px;
+    height: 22px;
+}
+
+.minute {
+    width: 2px;
+    height: 32px;
+}
+
+.second {
+    width: 1px;
+    height: 38px;
+    background: #0ea5e9;
+}
+
+.dot {
+    width: 4px;
+    height: 4px;
+    background: #0ea5e9;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.digital {
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.sessions {
+    font-size: 10px;
+    opacity: 0.7;
+    line-height: 1.4;
+}
+
+/* ==========================
+   CONTROLS
+========================== */
+
+.controls-left {
+    position: fixed;
+    bottom: 100px;
+    left: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 101;
+}
+
+.controls-left button {
+    width: 200px;
+    padding: 15px;
+    border: 1px solid rgba(14, 165, 233, 0.3);
+    background: rgba(15, 23, 42, 0.8);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.controls-left button:hover {
+    background: #0ea5e9;
+    box-shadow: 0 0 15px #0ea5e9;
+}
+
+.onesignal-bell-launcher-container {
+    left: 25px !important;
+    right: auto !important;
+    bottom: 25px !important;
+}
+
+/* ==========================
+   SUBSCRIBE NOTICE
+========================== */
+
+.subscribe-notice {
+    position: fixed;
+    bottom: 32px;
+    left: 95px;
+    background: rgba(14, 165, 233, 0.1);
+    border: 1px solid rgba(14, 165, 233, 0.5);
+    backdrop-filter: blur(8px);
+    padding: 8px 15px;
+    border-radius: 8px;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+    animation: pulseRight 2s ease-in-out infinite;
+}
+
+@keyframes pulseRight {
+    0%, 100% {
+        transform: translateX(0);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: translateX(10px);
+        opacity: 1;
+    }
+}
+
+.subscribe-notice strong {
+    color: #facc15;
+    font-size: 13px;
+}
+
+.subscribe-notice span {
+    color: white;
+    font-size: 11px;
+    opacity: 0.9;
+}
+
+/* ==========================
+   FOOTER
+========================== */
+
+.footer-disclaimer {
+    grid-column: 1 / -1;
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(14, 165, 233, 0.2);
+}
+
+.footer-disclaimer strong {
+    color: #f87171;
+}
+
+/* ==========================
+   CALENDAR
+========================== */
+
+#calendarModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(10px);
+}
+
+.calendar-box {
+    background: #07101f;
+    padding: 25px;
+    border-radius: 18px;
+    width: 95%;
+    max-width: 1200px;
+    border: 1px solid rgba(14,165,233,.4);
+    box-shadow: 0 0 40px rgba(14,165,233,.15);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+#closeCalendar {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 26px;
+    color: #00b7ff;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.day-name {
+    text-align: center;
+    font-weight: 700;
+    color: #00b7ff;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.day {
+    min-height: 90px;
+    border-radius: 12px;
+    background: #101c32;
+    border: 1px solid rgba(255,255,255,.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: .25s;
+    font-size: 15px;
+}
+
+.day:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(14,165,233,.25);
+}
+
+.day.win {
+    background: rgba(0,255,140,.12);
+    border: 1px solid rgba(0,255,140,.25);
+    color: #42ff9c;
+}
+
+.day.loss {
+    background: rgba(255,70,70,.12);
+    border: 1px solid rgba(255,70,70,.25);
+    color: #ff7272;
 }
 
 .day.prev,
-.day.next{
-    opacity:.25;
+.day.next {
+    opacity: .25;
 }
 
-    .controls-left { 
-        position: fixed; 
-        bottom: 100px; 
-        left: 25px; 
-        display: flex; 
-        flex-direction: column; 
-        gap: 12px; 
-        z-index: 101; 
-    }
-    .controls-left button { width: 200px; padding: 15px; border: 1px solid rgba(14, 165, 233, 0.3); background: rgba(15, 23, 42, 0.8); color: white; cursor: pointer; font-weight: bold; text-transform: uppercase; border-radius: 8px; transition: 0.3s; }
-    .controls-left button:hover { background: #0ea5e9; box-shadow: 0 0 15px #0ea5e9; }
+/* ==========================
+   IMAGE MODAL
+========================== */
 
-    .onesignal-bell-launcher-container { 
-        left: 25px !important; 
-        right: auto !important; 
-        bottom: 25px !important; 
-    }
+#imageModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.9);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+}
 
-    .subscribe-notice { 
-        position: fixed; 
-        bottom: 32px; 
-        left: 95px; 
-        background: rgba(14, 165, 233, 0.1); 
-        border: 1px solid rgba(14, 165, 233, 0.5); 
-        backdrop-filter: blur(8px); 
-        padding: 8px 15px; 
-        border-radius: 8px; 
-        z-index: 99999; 
-        display: flex; 
-        flex-direction: column; 
-        pointer-events: none; 
-        animation: pulseRight 2s ease-in-out infinite; 
-    }
-    
-    @keyframes pulseRight { 
-        0%, 100% { transform: translateX(0); opacity: 0.8; } 
-        50% { transform: translateX(10px); opacity: 1; } 
-    }
+.image-container {
+    position: relative;
+    max-width: 85%;
+    max-height: 85%;
+    border: 2px solid #0ea5e9;
+    box-shadow: 0 0 30px rgba(14,165,233,.5);
+    border-radius: 10px;
+    background: #000;
+}
 
-    .subscribe-notice strong { color: #facc15; font-size: 13px; letter-spacing: 0.5px; }
-    .subscribe-notice span { color: white; font-size: 11px; opacity: 0.9; }
+.image-container img {
+    display: block;
+    max-width: 100%;
+    max-height: 80vh;
+    height: auto;
+}
 
-    .footer-disclaimer { 
-        grid-column: 1 / -1; 
-        margin-top: 40px; 
-        padding: 20px; 
-        text-align: center; 
-        font-size: 12px; 
-        line-height: 1.6; 
-        color: rgba(255, 255, 255, 0.4); 
-        border-top: 1px solid rgba(14, 165, 233, 0.2); 
-    }
-    .footer-disclaimer strong { color: #f87171; }
+#closeImage {
+    position: absolute;
+    top: -45px;
+    right: 0;
+    color: white;
+    font-size: 35px;
+    cursor: pointer;
+    font-weight: bold;
+}
 
-    @media (max-width: 900px) {
-        .main-layout { grid-template-columns: 1fr; padding: 10px; padding-bottom: 150px; }
-        .header { font-size: 26px; }
-        .table-header { display: none; }
-        .row { 
-            grid-template-columns: 1fr 1fr; 
-            text-align: left; 
-            padding: 45px 15px 15px 15px; 
-            gap: 15px; 
-            border: 1px solid rgba(14, 165, 233, 0.3); 
-        }
-        .row div[data-label]::before { 
-            content: attr(data-label) ": "; 
-            display: block; font-size: 9px; color: #0ea5e9; text-transform: uppercase; margin-bottom: 2px; 
-        }
-        .trade-preview-btn { top: 10px; left: 10px; }
-        .side-panel { order: -1; }
-        .controls-left { position: static; width: 100%; align-items: center; margin-bottom: 20px; }
-        .controls-left button { width: 90%; }
-        #clock { position: relative; bottom: 0; right: 0; margin-top: 30px; }
-        .subscribe-notice { display: none; }
-        .calendar-grid { grid-template-columns: repeat(7, 1fr); gap: 5px; }
-        .day { font-size: 10px; min-height: 45px; padding: 5px; }
-    }
 /* ==========================
    ANALYSIS MODAL
 ========================== */
 
-#analysisModal{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.93);
-justify-content:center;
-align-items:center;
-z-index:99999;
-backdrop-filter:blur(10px);
+#analysisModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.93);
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    backdrop-filter: blur(10px);
 }
 
-.analysis-box{
-    width:90%;
-    max-width:900px;
-    max-height:90vh;
-    overflow-y:auto;
-    padding:30px;
-    background:#07101f;
-    border:1px solid rgba(14,165,233,.4);
-    border-radius:15px;
-    box-shadow:0 0 30px rgba(14,165,233,.2);
-    position:relative;
-}
-  .analysis-box::-webkit-scrollbar{
-    width:8px;
+.analysis-box {
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 30px;
+    background: #07101f;
+    border: 1px solid rgba(14,165,233,.4);
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(14,165,233,.2);
+    position: relative;
 }
 
-.analysis-box::-webkit-scrollbar-track{
-    background:#07101f;
+.analysis-box h2 {
+    margin-top: 0;
+    color: #00b7ff;
 }
 
-.analysis-box::-webkit-scrollbar-thumb{
-    background:#00b7ff;
-    border-radius:10px;
+.analysis-box h3 {
+    color: #00b7ff;
+    margin: 20px 0 10px;
 }
 
-.analysis-box::-webkit-scrollbar-thumb:hover{
-    background:#27c4ff;
+.analysis-box p {
+    line-height: 1.8;
+    font-size: 15px;
+    opacity: .9;
 }
 
-.analysis-box h2{
-margin-top:0;
-color:#00b7ff;
+.analysis-image {
+    width: 100%;
+    display: block;
+    margin: 20px auto;
+    border-radius: 10px;
+    border: 1px solid rgba(14,165,233,.4);
+    box-shadow: 0 0 20px rgba(14,165,233,.2);
 }
 
-.analysis-box p{
-    line-height:1.8;
-    font-size:15px;
-    opacity:.9;
+#closeAnalysis {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 25px;
+    color: #00b7ff;
 }
 
-.analysis-image{
-    width:75%;
-    display:block;
-    margin:20px auto;
-    border-radius:10px;
-    border:1px solid rgba(14,165,233,.4);
-    box-shadow:0 0 20px rgba(14,165,233,.2);
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width: 900px) {
+
+    .main-layout {
+        grid-template-columns: 1fr;
+        padding: 10px;
+        padding-bottom: 150px;
+    }
+
+    .header {
+        font-size: 26px;
+    }
+
+    .table-header {
+        display: none;
+    }
+
+    .row {
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+        padding: 45px 15px 15px 15px;
+        gap: 15px;
+        border: 1px solid rgba(14,165,233,.3);
+    }
+
+    .row div[data-label]::before {
+        content: attr(data-label) ": ";
+        display: block;
+        font-size: 9px;
+        color: #0ea5e9;
+        text-transform: uppercase;
+        margin-bottom: 2px;
+    }
+
+    .trade-preview-btn {
+        top: 10px;
+        left: 10px;
+    }
+
+    .side-panel {
+        order: -1;
+    }
+
+    .controls-left {
+        position: static;
+        width: 100%;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .controls-left button {
+        width: 90%;
+    }
+
+    #clock {
+        position: relative;
+        bottom: 0;
+        right: 0;
+        margin-top: 30px;
+    }
+
+    .subscribe-notice {
+        display: none;
+    }
+
+    .calendar-grid {
+        grid-template-columns: repeat(7,1fr);
+        gap: 5px;
+    }
+
+    .day {
+        font-size: 10px;
+        min-height: 45px;
+        padding: 5px;
+    }
 }
 
-.analysis-box h3{
-    color:#00b7ff;
-    margin:20px 0 10px;
-}
-
-.analysis-image{
-    width:100%;
-    border-radius:10px;
-    border:1px solid rgba(14,165,233,.4);
-    box-shadow:0 0 20px rgba(14,165,233,.2);
-    display:block;
-}
-
-#closeAnalysis{
-position:absolute;
-top:15px;
-right:20px;
-cursor:pointer;
-font-size:25px;
-color:#00b7ff;
-}
 </style>
-</head> <body> <div class="top-ticker"> <div class="tradingview-widget-container"> 
-    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async> 
-    { "symbols": [{"proName": "FOREXCOM:XAUUSD", "title": "GOLD"},{"proName": "BINANCE:BTCUSDT", "title": "BITCOIN"},{"proName": "FX_IDC:EURUSD", "title": "EURUSD"},{"proName": "INDEX:DXY", "title": "DXY"}], "colorTheme": "dark", "isTransparent": true, "displayMode": "adaptive", "locale": "en" } 
-    </script> 
-</div>
-</div> <div class="header">JokerFX Signals</div> <div class="subscribe-notice"> <strong>SUBSCRIBE NOW</strong> 
-<span><— Get real-time alerts</span>
-</div> <div class="main-layout"> <div class="left-col"> 
-    <div class="table-header"> 
-        <div>Day</div><div>Type</div><div>Pair</div><div>Entry</div><div>SL</div><div>TP</div><div>RR</div><div>Status</div> 
-    </div> 
+</head>
 
-  <div class="row fancy-ui">
+<body>
 
-    <div class="trade-preview-btn">
-        <span class="analysis-btn" onclick="openAnalysis('chfjpy')">📈 Analysis</span>
-    </div>
+<!-- ==========================
+     TICKER
+========================== -->
 
-    <div data-label="Day">Monday</div>
+<div class="top-ticker">
 
-    <div data-label="Type" class="buy">
-        BUY
-    </div>
+    <div class="tradingview-widget-container">
 
-    <div data-label="Pair">
-        CHFJPY
-    </div>
+        <script
+            type="text/javascript"
+            src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+            async>
 
-    <div data-label="Entry" class="entry-val">
-        199.625
-    </div>
+        {
+            "symbols": [
+                {"proName":"FOREXCOM:XAUUSD","title":"GOLD"},
+                {"proName":"BINANCE:BTCUSDT","title":"BITCOIN"},
+                {"proName":"FX_IDC:EURUSD","title":"EURUSD"},
+                {"proName":"INDEX:DXY","title":"DXY"}
+            ],
+            "colorTheme":"dark",
+            "isTransparent":true,
+            "displayMode":"adaptive",
+            "locale":"en"
+        }
 
-    <div data-label="SL" class="sl-val">
-        199.470
-    </div>
+        </script>
 
-    <div data-label="TP" class="tp-val tp-list">
-    ✅ TP1:199.920<br>
-    ✅ TP2:200.064<br>
-    ✅ TP3:200.370
-</div>
-
-    <div data-label="RR">
-        1:7
-    </div>
-    
-<div data-label="Status" class="win-status">
-    🏆 TP1 • TP2 • TP3 HIT
-    <br>
-    +74.5 PIPS
-</div>
-    
-</div>
-<div class="row fancy-ui">
-
-    <div class="trade-preview-btn">
-        <span class="analysis-btn" onclick="openAnalysis('gold')">📈 Analysis</span>
-    </div>
-
-    <div data-label="Day">Monday</div>
-
-    <div data-label="Type" class="sell">
-        SELL LIMIT
-    </div>
-
-    <div data-label="Pair">
-        XAUUSD
-    </div>
-
-    <div data-label="Entry" class="entry-val">
-        4075
-    </div>
-
-    <div data-label="SL" class="sl-val">
-        4084 
-    </div>
-
-    <div data-label="TP" class="tp-val tp-list">
-        TP1:4048<br>
-        TP2:4036<br>
-        TP3:4020
-    </div>
-
-    <div data-label="RR">
-        1:6
-    </div>
-
-<div data-label="Status" class="win-status">
-    🏆 TP1 • TP2 • TP3 HIT
-    <br>
-    +550 PIPS
-</div>
-
-</div>
-
-<div class="row fancy-ui">
-
-    <div class="trade-preview-btn">
-        <span class="analysis-btn" onclick="openAnalysis('goldTuesday')">📈 Analysis</span>
-    </div>
-
-    <div data-label="Day">Tuesday</div>
-
-    <div data-label="Type" class="sell">
-        SELL
-    </div>
-
-    <div data-label="Pair">
-        XAUUSD
-    </div>
-
-    <div data-label="Entry" class="entry-val">
-        4032
-    </div>
-
-    <div data-label="SL" class="sl-val">
-        4051
-    </div>
-
-    <div data-label="TP" class="tp-val tp-list">
-        TP1:4000<br>
-        TP2:3970<br>
-        TP3:3940
-    </div>
-
-    <div data-label="RR">
-        1:5
-    </div>
-
-    <div data-label="Status" class="active-status">
-        ACTIVE
     </div>
 
 </div>
 
-    <div class="row fancy-ui"> 
-        <div class="trade-preview-btn"></div> 
-        <div data-label="Day">Wednesday</div><div data-label="Type">-</div><div data-label="Pair">-</div><div data-label="Entry" class="entry-val">-</div><div data-label="SL" class="sl-val">-</div> 
-        <div data-label="TP" class="tp-val tp-list">-</div> 
-        <div data-label="RR">-</div><div data-label="Status" class="no-trade-status">NO TRADE</div> 
-    </div> 
+<div class="header">
+    JokerFX Signals
+</div>
+
+<div class="subscribe-notice">
+    <strong>SUBSCRIBE NOW</strong>
+    <span>← Get real-time alerts</span>
+</div>
+
+
+<!-- ==========================
+     MAIN
+========================== -->
+
+<div class="main-layout">
+
+<div class="left-col">
+
+
+<!-- TABLE HEADER -->
+
+<div class="table-header">
+
+    <div>Day</div>
+    <div>Type</div>
+    <div>Pair</div>
+    <div>Entry</div>
+    <div>SL</div>
+    <div>TP</div>
+    <div>RR</div>
+    <div>Status</div>
+
+</div>
+
+
+<!-- ==========================
+     MONDAY
+========================== -->
 
 <div class="row fancy-ui">
 
     <div class="trade-preview-btn"></div>
 
-    <div data-label="Day">Thursday</div>
+    <div data-label="Day">Monday</div>
+
+    <div data-label="Type">-</div>
+
+    <div data-label="Pair">-</div>
+
+    <div data-label="Entry" class="entry-val">-</div>
+
+    <div data-label="SL" class="sl-val">-</div>
+
+    <div data-label="TP" class="tp-val tp-list">-</div>
+
+    <div data-label="RR">-</div>
+
+    <div data-label="Status" class="no-trade-status">
+        NO TRADE
+    </div>
+
+</div>
+
+
+<!-- ==========================
+     TUESDAY
+========================== -->
+
+<div class="row fancy-ui">
+
+    <div class="trade-preview-btn"></div>
+
+    <div data-label="Day">Tuesday</div>
+
+    <div data-label="Type">-</div>
+
+    <div data-label="Pair">-</div>
+
+    <div data-label="Entry" class="entry-val">-</div>
+
+    <div data-label="SL" class="sl-val">-</div>
+
+    <div data-label="TP" class="tp-val tp-list">-</div>
+
+    <div data-label="RR">-</div>
+
+    <div data-label="Status" class="no-trade-status">
+        NO TRADE
+    </div>
+
+</div>
+
+
+<!-- ==========================
+     WEDNESDAY
+========================== -->
+
+<div class="row fancy-ui">
+
+    <div class="trade-preview-btn"></div>
+
+    <div data-label="Day">Wednesday</div>
+
+    <div data-label="Type">-</div>
+
+    <div data-label="Pair">-</div>
+
+    <div data-label="Entry" class="entry-val">-</div>
+
+    <div data-label="SL" class="sl-val">-</div>
+
+    <div data-label="TP" class="tp-val tp-list">-</div>
+
+    <div data-label="RR">-</div>
+
+    <div data-label="Status" class="no-trade-status">
+        NO TRADE
+    </div>
+
+</div>
+
+
+<!-- ==========================
+     THURSDAY - WIN
+========================== -->
+
+<div class="row fancy-ui">
+
+    <div class="trade-preview-btn"></div>
+
+    <div data-label="Day">
+        Thursday
+    </div>
 
     <div data-label="Type" class="buy">
         BUY
@@ -596,6 +905,11 @@ color:#00b7ff;
 
 </div>
 
+
+<!-- ==========================
+     FRIDAY
+========================== -->
+
 <div class="row fancy-ui">
 
     <div class="trade-preview-btn"></div>
@@ -620,83 +934,194 @@ color:#00b7ff;
 
 </div>
 
-    <div class="news-box fancy-ui"> 
-        <div class="news-header">🔥 TODAY'S HIGH IMPACT NEWS (STRONG)</div> 
-        <iframe src="https://sslecal2.forexprostools.com?columns=exc_flags,exc_currency,exc_importance,exc_actual,exc_forecast,exc_previous&importance=3&features=datepicker,timezone&countries=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40&calType=day&timeZone=58&lang=1" 
-                width="100%" height="300" frameborder="0" allowtransparency="true" style="filter: invert(90%) hue-rotate(180deg) brightness(1.1);"></iframe> 
-    </div> 
-</div> 
 
-<div class="side-panel"> 
-    <div class="fancy-ui" style="padding: 10px; height: 380px;"> 
-        <div style="text-align: center; font-size: 12px; font-weight: bold; margin-bottom: 5px;">XAUUSD SENTIMENT</div> 
-        <div class="tradingview-widget-container"> 
-            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async> 
-            { "interval": "1h", "width": "100%", "isTransparent": true, "height": "320", "symbol": "FOREXCOM:XAUUSD", "showIntervalTabs": true, "displayMode": "single", "locale": "en", "colorTheme": "dark" } 
-            </script> 
-        </div> 
-    </div> 
+<!-- ==========================
+     NEWS
+========================== -->
 
-    <div class="fancy-ui" style="padding: 15px; text-align: center;"> 
-        <span style="font-size: 12px; opacity: 0.7;">WEEKLY STATISTICS</span> 
-        <div class="stats-grid"> 
-         <div><small>WIN</small><h2 class="tp-val" style="margin:5px 0;">2</h2></div>
+<div class="news-box fancy-ui">
 
-<div><small>LOSE</small><h2 style="margin:5px 0;color:#f87171;">0</h2></div>
-            <div> 
-                <small>PIPS</small> 
-                <div class="fancy-ui" style="padding: 15px; text-align: center;"> 
-    <span style="font-size: 12px; opacity: 0.7;">WEEKLY STATISTICS</span> 
+    <div class="news-header">
+        🔥 TODAY'S HIGH IMPACT NEWS (STRONG)
+    </div>
 
-    <div class="stats-grid"> 
+    <iframe
+        src="https://sslecal2.forexprostools.com?columns=exc_flags,exc_currency,exc_importance,exc_actual,exc_forecast,exc_previous&importance=3&features=datepicker,timezone&countries=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40&calType=day&timeZone=58&lang=1"
+        width="100%"
+        height="300"
+        frameborder="0"
+        allowtransparency="true"
+        style="filter: invert(90%) hue-rotate(180deg) brightness(1.1);">
+    </iframe>
+
+</div>
+
+</div>
+
+
+<!-- ==========================
+     SIDE PANEL
+========================== -->
+
+<div class="side-panel">
+
+
+<!-- XAUUSD SENTIMENT -->
+
+<div class="fancy-ui" style="padding:10px;height:380px;">
+
+    <div style="text-align:center;font-size:12px;font-weight:bold;margin-bottom:5px;">
+        XAUUSD SENTIMENT
+    </div>
+
+    <div class="tradingview-widget-container">
+
+        <script
+            type="text/javascript"
+            src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js"
+            async>
+
+        {
+            "interval":"1h",
+            "width":"100%",
+            "isTransparent":true,
+            "height":"320",
+            "symbol":"FOREXCOM:XAUUSD",
+            "showIntervalTabs":true,
+            "displayMode":"single",
+            "locale":"en",
+            "colorTheme":"dark"
+        }
+
+        </script>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================
+     WEEKLY STATISTICS
+========================== -->
+
+<div class="fancy-ui" style="padding:15px;text-align:center;">
+
+    <span style="font-size:12px;opacity:.7;">
+        WEEKLY STATISTICS
+    </span>
+
+    <div class="stats-grid">
+
+
+        <!-- WIN -->
 
         <div>
+
             <small>WIN</small>
-            <h2 class="tp-val" style="margin:5px 0;">3</h2>
+
+            <h2 class="tp-val" style="margin:5px 0;">
+                1
+            </h2>
+
         </div>
+
+
+        <!-- LOSE -->
 
         <div>
+
             <small>LOSE</small>
-            <h2 style="margin:5px 0;color:#f87171;">0</h2>
+
+            <h2 style="margin:5px 0;color:#f87171;">
+                0
+            </h2>
+
         </div>
 
-        <div> 
-            <small>PIPS</small> 
 
-            <div style="font-size: 12px; font-weight: bold; margin-top: 5px;"> 
+        <!-- PIPS -->
+
+        <div>
+
+            <small>PIPS</small>
+
+            <div style="font-size:12px;font-weight:bold;margin-top:5px;">
 
                 <div style="color:#4ade80;">
-                    W: +884.5
+                    W: +260
                 </div>
 
                 <div style="color:#f87171;">
                     L: 0
                 </div>
 
-                <div style="border-top:1px solid rgba(255,255,255,.2);margin-top:3px;padding-top:3px;color:white;">
-                    Tot: +884.5
+                <div style="
+                    border-top:1px solid rgba(255,255,255,.2);
+                    margin-top:3px;
+                    padding-top:3px;
+                    color:white;
+                ">
+                    Tot: +260
                 </div>
 
-            </div> 
-        </div> 
+            </div>
 
-    </div> 
+        </div>
+
+    </div>
+
 </div>
 
-<div class="footer-disclaimer"> 
-    <strong>RISK WARNING:</strong> Trading Forex and Gold involves high risk and may not be suitable for all investors. All content, signals, and news provided on JokerFX are for <strong>educational and informational purposes only</strong>. We do not provide financial advice. <br> 
-    <strong>LIMITATION OF LIABILITY:</strong> JokerFX and its owners are <strong>not responsible for any financial losses</strong> resulting from the use of our signals. By using this site, you acknowledge that you trade at your own risk. Past performance is not indicative of future results. 
 </div>
+
+
+<!-- ==========================
+     DISCLAIMER
+========================== -->
+
+<div class="footer-disclaimer">
+
+    <strong>RISK WARNING:</strong>
+    Trading Forex and Gold involves high risk and may not be suitable for all investors.
+    All content, signals, and news provided on JokerFX are for
+    <strong>educational and informational purposes only</strong>.
+    We do not provide financial advice.
+
+    <br>
+
+    <strong>LIMITATION OF LIABILITY:</strong>
+    JokerFX and its owners are <strong>not responsible for any financial losses</strong>
+    resulting from the use of our signals. By using this site, you acknowledge that
+    you trade at your own risk. Past performance is not indicative of future results.
+
 </div>
+
+</div>
+
+
+<!-- ==========================
+     IMAGE MODAL
+========================== -->
 
 <div id="imageModal">
+
     <div class="image-container">
+
         <span id="closeImage">✖</span>
+
         <img id="tradeImage" src="" alt="Trade Analysis">
+
     </div>
+
 </div>
 
+
+<!-- ==========================
+     ANALYSIS MODAL
+========================== -->
+
 <div id="analysisModal">
+
     <div class="analysis-box">
 
         <span id="closeAnalysis">✖</span>
@@ -706,45 +1131,131 @@ color:#00b7ff;
         <div id="analysisContent"></div>
 
     </div>
+
 </div>
-    
-<div id="clock"> <div class="clock-face" id="face"></div> 
-<div class="digital" id="digital"></div> 
-<div class="sessions" id="sessions"></div>
-</div> <div class="controls-left"> <button id="openCalendar">📊 Previous Month</button> 
-<button id="backHome" onclick="window.location.href='index.html'">🏠 Back to Home</button>
-</div> <div id="calendarModal"> <div class="calendar-box fancy-ui"> 
-    <span id="closeCalendar">✖</span> 
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
+
+
+<!-- ==========================
+     CLOCK
+========================== -->
+
+<div id="clock">
+
+    <div class="clock-face" id="face"></div>
+
+    <div class="digital" id="digital"></div>
+
+    <div class="sessions" id="sessions"></div>
+
+</div>
+
+
+<!-- ==========================
+     CONTROLS
+========================== -->
+
+<div class="controls-left">
+
+    <button id="openCalendar">
+        📊 Previous Month
+    </button>
+
+    <button
+        id="backHome"
+        onclick="window.location.href='index.html'">
+        🏠 Back to Home
+    </button>
+
+</div>
+
+
+<!-- ==========================
+     CALENDAR MODAL
+========================== -->
+
+<div id="calendarModal">
+
+<div class="calendar-box fancy-ui">
+
+<span id="closeCalendar">✖</span>
+
+
+<div style="
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+">
 
     <div>
-        <h2 style="margin:0;color:#00b7ff;">May 2026</h2>
-        <small style="opacity:.7;">JokerFX Performance Report</small>
+
+        <h2 style="margin:0;color:#00b7ff;">
+            May 2026
+        </h2>
+
+        <small style="opacity:.7;">
+            JokerFX Performance Report
+        </small>
+
     </div>
+
 
     <div style="display:flex;gap:25px;">
 
         <div>
-            <div style="font-size:11px;opacity:.6;">PROFIT</div>
-            <div style="color:#42ff9c;font-weight:bold;">+$8,167</div>
+
+            <div style="font-size:11px;opacity:.6;">
+                PROFIT
+            </div>
+
+            <div style="color:#42ff9c;font-weight:bold;">
+                +$8,167
+            </div>
+
         </div>
 
-        <div>
-            <div style="font-size:11px;opacity:.6;">WIN RATE</div>
-            <div style="color:#42ff9c;font-weight:bold;">78%</div>
-        </div>
 
         <div>
-            <div style="font-size:11px;opacity:.6;">TRADING DAYS</div>
-            <div style="font-weight:bold;">19</div>
+
+            <div style="font-size:11px;opacity:.6;">
+                WIN RATE
+            </div>
+
+            <div style="color:#42ff9c;font-weight:bold;">
+                78%
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <div style="font-size:11px;opacity:.6;">
+                TRADING DAYS
+            </div>
+
+            <div style="font-weight:bold;">
+                19
+            </div>
+
         </div>
 
     </div>
 
-</div> 
+</div>
 
-    <div class="calendar-grid"> 
-        <div class="day-name">Mon</div><div class="day-name">Tue</div><div class="day-name">Wed</div><div class="day-name">Thu</div><div class="day-name">Fri</div><div class="day-name">Sat</div><div class="day-name">Sun</div> 
+
+<!-- CALENDAR GRID -->
+
+<div class="calendar-grid">
+
+<div class="day-name">Mon</div>
+<div class="day-name">Tue</div>
+<div class="day-name">Wed</div>
+<div class="day-name">Thu</div>
+<div class="day-name">Fri</div>
+<div class="day-name">Sat</div>
+<div class="day-name">Sun</div>
 
 <div class="day prev">27</div>
 <div class="day prev">28</div>
@@ -787,174 +1298,218 @@ color:#00b7ff;
 <div class="day">30</div>
 <div class="day">31</div>
 
-</div> <!-- calendar-grid -->
+</div>
+<!-- END CALENDAR GRID -->
 
-</div> <!-- calendar-box -->
+</div>
+<!-- END CALENDAR BOX -->
 
-</div> <!-- calendarModal -->
+</div>
+<!-- END CALENDAR MODAL -->
+
+
+<!-- ==========================
+     JAVASCRIPT
+========================== -->
 
 <script>
-    // SAT 
-    const face = document.getElementById("face"); 
-    ["hour", "minute", "second"].forEach(type => { 
-        let h = document.createElement("div"); h.className = "hand " + type; face.appendChild(h); 
-    }); 
-    for(let i = 0; i < 12; i++){ 
-        let dot = document.createElement("div"); dot.className = "dot"; 
-        let angle = i * 30; 
-        dot.style.top = 50 - 42 * Math.cos(angle * Math.PI / 180) + "%"; 
-        dot.style.left = 50 + 42 * Math.sin(angle * Math.PI / 180) + "%"; 
-        face.appendChild(dot); 
-    } 
-    function updateClock(){ 
-        let now = new Date(); 
-        document.querySelector(".second").style.transform = `rotate(${now.getSeconds() * 6}deg)`; 
-        document.querySelector(".minute").style.transform = `rotate(${now.getMinutes() * 6}deg)`; 
-        document.querySelector(".hour").style.transform = `rotate(${(now.getHours() % 12) * 30 + now.getMinutes() * 0.5}deg)`; 
-        let lon = new Date().toLocaleTimeString("en-GB", {timeZone: "Europe/London", hour:'2-digit', minute:'2-digit'}); 
-        let ny = new Date().toLocaleTimeString("en-US", {timeZone: "America/New_York", hour:'2-digit', minute:'2-digit'}); 
-        let tky = new Date().toLocaleTimeString("en-US", {timeZone: "Asia/Tokyo", hour:'2-digit', minute:'2-digit'}); 
-        document.getElementById("digital").innerHTML = lon; 
-        document.getElementById("sessions").innerHTML = `NY: ${ny}<br>LDN: ${lon}<br>TKY: ${tky}`; 
-    } 
-    setInterval(updateClock, 1000); updateClock(); 
 
-    const modal = document.getElementById("calendarModal"); 
-    document.getElementById("openCalendar").onclick = () => modal.style.display = "flex"; 
-    document.getElementById("closeCalendar").onclick = () => modal.style.display = "none"; 
+/* ==========================
+   CLOCK
+========================== */
 
-    const imgModal = document.getElementById("imageModal"); 
-    const tradeImg = document.getElementById("tradeImage"); 
-    const closeImg = document.getElementById("closeImage"); 
+const face = document.getElementById("face");
 
-    function openTradeImage(imgSrc) { 
-        tradeImg.src = imgSrc; 
-        imgModal.style.display = "flex"; 
-    } 
+["hour", "minute", "second"].forEach(type => {
 
-    closeImg.onclick = () => imgModal.style.display = "none"; 
+    let hand = document.createElement("div");
 
-    window.onclick = (event) => { 
-        if (event.target == modal) modal.style.display = "none"; 
-        if (event.target == imgModal) imgModal.style.display = "none"; 
-    } 
-const analysisModal = document.getElementById("analysisModal");
-const analysisTitle = document.getElementById("analysisTitle");
-const analysisContent = document.getElementById("analysisContent");
+    hand.className = "hand " + type;
 
-function openAnalysis(type){
+    face.appendChild(hand);
+
+});
+
+
+for (let i = 0; i < 12; i++) {
+
+    let dot = document.createElement("div");
+
+    dot.className = "dot";
+
+    let angle = i * 30;
+
+    dot.style.top =
+        50 - 42 * Math.cos(angle * Math.PI / 180) + "%";
+
+    dot.style.left =
+        50 + 42 * Math.sin(angle * Math.PI / 180) + "%";
+
+    face.appendChild(dot);
+
+}
+
+
+function updateClock() {
+
+    const now = new Date();
+
+    document.querySelector(".second").style.transform =
+        `rotate(${now.getSeconds() * 6}deg)`;
+
+    document.querySelector(".minute").style.transform =
+        `rotate(${now.getMinutes() * 6}deg)`;
+
+    document.querySelector(".hour").style.transform =
+        `rotate(${(now.getHours() % 12) * 30 + now.getMinutes() * 0.5}deg)`;
+
+
+    const lon = new Date().toLocaleTimeString(
+        "en-GB",
+        {
+            timeZone: "Europe/London",
+            hour: "2-digit",
+            minute: "2-digit"
+        }
+    );
+
+
+    const ny = new Date().toLocaleTimeString(
+        "en-US",
+        {
+            timeZone: "America/New_York",
+            hour: "2-digit",
+            minute: "2-digit"
+        }
+    );
+
+
+    const tky = new Date().toLocaleTimeString(
+        "en-US",
+        {
+            timeZone: "Asia/Tokyo",
+            hour: "2-digit",
+            minute: "2-digit"
+        }
+    );
+
+
+    document.getElementById("digital").innerHTML = lon;
+
+    document.getElementById("sessions").innerHTML =
+        `NY: ${ny}<br>LDN: ${lon}<br>TKY: ${tky}`;
+
+}
+
+
+setInterval(updateClock, 1000);
+
+updateClock();
+
+
+/* ==========================
+   CALENDAR
+========================== */
+
+const calendarModal =
+    document.getElementById("calendarModal");
+
+
+document.getElementById("openCalendar").onclick = () => {
+
+    calendarModal.style.display = "flex";
+
+};
+
+
+document.getElementById("closeCalendar").onclick = () => {
+
+    calendarModal.style.display = "none";
+
+};
+
+
+/* ==========================
+   IMAGE MODAL
+========================== */
+
+const imgModal =
+    document.getElementById("imageModal");
+
+const tradeImg =
+    document.getElementById("tradeImage");
+
+const closeImg =
+    document.getElementById("closeImage");
+
+
+function openTradeImage(imgSrc) {
+
+    tradeImg.src = imgSrc;
+
+    imgModal.style.display = "flex";
+
+}
+
+
+closeImg.onclick = () => {
+
+    imgModal.style.display = "none";
+
+};
+
+
+/* ==========================
+   ANALYSIS MODAL
+========================== */
+
+const analysisModal =
+    document.getElementById("analysisModal");
+
+const analysisTitle =
+    document.getElementById("analysisTitle");
+
+const analysisContent =
+    document.getElementById("analysisContent");
+
+
+function openAnalysis(type) {
 
     analysisModal.style.display = "flex";
 
-    if(type=="gold"){
+}
 
-        analysisTitle.innerHTML="XAUUSD Analysis";
 
-        analysisContent.innerHTML=`
+/* CLOSE ANALYSIS */
 
-<h3>📌 Setup</h3>
+document.getElementById("closeAnalysis").onclick = () => {
 
-<p>
-This SELL setup was based on a liquidity sweep into a bearish IFVG,
-followed by a Change of Character (CHoCH). After taking liquidity above
-the highs, price respected the IFVG and rejected the area exactly as expected,
-providing a high-probability short opportunity.
-</p>
+    analysisModal.style.display = "none";
 
-<img src="trejd ponedeljak.JPG" class="analysis-image">
+};
 
-<h3>🏆 Winning Result</h3>
 
-<p>
-The trade executed perfectly. Price triggered our <b>SELL LIMIT at 4075</b>,
-respected the bearish setup, and reached <b>TP1, TP2 and TP3</b> without
-hitting the stop loss.
+/* ==========================
+   CLOSE MODALS ON BACKGROUND
+========================== */
 
-The complete move delivered the projected <b>1:6 Risk-to-Reward</b>,
-confirming the liquidity-based analysis and bearish market structure.
-</p>
+window.addEventListener("click", (event) => {
 
-`;
-
+    if (event.target === calendarModal) {
+        calendarModal.style.display = "none";
     }
 
-    if(type=="chfjpy"){
-
-        analysisTitle.innerHTML="CHFJPY Analysis";
-
-        analysisContent.innerHTML=`
-
-<h3>📌 Setup</h3>
-
-<p>
-The trade idea was based on a strong demand zone combined with a liquidity sweep.
-Price returned to the key support area where buyers were expected to step in,
-offering a high probability long opportunity with an excellent risk-to-reward ratio.
-</p>
-
-<img src="chfjpy.JPG" class="analysis-image">
-
-<h3>🏆 Winning Result</h3>
-
-<p>
-The trade played out exactly as planned. Price respected the demand zone, triggered our BUY entry,
-and successfully reached all three profit targets (TP1, TP2 and TP3).
-
-This setup delivered the full projected move with an outstanding 1:7 risk-to-reward ratio,
-demonstrating the importance of patience, discipline and following the trading plan.
-</p>
-
-<img src="s.JPG" class="analysis-image">
-
-`;
-
+    if (event.target === imgModal) {
+        imgModal.style.display = "none";
     }
 
-  if(type=="goldTuesday"){
+    if (event.target === analysisModal) {
+        analysisModal.style.display = "none";
+    }
 
-    analysisTitle.innerHTML="XAUUSD Analysis";
-
-    analysisContent.innerHTML=`
-
-<h3>📌 Setup</h3>
-
-<p>
-Price rallied back into a strong premium supply zone after a sharp bullish
-impulse. The move into the highs appeared to be a liquidity grab rather than
-true bullish continuation, with buyers pushing directly into a key resistance
-area where sellers were expected to become active.
-</p>
-
-<p>
-The entry was planned inside the supply zone, allowing us to sell at a premium
-price while keeping a tight stop loss above the invalidation level. The overall
-market structure remains bearish, making this an attractive risk-to-reward
-opportunity.
-</p>
-
-<img src="trejd utorak.JPG" class="analysis-image">
-
-<h3>🎯 Trade Plan</h3>
-
-<p>
-The expectation is for price to reject this resistance area and rotate back
-towards lower liquidity levels. Our targets are positioned at previous demand
-zones where buyers may begin taking profits, providing a logical path for the
-move while maintaining a projected <b>1:5 Risk-to-Reward</b>.
-</p>
-
-`;
-
-}
-  
-}
-
-document.getElementById("closeAnalysis").onclick = ()=>{
-    analysisModal.style.display="none";
-}
-
-window.addEventListener("click",(e)=>{
-    if(e.target==analysisModal)
-        analysisModal.style.display="none";
 });
-</script> </body> </html>
+
+</script>
+
+</body>
+</html>
