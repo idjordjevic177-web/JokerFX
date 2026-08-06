@@ -779,7 +779,11 @@ body::before {
 
 <div class="row fancy-ui">
 
-    <div class="trade-preview-btn"></div>
+   <div class="trade-preview-btn">
+    <span class="analysis-btn" onclick="openAnalysis('goldThursday')">
+        📈 Analysis
+    </span>
+</div>
 
     <div data-label="Day">Monday</div>
 
@@ -1476,6 +1480,83 @@ const analysisContent =
 function openAnalysis(type) {
 
     analysisModal.style.display = "flex";
+
+    if (type === "goldThursday") {
+
+        analysisTitle.innerHTML = "XAUUSD Thursday Analysis";
+
+        analysisContent.innerHTML = `
+
+            <h3>📌 Trade Setup</h3>
+
+            <p>
+                The previous day closed strongly bullish. During the final hour
+                before the market close, price formed a Doji candle and closed
+                inside the range of the previous H1 candle.
+            </p>
+
+            <p>
+                This was an early indication that price could continue higher
+                and potentially target the liquidity resting above the previous
+                hourly candle.
+            </p>
+
+            <img src="trejd1.JPG" class="analysis-image">
+
+            <h3>📈 Entry Confirmation</h3>
+
+            <p>
+                After the market opened, price quickly created a
+                <b>Change of Character (CHoCH)</b> on both the
+                <b>1-minute and 5-minute timeframes</b>.
+            </p>
+
+            <p>
+                Instead of entering immediately, we waited for a small pullback.
+                After receiving additional bullish confirmation on the
+                <b>1-minute timeframe</b>, the BUY position was executed
+                inside our <b>4248–4246 entry zone</b>.
+            </p>
+
+            <img src="trejd2.JPG" class="analysis-image">
+
+            <h3>🎯 Targets & Result</h3>
+
+            <p>
+                The final target was positioned around <b>4275</b>,
+                where we had liquidity combined with a
+                <b>4H Fair Value Gap (FVG)</b>.
+            </p>
+
+            <p>
+                This was our main area of interest where we expected price
+                to potentially react and begin a deeper pullback.
+            </p>
+
+            <p>
+                Price continued bullish as expected and successfully
+                reached both profit targets.
+            </p>
+
+            <p>
+                ✅ <b>TP1: 4262</b><br>
+                ✅ <b>TP2: 4275</b>
+            </p>
+
+            <h3>🏆 Winning Result</h3>
+
+            <p>
+                The trade completed successfully with both targets reached.
+            </p>
+
+            <p>
+                📊 <b>Risk-to-Reward: 1:7</b><br>
+                💰 <b>+260 PIPS</b>
+            </p>
+
+        `;
+
+    }
 
 }
 
