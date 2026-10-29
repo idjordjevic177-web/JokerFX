@@ -1,397 +1,339 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JokerFX</title>
-
-    <style>
-        body {
-            margin: 0;
-            background: #0f172a url('joker.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: -1;
-        }
-
-        /* HEADER */
-        .header {
-            padding: 20px;
-            font-size: 36px;
-            font-weight: 800;
-            text-align: center;
-            letter-spacing: 2px;
-            text-shadow: 0 0 20px #0ea5e9;
-            color: #fff;
-        }
-
-        /* FANCY UI GLASS EFFECT */
-        .fancy-ui {
-            background: rgba(30, 41, 59, 0.4);
-            border: 1px solid rgba(14, 165, 233, 0.3);
-            backdrop-filter: blur(12px);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        /* TOP PAIR BUTTONS */
-        .buttons {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .buttons button {
-            margin: 0 8px;
-            padding: 10px 20px;
-            border: 1px solid rgba(14, 165, 233, 0.3);
-            background: rgba(15, 23, 42, 0.8);
-            color: white;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .buttons button:hover {
-            background: #0ea5e9;
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.6);
-        }
-
-        /* MAIN LAYOUT */
-        .main { display: flex; padding: 0 20px; gap: 10px; }
-
-        .left-panel {
-            width: 200px;
-            padding: 10px;
-        }
-
-        .contact-item {
-            margin: 10px 0;
-            padding: 12px;
-            font-size: 14px;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            display: block;
-            color: white;
-        }
-
-        .contact-item:hover {
-            border-color: #0ea5e9;
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
-        }
-
-        /* CHART CONTAINER */
-        #chart-container {
-            flex: 1;
-        }
-
-        #chart {
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(14, 165, 233, 0.2);
-        }
-
-        /* RIGHT PRICE PANEL */
-        #price-panel {
-            width: 320px;
-            height: 420px; 
-            overflow: hidden;
-        }
-
-        /* BOTTOM CONTROLS */
-        .bottom-buttons {
-            position: fixed;
-            bottom: 100px;
-            left: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 100;
-        }
-
-        .btn-action {
-            width: 200px;
-            padding: 14px;
-            text-align: center;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 13px;
-        }
-
-        .btn-action.disabled { opacity: 0.4; cursor: not-allowed; }
-
-        /* CLOCK WIDGET */
-        #clock-widget {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            padding: 10px;
-            text-align: center;
-            background: transparent;
-            border: none;
-        }
-
-        .clock {
-            width: 90px;
-            height: 90px;
-            border: 2px solid rgba(14, 165, 233, 0.6);
-            border-radius: 50%;
-            position: relative;
-            margin: 0 auto 10px;
-        }
-
-        .clock-dot {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #0ea5e9;
-            border-radius: 50%;
-        }
-
-        .hand {
-            position: absolute;
-            bottom: 50%;
-            left: 50%;
-            transform-origin: bottom;
-            background: white;
-            border-radius: 2px;
-        }
-
-        .hour { width: 3px; height: 22px; }
-        .minute { width: 2px; height: 32px; }
-        .second { width: 1px; height: 38px; background: #0ea5e9; }
-
-        .digital { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 5px; }
-        .sessions { font-size: 14px; font-weight: 600; opacity: 0.9; color: #fff; line-height: 1.4; }
-
-        /* RADIO BAR */
-        #radio-bar {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: rgba(15, 23, 42, 0.95);
-            border-top: 1px solid #0ea5e9;
-            padding: 10px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-sizing: border-box;
-            z-index: 1000;
-        }
-
-        .play-btn {
-            background: #0ea5e9;
-            border: none;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        @media(max-width: 1100px){
-            .main { flex-direction: column; }
-            .left-panel, #price-panel { width: 100%; }
-            #clock-widget { position: static; margin: 20px auto; }
-            .bottom-buttons { position: static; margin: 20px; align-items: center; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080a0d">
+  <meta name="description" content="JokerFX trading terminal — tržišni grafikoni, pregled instrumenata, ekonomski kalendar i trading analize.">
+  <title>JokerFX | Monaco Gold Trading Terminal</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080a0d; --sidebar: #0b0e12; --surface: #11151a; --surface-raised: #151a20;
+      --stroke: #292e33; --stroke-gold: rgba(209,170,98,.32); --gold: #d5ad69;
+      --gold-bright: #f0d29c; --muted: #939aa5; --ink: #f2f0e9; --green: #89c6a9;
+      --sidebar-width: 238px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; min-width: 320px; font-family: Inter, 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--ink); }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 3px; }
+    .app-shell { min-height: 100vh; }
+    .sidebar { position: fixed; inset: 0 auto 0 0; width: var(--sidebar-width); background: var(--sidebar); border-right: 1px solid var(--stroke); z-index: 40; display: flex; flex-direction: column; padding: 28px 16px 24px; transition: width .25s, transform .25s; overflow-y: auto; }
+    .brand { display: flex; align-items: center; gap: 12px; min-height: 48px; margin: 0 8px 43px; white-space: nowrap; }
+    .brand-mark { width: 46px; height: 46px; display: grid; place-items: center; flex: 0 0 46px; border: 1px solid rgba(213,173,105,.6); border-radius: 13px; background: radial-gradient(circle at 30% 20%, #3d3020, #111215 70%); box-shadow: inset 0 0 14px rgba(213,173,105,.10); font-family: Georgia,serif; font-size: 24px; font-weight: bold; color: var(--gold-bright); }
+    .brand-word { font-size: 19px; font-weight: 820; letter-spacing: .09em; }
+    .brand-word em { font-style: normal; color: var(--gold); }
+    .brand-small { display: block; margin-top: 5px; font-size: 9px; letter-spacing: .22em; color: var(--muted); }
+    .sidebar-kicker { color: #606873; font-size: 10px; font-weight: 750; letter-spacing: .2em; margin: 0 16px 12px; }
+    .nav { display: flex; flex-direction: column; gap: 6px; }
+    .nav-link { display: flex; align-items: center; gap: 13px; padding: 13px 15px; border-radius: 10px; color: #aab0b9; font-size: 13px; font-weight: 650; border: 1px solid transparent; transition: color .2s, background .2s; white-space: nowrap; }
+    .nav-link:hover { color: var(--ink); background: #171b20; }
+    .nav-link.active { border-color: var(--stroke-gold); color: var(--gold-bright); background: linear-gradient(90deg,rgba(213,173,105,.14),rgba(213,173,105,.02)); }
+    .nav-symbol { width: 20px; display: inline-flex; justify-content: center; color: var(--gold); font-size: 17px; }
+    .soon { margin-left: auto; font-size: 9px; color: #858a91; border: 1px solid #3a3e43; padding: 3px 5px; border-radius: 4px; }
+    .nav-link.disabled { opacity: .60; cursor: not-allowed; }
+    .sidebar-bottom { margin-top: auto; padding: 22px 8px 0; }
+    .sidebar-motto { border: 1px solid var(--stroke-gold); border-radius: 12px; padding: 17px; background: linear-gradient(135deg,rgba(213,173,105,.12),transparent); }
+    .sidebar-motto strong { color: var(--gold-bright); display: block; font-size: 13px; font-family: Georgia,serif; font-weight: 400; letter-spacing: .07em; }
+    .sidebar-motto span { display: block; font-size: 11px; line-height: 1.6; color: var(--muted); margin-top: 8px; }
+    .sidebar-foot { font-size: 10px; color: #626871; margin: 18px 2px 0; }
+    .content { margin-left: var(--sidebar-width); transition: margin-left .25s; padding: 0 32px 110px; max-width: 2000px; }
+    .topbar { height: 79px; border-bottom: 1px solid var(--stroke); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .top-left { display: flex; gap: 16px; align-items: center; min-width: 0; }
+    .menu-button { width: 37px; height: 37px; background: var(--surface); color: var(--gold); border: 1px solid var(--stroke); border-radius: 9px; font-size: 19px; line-height: 1; }
+    .breadcrumbs { color: var(--muted); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .breadcrumbs b { color: var(--ink); font-weight: 600; }
+    .top-right { display: flex; align-items: center; gap: 15px; white-space: nowrap; }
+    .market-source { font-size: 11px; color: var(--muted); }
+    .signal-link { color: #111; border: 1px solid #f1d69f; background: linear-gradient(125deg,#b88a46,#e8c88b); border-radius: 8px; padding: 11px 15px; font-size: 12px; font-weight: 800; transition: filter .2s; }
+    .signal-link:hover { filter: brightness(1.09); }
+    .eyebrow { text-transform: uppercase; color: var(--gold); font-size: 10px; font-weight: 800; letter-spacing: .22em; }
+    .hero { margin-top: 24px; padding: 32px 36px; position: relative; overflow: hidden; border: 1px solid var(--stroke-gold); border-radius: 18px; background: linear-gradient(90deg,rgba(13,17,22,.98),rgba(17,20,24,.9) 54%,rgba(10,12,15,.3)), url('joker.jpg') right 35% center / cover no-repeat, #101216; min-height: 195px; display: flex; flex-direction: column; justify-content: center; }
+    .hero:after { content: ''; position: absolute; right: -95px; top: -125px; width: 380px; height: 380px; border: 1px solid rgba(213,173,105,.20); border-radius: 50%; box-shadow: 0 0 0 55px rgba(213,173,105,.018),0 0 0 115px rgba(213,173,105,.015); pointer-events: none; }
+    .hero h1 { font: normal clamp(27px,3vw,40px)/1.14 Georgia,'Times New Roman',serif; max-width: 710px; margin: 13px 0 10px; letter-spacing: -.025em; position: relative; z-index: 1; }
+    .hero h1 span { color: var(--gold-bright); }
+    .hero p { color: #adb0b3; line-height: 1.55; margin: 0; font-size: 13px; position: relative; z-index: 1; }
+    .hero-line { position: absolute; left: 0; top: 23px; bottom: 23px; width: 3px; background: linear-gradient(transparent,var(--gold),transparent); }
+    .ticker-wrap { min-height: 65px; margin-top: 15px; background: #11151a; border: 1px solid var(--stroke); border-radius: 12px; overflow: hidden; }
+    .tradingview-widget-container { width: 100%; }
+    .dashboard { margin-top: 21px; display: grid; grid-template-columns: minmax(0,1fr) 314px; gap: 19px; align-items: start; }
+    .panel { border: 1px solid var(--stroke); border-radius: 14px; background: var(--surface); overflow: hidden; min-width: 0; }
+    .panel-heading { padding: 17px 20px; border-bottom: 1px solid var(--stroke); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .panel-label { display: flex; flex-direction: column; gap: 5px; }
+    .panel-title { font-weight: 800; font-size: 15px; letter-spacing: .01em; }
+    .panel-subtitle { font-size: 11px; color: var(--muted); }
+    .symbol-tabs { display: flex; gap: 5px; background: #0c1014; border: 1px solid var(--stroke); padding: 4px; border-radius: 9px; }
+    .symbol-tab { border: 0; border-radius: 6px; background: transparent; color: #aeb3bb; padding: 8px 10px; font-weight: 750; font-size: 11px; }
+    .symbol-tab.active { color: #17140f; background: var(--gold); }
+    #chart { height: 570px; background: #101317; }
+    .chart-note { border-top: 1px solid var(--stroke); font-size: 11px; color: var(--muted); padding: 10px 18px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    .chart-note a, .card-link { color: var(--gold); }
+    .right-stack { display: flex; flex-direction: column; gap: 19px; }
+    #price-panel { height: 425px; background: var(--surface); }
+    .sessions { padding: 13px 17px; }
+    .session-line { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 10px; padding: 13px 0; border-bottom: 1px solid var(--stroke); }
+    .session-line:last-child { border-bottom: 0; }
+    .session-city { display: flex; align-items: center; gap: 9px; color: #d2d5d9; font-size: 12px; font-weight: 650; }
+    .session-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 9px rgba(213,173,105,.3); }
+    .session-time { color: var(--gold-bright); font-size: 15px; font-variant-numeric: tabular-nums; font-weight: 700; }
+    .lower-grid { margin-top: 19px; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 19px; }
+    .analysis-content { padding: 21px; min-height: 340px; display: flex; flex-direction: column; }
+    .analysis-tag { border: 1px solid rgba(213,173,105,.28); color: var(--gold-bright); border-radius: 999px; padding: 6px 10px; font-size: 10px; font-weight: 800; letter-spacing: .03em; width: max-content; background: rgba(213,173,105,.08); }
+    .analysis-content h2 { font: normal 25px/1.23 Georgia,serif; margin: 20px 0 11px; }
+    .analysis-content p { font-size: 13px; color: var(--muted); line-height: 1.75; margin: 0 0 22px; max-width: 500px; }
+    .outline-link { display: inline-flex; align-items: center; justify-content: center; gap: 12px; color: var(--gold-bright); border: 1px solid rgba(213,173,105,.45); border-radius: 9px; padding: 12px 16px; width: fit-content; font-size: 12px; font-weight: 750; margin-top: auto; }
+    .outline-link:hover { background: rgba(213,173,105,.08); }
+    .calendar-host { height: 315px; width: 100%; padding: 4px; }
+    .calendar-host .tradingview-widget-container { height: 100%; }
+    .calendar-footer { padding: 10px 16px 15px; color: var(--muted); font-size: 10px; }
+    .quick-links { margin-top: 19px; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
+    .quick-link { padding: 18px 20px; background: var(--surface); border: 1px solid var(--stroke); border-radius: 12px; display: flex; justify-content: space-between; align-items: center; gap: 12px; transition: border-color .2s,transform .2s; }
+    .quick-link:hover { border-color: var(--stroke-gold); transform: translateY(-2px); }
+    .quick-link strong { display: block; font-size: 13px; }
+    .quick-link small { display: block; font-size: 10px; color: var(--muted); margin-top: 7px; }
+    .quick-link .arrow { color: var(--gold); font-size: 22px; }
+    .footer { margin: 33px 0 0; color: #808792; font-size: 11px; line-height: 1.6; }
+    .radio-dock { position: fixed; bottom: 17px; right: 24px; z-index: 60; background: #181b1e; border: 1px solid var(--stroke-gold); box-shadow: 0 13px 45px rgba(0,0,0,.5); border-radius: 12px; display: flex; align-items: center; gap: 13px; padding: 11px 15px; min-width: 285px; }
+    .radio-icon { width: 34px; height: 34px; border-radius: 8px; display: grid; place-items: center; background: rgba(213,173,105,.12); color: var(--gold); }
+    .radio-text strong { font-size: 11px; display: block; letter-spacing: .04em; }
+    .radio-text small { display: block; font-size: 10px; color: var(--muted); margin-top: 4px; }
+    .radio-btn { margin-left: auto; background: var(--gold); color: #101012; border: 0; border-radius: 7px; padding: 9px 11px; font-weight: 800; font-size: 11px; min-width: 48px; }
+    .volume { width: 52px; accent-color: var(--gold); }
+    .mobile-backdrop { display: none; }
+    body.sidebar-collapsed { --sidebar-width: 76px; }
+    body.sidebar-collapsed .brand-word-wrap, body.sidebar-collapsed .sidebar-kicker, body.sidebar-collapsed .nav-label, body.sidebar-collapsed .soon, body.sidebar-collapsed .sidebar-bottom { display: none; }
+    body.sidebar-collapsed .sidebar { padding-left: 11px; padding-right: 11px; }
+    body.sidebar-collapsed .brand { margin-left: 3px; margin-right: 0; }
+    body.sidebar-collapsed .nav-link { justify-content: center; padding-left: 0; padding-right: 0; }
+    @media (max-width: 1260px) { .dashboard { grid-template-columns: minmax(0,1fr) 280px; } .content { padding-left: 22px; padding-right: 22px; } }
+    @media (max-width: 1080px) { .dashboard { grid-template-columns: minmax(0,1fr); } .right-stack { display: grid; grid-template-columns: 1fr 1fr; } .lower-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 760px) {
+      :root, body.sidebar-collapsed { --sidebar-width: 0px; }
+      .sidebar { transform: translateX(-110%); width: 250px; padding: 28px 16px; box-shadow: 20px 0 50px rgba(0,0,0,.4); }
+      body.sidebar-open .sidebar { transform: translateX(0); }
+      body.sidebar-open .brand-word-wrap, body.sidebar-open .sidebar-kicker, body.sidebar-open .nav-label, body.sidebar-open .soon, body.sidebar-open .sidebar-bottom { display: initial; }
+      body.sidebar-open .sidebar-bottom { display: block; }
+      body.sidebar-open .nav-link { justify-content: flex-start; padding: 13px 15px; }
+      body.sidebar-open .sidebar { padding-left: 16px; padding-right: 16px; }
+      .mobile-backdrop { display: none; position: fixed; inset: 0; z-index: 30; background: rgba(0,0,0,.65); }
+      body.sidebar-open .mobile-backdrop { display: block; }
+      .content { margin-left: 0; padding: 0 14px 120px; }
+      .topbar { height: 66px; }
+      .market-source { display: none; }
+      .signal-link { padding: 9px 10px; font-size: 11px; }
+      .hero { padding: 27px 22px; min-height: 175px; background-position: right 30% center; }
+      .hero:after { opacity: .3; }
+      .hero h1 { font-size: 28px; }
+      .dashboard, .lower-grid { gap: 13px; margin-top: 14px; }
+      .right-stack { grid-template-columns: 1fr; gap: 13px; }
+      .quick-links { grid-template-columns: 1fr; gap: 10px; }
+      .panel-heading { padding: 14px; }
+      #chart { height: 475px; }
+      .radio-dock { left: 12px; right: 12px; bottom: 10px; min-width: 0; padding: 9px 11px; }
+    }
+    @media (max-width: 410px) { .symbol-tab { padding: 7px; font-size: 10px; } .symbol-tabs { width: 100%; justify-content: space-between; } .radio-text { flex: 1; } .volume { width: 45px; } .breadcrumbs { font-size: 10px; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+  </style>
 </head>
-
 <body>
-
-<div class="header">JOKER FX</div>
-
-<div class="main">
-    <div class="left-panel">
-        <div class="contact-item fancy-ui" onclick="window.open('https://instagram.com/petar.grasanin')">📸 Instagram</div>
-        <div class="contact-item fancy-ui" onclick="window.open('https://t.me/jokeerfX')">📲 Telegram</div>
+<div class="app-shell">
+  <div id="mobileBackdrop" class="mobile-backdrop" aria-hidden="true"></div>
+  <aside id="sidebar" class="sidebar" aria-label="Glavni meni">
+    <a class="brand" href="index.html" aria-label="JokerFX početna">
+      <span class="brand-mark">J</span><span class="brand-word-wrap"><span class="brand-word">JOKER<em>FX</em></span><span class="brand-small">TRADING INTELLIGENCE</span></span>
+    </a>
+    <div class="sidebar-kicker">MENU</div>
+    <nav class="nav">
+      <a href="index.html" class="nav-link active" aria-current="page" title="Dashboard"><span class="nav-symbol">◈</span><span class="nav-label">Dashboard</span></a>
+      <a href="#markets" class="nav-link" title="Markets"><span class="nav-symbol">⌁</span><span class="nav-label">Markets & Charts</span></a>
+      <a href="signals.html" class="nav-link" title="Signals & Analysis"><span class="nav-symbol">◉</span><span class="nav-label">Signals & Analysis</span></a>
+      <a href="#calendar" class="nav-link" title="Economic Calendar"><span class="nav-symbol">▦</span><span class="nav-label">Economic Calendar</span></a>
+      <span class="nav-link disabled" aria-disabled="true" title="Trading Academy — uskoro"><span class="nav-symbol">◇</span><span class="nav-label">Trading Academy</span><span class="soon">SOON</span></span>
+      <span class="nav-link disabled" aria-disabled="true" title="FTMO Service — uskoro"><span class="nav-symbol">♢</span><span class="nav-label">FTMO Service</span><span class="soon">SOON</span></span>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-motto"><strong>Discipline over emotion.</strong><span>Tržišta se menjaju. Upravljanje rizikom ostaje temelj svake odluke.</span></div>
+      <div class="sidebar-foot">© <span id="year">2026</span> JokerFX · Monaco Gold</div>
     </div>
+  </aside>
 
-    <div id="chart-container">
-        <div class="buttons">
-            <button onclick="changeSymbol('FOREXCOM:XAUUSD')">XAUUSD</button>
-            <button onclick="changeSymbol('FOREXCOM:EURUSD')">EURUSD</button>
-            <button onclick="changeSymbol('BINANCE:BTCUSDT')">BTC</button>
-        </div>
-        <div id="chart"></div>
-    </div>
+  <main class="content" id="top">
+    <header class="topbar">
+      <div class="top-left">
+        <button class="menu-button" id="menuToggle" type="button" aria-label="Otvori ili sklopi meni" aria-expanded="true">☰</button>
+        <div class="breadcrumbs">JokerFX <span style="color:#555"> / </span> <b>Trading Dashboard</b></div>
+      </div>
+      <div class="top-right"><span class="market-source">MARKET DATA · TRADINGVIEW</span><a class="signal-link" href="signals.html">SIGNALS & ANALYSIS ↗</a></div>
+    </header>
 
-    <div id="price-panel" class="fancy-ui">
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-        {
-          "colorTheme": "dark",
-          "dateRange": "12M",
-          "showChart": false,
-          "locale": "en",
-          "width": "100%",
-          "height": "100%",
-          "largeChartUrl": "",
-          "isTransparent": true,
-          "showSymbolLogo": true,
-          "tabs": [
-            {
-              "title": "Main",
-              "symbols": [
-                { "s": "FOREXCOM:XAUUSD", "d": "Gold" },
-                { "s": "BINANCE:BTCUSDT", "d": "Bitcoin" },
-                { "s": "CAPITALCOM:DXY", "d": "DXY Index" },
-                { "s": "FOREXCOM:SPX500", "d": "S&P 500" }
-              ]
-            },
-            {
-              "title": "Forex",
-              "symbols": [
-                { "s": "FOREXCOM:EURUSD" },
-                { "s": "FOREXCOM:GBPUSD" },
-                { "s": "FOREXCOM:USDJPY" },
-                { "s": "FOREXCOM:USDCHF" },
-                { "s": "FOREXCOM:AUDUSD" },
-                { "s": "FOREXCOM:USDCAD" }
-              ]
-            }
-          ]
-        }
+    <section class="hero" aria-label="Dobro došli u JokerFX">
+      <span class="hero-line"></span>
+      <div class="eyebrow">JOKERFX / TRADING TERMINAL</div>
+      <h1>Trade with <span>precision.</span><br>Think with discipline.</h1>
+      <p>Grafikoni, instrumenti, tržišne sesije i analize — na jednom mestu.</p>
+    </section>
+
+    <section class="ticker-wrap" aria-label="Market ticker">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+        {"symbols":[{"proName":"FOREXCOM:XAUUSD","title":"GOLD"},{"proName":"FOREXCOM:EURUSD","title":"EURUSD"},{"proName":"FOREXCOM:GBPUSD","title":"GBPUSD"},{"proName":"BINANCE:BTCUSDT","title":"BITCOIN"},{"proName":"CAPITALCOM:DXY","title":"DXY"},{"proName":"FOREXCOM:SPX500","title":"S&P 500"}],"showSymbolLogo":true,"isTransparent":true,"displayMode":"adaptive","colorTheme":"dark","locale":"en"}
         </script>
-    </div>
+      </div>
+    </section>
+
+    <section class="dashboard" id="markets" aria-label="Tržišni pregled">
+      <section class="panel">
+        <div class="panel-heading">
+          <div class="panel-label"><span class="panel-title">Advanced Chart</span><span class="panel-subtitle">Interaktivni TradingView grafikon</span></div>
+          <div class="symbol-tabs" role="group" aria-label="Odabir instrumenta">
+            <button type="button" class="symbol-tab active" data-symbol="FOREXCOM:XAUUSD" aria-pressed="true">XAUUSD</button>
+            <button type="button" class="symbol-tab" data-symbol="FOREXCOM:EURUSD" aria-pressed="false">EURUSD</button>
+            <button type="button" class="symbol-tab" data-symbol="BINANCE:BTCUSDT" aria-pressed="false">BTCUSD</button>
+          </div>
+        </div>
+        <div id="chart" aria-label="TradingView chart"><div style="padding:25px;color:#999">Učitavanje TradingView grafikona...</div></div>
+        <div class="chart-note"><span>Promeni vremenski okvir i koristi alate direktno na grafikonu.</span><a href="https://www.tradingview.com/" target="_blank" rel="noopener noreferrer">Powered by TradingView ↗</a></div>
+      </section>
+      <div class="right-stack">
+        <section class="panel" aria-label="Market overview">
+          <div class="panel-heading"><div class="panel-label"><span class="panel-title">Market Watch</span><span class="panel-subtitle">Praćenje ključnih instrumenata</span></div><span class="eyebrow">OVERVIEW</span></div>
+          <div id="price-panel">
+            <div class="tradingview-widget-container" style="height:100%">
+              <div class="tradingview-widget-container__widget" style="height:100%"></div>
+              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+              {"colorTheme":"dark","dateRange":"12M","showChart":false,"locale":"en","width":"100%","height":"100%","isTransparent":true,"showSymbolLogo":true,"tabs":[{"title":"Main","symbols":[{"s":"FOREXCOM:XAUUSD","d":"Gold"},{"s":"BINANCE:BTCUSDT","d":"Bitcoin"},{"s":"CAPITALCOM:DXY","d":"DXY Index"},{"s":"FOREXCOM:SPX500","d":"S&P 500"}]},{"title":"Forex","symbols":[{"s":"FOREXCOM:EURUSD"},{"s":"FOREXCOM:GBPUSD"},{"s":"FOREXCOM:USDJPY"},{"s":"FOREXCOM:USDCHF"},{"s":"FOREXCOM:AUDUSD"},{"s":"FOREXCOM:USDCAD"}]}]}
+              </script>
+            </div>
+          </div>
+        </section>
+        <section class="panel" aria-label="Vreme u tržišnim centrima">
+          <div class="panel-heading"><div class="panel-label"><span class="panel-title">Market Sessions</span><span class="panel-subtitle">Lokalno vreme finansijskih centara</span></div></div>
+          <div class="sessions">
+            <div class="session-line"><span class="session-city"><span class="session-dot"></span>London</span><span class="session-time" id="clockLondon">--:--:--</span></div>
+            <div class="session-line"><span class="session-city"><span class="session-dot"></span>New York</span><span class="session-time" id="clockNY">--:--:--</span></div>
+            <div class="session-line"><span class="session-city"><span class="session-dot"></span>Tokyo</span><span class="session-time" id="clockTokyo">--:--:--</span></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="lower-grid">
+      <section class="panel" aria-label="Dnevna analiza">
+        <div class="panel-heading"><div class="panel-label"><span class="panel-title">Daily Market Brief</span><span class="panel-subtitle">Plan i analiza trgovanja</span></div><span class="eyebrow">JOKERFX</span></div>
+        <div class="analysis-content"><span class="analysis-tag">ČEKA SE POTVRDA</span><h2>Jasan plan pre svakog ulaska.</h2><p>Trenutno nije objavljen novi potvrđeni signal na ovoj početnoj stranici. Otvori postojeću sekciju za signale i analize da proveriš aktuelne objave. Nikakvi Entry, SL ili TP nivoi nisu izmišljeni.</p><a class="outline-link" href="signals.html">Otvori Signals & Analysis <span aria-hidden="true">↗</span></a></div>
+      </section>
+      <section class="panel" id="calendar" aria-label="Ekonomski kalendar">
+        <div class="panel-heading"><div class="panel-label"><span class="panel-title">Economic Calendar</span><span class="panel-subtitle">Važne objave i ekonomski događaji</span></div><span class="eyebrow">MACRO</span></div>
+        <div class="calendar-host">
+          <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
+            {"colorTheme":"dark","isTransparent":true,"locale":"en","countryFilter":"us,eu,gb,jp,ca,au,cn","importanceFilter":"-1,0,1","width":"100%","height":"100%"}
+            </script>
+          </div>
+        </div>
+        <div class="calendar-footer">Izvor: TradingView · vremena događaja proveri u kalendaru.</div>
+      </section>
+    </section>
+
+    <section class="quick-links" aria-label="Brzi linkovi">
+      <a class="quick-link" href="signals.html"><span><strong>Signals & Analysis</strong><small>Postojeći signali, analize i statistika</small></span><span class="arrow">↗</span></a>
+      <a class="quick-link" href="https://t.me/jokeerfX" target="_blank" rel="noopener noreferrer"><span><strong>Telegram</strong><small>JokerFX zajednica i objave</small></span><span class="arrow">↗</span></a>
+      <a class="quick-link" href="https://instagram.com/petar.grasanin" target="_blank" rel="noopener noreferrer"><span><strong>Instagram</strong><small>JokerFX društveni kanal</small></span><span class="arrow">↗</span></a>
+    </section>
+    <footer class="footer">JokerFX je informativni trading terminal. Sadržaj ne predstavlja investicioni savet niti garanciju rezultata. Trgovanje nosi rizik od gubitka kapitala.</footer>
+  </main>
 </div>
 
-<div class="bottom-buttons">
-    <div class="btn-action fancy-ui disabled">📚 TRADING ACADEMY<br><span style="font-size:9px; color:#0ea5e9;">COMING SOON</span></div>
-    
-    <div class="btn-action fancy-ui disabled">🔥 FTMO SERVICE<br><span style="font-size:9px; color:#0ea5e9;">COMING SOON</span></div>
-    <div class="btn-action fancy-ui" onclick="window.location.href='signals.html'">📊 SIGNALS & ANALYSIS</div>
-</div>
-
-<div id="clock-widget">
-    <div class="clock" id="clock-face">
-        <div class="hand hour" id="hour"></div>
-        <div class="hand minute" id="minute"></div>
-        <div class="hand second" id="second"></div>
-    </div>
-    <div class="digital" id="digital"></div>
-    <div class="sessions" id="sessions"></div>
-</div>
-
-<div id="radio-bar">
-    <div style="font-weight:bold; color:#0ea5e9;">🎧 AFRO HOUSE RADIO</div>
-    <div style="display:flex; align-items:center; gap:15px;">
-        <button class="play-btn" onclick="togglePlay()">PLAY / PAUSE</button>
-        <input type="range" min="0" max="1" step="0.01" value="0.2" onchange="setVolume(this.value)">
-    </div>
-    <audio id="radio" loop><source src="https://stream.zeno.fm/0r0xa792kwzuv" type="audio/mpeg"></audio>
+<div class="radio-dock" aria-label="Afro House Radio">
+  <div class="radio-icon" aria-hidden="true">♫</div>
+  <div class="radio-text"><strong>AFRO HOUSE RADIO</strong><small id="radioStatus" role="status">Spremno za slušanje</small></div>
+  <button id="radioToggle" class="radio-btn" type="button" aria-label="Pokreni radio">PLAY</button>
+  <input id="radioVolume" class="volume" type="range" min="0" max="1" step="0.05" value="0.2" aria-label="Jačina radija">
+  <audio id="radio" preload="none" src="https://stream.zeno.fm/0r0xa792kwzuv"></audio>
 </div>
 
 <script src="https://s3.tradingview.com/tv.js"></script>
 <script>
-/* CREATE DOTS ON CLOCK */
-const face = document.getElementById('clock-face');
-for(let i=0; i<12; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'clock-dot';
-    const angle = i * 30;
-    dot.style.left = 50 + 42 * Math.sin(angle * Math.PI/180) + '%';
-    dot.style.top = 50 - 42 * Math.cos(angle * Math.PI/180) + '%';
-    dot.style.transform = 'translate(-50%, -50%)';
-    face.appendChild(dot);
-}
+(function () {
+  'use strict';
+  const body = document.body;
+  const menu = document.getElementById('menuToggle');
+  const backdrop = document.getElementById('mobileBackdrop');
+  const isMobile = () => window.matchMedia('(max-width: 760px)').matches;
+  function updateMenuLabel() {
+    const expanded = isMobile() ? body.classList.contains('sidebar-open') : !body.classList.contains('sidebar-collapsed');
+    menu.setAttribute('aria-expanded', String(expanded));
+    menu.setAttribute('aria-label', expanded ? 'Sklopi meni' : 'Otvori meni');
+  }
+  function closeMobile() { body.classList.remove('sidebar-open'); updateMenuLabel(); }
+  menu.addEventListener('click', () => {
+    if (isMobile()) body.classList.toggle('sidebar-open');
+    else body.classList.toggle('sidebar-collapsed');
+    updateMenuLabel();
+  });
+  backdrop.addEventListener('click', closeMobile);
+  document.querySelectorAll('.sidebar a').forEach(a => a.addEventListener('click', () => { if (isMobile()) closeMobile(); }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobile(); });
+  window.addEventListener('resize', updateMenuLabel);
+  updateMenuLabel();
 
-function createChart(symbol){
-    document.getElementById("chart").innerHTML = "";
-    new TradingView.widget({
-        "width": "100%",
-        "height": 550,
-        "symbol": symbol,
-        "interval": "60",
-        "theme": "dark",
-        "style": "1",
-        "locale": "en",
-        "container_id": "chart",
-        "hide_side_toolbar": false,
-        "allow_symbol_change": true
-    });
-}
-function changeSymbol(symbol){ createChart(symbol); }
-createChart("FOREXCOM:XAUUSD");
-
-function updateClock(){
-    let now = new Date();
-    let sec = now.getSeconds();
-    let min = now.getMinutes();
-    let hr = now.getHours();
-
-    document.getElementById("second").style.transform = `rotate(${sec * 6}deg)`;
-    document.getElementById("minute").style.transform = `rotate(${min * 6 + sec * 0.1}deg)`;
-    document.getElementById("hour").style.transform = `rotate(${(hr % 12) * 30 + min * 0.5}deg)`;
-
-    let options = { hour: '2-digit', minute: '2-digit', hour12: false };
-    let ny = new Date().toLocaleTimeString("en-US", {timeZone: "America/New_York", ...options});
-    let lon = new Date().toLocaleTimeString("en-GB", {timeZone: "Europe/London", ...options});
-    let tky = new Date().toLocaleTimeString("en-US", {timeZone: "Asia/Tokyo", ...options});
-
-    document.getElementById("digital").innerHTML = lon;
-    document.getElementById("sessions").innerHTML = `NY: ${ny}<br>LDN: ${lon}<br>TKY: ${tky}`;
-}
-setInterval(updateClock, 1000);
-updateClock();
-
-const radio = document.getElementById("radio");
-function togglePlay(){ 
-    radio.muted = false; 
-    if (radio.paused) {
-        radio.play();
-    } else {
-        radio.pause();
+  // Keep the same chart integration and symbols as the existing JokerFX homepage.
+  const symbolButtons = [...document.querySelectorAll('[data-symbol]')];
+  function createChart(symbol) {
+    const chart = document.getElementById('chart');
+    chart.innerHTML = '';
+    if (!window.TradingView || typeof window.TradingView.widget !== 'function') {
+      chart.innerHTML = '<div style="padding:25px;color:#aeb4bd">TradingView trenutno nije dostupan. Proveri internet konekciju i osveži stranicu.</div>';
+      return;
     }
-}
-function setVolume(val){ radio.volume = val; }
+    new window.TradingView.widget({
+      width: '100%', height: '100%', symbol: symbol, interval: '60',
+      theme: 'dark', style: '1', locale: 'en', container_id: 'chart',
+      hide_side_toolbar: false, allow_symbol_change: true, autosize: true,
+      toolbar_bg: '#101317', backgroundColor: '#101317',
+      overrides: { 'paneProperties.background': '#101317', 'paneProperties.vertGridProperties.color': '#22262c', 'paneProperties.horzGridProperties.color': '#22262c' }
+    });
+  }
+  function chooseSymbol(symbol) {
+    symbolButtons.forEach(btn => {
+      const active = btn.dataset.symbol === symbol;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', String(active));
+    });
+    createChart(symbol);
+  }
+  symbolButtons.forEach(btn => btn.addEventListener('click', () => chooseSymbol(btn.dataset.symbol)));
+  chooseSymbol('FOREXCOM:XAUUSD');
 
-// --- UNAPREĐENA TELEGRAM NOTIFIKACIJA ---
-async function notifyTelegram() {
-    const token = '8771811077:AAFQ7PlmfbNRNxmZsbF2Ver2Y6ckXln7OB4';
-    const chatId = '6111748129';
-    
-    let lokacija = "🌍 Država: Nepoznato\n🏙️ Grad: Nepoznato";
-    let uredjaj = "Nepoznat uređaj";
+  const clocks = [
+    ['clockLondon', 'Europe/London'],
+    ['clockNY', 'America/New_York'],
+    ['clockTokyo', 'Asia/Tokyo']
+  ].map(([id, timezone]) => ({element: document.getElementById(id), formatter: new Intl.DateTimeFormat('en-GB', {timeZone: timezone, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false})}));
+  function updateClocks() { const now = new Date(); clocks.forEach(c => { c.element.textContent = c.formatter.format(now); }); }
+  updateClocks(); setInterval(updateClocks, 1000);
+  document.getElementById('year').textContent = String(new Date().getFullYear());
 
-    // 1. Dobavljanje lokacije preko besplatnog API-ja
-    try {
-        const response = await fetch('https://ipapi.co/json/');
-        const data = await response.json();
-        if(data.country_name) {
-            lokacija = `🌍 Država: ${data.country_name}\n🏙️ Grad: ${data.city}`;
-        }
-    } catch (e) { console.log("Greška lokacija"); }
-
-    // 2. Detekcija uređaja (osnovno)
-    const ua = navigator.userAgent;
-    if (/iPhone/i.test(ua)) { uredjaj = "📱 iPhone"; }
-    else if (/Android/i.test(ua)) { uredjaj = "📱 Android"; }
-    else if (/Windows/i.test(ua)) { uredjaj = "💻 Windows PC"; }
-    else if (/Macintosh/i.test(ua)) { uredjaj = "💻 Mac"; }
-
-    // 3. Slanje poruke
-    const poruka = `🚀 *Nova poseta na JokerFX!*\n\n${lokacija}\n📱 Uređaj: ${uredjaj}`;
-    const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(poruka)}&parse_mode=Markdown`;
-
-    fetch(url).catch(err => console.log("Telegram Error"));
-}
-
-// Pokreni čim se stranica učita
-window.addEventListener('load', notifyTelegram);
-
+  const radio = document.getElementById('radio');
+  const radioButton = document.getElementById('radioToggle');
+  const radioStatus = document.getElementById('radioStatus');
+  const radioVolume = document.getElementById('radioVolume');
+  radio.volume = Number(radioVolume.value);
+  radioVolume.addEventListener('input', () => { radio.volume = Number(radioVolume.value); });
+  radioButton.addEventListener('click', async () => {
+    if (!radio.paused) { radio.pause(); return; }
+    radioStatus.textContent = 'Povezivanje...';
+    try { await radio.play(); } catch (e) { radioStatus.textContent = 'Stream nije dostupan'; }
+  });
+  radio.addEventListener('play', () => { radioButton.textContent = 'PAUSE'; radioButton.setAttribute('aria-label', 'Pauziraj radio'); radioStatus.textContent = 'U toku'; });
+  radio.addEventListener('pause', () => { radioButton.textContent = 'PLAY'; radioButton.setAttribute('aria-label', 'Pokreni radio'); radioStatus.textContent = 'Pauzirano'; });
+  radio.addEventListener('error', () => { radioStatus.textContent = 'Stream nije dostupan'; });
+})();
 </script>
-
 </body>
 </html>
